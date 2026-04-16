@@ -4,7 +4,7 @@ Favor clarity over spectacle, reduce generated-looking UI tropes, and make every
 credible, and businesslike. Keep the blue tape motif precise and sparing.
 */
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   ArrowRight,
   BadgeCheck,
@@ -20,6 +20,7 @@ import { toast } from "sonner";
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
+import { applyHomeSeo } from "@/lib/seo";
 import { trpc } from "@/lib/trpc";
 
 type AuditFormState = {
@@ -368,6 +369,10 @@ export default function Home() {
     ],
     []
   );
+
+  useEffect(() => {
+    applyHomeSeo();
+  }, []);
 
   const auditMutation = trpc.leads.submitAudit.useMutation({
     onSuccess: result => {

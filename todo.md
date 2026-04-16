@@ -27,3 +27,6 @@
 - [x] Build and test the project after the robots.txt and sitemap changes.
 - [x] Verify that /robots.txt and /sitemap.xml are publicly served and that the sitemap URL declared in robots.txt resolves correctly.
 - [x] Confirm the site still has a coherent absolute URL strategy for discoverability assets and note any limits of robots.txt versus indexing.
+- [x] Fix the homepage title on / so it falls within the recommended SEO length range and is set client-side with document.title.
+- [x] Shorten the homepage meta description on / so it falls within the recommended SEO length range.
+- [x] Validate the updated homepage title and description in the running site.
