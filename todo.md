@@ -4,3 +4,5 @@
 - [x] Audit and improve Southern California local SEO signals across metadata, copy, and structured content.
 - [x] Make the audit form truly submit and capture leads instead of acting like a static mockup.
 - [x] Validate the revised experience, save a new checkpoint, and return the updated preview.
+- [x] Fix the broken mobile layout and spacing across the homepage while preserving the desktop design.
+- [x] Review what can be controlled about the Manus branding button and report the limitation or available option.

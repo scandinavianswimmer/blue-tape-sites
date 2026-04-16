@@ -1,0 +1,6 @@
+Mobile screenshot review after two passes:
+- The first phone-sized screenshot showed a horizontal scrollbar and clipped content in the hero area, indicating a viewport overflow issue.
+- After responsive adjustments, the second screenshot looked tighter overall, but the hero eyebrow badge still stretches too wide and the right side of the hero copy remains clipped.
+- The main remaining issue appears to be additional horizontal overflow near the top hero region, so one more pass should reduce long-line widths and constrain any remaining wide elements.
+A second validation pass showed the remaining hero overflow came from the top content block being too wide for very small screens. After replacing the long badge component and narrowing the hero text column, the newest phone-sized screenshot shows the hero fitting cleanly within the viewport with no visible clipping. The mobile layout now presents the eyebrow, headline, body copy, and primary buttons in a readable stacked order.
+The tall full-page screenshot confirmed the homepage is rendering at phone width, but it compresses too much to judge section details. The first crop showed a large amount of vertical whitespace above the hero, which suggests the tall-screenshot method is not ideal for judging section spacing on its own and that additional cropped inspection is still needed further down the page.

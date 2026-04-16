@@ -281,7 +281,7 @@ const initialFormState: AuditFormState = {
 
 function SectionEyebrow({ children }: { children: string }) {
   return (
-    <div className="mb-5 inline-flex items-center gap-3 text-[0.7rem] font-semibold uppercase tracking-[0.28em] text-slate-500">
+    <div className="mb-4 inline-flex max-w-full flex-wrap items-center gap-3 text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-slate-500 sm:mb-5 sm:text-[0.7rem] sm:tracking-[0.28em]">
       <span className="h-px w-12 bg-blue-600" />
       {children}
     </div>
@@ -396,19 +396,19 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAFAFA] text-[#111111] selection:bg-blue-600 selection:text-white">
+    <div className="min-h-screen overflow-x-clip bg-[#FAFAFA] text-[#111111] selection:bg-blue-600 selection:text-white">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
 
       <header className="sticky top-0 z-50 border-b border-black/6 bg-white/85 backdrop-blur-xl">
-        <div className="container flex h-18 items-center justify-between gap-6">
-          <a href="#home" className="flex items-center gap-3">
+        <div className="container flex h-18 items-center justify-between gap-3 sm:gap-6">
+          <a href="#home" className="flex min-w-0 items-center gap-2.5 sm:gap-3">
             <div className="relative size-11 overflow-hidden rounded-2xl bg-blue-600 shadow-[0_12px_30px_rgba(0,102,255,0.24)]">
               <span className="absolute left-1/2 top-1/2 h-3.5 w-7 -translate-x-1/2 -translate-y-1/2 rotate-[-28deg] rounded-full bg-white/95" />
               <span className="absolute right-1.5 top-1.5 h-2.5 w-2.5 rounded-sm border border-white/80 bg-white/20" />
             </div>
-            <div className="leading-none">
-              <div className="text-[0.7rem] font-semibold uppercase tracking-[0.3em] text-slate-400">Blue Tape Sites</div>
-              <div className="mt-1 text-base font-semibold tracking-[-0.04em] text-[#111111]">Precision web design</div>
+            <div className="min-w-0 leading-none">
+              <div className="truncate text-[0.58rem] font-semibold uppercase tracking-[0.22em] text-slate-400 sm:text-[0.7rem] sm:tracking-[0.3em]">Blue Tape Sites</div>
+              <div className="mt-1 text-sm font-semibold tracking-[-0.04em] text-[#111111] sm:text-base">Precision web design</div>
             </div>
           </a>
 
@@ -463,33 +463,33 @@ export default function Home() {
         <section id="home" className="relative overflow-hidden">
           <div className="absolute inset-0 bg-[url('https://d2xsxph8kpxj0f.cloudfront.net/310419663032234167/TpcXhRqminM236HC9RQjNi/blue-tape-section-texture-2xTfvKichRrVCNPAF7frNP.webp')] bg-cover bg-center opacity-70" />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(250,250,250,0.72),rgba(250,250,250,0.95)_34%,rgba(250,250,250,1))]" />
-          <div className="container relative grid min-h-[calc(100vh-4.5rem)] items-center gap-12 py-14 sm:py-18 lg:grid-cols-[1.02fr_0.98fr] lg:py-24">
-            <div className="max-w-2xl">
+          <div className="container relative grid min-h-[calc(100vh-4.5rem)] items-center gap-10 py-10 sm:gap-12 sm:py-18 lg:grid-cols-[1.02fr_0.98fr] lg:py-24">
+            <div className="min-w-0 max-w-[21.5rem] sm:max-w-2xl">
               <motion.div
                 initial={{ opacity: 0, y: 22 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
               >
-                <Badge className="rounded-full border border-blue-200 bg-blue-50 px-4 py-1.5 text-[0.74rem] font-semibold uppercase tracking-[0.26em] text-blue-700 hover:bg-blue-50">
+                <div className="inline-flex max-w-[18.5rem] rounded-full border border-blue-200 bg-blue-50 px-3 py-1.5 text-center text-[0.62rem] font-semibold uppercase leading-5 tracking-[0.14em] text-blue-700 sm:max-w-full sm:px-4 sm:text-[0.74rem] sm:tracking-[0.26em]">
                   Southern California web design for serious contractors
-                </Badge>
-                <h1 className="mt-6 max-w-[13ch] text-[3rem] font-semibold leading-[0.92] tracking-[-0.08em] text-[#111111] sm:text-[4.4rem] lg:text-[5.5rem]">
+                </div>
+                <h1 className="mt-5 max-w-none text-[2.65rem] font-semibold leading-[0.95] tracking-[-0.07em] text-[#111111] sm:mt-6 sm:max-w-[13ch] sm:text-[4.4rem] lg:text-[5.5rem]">
                   See the tape. Fix the flaws. Launch with confidence.
                 </h1>
-                <p className="mt-6 max-w-xl text-lg leading-8 text-slate-600 sm:text-xl">
+                <p className="mt-5 max-w-[21.5rem] text-base leading-7 text-slate-600 sm:mt-6 sm:max-w-xl sm:text-xl sm:leading-8">
                   Blue Tape Sites builds premium, detail-first websites for Southern California plumbers,
                   electricians, cleaners, and home-service teams that want every weak spot marked,
                   resolved, and ready to sell.
                 </p>
-                <div className="mt-9 flex flex-col gap-4 sm:flex-row">
-                  <Button asChild className="h-13 rounded-full bg-blue-600 px-7 text-base text-white hover:bg-blue-700">
+                <div className="mt-8 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:gap-4">
+                  <Button asChild className="h-auto min-h-13 w-full rounded-full bg-blue-600 px-6 py-4 text-base whitespace-normal text-white hover:bg-blue-700 sm:h-13 sm:w-auto sm:px-7 sm:py-0">
                     <a href="#audit">Request Your Free Audit</a>
                   </Button>
-                  <Button asChild variant="outline" className="h-13 rounded-full border-black/10 bg-white px-7 text-base text-[#111111] hover:bg-[#F3F6FB]">
+                  <Button asChild variant="outline" className="h-auto min-h-13 w-full rounded-full border-black/10 bg-white px-6 py-4 text-base whitespace-normal text-[#111111] hover:bg-[#F3F6FB] sm:h-13 sm:w-auto sm:px-7 sm:py-0">
                     <a href="#pricing">See Pricing Packages</a>
                   </Button>
                 </div>
-                <p className="mt-7 max-w-xl text-sm leading-7 text-slate-500">
+                <p className="mt-6 max-w-[21.5rem] text-sm leading-6 text-slate-500 sm:mt-7 sm:max-w-xl sm:leading-7">
                   Built for Southern California service-area businesses that need sharper messaging, better trust signals,
                   and cleaner mobile conversion paths.
                 </p>
@@ -499,10 +499,10 @@ export default function Home() {
                 initial={{ opacity: 0, y: 28 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-                className="mt-10 grid gap-4 sm:grid-cols-3"
+                className="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-3"
               >
                 {heroStats.map(stat => (
-                  <div key={stat.label} className="rounded-[1.5rem] border border-black/6 bg-white/80 px-5 py-5 shadow-[0_18px_50px_rgba(17,17,17,0.06)] backdrop-blur-sm">
+                  <div key={stat.label} className="rounded-[1.35rem] border border-black/6 bg-white/80 px-4 py-4 shadow-[0_18px_50px_rgba(17,17,17,0.06)] backdrop-blur-sm sm:rounded-[1.5rem] sm:px-5 sm:py-5">
                     <div className="text-2xl font-semibold tracking-[-0.05em] text-[#111111]">{stat.value}</div>
                     <p className="mt-2 text-sm leading-6 text-slate-500">{stat.label}</p>
                   </div>
@@ -514,20 +514,20 @@ export default function Home() {
               initial={{ opacity: 0, scale: 0.96, y: 18 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-              className="relative lg:justify-self-end"
+              className="relative mx-auto w-full max-w-[32rem] lg:mx-0 lg:justify-self-end"
             >
               <div className="absolute -left-8 top-8 hidden h-28 w-28 rounded-full bg-blue-600/12 blur-3xl sm:block" />
               <div className="absolute -right-5 bottom-10 hidden h-32 w-32 rounded-full bg-slate-300/30 blur-3xl sm:block" />
-              <div className="hero-card relative overflow-hidden rounded-[2rem] border border-black/7 bg-white p-3 shadow-[0_35px_120px_rgba(17,17,17,0.14)] sm:p-4">
+              <div className="hero-card relative overflow-hidden rounded-[1.6rem] border border-black/7 bg-white p-2.5 shadow-[0_35px_120px_rgba(17,17,17,0.14)] sm:rounded-[2rem] sm:p-4">
                 <img
                   src="https://d2xsxph8kpxj0f.cloudfront.net/310419663032234167/TpcXhRqminM236HC9RQjNi/blue-tape-hero-wall-DrVe684rwH2xQagD6SAZ7A.webp"
                   alt="Blue painter's tape unrolling into a polished contractor website mockup"
                   className="h-full w-full rounded-[1.5rem] object-cover"
                 />
-                <div className="absolute left-5 top-5 rounded-full border border-white/70 bg-white/88 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-slate-500 backdrop-blur sm:left-7 sm:top-7">
+                <div className="absolute left-4 top-4 hidden rounded-full border border-white/70 bg-white/88 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-slate-500 backdrop-blur sm:left-7 sm:top-7 sm:block">
                   Southern California launch concept
                 </div>
-                <div className="absolute bottom-5 right-5 max-w-[15rem] rounded-[1.4rem] border border-white/60 bg-white/90 p-4 shadow-[0_18px_50px_rgba(17,17,17,0.08)] backdrop-blur sm:bottom-7 sm:right-7">
+                <div className="absolute inset-x-4 bottom-4 rounded-[1.1rem] border border-white/60 bg-white/90 p-3 shadow-[0_18px_50px_rgba(17,17,17,0.08)] backdrop-blur sm:inset-x-auto sm:bottom-7 sm:right-7 sm:max-w-[15rem] sm:rounded-[1.4rem] sm:p-4">
                   <div className="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-slate-400">Punch-list logic</div>
                   <div className="mt-2 text-base font-semibold tracking-[-0.04em] text-[#111111]">Clear offer, tighter proof, stronger local trust.</div>
                 </div>
@@ -536,16 +536,16 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="container py-24 sm:py-32">
+        <section className="container py-18 sm:py-32">
           <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
             <div>
               <SectionEyebrow>We Build With the Tape On</SectionEyebrow>
-              <h2 className="max-w-[10ch] text-4xl font-semibold leading-tight tracking-[-0.06em] text-[#111111] sm:text-5xl">
+              <h2 className="max-w-[12ch] text-[2.35rem] font-semibold leading-[1] tracking-[-0.06em] text-[#111111] sm:text-5xl lg:max-w-[10ch]">
                 The website process, inspected from the start.
               </h2>
             </div>
             <div>
-              <p className="max-w-3xl text-lg leading-8 text-slate-600">
+              <p className="max-w-3xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
                 Blue Tape Sites is built around the idea that strong websites rarely get better by adding more.
                 They get better when someone notices what is off, marks what matters, and resolves the details
                 with care. That is how we approach strategy, copy, layout, and launch.
@@ -562,8 +562,8 @@ export default function Home() {
                         <div className="flex size-13 items-center justify-center rounded-[1.15rem] bg-blue-50 text-blue-600">
                           <Icon className="size-6" />
                         </div>
-                        <h3 className="mt-6 text-2xl font-semibold tracking-[-0.05em] text-[#111111]">{item.title}</h3>
-                        <p className="mt-4 text-base leading-8 text-slate-600">{item.description}</p>
+                        <h3 className="mt-5 text-[1.65rem] font-semibold tracking-[-0.05em] text-[#111111] sm:mt-6 sm:text-2xl">{item.title}</h3>
+                        <p className="mt-4 text-[0.98rem] leading-7 text-slate-600 sm:text-base sm:leading-8">{item.description}</p>
                       </CardContent>
                     </Card>
                   );
@@ -573,11 +573,11 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="border-y border-[#E5E5E5] bg-white py-24 sm:py-32">
+        <section className="border-y border-[#E5E5E5] bg-white py-18 sm:py-32">
           <div className="container grid gap-14 lg:grid-cols-[0.75fr_1.25fr]">
             <div>
               <SectionEyebrow>We Work With Hands-On Business Owners</SectionEyebrow>
-              <h2 className="max-w-[10ch] text-4xl font-semibold leading-tight tracking-[-0.06em] text-[#111111] sm:text-5xl">
+              <h2 className="max-w-[12ch] text-[2.35rem] font-semibold leading-[1] tracking-[-0.06em] text-[#111111] sm:text-5xl lg:max-w-[10ch]">
                 Trusted by people who work with their hands and notice the details.
               </h2>
               <p className="mt-6 max-w-md text-lg leading-8 text-slate-600">
@@ -591,17 +591,17 @@ export default function Home() {
                 <CarouselContent className="overflow-visible">
                   {testimonials.map(item => (
                     <CarouselItem key={item.name} className="md:basis-1/2">
-                      <Card className="h-full rounded-[2rem] border border-black/6 bg-[#FAFAFA] shadow-[0_24px_60px_rgba(17,17,17,0.06)]">
+                      <Card className="h-full rounded-[1.6rem] border border-black/6 bg-[#FAFAFA] shadow-[0_24px_60px_rgba(17,17,17,0.06)] sm:rounded-[2rem]">
                         <CardContent className="flex h-full flex-col p-6 sm:p-8">
                           <div className="flex items-center gap-1 text-blue-600">
                             {Array.from({ length: 5 }).map((_, index) => (
                               <Star key={index} className="size-4 fill-current" />
                             ))}
                           </div>
-                          <p className="mt-6 text-lg leading-8 text-slate-700">“{item.quote}”</p>
+                          <p className="mt-5 text-base leading-7 text-slate-700 sm:mt-6 sm:text-lg sm:leading-8">“{item.quote}”</p>
                           <div className="mt-auto pt-8">
                             <div className="text-lg font-semibold tracking-[-0.04em] text-[#111111]">{item.name}</div>
-                            <div className="mt-1 text-sm uppercase tracking-[0.18em] text-slate-400">{item.company}</div>
+                            <div className="mt-1 text-[0.72rem] uppercase tracking-[0.14em] text-slate-400 sm:text-sm sm:tracking-[0.18em]">{item.company}</div>
                           </div>
                         </CardContent>
                       </Card>
@@ -628,7 +628,8 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+              <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+
             {serviceAreas.map(area => (
               <Card key={area.title} className="rounded-[1.7rem] border border-black/6 bg-white shadow-[0_18px_50px_rgba(17,17,17,0.05)]">
                 <CardContent className="p-6">
@@ -643,7 +644,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="pricing" className="relative overflow-hidden border-y border-[#E5E5E5] bg-white py-24 sm:py-32">
+        <section id="pricing" className="relative overflow-hidden border-y border-[#E5E5E5] bg-white py-18 sm:py-32">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(0,102,255,0.08),transparent_28%)]" />
           <div className="container relative">
             <div className="max-w-3xl">
@@ -651,18 +652,19 @@ export default function Home() {
               <h2 className="text-4xl font-semibold leading-tight tracking-[-0.06em] text-[#111111] sm:text-5xl">
                 Premium structure without the agency fog.
               </h2>
-              <p className="mt-6 text-lg leading-8 text-slate-600">
+              <p className="mt-5 text-base leading-7 text-slate-600 sm:mt-6 sm:text-lg sm:leading-8">
                 Choose a clean build, a focused redesign, or ongoing monthly refinement. Every package below keeps the CTA anchored at the same level so comparisons are easier to scan.
               </p>
             </div>
 
-            <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3 auto-rows-fr">
+            <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3 auto-rows-fr">
               {projectPackages.map(item => (
                 <PackageCard key={item.name} item={item} />
               ))}
             </div>
 
-            <div className="mt-8 rounded-[2rem] border border-black/6 bg-[#FAFAFA] p-6 shadow-[0_24px_80px_rgba(17,17,17,0.06)] sm:p-8">
+              <div className="mt-8 rounded-[1.8rem] border border-black/6 bg-[#FAFAFA] p-5 shadow-[0_24px_80px_rgba(17,17,17,0.06)] sm:rounded-[2rem] sm:p-8">
+
               <div className="flex flex-col gap-4 border-b border-[#E5E5E5] pb-5 lg:flex-row lg:items-end lg:justify-between">
                 <div>
                   <p className="text-sm font-medium uppercase tracking-[0.24em] text-slate-400">Ongoing retainers</p>
@@ -686,7 +688,7 @@ export default function Home() {
           <div className="grid gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:gap-16">
             <div>
               <SectionEyebrow>Free Blue Tape Audit</SectionEyebrow>
-              <h2 className="max-w-[10ch] text-4xl font-semibold leading-tight tracking-[-0.06em] text-[#111111] sm:text-5xl">
+              <h2 className="max-w-[12ch] text-[2.35rem] font-semibold leading-[1] tracking-[-0.06em] text-[#111111] sm:text-5xl lg:max-w-[10ch]">
                 Let us mark up the misses before you spend more on traffic.
               </h2>
               <p className="mt-6 max-w-xl text-lg leading-8 text-slate-600">
@@ -702,15 +704,15 @@ export default function Home() {
               </div>
             </div>
 
-            <Card className="rounded-[2rem] border border-black/6 bg-white shadow-[0_30px_90px_rgba(17,17,17,0.08)]">
-              <CardContent className="p-6 sm:p-8">
+            <Card className="rounded-[1.8rem] border border-black/6 bg-white shadow-[0_30px_90px_rgba(17,17,17,0.08)] sm:rounded-[2rem]">
+              <CardContent className="p-5 sm:p-8">
                 <div className="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.24em] text-slate-400">
                   <Sparkles className="size-4 text-blue-600" />
                   Audit request form
                 </div>
 
                 {submissionMessage ? (
-                  <div className="mt-6 rounded-[1.4rem] border border-blue-100 bg-blue-50 px-5 py-4 text-sm leading-7 text-slate-700">
+                  <div className="mt-6 rounded-[1.25rem] border border-blue-100 bg-blue-50 px-4 py-4 text-sm leading-6 text-slate-700 sm:rounded-[1.4rem] sm:px-5 sm:leading-7">
                     {submissionMessage}
                   </div>
                 ) : null}
@@ -807,7 +809,7 @@ export default function Home() {
                   <div className="rounded-[1.5rem] border border-blue-100 bg-blue-50 px-5 py-4 text-sm leading-7 text-slate-600">
                     We review your site like a pre-paint walkthrough: what to keep, what to fix, and what is costing trust right now.
                   </div>
-                  <Button disabled={auditMutation.isPending} className="h-13 rounded-full bg-blue-600 text-base text-white hover:bg-blue-700 disabled:opacity-80">
+                  <Button disabled={auditMutation.isPending} className="h-auto min-h-13 rounded-full bg-blue-600 px-6 py-4 text-base whitespace-normal text-white hover:bg-blue-700 disabled:opacity-80 sm:h-13 sm:py-0">
                     {auditMutation.isPending ? (
                       <span className="inline-flex items-center gap-2">
                         <Loader2 className="size-4 animate-spin" />
@@ -823,18 +825,18 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="border-t border-[#E5E5E5] bg-white py-24 sm:py-32">
+        <section className="border-t border-[#E5E5E5] bg-white py-18 sm:py-32">
           <div className="container grid gap-14 lg:grid-cols-[0.7fr_1.3fr]">
             <div>
               <SectionEyebrow>Cut the Tape on Confusion</SectionEyebrow>
-              <h2 className="max-w-[10ch] text-4xl font-semibold leading-tight tracking-[-0.06em] text-[#111111] sm:text-5xl">
+              <h2 className="max-w-[12ch] text-[2.35rem] font-semibold leading-[1] tracking-[-0.06em] text-[#111111] sm:text-5xl lg:max-w-[10ch]">
                 Straight answers for owners who value clarity.
               </h2>
               <p className="mt-6 max-w-md text-lg leading-8 text-slate-600">
                 We keep the process direct, the decisions visible, and the site focused on what actually helps you win better work.
               </p>
             </div>
-            <div className="rounded-[2rem] border border-black/6 bg-[#FAFAFA] p-6 shadow-[0_24px_80px_rgba(17,17,17,0.06)] sm:p-8">
+            <div className="rounded-[1.8rem] border border-black/6 bg-[#FAFAFA] p-5 shadow-[0_24px_80px_rgba(17,17,17,0.06)] sm:rounded-[2rem] sm:p-8">
               <Accordion type="single" collapsible className="w-full">
                 {faqs.map((item, index) => (
                   <AccordionItem key={item.question} value={`item-${index}`} className="border-[#E5E5E5]">
@@ -851,9 +853,9 @@ export default function Home() {
       </main>
 
       <footer className="bg-[#111111] text-white">
-        <div className="container grid gap-12 py-14 lg:grid-cols-[1.1fr_0.9fr] lg:py-18">
+        <div className="container grid gap-10 py-12 lg:grid-cols-[1.1fr_0.9fr] lg:py-18">
           <div>
-            <div className="inline-flex items-center gap-3">
+            <div className="inline-flex flex-wrap items-center gap-3">
               <div className="relative size-11 overflow-hidden rounded-2xl bg-blue-600">
                 <span className="absolute left-1/2 top-1/2 h-3.5 w-7 -translate-x-1/2 -translate-y-1/2 rotate-[-28deg] rounded-full bg-white/95" />
                 <span className="absolute right-1.5 top-1.5 h-2.5 w-2.5 rounded-sm border border-white/80 bg-white/20" />
@@ -863,7 +865,7 @@ export default function Home() {
                 <div className="text-xl font-semibold tracking-[-0.05em]">Precision web design</div>
               </div>
             </div>
-            <p className="mt-6 max-w-xl text-lg leading-8 text-white/72">
+            <p className="mt-5 max-w-xl text-base leading-7 text-white/72 sm:mt-6 sm:text-lg sm:leading-8">
               Premium web design for Southern California plumbers, electricians, cleaners, and other home-service businesses that want every flaw found, every detail tightened, and every page ready to convert.
             </p>
           </div>
@@ -885,7 +887,7 @@ export default function Home() {
                 Request Your Free Audit
                 <ArrowRight className="size-4" />
               </a>
-              <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/6 px-4 py-2 text-sm text-white/70">
+              <div className="mt-6 inline-flex max-w-full flex-wrap items-center gap-2 rounded-2xl border border-white/12 bg-white/6 px-4 py-3 text-sm leading-6 text-white/70 sm:rounded-full sm:py-2">
                 <CircleHelp className="size-4 text-blue-300" />
                 Built for detail-obsessed owners who want less confusion and more confidence.
               </div>
