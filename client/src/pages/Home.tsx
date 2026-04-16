@@ -97,6 +97,30 @@ const testimonials = [
   },
 ];
 
+const exampleSites = [
+  {
+    name: "Harbor Plumbing Co.",
+    niche: "Plumbing",
+    summary: "A premium plumbing homepage direction focused on emergency clarity, trust, and clean residential presentation.",
+    image:
+      "https://d2xsxph8kpxj0f.cloudfront.net/310419663032234167/TpcXhRqminM236HC9RQjNi/blue-tape-mockup-plumbing-kDb4zgAXztNV984DxggUhy.webp",
+  },
+  {
+    name: "Northline Electric",
+    niche: "Electrical",
+    summary: "An electrical contractor direction with sharper proof framing, cleaner hierarchy, and code-conscious credibility.",
+    image:
+      "https://d2xsxph8kpxj0f.cloudfront.net/310419663032234167/TpcXhRqminM236HC9RQjNi/blue-tape-mockup-electrical-6mTRizFnD8CQC45i4RhudC.webp",
+  },
+  {
+    name: "Greyline Cleaning",
+    niche: "Cleaning",
+    summary: "A cleaning-company direction that stays premium and businesslike instead of falling into generic soft-service design tropes.",
+    image:
+      "https://d2xsxph8kpxj0f.cloudfront.net/310419663032234167/TpcXhRqminM236HC9RQjNi/blue-tape-mockup-cleaning-eCsrUsVc8wRXy8xwfTxK76.webp",
+  },
+];
+
 const projectPackages: PricingPackage[] = [
   {
     name: "Blueprint",
@@ -561,6 +585,33 @@ export default function Home() {
                     <div className="mt-1 text-[0.72rem] uppercase tracking-[0.16em] text-slate-500">{item.company}</div>
                   </div>
                 </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="border-y border-black/8 bg-white py-18 sm:py-28">
+          <div className="container">
+            <div className="max-w-3xl">
+              <SectionEyebrow>Example Website Directions</SectionEyebrow>
+              <h2 className="text-[2.2rem] font-semibold leading-[0.98] tracking-[-0.06em] text-[#111111] sm:text-[3.4rem]">
+                Three sample hero directions in the same Blue Tape language.
+              </h2>
+              <p className="mt-6 text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
+                These are concept directions, not presented as live client case studies. They show how the same design discipline can translate across different trades while keeping the same level of clarity, restraint, and local-trust framing.
+              </p>
+            </div>
+
+            <div className="mt-10 grid gap-6 lg:grid-cols-3">
+              {exampleSites.map(site => (
+                <article key={site.name} className="border border-black/10 bg-[#f7f5f1]">
+                  <img src={site.image} alt={`${site.name} sample homepage concept`} className="w-full border-b border-black/10 object-cover" />
+                  <div className="p-5 sm:p-6">
+                    <div className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-slate-400">{site.niche}</div>
+                    <h3 className="mt-2 text-[1.45rem] font-semibold tracking-[-0.05em] text-[#111111]">{site.name}</h3>
+                    <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-[0.98rem]">{site.summary}</p>
+                  </div>
+                </article>
               ))}
             </div>
           </div>

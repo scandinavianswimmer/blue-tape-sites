@@ -1,0 +1,3 @@
+Validation notes for the generated concept showcase:
+
+The updated homepage loads with the new example website directions content present in the live page. The browser text extraction confirms the section heading, the honesty note that these are concept directions rather than live client case studies, and the three niche examples for plumbing, electrical, and cleaning. The generated mockups are rendering from project-tied asset URLs, which keeps them compatible with deployment. The section language also stays aligned with the more restrained professional tone established in the latest redesign.

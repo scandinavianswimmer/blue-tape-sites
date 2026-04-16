@@ -15,3 +15,6 @@
 - [x] Research what visual and content patterns make websites feel AI-generated and identify which ones currently appear on Blue Tape Sites.
 - [x] Redesign the website so it feels more professional, intentional, and human-crafted before launch.
 - [x] Preserve the current SEO, mobile, and audit-form functionality while removing AI-feeling presentation patterns.
+- [x] Create three portfolio-style hero mockup visuals in different home-service niches using the Blue Tape Sites visual language.
+- [x] Keep the mockups stylistically consistent with the current site so they feel believable as example client work.
+- [x] Integrate the generated mockups into the site with hosting-safe asset handling and validate the updated presentation.
