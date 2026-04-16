@@ -1,4 +1,6 @@
-- [ ] Generate hero and supporting visual assets aligned with the Swiss editorial minimalism direction.
-- [ ] Build the full single-page homepage with all requested sections and interactions.
-- [ ] Draft best-fit placeholder copy only where the attachment references exact text that was not actually provided.
-- [ ] Validate the preview experience, save the first delivery checkpoint, and return the live preview URL with implementation notes.
+- [x] Remove the requested Affinity24 and Service Squad portfolio labels/sections from the homepage.
+- [x] Make all pricing section audit buttons align consistently across package cards.
+- [x] Rewrite testimonials so they sound authentically like tradespeople and owner-operators.
+- [x] Audit and improve Southern California local SEO signals across metadata, copy, and structured content.
+- [x] Make the audit form truly submit and capture leads instead of acting like a static mockup.
+- [x] Validate the revised experience, save a new checkpoint, and return the updated preview.

@@ -1,0 +1,13 @@
+Homepage validation notes after revision:
+- The Affinity24 and Service Squad portfolio/case-study section is removed.
+- Navigation now uses Home, Pricing, Service Area, and Audit.
+- Southern California SEO framing is visible in the page title, hero copy, service-area section, and FAQ.
+- Pricing cards render with a unified package grid, which should keep the Request an Audit buttons on a more consistent baseline.
+- The audit form is visible and ready for a live submission test.
+Additional browser validation notes:
+- The audit form accepted a live test submission in the browser.
+- After submission, the form showed a success message stating that the audit request landed correctly and a notification was sent through.
+- The form fields reset after the successful submission, which confirms the mutation completed and the success state rendered.
+Further browser validation notes:
+- A refreshed browser view explicitly shows the in-page success message: "Audit request received. Your details landed correctly and a notification has already been sent through."
+- The pricing section screenshot shows the three visible package CTAs aligned on a consistent baseline within the desktop pricing grid.

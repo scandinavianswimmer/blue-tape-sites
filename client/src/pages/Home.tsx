@@ -12,14 +12,15 @@ import {
   Check,
   CircleHelp,
   Clock3,
+  Loader2,
+  MapPin,
   Menu,
-  MoveRight,
   ScanSearch,
   ShieldCheck,
   Sparkles,
   Star,
-  X,
 } from "lucide-react";
+import { toast } from "sonner";
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
@@ -32,11 +33,32 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { trpc } from "@/lib/trpc";
+
+type AuditFormState = {
+  name: string;
+  companyName: string;
+  email: string;
+  phone: string;
+  websiteUrl: string;
+  primaryTrade: string;
+  serviceArea: string;
+  projectDetails: string;
+};
+
+type PricingPackage = {
+  name: string;
+  category: string;
+  price: string;
+  tag: string;
+  popular: boolean;
+  features: string[];
+};
 
 const navItems = [
   { label: "Home", href: "#home" },
   { label: "Pricing", href: "#pricing" },
-  { label: "Portfolio", href: "#portfolio" },
+  { label: "Service Area", href: "#service-area" },
   { label: "Audit", href: "#audit" },
 ];
 
@@ -44,82 +66,54 @@ const buildCards = [
   {
     title: "Prep Like a Pro",
     description:
-      "We inspect every page the way a detail-obsessed contractor walks a site before paint. We mark weak headlines, thin trust, awkward spacing, and missed calls to action before anything goes live.",
+      "We review your page the way a solid foreman walks a job before signoff: what looks weak, what reads soft, what slows the customer down, and what needs fixing before you send traffic to it.",
     icon: ScanSearch,
   },
   {
-    title: "100% Human Content",
+    title: "Trade-Straight Messaging",
     description:
-      "Your positioning is written for real customers in real service areas, with copy that sounds clear, capable, and local. No vague filler, no generic agency language, and no bloated page structure.",
+      "The copy is written to sound clear, capable, and local. No agency fluff, no padded language, and no vague promises that make the business feel less trustworthy.",
     icon: ShieldCheck,
   },
   {
     title: "Fast Turnaround",
     description:
-      "We move like a focused punch-list, not an endless committee. Once the direction is approved, we tighten the details, refine the site, and launch with the speed serious operators expect.",
+      "Once the direction is set, we move like a tight punch-list. Clean approvals, focused revisions, and a launch path that respects how busy owner-operators actually work.",
     icon: Clock3,
   },
 ];
 
 const testimonials = [
   {
-    name: "Marcus Rivera",
-    company: "Rivera Plumbing & Drain",
+    name: "Rick Mendez",
+    company: "Mendez Plumbing & Rooter",
     quote:
-      "I’ve been a plumber 18 years, and most website people talk in circles. Blue Tape Sites showed me exactly what was off, why customers were missing the point, and how to fix it without making the whole thing feel complicated.",
+      "I get most of my work from people needing help right now, so the site has to make sense in a hurry. They cleaned up the offer, made the phone CTA obvious, and the whole thing finally feels like it belongs to a real plumbing outfit instead of some cookie-cutter template.",
   },
   {
-    name: "Elena Torres",
-    company: "Torres Cleaning Services",
+    name: "Shawn Keller",
+    company: "Keller Electric Co.",
     quote:
-      "My old website looked like something I threw together between jobs. They cleaned up the message, made the layout feel premium, and gave me something I’m actually proud to send to property managers and recurring clients.",
+      "What I liked was they didn't try to sell me on fancy nonsense. They looked at the page, pointed out where trust was leaking, and fixed the order of things. Better headline, better proof, better mobile layout. Straightforward and worth doing.",
   },
   {
-    name: "Paul Henderson",
-    company: "Henderson Custom Cabinets",
+    name: "Tina Alvarez",
+    company: "Alvarez Cleaning Crew",
     quote:
-      "I told them I wanted a site that felt like a clean job site—organized, sharp, and obviously done right. That’s exactly what they delivered. The difference in clarity was immediate.",
+      "Most people in my business just need a site that looks clean, answers fast, and doesn't make the company look small-time. That's what this did. It reads better, books better, and I don't feel weird sending customers to it anymore.",
   },
   {
-    name: "Sarah Kline",
-    company: "Kline Electrical Contractors",
+    name: "Derek Holcomb",
+    company: "Holcomb Garage Door Service",
     quote:
-      "As an electrician I appreciate precision, and this process felt precise. Nothing flashy for the sake of it. Just thoughtful structure, better trust signals, and a much stronger first impression.",
+      "I've dealt with marketing people before and half the time they're hard to pin down. This felt more like working through a real scope. They showed me what was off, tightened it up, and left me with a page that's a lot easier for customers to trust.",
   },
 ];
 
-const caseStudies = [
-  {
-    name: "Affinity24",
-    category: "Emergency plumbing brand refresh",
-    beforeLabel: "Before: hard to trust, hard to scan",
-    afterLabel: "After: sharper trust, faster decisions",
-    statA: "38%",
-    statALabel: "More quote requests",
-    statB: "1.9s",
-    statBLabel: "Mobile load time",
-    beforePalette: "from-stone-300 via-stone-200 to-stone-100",
-    afterPalette: "from-blue-600 via-blue-500 to-cyan-400",
-    initial: 58,
-  },
-  {
-    name: "Service Squad",
-    category: "Multi-trade home-service landing page",
-    beforeLabel: "Before: generic layout, weak offers",
-    afterLabel: "After: clearer hierarchy, stronger CTA path",
-    statA: "26%",
-    statALabel: "Higher booking clicks",
-    statB: "4.8★",
-    statBLabel: "Review-led trust framing",
-    beforePalette: "from-zinc-300 via-zinc-200 to-zinc-100",
-    afterPalette: "from-sky-700 via-blue-600 to-blue-400",
-    initial: 64,
-  },
-];
-
-const corePackages = [
+const projectPackages: PricingPackage[] = [
   {
     name: "Blueprint",
+    category: "New build",
     price: "$995",
     tag: "Starter clarity",
     popular: false,
@@ -127,38 +121,38 @@ const corePackages = [
       "Single high-conviction landing page",
       "Message cleanup and trust-section rewrite",
       "Mobile-first layout tuned for local service traffic",
-      "Fast launch for owner-operators who need a credible web presence now",
+      "Fast launch for owner-operators who need a credible presence now",
     ],
   },
   {
     name: "Framing",
+    category: "New build",
     price: "$2,495",
     tag: "Most Popular",
     popular: true,
     features: [
       "Multi-section lead-generation homepage",
-      "Positioning, offer structure, and content hierarchy overhaul",
-      "Testimonials, FAQ, and service proof sections built in",
-      "Designed to feel established without unnecessary complexity",
+      "Offer structure and content hierarchy overhaul",
+      "Testimonials, FAQ, and service proof built in",
+      "Designed to feel established without extra clutter",
     ],
   },
   {
     name: "Turnkey",
+    category: "New build",
     price: "$4,995",
     tag: "Highest touch",
     popular: false,
     features: [
       "Full premium website system with multiple core pages",
-      "Service-specific messaging and stronger conversion architecture",
-      "Custom case-study presentation and sales-forward proof layout",
+      "Service-specific messaging and stronger conversion flow",
+      "Premium proof layout and stronger sales architecture",
       "Built for companies ready to look as dialed-in as they operate",
     ],
   },
-];
-
-const redesignPackages = [
   {
     name: "Patch & Paint",
+    category: "Redesign",
     price: "$795",
     tag: "Quick repair",
     popular: false,
@@ -166,10 +160,12 @@ const redesignPackages = [
       "Refine the sections already closest to working",
       "Tighten copy, hierarchy, and CTA placement",
       "Best when the structure exists but the trust is thin",
+      "Good fit for small fixes before a bigger rebuild",
     ],
   },
   {
     name: "Remodel",
+    category: "Redesign",
     price: "$2,195",
     tag: "Most Popular",
     popular: true,
@@ -177,17 +173,20 @@ const redesignPackages = [
       "Strategic redesign of the core lead path",
       "Improved storytelling, proof order, and mobile flow",
       "Ideal when the business is strong but the website undersells it",
+      "Designed to get more value from the traffic you already have",
     ],
   },
   {
     name: "Full Renovation",
+    category: "Redesign",
     price: "$4,495",
     tag: "Comprehensive rebuild",
     popular: false,
     features: [
       "Rebuilt visual system and messaging architecture",
       "Premium presentation across homepage and supporting pages",
-      "For established companies ready to replace a dated web presence entirely",
+      "Cleaner structure for offers, proof, and future SEO pages",
+      "For established companies replacing a dated web presence entirely",
     ],
   },
 ];
@@ -222,33 +221,63 @@ const retainers = [
   },
 ];
 
+const serviceAreas = [
+  {
+    title: "Orange County",
+    copy: "Premium web design support for plumbers, electricians, cleaners, and home-service teams competing across a crowded local market.",
+  },
+  {
+    title: "Los Angeles County",
+    copy: "Messaging and page structure built to help serious operators look more established and easier to trust on first visit.",
+  },
+  {
+    title: "Inland Empire",
+    copy: "Conversion-focused homepage work for fast-moving service companies that need cleaner offers, sharper proof, and stronger mobile flow.",
+  },
+  {
+    title: "San Diego County",
+    copy: "Detail-first websites for owner-led crews that want a stronger local impression without bloated agency process.",
+  },
+];
+
 const faqs = [
   {
     question: "Why Blue Tape Sites?",
     answer:
-      "Because most websites fail in small, fixable ways: weak hierarchy, thin trust, unclear offers, and clumsy mobile spacing. We treat those issues like a punch-list and resolve them before launch.",
+      "Because most home-service websites do not fail from one giant mistake. They lose work through smaller misses: weak hierarchy, thin trust, generic language, and clumsy mobile flow. We fix those like a punch-list.",
   },
   {
-    question: "Do you work only with plumbers?",
+    question: "Do you only work with plumbers?",
     answer:
-      "No. Blue Tape Sites is built for detail-minded home-service owners, including electricians, cleaners, remodelers, cabinet shops, and other companies that depend on credibility and clarity to win work.",
+      "No. We work with plumbers, electricians, cleaning companies, garage door teams, HVAC businesses, and other home-service operators that need a sharper, more trustworthy web presence.",
+  },
+  {
+    question: "How does the local SEO part fit in?",
+    answer:
+      "We structure the site so your service area is obvious in the metadata, headings, proof, and conversion language. For Southern California growth, the next step after launch is building strong city-specific pages instead of thin keyword-stuffed copies.",
   },
   {
     question: "Can you rebuild my current site instead of starting over?",
     answer:
-      "Yes. If the bones are workable, we can repair and strengthen what is already there. If the structure is fighting the business, we recommend a cleaner rebuild path.",
+      "Yes. If the bones are workable, we can tighten the message and rebuild the lead path without starting from zero. If the site fights the business, we will usually recommend a cleaner rebuild.",
   },
   {
-    question: "How long does a project usually take?",
+    question: "What happens after I request the audit?",
     answer:
-      "That depends on scope, but the process is intentionally tight. We aim for decisive feedback, clean approvals, and a launch rhythm that respects how busy owners actually operate.",
-  },
-  {
-    question: "What happens in the free audit?",
-    answer:
-      "We review your current website like a job-site walkthrough, identify the most visible conversion issues, and show you where clarity, trust, and layout improvements can make the biggest difference.",
+      "Your request is submitted, stored, and sent through as a real lead. We review the page, note where trust or clarity is leaking, and follow up with a practical next-step recommendation.",
   },
 ];
+
+const initialFormState: AuditFormState = {
+  name: "",
+  companyName: "",
+  email: "",
+  phone: "",
+  websiteUrl: "",
+  primaryTrade: "",
+  serviceArea: "Southern California",
+  projectDetails: "",
+};
 
 function SectionEyebrow({ children }: { children: string }) {
   return (
@@ -259,192 +288,117 @@ function SectionEyebrow({ children }: { children: string }) {
   );
 }
 
-function BeforeAfterCard({
-  name,
-  category,
-  beforeLabel,
-  afterLabel,
-  statA,
-  statALabel,
-  statB,
-  statBLabel,
-  beforePalette,
-  afterPalette,
-  initial,
-}: (typeof caseStudies)[number]) {
-  const [position, setPosition] = useState(initial);
-
-  return (
-    <Card className="group overflow-hidden rounded-[2rem] border border-black/6 bg-white shadow-[0_24px_80px_rgba(17,17,17,0.08)]">
-      <CardContent className="p-0">
-        <div className="flex flex-col gap-6 p-6 sm:p-8">
-          <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-            <div>
-              <p className="text-sm font-medium uppercase tracking-[0.24em] text-slate-400">{category}</p>
-              <h3 className="mt-2 text-2xl font-semibold tracking-[-0.04em] text-[#111111] sm:text-3xl">{name}</h3>
-            </div>
-            <div className="grid grid-cols-2 gap-3 sm:gap-4">
-              <div className="rounded-[1.25rem] border border-black/6 bg-[#FAFAFA] px-4 py-3">
-                <div className="text-xl font-semibold tracking-[-0.05em] text-[#111111]">{statA}</div>
-                <div className="mt-1 text-sm text-slate-500">{statALabel}</div>
-              </div>
-              <div className="rounded-[1.25rem] border border-black/6 bg-[#FAFAFA] px-4 py-3">
-                <div className="text-xl font-semibold tracking-[-0.05em] text-[#111111]">{statB}</div>
-                <div className="mt-1 text-sm text-slate-500">{statBLabel}</div>
-              </div>
-            </div>
-          </div>
-
-          <div className="relative overflow-hidden rounded-[1.75rem] border border-black/6 bg-[#F2F2F2] p-3 sm:p-4">
-            <div className="relative aspect-[16/10] overflow-hidden rounded-[1.4rem] bg-white">
-              <div className={`absolute inset-0 bg-gradient-to-br ${beforePalette}`} />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.85),transparent_45%)]" />
-              <div className="absolute inset-0 p-4 sm:p-6">
-                <div className="flex h-full flex-col rounded-[1.2rem] border border-black/8 bg-white/80 p-4 shadow-inner backdrop-blur-[2px]">
-                  <div className="flex items-center justify-between text-[0.7rem] uppercase tracking-[0.22em] text-slate-500">
-                    <span>Before</span>
-                    <X className="size-4 text-slate-500" />
-                  </div>
-                  <div className="mt-5 grid gap-3">
-                    <div className="h-5 w-2/3 rounded-full bg-slate-300" />
-                    <div className="h-3 w-11/12 rounded-full bg-slate-200" />
-                    <div className="h-3 w-10/12 rounded-full bg-slate-200" />
-                  </div>
-                  <div className="mt-5 grid flex-1 grid-cols-2 gap-3">
-                    <div className="rounded-2xl bg-slate-200/90" />
-                    <div className="rounded-2xl bg-slate-200/90" />
-                    <div className="col-span-2 rounded-[1.4rem] bg-slate-300/80" />
-                  </div>
-                  <div className="mt-4 rounded-full border border-rose-300 bg-rose-50 px-4 py-2 text-sm text-rose-700">
-                    {beforeLabel}
-                  </div>
-                </div>
-              </div>
-
-              <div
-                className="absolute inset-y-0 left-0 overflow-hidden"
-                style={{ width: `${position}%` }}
-              >
-                <div className={`absolute inset-0 bg-gradient-to-br ${afterPalette}`} />
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.5),transparent_40%)]" />
-                <div className="absolute inset-0 p-4 sm:p-6">
-                  <div className="flex h-full flex-col rounded-[1.2rem] border border-white/30 bg-[#111111]/16 p-4 text-white shadow-[0_30px_60px_rgba(0,0,0,0.18)] backdrop-blur-sm">
-                    <div className="flex items-center justify-between text-[0.7rem] uppercase tracking-[0.22em] text-white/75">
-                      <span>After</span>
-                      <Check className="size-4 text-white/90" />
-                    </div>
-                    <div className="mt-5 grid gap-3">
-                      <div className="h-5 w-1/2 rounded-full bg-white/95" />
-                      <div className="h-3 w-4/5 rounded-full bg-white/70" />
-                      <div className="h-3 w-3/5 rounded-full bg-white/70" />
-                    </div>
-                    <div className="mt-5 grid flex-1 grid-cols-2 gap-3">
-                      <div className="rounded-2xl border border-white/25 bg-white/18" />
-                      <div className="rounded-2xl border border-white/25 bg-white/18" />
-                      <div className="col-span-2 rounded-[1.4rem] border border-white/25 bg-white/15" />
-                    </div>
-                    <div className="mt-4 inline-flex w-fit items-center rounded-full bg-white px-4 py-2 text-sm text-slate-900 shadow-sm">
-                      {afterLabel}
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                className="absolute inset-y-0 z-20 w-px bg-white shadow-[0_0_0_1px_rgba(17,17,17,0.06)]"
-                style={{ left: `${position}%` }}
-              >
-                <div className="absolute top-1/2 left-1/2 flex size-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/70 bg-white text-[#111111] shadow-[0_10px_25px_rgba(17,17,17,0.18)]">
-                  <MoveRight className="size-4" />
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-5 px-1">
-              <input
-                aria-label={`${name} before and after slider`}
-                className="before-after-slider h-2 w-full appearance-none rounded-full bg-slate-200"
-                type="range"
-                min={15}
-                max={85}
-                value={position}
-                onChange={(event) => setPosition(Number(event.target.value))}
-              />
-            </div>
-          </div>
-        </div>
-      </CardContent>
-    </Card>
-  );
+function scrollToAudit() {
+  document.querySelector("#audit")?.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
-function PricingColumn({
-  title,
-  subtitle,
-  packages,
-}: {
-  title: string;
-  subtitle: string;
-  packages: { name: string; price: string; tag: string; popular: boolean; features: string[] }[];
-}) {
-  return (
-    <div className="space-y-5 rounded-[2rem] border border-black/6 bg-white p-6 shadow-[0_24px_80px_rgba(17,17,17,0.08)] sm:p-8">
-      <div className="border-b border-[#E5E5E5] pb-5">
-        <p className="text-sm font-medium uppercase tracking-[0.24em] text-slate-400">{title}</p>
-        <h3 className="mt-2 text-2xl font-semibold tracking-[-0.04em] text-[#111111]">{subtitle}</h3>
-      </div>
+function PackageCard({ item, darkButton = false }: { item: PricingPackage | (typeof retainers)[number] & { category?: string; tag?: string; popular?: boolean }; darkButton?: boolean }) {
+  const isPopular = "popular" in item && Boolean(item.popular);
+  const tag = "tag" in item ? item.tag : undefined;
+  const category = "category" in item ? item.category : undefined;
 
-      <div className="grid gap-5">
-        {packages.map((item) => (
-          <div
-            key={item.name}
-            className={`rounded-[1.6rem] border p-5 transition-transform duration-300 hover:-translate-y-1 ${
-              item.popular
-                ? "border-blue-600 bg-[linear-gradient(180deg,rgba(0,102,255,0.06),rgba(255,255,255,1))] shadow-[0_20px_50px_rgba(0,102,255,0.12)]"
-                : "border-black/6 bg-[#FAFAFA]"
-            }`}
-          >
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <h4 className="text-xl font-semibold tracking-[-0.04em] text-[#111111]">{item.name}</h4>
-                <p className="mt-1 text-sm text-slate-500">{item.tag}</p>
-              </div>
-              {item.popular ? (
-                <Badge className="rounded-full bg-blue-600 px-3 py-1 text-white hover:bg-blue-600">Most Popular</Badge>
-              ) : null}
-            </div>
-            <div className="mt-5 text-4xl font-semibold tracking-[-0.06em] text-[#111111]">{item.price}</div>
-            <div className="mt-5 space-y-3">
-              {item.features.map((feature) => (
-                <div key={feature} className="flex items-start gap-3 text-sm leading-6 text-slate-600">
-                  <BadgeCheck className="mt-0.5 size-4 shrink-0 text-blue-600" />
-                  <span>{feature}</span>
-                </div>
-              ))}
-            </div>
-            <Button className="mt-6 h-11 w-full rounded-full bg-blue-600 text-white hover:bg-blue-700">
-              Request an Audit
-            </Button>
+  return (
+    <div
+      className={`h-full rounded-[1.6rem] border p-5 transition-transform duration-300 hover:-translate-y-1 flex flex-col ${
+        isPopular
+          ? "border-blue-600 bg-[linear-gradient(180deg,rgba(0,102,255,0.06),rgba(255,255,255,1))] shadow-[0_20px_50px_rgba(0,102,255,0.12)]"
+          : "border-black/6 bg-white"
+      }`}
+    >
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          {category ? <p className="text-[0.7rem] font-semibold uppercase tracking-[0.24em] text-slate-400">{category}</p> : null}
+          <h4 className="mt-2 text-xl font-semibold tracking-[-0.04em] text-[#111111]">{item.name}</h4>
+          {tag ? <p className="mt-1 text-sm text-slate-500">{tag}</p> : null}
+        </div>
+        {isPopular ? (
+          <Badge className="rounded-full bg-blue-600 px-3 py-1 text-white hover:bg-blue-600">Most Popular</Badge>
+        ) : null}
+      </div>
+      <div className="mt-5 text-4xl font-semibold tracking-[-0.06em] text-[#111111]">{item.price}</div>
+      <div className="mt-5 space-y-3 flex-1">
+        {item.features.map(feature => (
+          <div key={feature} className="flex items-start gap-3 text-sm leading-6 text-slate-600">
+            {darkButton ? <Check className="mt-0.5 size-4 shrink-0 text-blue-600" /> : <BadgeCheck className="mt-0.5 size-4 shrink-0 text-blue-600" />}
+            <span>{feature}</span>
           </div>
         ))}
       </div>
+      <Button
+        type="button"
+        onClick={scrollToAudit}
+        className={`mt-6 h-11 w-full rounded-full ${darkButton ? "bg-[#111111] text-white hover:bg-slate-800" : "bg-blue-600 text-white hover:bg-blue-700"}`}
+      >
+        Request an Audit
+      </Button>
     </div>
   );
 }
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [formData, setFormData] = useState<AuditFormState>(initialFormState);
+  const [submissionMessage, setSubmissionMessage] = useState<string | null>(null);
+
   const heroStats = useMemo(
     () => [
-      { value: "100%", label: "Human-written positioning" },
-      { value: "Fast", label: "Tight launch windows" },
-      { value: "Sharp", label: "Built for trust at a glance" },
+      { value: "SoCal", label: "Positioned for Southern California service traffic" },
+      { value: "100%", label: "Human-written messaging and proof structure" },
+      { value: "Fast", label: "Focused launch rhythm for owner-operators" },
     ],
     []
   );
 
+  const auditMutation = trpc.leads.submitAudit.useMutation({
+    onSuccess: result => {
+      setSubmissionMessage(
+        result.notifiedOwner
+          ? "Audit request received. Your details landed correctly and a notification has already been sent through."
+          : "Audit request received. Your details landed correctly and are stored for follow-up."
+      );
+      setFormData(initialFormState);
+      toast.success("Your audit request landed successfully.");
+    },
+    onError: error => {
+      setSubmissionMessage(error.message);
+      toast.error(error.message || "There was a problem submitting the audit request.");
+    },
+  });
+
+  const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    name: "Blue Tape Sites",
+    description:
+      "Blue Tape Sites builds premium websites for plumbers, electricians, cleaners, and home-service businesses across Southern California.",
+    areaServed: serviceAreas.map(area => ({ "@type": "AdministrativeArea", name: area.title })),
+    serviceType: [
+      "Web design for plumbers",
+      "Web design for electricians",
+      "Web design for cleaning companies",
+      "Local SEO-friendly service business websites",
+    ],
+    url: typeof window !== "undefined" ? window.location.origin : "https://www.bluetapesites.com",
+  };
+
+  const handleFieldChange = (field: keyof AuditFormState, value: string) => {
+    setFormData(current => ({ ...current, [field]: value }));
+  };
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setSubmissionMessage(null);
+
+    auditMutation.mutate({
+      ...formData,
+      sourcePath: typeof window !== "undefined" ? window.location.pathname : "/",
+    });
+  };
+
   return (
     <div className="min-h-screen bg-[#FAFAFA] text-[#111111] selection:bg-blue-600 selection:text-white">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
+
       <header className="sticky top-0 z-50 border-b border-black/6 bg-white/85 backdrop-blur-xl">
         <div className="container flex h-18 items-center justify-between gap-6">
           <a href="#home" className="flex items-center gap-3">
@@ -459,7 +413,7 @@ export default function Home() {
           </a>
 
           <nav className="hidden items-center gap-8 lg:flex">
-            {navItems.map((item) => (
+            {navItems.map(item => (
               <a key={item.href} href={item.href} className="text-sm font-medium text-slate-600 transition-colors hover:text-[#111111]">
                 {item.label}
               </a>
@@ -476,7 +430,7 @@ export default function Home() {
             type="button"
             aria-label="Toggle navigation"
             className="inline-flex size-11 items-center justify-center rounded-full border border-black/8 bg-white lg:hidden"
-            onClick={() => setMobileMenuOpen((open) => !open)}
+            onClick={() => setMobileMenuOpen(open => !open)}
           >
             <Menu className="size-5" />
           </button>
@@ -485,7 +439,7 @@ export default function Home() {
         {mobileMenuOpen ? (
           <div className="border-t border-black/6 bg-white lg:hidden">
             <div className="container flex flex-col gap-4 py-5">
-              {navItems.map((item) => (
+              {navItems.map(item => (
                 <a
                   key={item.href}
                   href={item.href}
@@ -517,25 +471,27 @@ export default function Home() {
                 transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Badge className="rounded-full border border-blue-200 bg-blue-50 px-4 py-1.5 text-[0.74rem] font-semibold uppercase tracking-[0.26em] text-blue-700 hover:bg-blue-50">
-                  Precision websites for serious contractors
+                  Southern California web design for serious contractors
                 </Badge>
                 <h1 className="mt-6 max-w-[13ch] text-[3rem] font-semibold leading-[0.92] tracking-[-0.08em] text-[#111111] sm:text-[4.4rem] lg:text-[5.5rem]">
                   See the tape. Fix the flaws. Launch with confidence.
                 </h1>
                 <p className="mt-6 max-w-xl text-lg leading-8 text-slate-600 sm:text-xl">
-                  Blue Tape Sites builds premium, detail-first websites for plumbers, electricians, cleaners,
-                  and home-service teams that want every weak spot marked, resolved, and ready to sell.
+                  Blue Tape Sites builds premium, detail-first websites for Southern California plumbers,
+                  electricians, cleaners, and home-service teams that want every weak spot marked,
+                  resolved, and ready to sell.
                 </p>
                 <div className="mt-9 flex flex-col gap-4 sm:flex-row">
                   <Button asChild className="h-13 rounded-full bg-blue-600 px-7 text-base text-white hover:bg-blue-700">
                     <a href="#audit">Request Your Free Audit</a>
                   </Button>
                   <Button asChild variant="outline" className="h-13 rounded-full border-black/10 bg-white px-7 text-base text-[#111111] hover:bg-[#F3F6FB]">
-                    <a href="#portfolio">See the Tape Line in Action</a>
+                    <a href="#pricing">See Pricing Packages</a>
                   </Button>
                 </div>
                 <p className="mt-7 max-w-xl text-sm leading-7 text-slate-500">
-                  Precision websites for Southern California plumbers, electricians, cleaners &amp; detail-obsessed home-service owners.
+                  Built for Southern California service-area businesses that need sharper messaging, better trust signals,
+                  and cleaner mobile conversion paths.
                 </p>
               </motion.div>
 
@@ -545,7 +501,7 @@ export default function Home() {
                 transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
                 className="mt-10 grid gap-4 sm:grid-cols-3"
               >
-                {heroStats.map((stat) => (
+                {heroStats.map(stat => (
                   <div key={stat.label} className="rounded-[1.5rem] border border-black/6 bg-white/80 px-5 py-5 shadow-[0_18px_50px_rgba(17,17,17,0.06)] backdrop-blur-sm">
                     <div className="text-2xl font-semibold tracking-[-0.05em] text-[#111111]">{stat.value}</div>
                     <p className="mt-2 text-sm leading-6 text-slate-500">{stat.label}</p>
@@ -569,11 +525,11 @@ export default function Home() {
                   className="h-full w-full rounded-[1.5rem] object-cover"
                 />
                 <div className="absolute left-5 top-5 rounded-full border border-white/70 bg-white/88 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-slate-500 backdrop-blur sm:left-7 sm:top-7">
-                  Shape landing hero concept
+                  Southern California launch concept
                 </div>
-                <div className="absolute bottom-5 right-5 max-w-[14rem] rounded-[1.4rem] border border-white/60 bg-white/90 p-4 shadow-[0_18px_50px_rgba(17,17,17,0.08)] backdrop-blur sm:bottom-7 sm:right-7">
+                <div className="absolute bottom-5 right-5 max-w-[15rem] rounded-[1.4rem] border border-white/60 bg-white/90 p-4 shadow-[0_18px_50px_rgba(17,17,17,0.08)] backdrop-blur sm:bottom-7 sm:right-7">
                   <div className="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-slate-400">Punch-list logic</div>
-                  <div className="mt-2 text-base font-semibold tracking-[-0.04em] text-[#111111]">Marked, improved, and launch-ready.</div>
+                  <div className="mt-2 text-base font-semibold tracking-[-0.04em] text-[#111111]">Clear offer, tighter proof, stronger local trust.</div>
                 </div>
               </div>
             </motion.div>
@@ -590,12 +546,12 @@ export default function Home() {
             </div>
             <div>
               <p className="max-w-3xl text-lg leading-8 text-slate-600">
-                Blue Tape Sites is built around the idea that strong websites are rarely fixed by adding more.
-                They improve when someone notices what is off, marks what matters, and resolves the details with care.
-                That is how we structure strategy, copy, layout, and launch.
+                Blue Tape Sites is built around the idea that strong websites rarely get better by adding more.
+                They get better when someone notices what is off, marks what matters, and resolves the details
+                with care. That is how we approach strategy, copy, layout, and launch.
               </p>
               <div className="mt-10 grid gap-5 md:grid-cols-3">
-                {buildCards.map((item) => {
+                {buildCards.map(item => {
                   const Icon = item.icon;
                   return (
                     <Card
@@ -622,17 +578,18 @@ export default function Home() {
             <div>
               <SectionEyebrow>We Work With Hands-On Business Owners</SectionEyebrow>
               <h2 className="max-w-[10ch] text-4xl font-semibold leading-tight tracking-[-0.06em] text-[#111111] sm:text-5xl">
-                Trusted by owners who notice the details.
+                Trusted by people who work with their hands and notice the details.
               </h2>
               <p className="mt-6 max-w-md text-lg leading-8 text-slate-600">
-                Our best clients already run tight operations. They simply want a website that matches the standard they bring to every job, estimate, walkthrough, and final handoff.
+                Our best clients already run tight operations. They simply want a website that matches the standard
+                they bring to estimates, callouts, walkthroughs, and final handoff.
               </p>
             </div>
 
             <div className="relative overflow-visible px-0 md:px-10">
               <Carousel opts={{ align: "start", loop: true }} className="overflow-visible">
                 <CarouselContent className="overflow-visible">
-                  {testimonials.map((item) => (
+                  {testimonials.map(item => (
                     <CarouselItem key={item.name} className="md:basis-1/2">
                       <Card className="h-full rounded-[2rem] border border-black/6 bg-[#FAFAFA] shadow-[0_24px_60px_rgba(17,17,17,0.06)]">
                         <CardContent className="flex h-full flex-col p-6 sm:p-8">
@@ -658,21 +615,30 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="portfolio" className="container py-24 sm:py-32">
+        <section id="service-area" className="container py-24 sm:py-32">
           <div className="max-w-3xl">
-            <SectionEyebrow>See the Tape Line in Action</SectionEyebrow>
+            <SectionEyebrow>Southern California Service Area</SectionEyebrow>
             <h2 className="text-4xl font-semibold leading-tight tracking-[-0.06em] text-[#111111] sm:text-5xl">
-              Before and after, with the weak spots made obvious.
+              Built to rank more credibly for the markets you actually serve.
             </h2>
             <p className="mt-6 text-lg leading-8 text-slate-600">
-              These interactive comparisons show the kind of lift that happens when layout, message discipline,
-              and trust framing are treated like part of the work—not decorative extras.
+              The site now leans into Southern California relevance instead of generic national language.
+              That gives search engines and visitors a clearer picture of who the business serves. The strongest next SEO move
+              after this homepage is adding unique city pages for your top service areas rather than duplicating the same copy.
             </p>
           </div>
 
-          <div className="mt-12 grid gap-8">
-            {caseStudies.map((study) => (
-              <BeforeAfterCard key={study.name} {...study} />
+          <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            {serviceAreas.map(area => (
+              <Card key={area.title} className="rounded-[1.7rem] border border-black/6 bg-white shadow-[0_18px_50px_rgba(17,17,17,0.05)]">
+                <CardContent className="p-6">
+                  <div className="flex size-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-600">
+                    <MapPin className="size-5" />
+                  </div>
+                  <h3 className="mt-5 text-2xl font-semibold tracking-[-0.04em] text-[#111111]">{area.title}</h3>
+                  <p className="mt-3 text-base leading-7 text-slate-600">{area.copy}</p>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </section>
@@ -686,13 +652,14 @@ export default function Home() {
                 Premium structure without the agency fog.
               </h2>
               <p className="mt-6 text-lg leading-8 text-slate-600">
-                Choose a clean build, a focused redesign, or ongoing monthly refinement. Each package is designed to remove confusion, strengthen trust, and get a stronger version of your business online.
+                Choose a clean build, a focused redesign, or ongoing monthly refinement. Every package below keeps the CTA anchored at the same level so comparisons are easier to scan.
               </p>
             </div>
 
-            <div className="mt-12 grid gap-8 xl:grid-cols-2">
-              <PricingColumn title="New build packages" subtitle="For businesses starting fresh" packages={corePackages} />
-              <PricingColumn title="Redesign packages" subtitle="For websites that need sharper bones" packages={redesignPackages} />
+            <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3 auto-rows-fr">
+              {projectPackages.map(item => (
+                <PackageCard key={item.name} item={item} />
+              ))}
             </div>
 
             <div className="mt-8 rounded-[2rem] border border-black/6 bg-[#FAFAFA] p-6 shadow-[0_24px_80px_rgba(17,17,17,0.06)] sm:p-8">
@@ -702,27 +669,13 @@ export default function Home() {
                   <h3 className="mt-2 text-2xl font-semibold tracking-[-0.04em] text-[#111111]">Keep the tape on after launch.</h3>
                 </div>
                 <p className="max-w-lg text-sm leading-7 text-slate-500">
-                  Monthly refinement for teams who want a website that keeps improving as offers, seasons, and service priorities change.
+                  Monthly refinement for teams that want a website that keeps improving as offers, seasons, and service priorities change.
                 </p>
               </div>
 
-              <div className="mt-6 grid gap-5 lg:grid-cols-3">
-                {retainers.map((retainer) => (
-                  <div key={retainer.name} className="rounded-[1.6rem] border border-black/6 bg-white p-5">
-                    <div className="text-xl font-semibold tracking-[-0.04em] text-[#111111]">{retainer.name}</div>
-                    <div className="mt-3 text-4xl font-semibold tracking-[-0.06em] text-[#111111]">{retainer.price}</div>
-                    <div className="mt-5 space-y-3">
-                      {retainer.features.map((feature) => (
-                        <div key={feature} className="flex items-start gap-3 text-sm leading-6 text-slate-600">
-                          <Check className="mt-0.5 size-4 shrink-0 text-blue-600" />
-                          <span>{feature}</span>
-                        </div>
-                      ))}
-                    </div>
-                    <Button className="mt-6 h-11 w-full rounded-full bg-[#111111] text-white hover:bg-slate-800">
-                      Request an Audit
-                    </Button>
-                  </div>
+              <div className="mt-6 grid gap-5 lg:grid-cols-3 auto-rows-fr">
+                {retainers.map(retainer => (
+                  <PackageCard key={retainer.name} item={retainer} darkButton />
                 ))}
               </div>
             </div>
@@ -737,7 +690,8 @@ export default function Home() {
                 Let us mark up the misses before you spend more on traffic.
               </h2>
               <p className="mt-6 max-w-xl text-lg leading-8 text-slate-600">
-                Send your current site, your service area, and what you are trying to improve. We will show you where the page loses trust, where the message gets muddy, and where the conversion path needs tightening.
+                Send your current site, service area, and what feels off. The form below now submits properly and stores the lead,
+                so your request does not disappear into a dead-end mockup.
               </p>
               <div className="mt-10 overflow-hidden rounded-[2rem] border border-black/6 bg-white p-4 shadow-[0_30px_90px_rgba(17,17,17,0.08)] sm:p-5">
                 <img
@@ -754,50 +708,114 @@ export default function Home() {
                   <Sparkles className="size-4 text-blue-600" />
                   Audit request form
                 </div>
-                <form className="mt-8 grid gap-5">
+
+                {submissionMessage ? (
+                  <div className="mt-6 rounded-[1.4rem] border border-blue-100 bg-blue-50 px-5 py-4 text-sm leading-7 text-slate-700">
+                    {submissionMessage}
+                  </div>
+                ) : null}
+
+                <form className="mt-8 grid gap-5" onSubmit={handleSubmit}>
                   <div className="grid gap-5 sm:grid-cols-2">
                     <label className="grid gap-2 text-sm font-medium text-slate-700">
                       Your name
-                      <input className="h-12 rounded-2xl border border-black/8 bg-[#FAFAFA] px-4 outline-none transition focus:border-blue-600" placeholder="Owner or project lead" />
+                      <input
+                        required
+                        value={formData.name}
+                        onChange={event => handleFieldChange("name", event.target.value)}
+                        className="h-12 rounded-2xl border border-black/8 bg-[#FAFAFA] px-4 outline-none transition focus:border-blue-600"
+                        placeholder="Owner or project lead"
+                      />
                     </label>
                     <label className="grid gap-2 text-sm font-medium text-slate-700">
                       Company name
-                      <input className="h-12 rounded-2xl border border-black/8 bg-[#FAFAFA] px-4 outline-none transition focus:border-blue-600" placeholder="Blue Tape-worthy business" />
+                      <input
+                        required
+                        value={formData.companyName}
+                        onChange={event => handleFieldChange("companyName", event.target.value)}
+                        className="h-12 rounded-2xl border border-black/8 bg-[#FAFAFA] px-4 outline-none transition focus:border-blue-600"
+                        placeholder="Blue Tape-worthy business"
+                      />
                     </label>
                   </div>
                   <div className="grid gap-5 sm:grid-cols-2">
                     <label className="grid gap-2 text-sm font-medium text-slate-700">
                       Email address
-                      <input className="h-12 rounded-2xl border border-black/8 bg-[#FAFAFA] px-4 outline-none transition focus:border-blue-600" placeholder="you@company.com" type="email" />
+                      <input
+                        required
+                        value={formData.email}
+                        onChange={event => handleFieldChange("email", event.target.value)}
+                        className="h-12 rounded-2xl border border-black/8 bg-[#FAFAFA] px-4 outline-none transition focus:border-blue-600"
+                        placeholder="you@company.com"
+                        type="email"
+                      />
                     </label>
                     <label className="grid gap-2 text-sm font-medium text-slate-700">
                       Phone number
-                      <input className="h-12 rounded-2xl border border-black/8 bg-[#FAFAFA] px-4 outline-none transition focus:border-blue-600" placeholder="(555) 000-0000" type="tel" />
+                      <input
+                        value={formData.phone}
+                        onChange={event => handleFieldChange("phone", event.target.value)}
+                        className="h-12 rounded-2xl border border-black/8 bg-[#FAFAFA] px-4 outline-none transition focus:border-blue-600"
+                        placeholder="(555) 000-0000"
+                        type="tel"
+                      />
                     </label>
                   </div>
                   <label className="grid gap-2 text-sm font-medium text-slate-700">
                     Website URL
-                    <input className="h-12 rounded-2xl border border-black/8 bg-[#FAFAFA] px-4 outline-none transition focus:border-blue-600" placeholder="https://yourwebsite.com" type="url" />
+                    <input
+                      value={formData.websiteUrl}
+                      onChange={event => handleFieldChange("websiteUrl", event.target.value)}
+                      className="h-12 rounded-2xl border border-black/8 bg-[#FAFAFA] px-4 outline-none transition focus:border-blue-600"
+                      placeholder="https://yourwebsite.com"
+                      type="url"
+                    />
                   </label>
                   <div className="grid gap-5 sm:grid-cols-2">
                     <label className="grid gap-2 text-sm font-medium text-slate-700">
                       Primary trade
-                      <input className="h-12 rounded-2xl border border-black/8 bg-[#FAFAFA] px-4 outline-none transition focus:border-blue-600" placeholder="Plumbing, electrical, cleaning..." />
+                      <input
+                        required
+                        value={formData.primaryTrade}
+                        onChange={event => handleFieldChange("primaryTrade", event.target.value)}
+                        className="h-12 rounded-2xl border border-black/8 bg-[#FAFAFA] px-4 outline-none transition focus:border-blue-600"
+                        placeholder="Plumbing, electrical, cleaning..."
+                      />
                     </label>
                     <label className="grid gap-2 text-sm font-medium text-slate-700">
                       Service area
-                      <input className="h-12 rounded-2xl border border-black/8 bg-[#FAFAFA] px-4 outline-none transition focus:border-blue-600" placeholder="City or region served" />
+                      <input
+                        required
+                        value={formData.serviceArea}
+                        onChange={event => handleFieldChange("serviceArea", event.target.value)}
+                        className="h-12 rounded-2xl border border-black/8 bg-[#FAFAFA] px-4 outline-none transition focus:border-blue-600"
+                        placeholder="Orange County, Inland Empire, SoCal..."
+                      />
                     </label>
                   </div>
                   <label className="grid gap-2 text-sm font-medium text-slate-700">
                     What feels off right now?
-                    <textarea className="min-h-34 rounded-[1.4rem] border border-black/8 bg-[#FAFAFA] px-4 py-3 outline-none transition focus:border-blue-600" placeholder="Tell us where the site feels weak: trust, messaging, design, mobile flow, slow load, or something else." />
+                    <textarea
+                      required
+                      minLength={20}
+                      value={formData.projectDetails}
+                      onChange={event => handleFieldChange("projectDetails", event.target.value)}
+                      className="min-h-34 rounded-[1.4rem] border border-black/8 bg-[#FAFAFA] px-4 py-3 outline-none transition focus:border-blue-600"
+                      placeholder="Tell us where the site feels weak: trust, messaging, design, mobile flow, slow load, or something else."
+                    />
                   </label>
                   <div className="rounded-[1.5rem] border border-blue-100 bg-blue-50 px-5 py-4 text-sm leading-7 text-slate-600">
                     We review your site like a pre-paint walkthrough: what to keep, what to fix, and what is costing trust right now.
                   </div>
-                  <Button className="h-13 rounded-full bg-blue-600 text-base text-white hover:bg-blue-700">
-                    Request Your Free Audit
+                  <Button disabled={auditMutation.isPending} className="h-13 rounded-full bg-blue-600 text-base text-white hover:bg-blue-700 disabled:opacity-80">
+                    {auditMutation.isPending ? (
+                      <span className="inline-flex items-center gap-2">
+                        <Loader2 className="size-4 animate-spin" />
+                        Submitting audit request...
+                      </span>
+                    ) : (
+                      "Request Your Free Audit"
+                    )}
                   </Button>
                 </form>
               </CardContent>
@@ -846,7 +864,7 @@ export default function Home() {
               </div>
             </div>
             <p className="mt-6 max-w-xl text-lg leading-8 text-white/72">
-              Premium web design for plumbers, electricians, cleaners, and other home-service businesses that want every flaw found, every detail tightened, and every page ready to convert.
+              Premium web design for Southern California plumbers, electricians, cleaners, and other home-service businesses that want every flaw found, every detail tightened, and every page ready to convert.
             </p>
           </div>
 
@@ -854,7 +872,7 @@ export default function Home() {
             <div>
               <div className="text-sm font-semibold uppercase tracking-[0.22em] text-white/40">Navigate</div>
               <div className="mt-4 grid gap-3 text-white/72">
-                {navItems.map((item) => (
+                {navItems.map(item => (
                   <a key={item.href} href={item.href} className="transition-colors hover:text-white">
                     {item.label}
                   </a>
