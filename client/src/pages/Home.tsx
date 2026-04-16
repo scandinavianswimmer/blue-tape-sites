@@ -358,6 +358,7 @@ export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [formData, setFormData] = useState<AuditFormState>(initialFormState);
   const [submissionMessage, setSubmissionMessage] = useState<string | null>(null);
+  const [submissionTone, setSubmissionTone] = useState<"success" | "error" | null>(null);
 
   const heroStats = useMemo(
     () => [
@@ -370,17 +371,28 @@ export default function Home() {
 
   const auditMutation = trpc.leads.submitAudit.useMutation({
     onSuccess: result => {
-      setSubmissionMessage(
-        result.notifiedOwner
-          ? "Audit request received. Your details landed correctly and a notification has already been sent through."
-          : "Audit request received. Your details landed correctly and are stored for follow-up."
-      );
+      const message = result.notifiedOwner
+        ? "Audit request received. Your details landed correctly and a notification has already been sent through."
+        : "Audit request received. Your details landed correctly and are stored for follow-up.";
+
+      setSubmissionTone("success");
+      setSubmissionMessage(message);
       setFormData(initialFormState);
-      toast.success("Your audit request landed successfully.");
+      toast.success("Audit request received", {
+        id: "audit-submit",
+        description: result.notifiedOwner
+          ? "Everything landed correctly and the lead was forwarded for follow-up."
+          : "Everything landed correctly and is stored for follow-up.",
+      });
     },
     onError: error => {
-      setSubmissionMessage(error.message);
-      toast.error(error.message || "There was a problem submitting the audit request.");
+      const message = error.message || "There was a problem submitting the audit request.";
+      setSubmissionTone("error");
+      setSubmissionMessage(message);
+      toast.error("Audit request not sent", {
+        id: "audit-submit",
+        description: message,
+      });
     },
   });
 
@@ -407,6 +419,23 @@ export default function Home() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSubmissionMessage(null);
+    setSubmissionTone(null);
+
+    if (formData.projectDetails.trim().length < 20) {
+      const message = "Add a little more detail so the audit has enough context to be useful.";
+      setSubmissionTone("error");
+      setSubmissionMessage(message);
+      toast.warning("More detail helps the audit", {
+        id: "audit-submit",
+        description: message,
+      });
+      return;
+    }
+
+    toast.loading("Sending audit request", {
+      id: "audit-submit",
+      description: "Submitting your website details for review now.",
+    });
 
     auditMutation.mutate({
       ...formData,
@@ -809,8 +838,17 @@ export default function Home() {
                 </div>
 
                 {submissionMessage ? (
-                  <div className="border border-black/10 bg-[#faf8f4] px-4 py-4 text-sm leading-7 text-slate-600">
-                    {submissionMessage}
+                  <div
+                    className={`px-4 py-4 text-sm leading-7 ${
+                      submissionTone === "success"
+                        ? "border-l-2 border-blue-600 bg-[#f3f6ff] text-slate-700"
+                        : "border-l-2 border-red-600 bg-[#fff6f6] text-slate-700"
+                    }`}
+                  >
+                    <div className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-slate-500">
+                      {submissionTone === "success" ? "Submission status" : "Needs attention"}
+                    </div>
+                    <div className="mt-2">{submissionMessage}</div>
                   </div>
                 ) : null}
 
@@ -819,7 +857,7 @@ export default function Home() {
                   disabled={auditMutation.isPending}
                   className="h-13 rounded-none border border-[#111111] bg-[#111111] text-sm font-semibold uppercase tracking-[0.08em] text-white hover:bg-slate-800"
                 >
-                  {auditMutation.isPending ? "Submitting..." : "Request Your Free Audit"}
+                  {auditMutation.isPending ? "Sending Audit Request..." : "Request Your Free Audit"}
                 </Button>
               </form>
             </div>

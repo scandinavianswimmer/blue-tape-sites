@@ -18,3 +18,6 @@
 - [x] Create three portfolio-style hero mockup visuals in different home-service niches using the Blue Tape Sites visual language.
 - [x] Keep the mockups stylistically consistent with the current site so they feel believable as example client work.
 - [x] Integrate the generated mockups into the site with hosting-safe asset handling and validate the updated presentation.
+- [x] Add polished in-app notifications for the audit form flow, including success, warning, error, and submission-status feedback.
+- [x] Keep the notification styling consistent with the current professional Blue Tape Sites design.
+- [x] Validate the audit-form notification behavior in the live site and preserve the existing lead-capture flow.
