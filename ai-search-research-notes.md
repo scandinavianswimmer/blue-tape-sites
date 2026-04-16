@@ -46,3 +46,30 @@
 - For Blue Tape Sites, a public `llms.txt` file could be useful as a concise brand brief for AI systems, especially if it points to visible proof pages, service-area pages, case studies, FAQs, and contact information.
 - However, it should not be treated as a guaranteed ranking mechanism. It is better understood as an accessibility and interpretation aid for AI systems than as a direct search ranking lever.
 - The safest implementation is to make the machine-readable file consistent with visible on-page claims, structured data, and linked evidence so that models have aligned signals across the site.
+
+## 2026-04-16 official crawler guidance confirmation
+
+### Google Search Central: robots.txt introduction
+- Google states that `robots.txt` is mainly for managing crawler traffic and is **not** a reliable way to keep a page out of Google.
+- A URL blocked in `robots.txt` can still appear in search results if linked from elsewhere, often without a description.
+- Google warns against blocking important resource files if doing so makes pages harder for Google to understand.
+- Practical implication for Blue Tape Sites: keep public marketing pages and render-critical assets crawlable.
+
+Source: https://developers.google.com/search/docs/crawling-indexing/robots/intro
+
+### OpenAI: Overview of OpenAI Crawlers
+- `OAI-SearchBot` affects visibility in ChatGPT search answers, and OpenAI recommends allowing it for sites that want to appear there.
+- `GPTBot` is the training crawler and can be controlled separately from search visibility.
+- `ChatGPT-User` supports user-initiated retrieval, and OpenAI notes that `robots.txt` may not apply in the same way because the request is user-triggered.
+- `OAI-AdsBot` is used for ad landing-page validation rather than model training.
+
+Source: https://developers.openai.com/api/docs/bots
+
+### Anthropic: crawler controls
+- Anthropic documents `ClaudeBot` for model-related crawling, `Claude-SearchBot` for search indexing and search quality, and `Claude-User` for user-initiated retrieval.
+- Anthropic says disabling `Claude-SearchBot` may reduce a site's visibility in user search results.
+- Anthropic says disabling `Claude-User` may reduce a site's visibility for user-directed retrieval.
+- Anthropic states that its bots honor `robots.txt` directives and can respect `Crawl-delay`.
+
+Source: https://support.claude.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler
+

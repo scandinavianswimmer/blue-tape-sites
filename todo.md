@@ -21,3 +21,9 @@
 - [x] Add polished in-app notifications for the audit form flow, including success, warning, error, and submission-status feedback.
 - [x] Keep the notification styling consistent with the current professional Blue Tape Sites design.
 - [x] Validate the audit-form notification behavior in the live site and preserve the existing lead-capture flow.
+- [x] Research current robots.txt best practices for search engines and major AI crawlers.
+- [x] Strengthen the public robots.txt so Blue Tape Sites stays crawlable, clearly indexed, and friendly to legitimate AI retrieval.
+- [x] Document compliant ways to improve recommendation likelihood in AI answers without deceptive tactics.
+- [x] Build and test the project after the robots.txt and sitemap changes.
+- [x] Verify that /robots.txt and /sitemap.xml are publicly served and that the sitemap URL declared in robots.txt resolves correctly.
+- [x] Confirm the site still has a coherent absolute URL strategy for discoverability assets and note any limits of robots.txt versus indexing.

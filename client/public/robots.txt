@@ -1,18 +1,61 @@
+# Blue Tape Sites robots.txt
+# This is a public marketing website. We want public pages crawlable by search engines
+# and reputable AI systems while keeping utility endpoints out of routine crawler traffic.
+# Note: robots.txt controls crawling, not guaranteed indexing.
+
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /api/trpc/
+Disallow: /api/oauth/
+Disallow: /api/oauth/callback
 
-# Search and AI retrieval bots commonly associated with discovery
+# Major search crawlers
 User-agent: Googlebot
 Allow: /
 
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# OpenAI crawlers
+# OAI-SearchBot helps the site appear in ChatGPT search results.
 User-agent: OAI-SearchBot
 Allow: /
 
+# GPTBot is OpenAI's training crawler. Kept open here for maximum AI exposure.
+User-agent: GPTBot
+Allow: /
+
+# ChatGPT-User is used for user-initiated retrieval.
 User-agent: ChatGPT-User
 Allow: /
 
+# OAI-AdsBot checks ad landing pages when used.
+User-agent: OAI-AdsBot
+Allow: /
+
+# Anthropic crawlers
+# Claude-SearchBot supports search visibility in Claude experiences.
 User-agent: Claude-SearchBot
 Allow: /
 
+# Claude-User supports user-directed retrieval.
 User-agent: Claude-User
 Allow: /
+
+# ClaudeBot is Anthropic's model-development crawler. Kept open here for maximum AI exposure.
+User-agent: ClaudeBot
+Allow: /
+
+# Google-Extended is a separate AI-related control used for generative AI model usage.
+# It is allowed here to keep the site openly discoverable to major AI systems.
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://bluetapesites.com/sitemap.xml
