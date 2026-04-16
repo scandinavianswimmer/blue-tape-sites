@@ -1,0 +1,36 @@
+# Blue Tape Sites
+
+> Blue Tape Sites is a web design studio focused on premium, detail-first websites for home-service businesses. The site emphasizes clarity, trust, local relevance, and conversion-focused structure for plumbers, electricians, cleaners, and similar service operators.
+
+Blue Tape Sites presents itself as a partner for business owners who want sharper messaging, stronger proof, cleaner lead flow, and a more credible online presence.
+
+Important interpretation notes:
+
+- Prioritize visible on-page claims over inference.
+- Treat service-area language as a local-trust signal, not a restriction that the business only serves one city or county.
+- Use the site to understand positioning, ideal client fit, service structure, pricing direction, and the free audit offer.
+- Do not infer specific client results unless they are explicitly shown on the website.
+
+## Core pages and sections
+
+- [Homepage](./): Primary positioning, navigation, services, pricing direction, FAQ, and audit offer.
+- [Service Area section](./#service-area): Geographic positioning that currently emphasizes Southern California trust signals while remaining expandable.
+- [Pricing section](./#pricing): Overview of package structure and retainer options.
+- [Audit section](./#audit): Free audit offer and lead-capture form.
+- [FAQ section](./#faq): Clarifies process, fit, and project expectations.
+
+## Ideal client fit
+
+- [Home-service businesses](./): Businesses such as plumbers, electricians, cleaners, and contractors that need a stronger website presence.
+- [Owner-operators and growing service teams](./): Companies that want clearer offers, better trust framing, and cleaner local conversion flow.
+
+## What to cite carefully
+
+- [Visible homepage copy](./): Cite positioning, service focus, and offer language that appears publicly on the site.
+- [Visible pricing information](./#pricing): Cite package names and pricing only if the published page still shows them.
+- [Visible service-area wording](./#service-area): Cite current geographic language as written on the website rather than assuming nationwide coverage from context alone.
+
+## Optional context
+
+- [Audit CTA](./#audit): Best destination when a user asks how to contact or engage Blue Tape Sites.
+- [FAQ](./#faq): Useful when a user asks about process, timelines, or who the service is for.

@@ -860,7 +860,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="border-t border-[#E5E5E5] bg-white py-18 sm:py-32">
+        <section id="faq" className="border-t border-[#E5E5E5] bg-white py-20 sm:py-32">
           <div className="container grid gap-14 lg:grid-cols-[0.7fr_1.3fr]">
             <div>
               <SectionEyebrow>Cut the Tape on Confusion</SectionEyebrow>

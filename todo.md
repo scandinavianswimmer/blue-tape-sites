@@ -9,3 +9,6 @@
 - [x] Redesign the mobile homepage sections so they feel purpose-built for phones instead of compressed desktop layouts.
 - [x] Rework mobile component hierarchy, spacing, and section flow wherever a different arrangement performs better on small screens.
 - [x] Revisit the navigation order so Service Area can lead Pricing in the header when the broader SEO structure is updated.
+- [x] Research how major AI assistants and Google discover, summarize, and cite websites relevant to service businesses.
+- [x] Define a compliant strategy to improve Blue Tape Sites visibility in both AI answers and traditional search results.
+- [x] Design a machine-readable website asset that helps AI systems understand the brand, proof, positioning, and ideal client fit without using deceptive tactics.
