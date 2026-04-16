@@ -57,8 +57,8 @@ type PricingPackage = {
 
 const navItems = [
   { label: "Home", href: "#home" },
-  { label: "Pricing", href: "#pricing" },
   { label: "Service Area", href: "#service-area" },
+  { label: "Pricing", href: "#pricing" },
   { label: "Audit", href: "#audit" },
 ];
 
@@ -223,20 +223,20 @@ const retainers = [
 
 const serviceAreas = [
   {
-    title: "Orange County",
-    copy: "Premium web design support for plumbers, electricians, cleaners, and home-service teams competing across a crowded local market.",
+    title: "Southern California Core",
+    copy: "Lead with local trust across Orange County, Los Angeles, Inland Empire, and San Diego while keeping the brand grounded in real service-business language.",
   },
   {
-    title: "Los Angeles County",
-    copy: "Messaging and page structure built to help serious operators look more established and easier to trust on first visit.",
+    title: "California Expansion",
+    copy: "Support broader state-level outreach with stronger structure, cleaner proof, and location-aware messaging that does not feel fake or overstuffed.",
   },
   {
-    title: "Inland Empire",
-    copy: "Conversion-focused homepage work for fast-moving service companies that need cleaner offers, sharper proof, and stronger mobile flow.",
+    title: "Nationwide Outreach Ready",
+    copy: "Keep the brand usable for cold outreach outside your home region by positioning the company as premium, credible, and adaptable across multiple markets.",
   },
   {
-    title: "San Diego County",
-    copy: "Detail-first websites for owner-led crews that want a stronger local impression without bloated agency process.",
+    title: "City-Page Growth Path",
+    copy: "Add unique service-area pages over time so local relevance gets stronger market by market instead of forcing one homepage to do every job at once.",
   },
 ];
 
@@ -342,9 +342,9 @@ export default function Home() {
 
   const heroStats = useMemo(
     () => [
-      { value: "SoCal", label: "Positioned for Southern California service traffic" },
-      { value: "100%", label: "Human-written messaging and proof structure" },
-      { value: "Fast", label: "Focused launch rhythm for owner-operators" },
+      { value: "Local", label: "Feels grounded in a real service area instead of reading like a generic agency site" },
+      { value: "Flexible", label: "Keeps the positioning broad enough to support outreach in additional markets" },
+      { value: "Fast", label: "Built around a punch-list process that respects how owner-operators actually work" },
     ],
     []
   );
@@ -463,75 +463,78 @@ export default function Home() {
         <section id="home" className="relative overflow-hidden">
           <div className="absolute inset-0 bg-[url('https://d2xsxph8kpxj0f.cloudfront.net/310419663032234167/TpcXhRqminM236HC9RQjNi/blue-tape-section-texture-2xTfvKichRrVCNPAF7frNP.webp')] bg-cover bg-center opacity-70" />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(250,250,250,0.72),rgba(250,250,250,0.95)_34%,rgba(250,250,250,1))]" />
-          <div className="container relative grid min-h-[calc(100vh-4.5rem)] items-center gap-10 py-10 sm:gap-12 sm:py-18 lg:grid-cols-[1.02fr_0.98fr] lg:py-24">
-            <div className="min-w-0 max-w-[21.5rem] sm:max-w-2xl">
-              <motion.div
-                initial={{ opacity: 0, y: 22 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <div className="inline-flex max-w-[18.5rem] rounded-full border border-blue-200 bg-blue-50 px-3 py-1.5 text-center text-[0.62rem] font-semibold uppercase leading-5 tracking-[0.14em] text-blue-700 sm:max-w-full sm:px-4 sm:text-[0.74rem] sm:tracking-[0.26em]">
-                  Southern California web design for serious contractors
-                </div>
-                <h1 className="mt-5 max-w-none text-[2.65rem] font-semibold leading-[0.95] tracking-[-0.07em] text-[#111111] sm:mt-6 sm:max-w-[13ch] sm:text-[4.4rem] lg:text-[5.5rem]">
-                  See the tape. Fix the flaws. Launch with confidence.
-                </h1>
-                <p className="mt-5 max-w-[21.5rem] text-base leading-7 text-slate-600 sm:mt-6 sm:max-w-xl sm:text-xl sm:leading-8">
-                  Blue Tape Sites builds premium, detail-first websites for Southern California plumbers,
-                  electricians, cleaners, and home-service teams that want every weak spot marked,
-                  resolved, and ready to sell.
-                </p>
-                <div className="mt-8 flex flex-col gap-3 sm:mt-9 sm:flex-row sm:gap-4">
-                  <Button asChild className="h-auto min-h-13 w-full rounded-full bg-blue-600 px-6 py-4 text-base whitespace-normal text-white hover:bg-blue-700 sm:h-13 sm:w-auto sm:px-7 sm:py-0">
-                    <a href="#audit">Request Your Free Audit</a>
-                  </Button>
-                  <Button asChild variant="outline" className="h-auto min-h-13 w-full rounded-full border-black/10 bg-white px-6 py-4 text-base whitespace-normal text-[#111111] hover:bg-[#F3F6FB] sm:h-13 sm:w-auto sm:px-7 sm:py-0">
-                    <a href="#pricing">See Pricing Packages</a>
-                  </Button>
-                </div>
-                <p className="mt-6 max-w-[21.5rem] text-sm leading-6 text-slate-500 sm:mt-7 sm:max-w-xl sm:leading-7">
-                  Built for Southern California service-area businesses that need sharper messaging, better trust signals,
-                  and cleaner mobile conversion paths.
-                </p>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 28 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-                className="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-3"
-              >
-                {heroStats.map(stat => (
-                  <div key={stat.label} className="rounded-[1.35rem] border border-black/6 bg-white/80 px-4 py-4 shadow-[0_18px_50px_rgba(17,17,17,0.06)] backdrop-blur-sm sm:rounded-[1.5rem] sm:px-5 sm:py-5">
-                    <div className="text-2xl font-semibold tracking-[-0.05em] text-[#111111]">{stat.value}</div>
-                    <p className="mt-2 text-sm leading-6 text-slate-500">{stat.label}</p>
-                  </div>
-                ))}
-              </motion.div>
-            </div>
+          <div className="container relative grid gap-8 py-8 sm:gap-12 sm:py-18 lg:grid-cols-[0.98fr_1.02fr] lg:items-center lg:py-24">
+            <motion.div
+              initial={{ opacity: 0, y: 22 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+              className="order-1 min-w-0 max-w-none"
+            >
+              <div className="inline-flex max-w-[19.5rem] rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-center text-[0.64rem] font-semibold uppercase leading-5 tracking-[0.14em] text-blue-700 sm:max-w-full sm:px-4 sm:text-[0.74rem] sm:tracking-[0.26em]">
+                Southern California web design for serious contractors
+              </div>
+              <h1 className="mt-6 max-w-[10.5ch] text-[3.05rem] font-semibold leading-[0.92] tracking-[-0.08em] text-[#111111] sm:max-w-[13ch] sm:text-[4.4rem] lg:text-[5.5rem]">
+                See the tape. Fix the flaws. Launch with confidence.
+              </h1>
+              <p className="mt-5 max-w-[32rem] text-[1.02rem] leading-7 text-slate-600 sm:mt-6 sm:text-xl sm:leading-8">
+                Blue Tape Sites builds premium, detail-first websites for Southern California plumbers,
+                electricians, cleaners, and home-service teams that want every weak spot marked,
+                resolved, and ready to sell.
+              </p>
+              <div className="mt-6 rounded-[1.45rem] border border-black/6 bg-white/90 p-4 shadow-[0_20px_55px_rgba(17,17,17,0.06)] sm:hidden">
+                <div className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-slate-400">Punch-list logic</div>
+                <div className="mt-2 text-lg font-semibold tracking-[-0.04em] text-[#111111]">Clear offer. Tighter proof. Better local trust.</div>
+                <p className="mt-2 text-sm leading-6 text-slate-600">The mobile version now leads with the message first and keeps the visual treatment lighter so the page breathes better on phones.</p>
+              </div>
+              <div className="mt-8 grid gap-3 sm:mt-9 sm:max-w-xl sm:grid-cols-2 sm:gap-4">
+                <Button asChild className="h-auto min-h-14 w-full rounded-[1.25rem] bg-blue-600 px-6 py-4 text-base whitespace-normal text-white shadow-[0_18px_40px_rgba(0,102,255,0.16)] hover:bg-blue-700 sm:rounded-full sm:shadow-none">
+                  <a href="#audit">Request Your Free Audit</a>
+                </Button>
+                <Button asChild variant="outline" className="h-auto min-h-14 w-full rounded-[1.25rem] border-black/10 bg-white px-6 py-4 text-base whitespace-normal text-[#111111] shadow-[0_18px_40px_rgba(17,17,17,0.05)] hover:bg-[#F3F6FB] sm:rounded-full sm:shadow-none">
+                  <a href="#pricing">See Pricing Packages</a>
+                </Button>
+              </div>
+              <p className="mt-6 max-w-[32rem] text-sm leading-7 text-slate-500 sm:mt-7">
+                Built to feel local in Southern California while staying flexible enough for broader outreach and future market expansion.
+              </p>
+            </motion.div>
 
             <motion.div
               initial={{ opacity: 0, scale: 0.96, y: 18 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-              className="relative mx-auto w-full max-w-[32rem] lg:mx-0 lg:justify-self-end"
+              className="order-2 relative mx-auto hidden w-full max-w-[30rem] sm:block lg:mx-0 lg:justify-self-end"
             >
               <div className="absolute -left-8 top-8 hidden h-28 w-28 rounded-full bg-blue-600/12 blur-3xl sm:block" />
               <div className="absolute -right-5 bottom-10 hidden h-32 w-32 rounded-full bg-slate-300/30 blur-3xl sm:block" />
-              <div className="hero-card relative overflow-hidden rounded-[1.6rem] border border-black/7 bg-white p-2.5 shadow-[0_35px_120px_rgba(17,17,17,0.14)] sm:rounded-[2rem] sm:p-4">
+              <div className="hero-card relative overflow-hidden rounded-[1.7rem] border border-black/7 bg-white p-2.5 shadow-[0_35px_120px_rgba(17,17,17,0.14)] sm:rounded-[2rem] sm:p-4">
                 <img
                   src="https://d2xsxph8kpxj0f.cloudfront.net/310419663032234167/TpcXhRqminM236HC9RQjNi/blue-tape-hero-wall-DrVe684rwH2xQagD6SAZ7A.webp"
                   alt="Blue painter's tape unrolling into a polished contractor website mockup"
-                  className="h-full w-full rounded-[1.5rem] object-cover"
+                  className="h-full w-full rounded-[1.45rem] object-cover"
                 />
                 <div className="absolute left-4 top-4 hidden rounded-full border border-white/70 bg-white/88 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-slate-500 backdrop-blur sm:left-7 sm:top-7 sm:block">
                   Southern California launch concept
                 </div>
-                <div className="absolute inset-x-4 bottom-4 rounded-[1.1rem] border border-white/60 bg-white/90 p-3 shadow-[0_18px_50px_rgba(17,17,17,0.08)] backdrop-blur sm:inset-x-auto sm:bottom-7 sm:right-7 sm:max-w-[15rem] sm:rounded-[1.4rem] sm:p-4">
+                <div className="absolute inset-x-4 bottom-4 rounded-[1.2rem] border border-white/60 bg-white/90 p-4 shadow-[0_18px_50px_rgba(17,17,17,0.08)] backdrop-blur sm:inset-x-auto sm:bottom-7 sm:right-7 sm:max-w-[15rem] sm:rounded-[1.4rem] sm:p-4">
                   <div className="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-slate-400">Punch-list logic</div>
                   <div className="mt-2 text-base font-semibold tracking-[-0.04em] text-[#111111]">Clear offer, tighter proof, stronger local trust.</div>
                 </div>
               </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 28 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+              className="order-3 grid gap-3 sm:gap-4 lg:col-span-2 lg:grid-cols-3"
+            >
+              {heroStats.map(stat => (
+                <div key={stat.label} className="rounded-[1.45rem] border border-black/6 bg-white/85 px-5 py-5 shadow-[0_18px_50px_rgba(17,17,17,0.06)] backdrop-blur-sm sm:rounded-[1.5rem]">
+                  <div className="text-[1.75rem] font-semibold tracking-[-0.06em] text-[#111111]">{stat.value}</div>
+                  <p className="mt-2 max-w-[28rem] text-sm leading-6 text-slate-500">{stat.label}</p>
+                </div>
+              ))}
             </motion.div>
           </div>
         </section>
@@ -586,7 +589,26 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="relative overflow-visible px-0 md:px-10">
+            <div className="grid gap-4 md:hidden">
+              {testimonials.map(item => (
+                <Card key={item.name} className="rounded-[1.55rem] border border-black/6 bg-[#FAFAFA] shadow-[0_20px_55px_rgba(17,17,17,0.06)]">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-1 text-blue-600">
+                      {Array.from({ length: 5 }).map((_, index) => (
+                        <Star key={index} className="size-4 fill-current" />
+                      ))}
+                    </div>
+                    <p className="mt-5 text-base leading-7 text-slate-700">“{item.quote}”</p>
+                    <div className="mt-6 border-t border-black/6 pt-5">
+                      <div className="text-lg font-semibold tracking-[-0.04em] text-[#111111]">{item.name}</div>
+                      <div className="mt-1 text-[0.72rem] uppercase tracking-[0.16em] text-slate-400">{item.company}</div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            <div className="relative hidden overflow-visible px-10 md:block">
               <Carousel opts={{ align: "start", loop: true }} className="overflow-visible">
                 <CarouselContent className="overflow-visible">
                   {testimonials.map(item => (
@@ -615,20 +637,33 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="service-area" className="container py-24 sm:py-32">
+        <section id="service-area" className="container py-20 sm:py-32">
           <div className="max-w-3xl">
-            <SectionEyebrow>Southern California Service Area</SectionEyebrow>
-            <h2 className="text-4xl font-semibold leading-tight tracking-[-0.06em] text-[#111111] sm:text-5xl">
-              Built to rank more credibly for the markets you actually serve.
+            <SectionEyebrow>Service Area Positioning</SectionEyebrow>
+            <h2 className="text-[2.35rem] font-semibold leading-[1] tracking-[-0.06em] text-[#111111] sm:text-5xl">
+              Local enough to feel trusted, broad enough to grow past one county.
             </h2>
-            <p className="mt-6 text-lg leading-8 text-slate-600">
-              The site now leans into Southern California relevance instead of generic national language.
-              That gives search engines and visitors a clearer picture of who the business serves. The strongest next SEO move
-              after this homepage is adding unique city pages for your top service areas rather than duplicating the same copy.
+            <p className="mt-5 text-base leading-7 text-slate-600 sm:mt-6 sm:text-lg sm:leading-8">
+              The homepage should feel rooted in a real market, but it should not trap the brand inside one zip code. This structure gives you strong Southern California trust signals now while keeping the business usable for state-wide and national outreach.
             </p>
           </div>
 
-              <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-8 grid gap-3 sm:grid-cols-3 sm:gap-4">
+            <div className="rounded-[1.4rem] border border-black/6 bg-white px-5 py-5 shadow-[0_18px_45px_rgba(17,17,17,0.04)]">
+              <div className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-slate-400">Trust layer</div>
+              <p className="mt-2 text-sm leading-6 text-slate-600">Lead with Southern California language, proof, and service-business cues so the brand feels grounded and believable.</p>
+            </div>
+            <div className="rounded-[1.4rem] border border-black/6 bg-white px-5 py-5 shadow-[0_18px_45px_rgba(17,17,17,0.04)]">
+              <div className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-slate-400">Reach layer</div>
+              <p className="mt-2 text-sm leading-6 text-slate-600">Keep the positioning broad enough that outreach into new cities or states does not feel disconnected from the homepage.</p>
+            </div>
+            <div className="rounded-[1.4rem] border border-black/6 bg-white px-5 py-5 shadow-[0_18px_45px_rgba(17,17,17,0.04)]">
+              <div className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-slate-400">Growth layer</div>
+              <p className="mt-2 text-sm leading-6 text-slate-600">When you pick priority markets, add unique city pages so search relevance grows market by market instead of forcing everything into one page.</p>
+            </div>
+          </div>
+
+          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
 
             {serviceAreas.map(area => (
               <Card key={area.title} className="rounded-[1.7rem] border border-black/6 bg-white shadow-[0_18px_50px_rgba(17,17,17,0.05)]">
@@ -684,9 +719,9 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="audit" className="container py-24 sm:py-32">
-          <div className="grid gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:gap-16">
-            <div>
+        <section id="audit" className="container py-20 sm:py-32">
+          <div className="grid gap-8 lg:grid-cols-[0.88fr_1.12fr] lg:gap-16">
+            <div className="order-2 lg:order-1">
               <SectionEyebrow>Free Blue Tape Audit</SectionEyebrow>
               <h2 className="max-w-[12ch] text-[2.35rem] font-semibold leading-[1] tracking-[-0.06em] text-[#111111] sm:text-5xl lg:max-w-[10ch]">
                 Let us mark up the misses before you spend more on traffic.
@@ -704,7 +739,7 @@ export default function Home() {
               </div>
             </div>
 
-            <Card className="rounded-[1.8rem] border border-black/6 bg-white shadow-[0_30px_90px_rgba(17,17,17,0.08)] sm:rounded-[2rem]">
+            <Card className="order-1 rounded-[1.8rem] border border-black/6 bg-white shadow-[0_30px_90px_rgba(17,17,17,0.08)] sm:rounded-[2rem] lg:order-2">
               <CardContent className="p-5 sm:p-8">
                 <div className="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.24em] text-slate-400">
                   <Sparkles className="size-4 text-blue-600" />

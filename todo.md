@@ -6,3 +6,6 @@
 - [x] Validate the revised experience, save a new checkpoint, and return the updated preview.
 - [x] Fix the broken mobile layout and spacing across the homepage while preserving the desktop design.
 - [x] Review what can be controlled about the Manus branding button and report the limitation or available option.
+- [x] Redesign the mobile homepage sections so they feel purpose-built for phones instead of compressed desktop layouts.
+- [x] Rework mobile component hierarchy, spacing, and section flow wherever a different arrangement performs better on small screens.
+- [x] Revisit the navigation order so Service Area can lead Pricing in the header when the broader SEO structure is updated.
