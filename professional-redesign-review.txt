@@ -1,0 +1,11 @@
+Visual QA notes after first anti-AI redesign pass:
+
+- Header now reads more professional and less glossy; the logo lockup and square CTA feel more deliberate.
+- Hero is much less concept-art driven and more message-first, which reduces the obvious AI-generated feel.
+- The service and testimonial sections now feel more editorial, but they still retain a fairly repetitive grid rhythm that could be softened in a later pass if desired.
+- Pricing and lower sections still need a direct visual review in-browser before final delivery.
+- Overall direction is significantly more restrained, businesslike, and publish-ready than the previous version.
+
+Additional QA after inspecting the mid-page and pricing sections:
+
+The middle of the site now feels notably less like an AI-generated landing page. The previous carousel-and-card energy has been replaced by quieter editorial grids and stronger copy hierarchy. The pricing section still uses a comparison grid, but it now reads more like a structured estimate sheet than a flashy sales page. The blue accent has been reduced to a restrained line treatment, which helps the page feel more professional and less synthetic.

@@ -12,3 +12,6 @@
 - [x] Research how major AI assistants and Google discover, summarize, and cite websites relevant to service businesses.
 - [x] Define a compliant strategy to improve Blue Tape Sites visibility in both AI answers and traditional search results.
 - [x] Design a machine-readable website asset that helps AI systems understand the brand, proof, positioning, and ideal client fit without using deceptive tactics.
+- [x] Research what visual and content patterns make websites feel AI-generated and identify which ones currently appear on Blue Tape Sites.
+- [x] Redesign the website so it feels more professional, intentional, and human-crafted before launch.
+- [x] Preserve the current SEO, mobile, and audit-form functionality while removing AI-feeling presentation patterns.

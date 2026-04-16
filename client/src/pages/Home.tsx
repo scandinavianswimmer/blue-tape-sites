@@ -1,38 +1,25 @@
 /*
-Design reminder for this page: Swiss editorial minimalism for a premium home-service web agency.
-Use disciplined hierarchy, asymmetrical composition, refined tape-blue accents, restrained motion,
-and generous whitespace. Every section should feel inspected, marked, and intentionally resolved.
+Design reminder for this page: professional editorial restraint for a premium home-service web studio.
+Favor clarity over spectacle, reduce generated-looking UI tropes, and make every section feel deliberate,
+credible, and businesslike. Keep the blue tape motif precise and sparing.
 */
 
 import { useMemo, useState } from "react";
-import { motion } from "framer-motion";
 import {
   ArrowRight,
   BadgeCheck,
   Check,
   CircleHelp,
   Clock3,
-  Loader2,
   MapPin,
   Menu,
   ScanSearch,
   ShieldCheck,
-  Sparkles,
-  Star,
 } from "lucide-react";
 import { toast } from "sonner";
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 import { trpc } from "@/lib/trpc";
 
 type AuditFormState = {
@@ -64,19 +51,19 @@ const navItems = [
 
 const buildCards = [
   {
-    title: "Prep Like a Pro",
+    title: "Inspect first",
     description:
       "We review your page the way a solid foreman walks a job before signoff: what looks weak, what reads soft, what slows the customer down, and what needs fixing before you send traffic to it.",
     icon: ScanSearch,
   },
   {
-    title: "Trade-Straight Messaging",
+    title: "Write it straight",
     description:
       "The copy is written to sound clear, capable, and local. No agency fluff, no padded language, and no vague promises that make the business feel less trustworthy.",
     icon: ShieldCheck,
   },
   {
-    title: "Fast Turnaround",
+    title: "Launch without drift",
     description:
       "Once the direction is set, we move like a tight punch-list. Clean approvals, focused revisions, and a launch path that respects how busy owner-operators actually work.",
     icon: Clock3,
@@ -281,8 +268,8 @@ const initialFormState: AuditFormState = {
 
 function SectionEyebrow({ children }: { children: string }) {
   return (
-    <div className="mb-4 inline-flex max-w-full flex-wrap items-center gap-3 text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-slate-500 sm:mb-5 sm:text-[0.7rem] sm:tracking-[0.28em]">
-      <span className="h-px w-12 bg-blue-600" />
+    <div className="mb-4 inline-flex items-center gap-3 text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-slate-500 sm:mb-5 sm:text-[0.74rem]">
+      <span className="h-px w-10 bg-blue-600" />
       {children}
     </div>
   );
@@ -292,31 +279,34 @@ function scrollToAudit() {
   document.querySelector("#audit")?.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
-function PackageCard({ item, darkButton = false }: { item: PricingPackage | (typeof retainers)[number] & { category?: string; tag?: string; popular?: boolean }; darkButton?: boolean }) {
+function PackageCard({
+  item,
+  darkButton = false,
+}: {
+  item: PricingPackage | ((typeof retainers)[number] & { category?: string; tag?: string; popular?: boolean });
+  darkButton?: boolean;
+}) {
   const isPopular = "popular" in item && Boolean(item.popular);
   const tag = "tag" in item ? item.tag : undefined;
   const category = "category" in item ? item.category : undefined;
 
   return (
     <div
-      className={`h-full rounded-[1.6rem] border p-5 transition-transform duration-300 hover:-translate-y-1 flex flex-col ${
-        isPopular
-          ? "border-blue-600 bg-[linear-gradient(180deg,rgba(0,102,255,0.06),rgba(255,255,255,1))] shadow-[0_20px_50px_rgba(0,102,255,0.12)]"
-          : "border-black/6 bg-white"
+      className={`flex h-full flex-col border border-black/8 bg-white p-5 sm:p-6 ${
+        isPopular ? "package-card package-card--featured" : "package-card"
       }`}
     >
-      <div className="flex items-start justify-between gap-4">
+      <div className="flex items-start justify-between gap-4 border-b border-black/6 pb-4">
         <div>
-          {category ? <p className="text-[0.7rem] font-semibold uppercase tracking-[0.24em] text-slate-400">{category}</p> : null}
-          <h4 className="mt-2 text-xl font-semibold tracking-[-0.04em] text-[#111111]">{item.name}</h4>
+          {category ? <p className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-slate-400">{category}</p> : null}
+          <h4 className="mt-2 text-[1.55rem] font-semibold tracking-[-0.05em] text-[#111111]">{item.name}</h4>
           {tag ? <p className="mt-1 text-sm text-slate-500">{tag}</p> : null}
         </div>
-        {isPopular ? (
-          <Badge className="rounded-full bg-blue-600 px-3 py-1 text-white hover:bg-blue-600">Most Popular</Badge>
-        ) : null}
+        {isPopular ? <div className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-blue-700">Popular</div> : null}
       </div>
-      <div className="mt-5 text-4xl font-semibold tracking-[-0.06em] text-[#111111]">{item.price}</div>
-      <div className="mt-5 space-y-3 flex-1">
+
+      <div className="mt-5 text-[2.35rem] font-semibold tracking-[-0.06em] text-[#111111]">{item.price}</div>
+      <div className="mt-5 flex-1 space-y-3">
         {item.features.map(feature => (
           <div key={feature} className="flex items-start gap-3 text-sm leading-6 text-slate-600">
             {darkButton ? <Check className="mt-0.5 size-4 shrink-0 text-blue-600" /> : <BadgeCheck className="mt-0.5 size-4 shrink-0 text-blue-600" />}
@@ -324,10 +314,15 @@ function PackageCard({ item, darkButton = false }: { item: PricingPackage | (typ
           </div>
         ))}
       </div>
+
       <Button
         type="button"
         onClick={scrollToAudit}
-        className={`mt-6 h-11 w-full rounded-full ${darkButton ? "bg-[#111111] text-white hover:bg-slate-800" : "bg-blue-600 text-white hover:bg-blue-700"}`}
+        className={`mt-8 h-12 w-full rounded-none border px-5 text-sm font-semibold uppercase tracking-[0.08em] ${
+          darkButton
+            ? "border-[#111111] bg-[#111111] text-white hover:bg-slate-800"
+            : "border-[#111111] bg-white text-[#111111] hover:bg-[#111111] hover:text-white"
+        }`}
       >
         Request an Audit
       </Button>
@@ -342,9 +337,9 @@ export default function Home() {
 
   const heroStats = useMemo(
     () => [
-      { value: "Local", label: "Feels grounded in a real service area instead of reading like a generic agency site" },
-      { value: "Flexible", label: "Keeps the positioning broad enough to support outreach in additional markets" },
-      { value: "Fast", label: "Built around a punch-list process that respects how owner-operators actually work" },
+      { value: "Local", label: "Grounded in a real service market instead of reading like a generic agency website." },
+      { value: "Clear", label: "Written for owners who need the offer, proof, and next step to make sense fast." },
+      { value: "Built", label: "Structured to support both Southern California trust and future market expansion." },
     ],
     []
   );
@@ -396,19 +391,18 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen overflow-x-clip bg-[#FAFAFA] text-[#111111] selection:bg-blue-600 selection:text-white">
+    <div className="min-h-screen overflow-x-clip bg-[#f7f5f1] text-[#111111] selection:bg-blue-600 selection:text-white">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
 
-      <header className="sticky top-0 z-50 border-b border-black/6 bg-white/85 backdrop-blur-xl">
-        <div className="container flex h-18 items-center justify-between gap-3 sm:gap-6">
-          <a href="#home" className="flex min-w-0 items-center gap-2.5 sm:gap-3">
-            <div className="relative size-11 overflow-hidden rounded-2xl bg-blue-600 shadow-[0_12px_30px_rgba(0,102,255,0.24)]">
-              <span className="absolute left-1/2 top-1/2 h-3.5 w-7 -translate-x-1/2 -translate-y-1/2 rotate-[-28deg] rounded-full bg-white/95" />
-              <span className="absolute right-1.5 top-1.5 h-2.5 w-2.5 rounded-sm border border-white/80 bg-white/20" />
+      <header className="sticky top-0 z-50 border-b border-black/8 bg-[rgba(247,245,241,0.92)] backdrop-blur-lg">
+        <div className="container flex h-18 items-center justify-between gap-4">
+          <a href="#home" className="flex min-w-0 items-center gap-3">
+            <div className="relative flex size-10 items-center justify-center border border-black/10 bg-white">
+              <span className="h-1.5 w-6 rotate-[-28deg] bg-blue-600" />
             </div>
             <div className="min-w-0 leading-none">
-              <div className="truncate text-[0.58rem] font-semibold uppercase tracking-[0.22em] text-slate-400 sm:text-[0.7rem] sm:tracking-[0.3em]">Blue Tape Sites</div>
-              <div className="mt-1 text-sm font-semibold tracking-[-0.04em] text-[#111111] sm:text-base">Precision web design</div>
+              <div className="truncate text-[0.62rem] font-semibold uppercase tracking-[0.24em] text-slate-500">Blue Tape Sites</div>
+              <div className="mt-1 text-sm font-semibold tracking-[-0.03em] text-[#111111] sm:text-base">Precision web design</div>
             </div>
           </a>
 
@@ -421,7 +415,7 @@ export default function Home() {
           </nav>
 
           <div className="hidden lg:block">
-            <Button asChild className="h-12 rounded-full bg-blue-600 px-6 text-white hover:bg-blue-700">
+            <Button asChild className="h-11 rounded-none border border-[#111111] bg-[#111111] px-5 text-sm font-semibold uppercase tracking-[0.08em] text-white hover:bg-slate-800">
               <a href="#audit">Request Your Free Audit</a>
             </Button>
           </div>
@@ -429,7 +423,7 @@ export default function Home() {
           <button
             type="button"
             aria-label="Toggle navigation"
-            className="inline-flex size-11 items-center justify-center rounded-full border border-black/8 bg-white lg:hidden"
+            className="inline-flex size-11 items-center justify-center border border-black/10 bg-white lg:hidden"
             onClick={() => setMobileMenuOpen(open => !open)}
           >
             <Menu className="size-5" />
@@ -437,19 +431,19 @@ export default function Home() {
         </div>
 
         {mobileMenuOpen ? (
-          <div className="border-t border-black/6 bg-white lg:hidden">
-            <div className="container flex flex-col gap-4 py-5">
+          <div className="border-t border-black/8 bg-[#f7f5f1] lg:hidden">
+            <div className="container flex flex-col gap-3 py-5">
               {navItems.map(item => (
                 <a
                   key={item.href}
                   href={item.href}
-                  className="text-base font-medium text-slate-700"
+                  className="border-b border-black/6 py-2 text-base font-medium text-slate-700"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.label}
                 </a>
               ))}
-              <Button asChild className="mt-2 h-12 rounded-full bg-blue-600 text-white hover:bg-blue-700">
+              <Button asChild className="mt-2 h-12 rounded-none border border-[#111111] bg-[#111111] text-sm font-semibold uppercase tracking-[0.08em] text-white hover:bg-slate-800">
                 <a href="#audit" onClick={() => setMobileMenuOpen(false)}>
                   Request Your Free Audit
                 </a>
@@ -460,115 +454,84 @@ export default function Home() {
       </header>
 
       <main>
-        <section id="home" className="relative overflow-hidden">
-          <div className="absolute inset-0 bg-[url('https://d2xsxph8kpxj0f.cloudfront.net/310419663032234167/TpcXhRqminM236HC9RQjNi/blue-tape-section-texture-2xTfvKichRrVCNPAF7frNP.webp')] bg-cover bg-center opacity-70" />
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(250,250,250,0.72),rgba(250,250,250,0.95)_34%,rgba(250,250,250,1))]" />
-          <div className="container relative grid gap-8 py-8 sm:gap-12 sm:py-18 lg:grid-cols-[0.98fr_1.02fr] lg:items-center lg:py-24">
-            <motion.div
-              initial={{ opacity: 0, y: 22 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-              className="order-1 min-w-0 max-w-none"
-            >
-              <div className="inline-flex max-w-[19.5rem] rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-center text-[0.64rem] font-semibold uppercase leading-5 tracking-[0.14em] text-blue-700 sm:max-w-full sm:px-4 sm:text-[0.74rem] sm:tracking-[0.26em]">
+        <section id="home" className="border-b border-black/8">
+          <div className="container grid gap-10 py-10 sm:py-16 lg:grid-cols-[1.06fr_0.94fr] lg:gap-14 lg:py-24">
+            <div className="max-w-3xl">
+              <div className="inline-flex border border-black/10 bg-white px-3 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-slate-600 sm:px-4">
                 Southern California web design for serious contractors
               </div>
-              <h1 className="mt-6 max-w-[10.5ch] text-[3.05rem] font-semibold leading-[0.92] tracking-[-0.08em] text-[#111111] sm:max-w-[13ch] sm:text-[4.4rem] lg:text-[5.5rem]">
+              <h1 className="mt-6 max-w-[10.3ch] text-[3rem] font-semibold leading-[0.9] tracking-[-0.08em] text-[#111111] sm:max-w-[11.5ch] sm:text-[4.6rem] lg:text-[5.35rem]">
                 See the tape. Fix the flaws. Launch with confidence.
               </h1>
-              <p className="mt-5 max-w-[32rem] text-[1.02rem] leading-7 text-slate-600 sm:mt-6 sm:text-xl sm:leading-8">
-                Blue Tape Sites builds premium, detail-first websites for Southern California plumbers,
-                electricians, cleaners, and home-service teams that want every weak spot marked,
-                resolved, and ready to sell.
+              <p className="mt-6 max-w-[36rem] text-[1.02rem] leading-7 text-slate-600 sm:text-[1.15rem] sm:leading-8">
+                Blue Tape Sites builds premium, detail-first websites for plumbers, electricians, cleaners,
+                and home-service teams that want every weak spot marked, resolved, and ready to sell.
               </p>
-              <div className="mt-6 rounded-[1.45rem] border border-black/6 bg-white/90 p-4 shadow-[0_20px_55px_rgba(17,17,17,0.06)] sm:hidden">
-                <div className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-slate-400">Punch-list logic</div>
-                <div className="mt-2 text-lg font-semibold tracking-[-0.04em] text-[#111111]">Clear offer. Tighter proof. Better local trust.</div>
-                <p className="mt-2 text-sm leading-6 text-slate-600">The mobile version now leads with the message first and keeps the visual treatment lighter so the page breathes better on phones.</p>
-              </div>
-              <div className="mt-8 grid gap-3 sm:mt-9 sm:max-w-xl sm:grid-cols-2 sm:gap-4">
-                <Button asChild className="h-auto min-h-14 w-full rounded-[1.25rem] bg-blue-600 px-6 py-4 text-base whitespace-normal text-white shadow-[0_18px_40px_rgba(0,102,255,0.16)] hover:bg-blue-700 sm:rounded-full sm:shadow-none">
+              <p className="mt-4 max-w-[34rem] text-sm leading-7 text-slate-500 sm:text-[0.98rem]">
+                Built to feel local in Southern California while staying flexible enough for broader outreach and future market expansion.
+              </p>
+
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <Button asChild className="h-13 rounded-none border border-[#111111] bg-[#111111] px-6 text-sm font-semibold uppercase tracking-[0.08em] text-white hover:bg-slate-800 sm:w-auto">
                   <a href="#audit">Request Your Free Audit</a>
                 </Button>
-                <Button asChild variant="outline" className="h-auto min-h-14 w-full rounded-[1.25rem] border-black/10 bg-white px-6 py-4 text-base whitespace-normal text-[#111111] shadow-[0_18px_40px_rgba(17,17,17,0.05)] hover:bg-[#F3F6FB] sm:rounded-full sm:shadow-none">
+                <Button asChild variant="outline" className="h-13 rounded-none border-[#111111] bg-transparent px-6 text-sm font-semibold uppercase tracking-[0.08em] text-[#111111] hover:bg-white sm:w-auto">
                   <a href="#pricing">See Pricing Packages</a>
                 </Button>
               </div>
-              <p className="mt-6 max-w-[32rem] text-sm leading-7 text-slate-500 sm:mt-7">
-                Built to feel local in Southern California while staying flexible enough for broader outreach and future market expansion.
-              </p>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, scale: 0.96, y: 18 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-              className="order-2 relative mx-auto hidden w-full max-w-[30rem] sm:block lg:mx-0 lg:justify-self-end"
-            >
-              <div className="absolute -left-8 top-8 hidden h-28 w-28 rounded-full bg-blue-600/12 blur-3xl sm:block" />
-              <div className="absolute -right-5 bottom-10 hidden h-32 w-32 rounded-full bg-slate-300/30 blur-3xl sm:block" />
-              <div className="hero-card relative overflow-hidden rounded-[1.7rem] border border-black/7 bg-white p-2.5 shadow-[0_35px_120px_rgba(17,17,17,0.14)] sm:rounded-[2rem] sm:p-4">
-                <img
-                  src="https://d2xsxph8kpxj0f.cloudfront.net/310419663032234167/TpcXhRqminM236HC9RQjNi/blue-tape-hero-wall-DrVe684rwH2xQagD6SAZ7A.webp"
-                  alt="Blue painter's tape unrolling into a polished contractor website mockup"
-                  className="h-full w-full rounded-[1.45rem] object-cover"
-                />
-                <div className="absolute left-4 top-4 hidden rounded-full border border-white/70 bg-white/88 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-slate-500 backdrop-blur sm:left-7 sm:top-7 sm:block">
-                  Southern California launch concept
+            <div className="grid gap-4 self-end">
+              <div className="border border-black/10 bg-white p-5 sm:p-6">
+                <div className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-slate-500">Blue Tape standard</div>
+                <div className="mt-3 border-l-2 border-blue-600 pl-4 text-lg font-semibold tracking-[-0.04em] text-[#111111] sm:text-xl">
+                  Clear offer. Tighter proof. Better local trust.
                 </div>
-                <div className="absolute inset-x-4 bottom-4 rounded-[1.2rem] border border-white/60 bg-white/90 p-4 shadow-[0_18px_50px_rgba(17,17,17,0.08)] backdrop-blur sm:inset-x-auto sm:bottom-7 sm:right-7 sm:max-w-[15rem] sm:rounded-[1.4rem] sm:p-4">
-                  <div className="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-slate-400">Punch-list logic</div>
-                  <div className="mt-2 text-base font-semibold tracking-[-0.04em] text-[#111111]">Clear offer, tighter proof, stronger local trust.</div>
-                </div>
+                <p className="mt-4 text-sm leading-7 text-slate-600">
+                  The site now leads with message discipline, cleaner hierarchy, and more businesslike presentation instead of glossy mockup energy.
+                </p>
               </div>
-            </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 28 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="order-3 grid gap-3 sm:gap-4 lg:col-span-2 lg:grid-cols-3"
-            >
-              {heroStats.map(stat => (
-                <div key={stat.label} className="rounded-[1.45rem] border border-black/6 bg-white/85 px-5 py-5 shadow-[0_18px_50px_rgba(17,17,17,0.06)] backdrop-blur-sm sm:rounded-[1.5rem]">
-                  <div className="text-[1.75rem] font-semibold tracking-[-0.06em] text-[#111111]">{stat.value}</div>
-                  <p className="mt-2 max-w-[28rem] text-sm leading-6 text-slate-500">{stat.label}</p>
-                </div>
-              ))}
-            </motion.div>
+              <div className="grid gap-px border border-black/10 bg-black/10 sm:grid-cols-3">
+                {heroStats.map(stat => (
+                  <div key={stat.value} className="bg-[#f7f5f1] p-5">
+                    <div className="text-[1.45rem] font-semibold tracking-[-0.06em] text-[#111111]">{stat.value}</div>
+                    <p className="mt-2 text-sm leading-6 text-slate-600">{stat.label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 
-        <section className="container py-18 sm:py-32">
-          <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
+        <section className="container py-18 sm:py-28">
+          <div className="grid gap-12 lg:grid-cols-[0.74fr_1.26fr] lg:gap-16">
             <div>
               <SectionEyebrow>We Build With the Tape On</SectionEyebrow>
-              <h2 className="max-w-[12ch] text-[2.35rem] font-semibold leading-[1] tracking-[-0.06em] text-[#111111] sm:text-5xl lg:max-w-[10ch]">
+              <h2 className="max-w-[12ch] text-[2.2rem] font-semibold leading-[0.98] tracking-[-0.06em] text-[#111111] sm:text-[3.4rem] lg:max-w-[10ch]">
                 The website process, inspected from the start.
               </h2>
             </div>
+
             <div>
               <p className="max-w-3xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
                 Blue Tape Sites is built around the idea that strong websites rarely get better by adding more.
-                They get better when someone notices what is off, marks what matters, and resolves the details
-                with care. That is how we approach strategy, copy, layout, and launch.
+                They get better when someone notices what is off, marks what matters, and resolves the details with care.
+                That is how we approach strategy, copy, layout, and launch.
               </p>
-              <div className="mt-10 grid gap-5 md:grid-cols-3">
+
+              <div className="mt-10 grid gap-px border border-black/10 bg-black/10 md:grid-cols-3">
                 {buildCards.map(item => {
                   const Icon = item.icon;
                   return (
-                    <Card
-                      key={item.title}
-                      className="group rounded-[1.8rem] border border-black/6 bg-white shadow-[0_24px_60px_rgba(17,17,17,0.06)] transition-transform duration-300 hover:-translate-y-1"
-                    >
-                      <CardContent className="p-6 sm:p-7">
-                        <div className="flex size-13 items-center justify-center rounded-[1.15rem] bg-blue-50 text-blue-600">
-                          <Icon className="size-6" />
-                        </div>
-                        <h3 className="mt-5 text-[1.65rem] font-semibold tracking-[-0.05em] text-[#111111] sm:mt-6 sm:text-2xl">{item.title}</h3>
-                        <p className="mt-4 text-[0.98rem] leading-7 text-slate-600 sm:text-base sm:leading-8">{item.description}</p>
-                      </CardContent>
-                    </Card>
+                    <div key={item.title} className="bg-[#f7f5f1] p-6 sm:p-7">
+                      <div className="flex items-center gap-3 text-blue-600">
+                        <Icon className="size-5" />
+                        <div className="h-px flex-1 bg-black/8" />
+                      </div>
+                      <h3 className="mt-5 text-[1.55rem] font-semibold tracking-[-0.05em] text-[#111111]">{item.title}</h3>
+                      <p className="mt-4 text-[0.98rem] leading-7 text-slate-600">{item.description}</p>
+                    </div>
                   );
                 })}
               </div>
@@ -576,119 +539,68 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="border-y border-[#E5E5E5] bg-white py-18 sm:py-32">
-          <div className="container grid gap-14 lg:grid-cols-[0.75fr_1.25fr]">
+        <section className="border-y border-black/8 bg-white py-18 sm:py-28">
+          <div className="container grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
             <div>
               <SectionEyebrow>We Work With Hands-On Business Owners</SectionEyebrow>
-              <h2 className="max-w-[12ch] text-[2.35rem] font-semibold leading-[1] tracking-[-0.06em] text-[#111111] sm:text-5xl lg:max-w-[10ch]">
+              <h2 className="max-w-[12ch] text-[2.2rem] font-semibold leading-[0.98] tracking-[-0.06em] text-[#111111] sm:text-[3.4rem] lg:max-w-[10ch]">
                 Trusted by people who work with their hands and notice the details.
               </h2>
-              <p className="mt-6 max-w-md text-lg leading-8 text-slate-600">
-                Our best clients already run tight operations. They simply want a website that matches the standard
-                they bring to estimates, callouts, walkthroughs, and final handoff.
+              <p className="mt-6 max-w-md text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
+                Our best clients already run tight operations. They simply want a website that matches the standard they bring to estimates, callouts, walkthroughs, and final handoff.
               </p>
             </div>
 
-            <div className="grid gap-4 md:hidden">
+            <div className="grid gap-px border border-black/10 bg-black/10 md:grid-cols-2">
               {testimonials.map(item => (
-                <Card key={item.name} className="rounded-[1.55rem] border border-black/6 bg-[#FAFAFA] shadow-[0_20px_55px_rgba(17,17,17,0.06)]">
-                  <CardContent className="p-6">
-                    <div className="flex items-center gap-1 text-blue-600">
-                      {Array.from({ length: 5 }).map((_, index) => (
-                        <Star key={index} className="size-4 fill-current" />
-                      ))}
-                    </div>
-                    <p className="mt-5 text-base leading-7 text-slate-700">“{item.quote}”</p>
-                    <div className="mt-6 border-t border-black/6 pt-5">
-                      <div className="text-lg font-semibold tracking-[-0.04em] text-[#111111]">{item.name}</div>
-                      <div className="mt-1 text-[0.72rem] uppercase tracking-[0.16em] text-slate-400">{item.company}</div>
-                    </div>
-                  </CardContent>
-                </Card>
+                <div key={item.name} className="bg-white p-6 sm:p-7">
+                  <div className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-slate-400">Client perspective</div>
+                  <p className="mt-5 text-[1.03rem] leading-7 text-slate-700 sm:text-[1.08rem] sm:leading-8">“{item.quote}”</p>
+                  <div className="mt-6 border-t border-black/8 pt-4">
+                    <div className="text-base font-semibold tracking-[-0.03em] text-[#111111]">{item.name}</div>
+                    <div className="mt-1 text-[0.72rem] uppercase tracking-[0.16em] text-slate-500">{item.company}</div>
+                  </div>
+                </div>
               ))}
             </div>
-
-            <div className="relative hidden overflow-visible px-10 md:block">
-              <Carousel opts={{ align: "start", loop: true }} className="overflow-visible">
-                <CarouselContent className="overflow-visible">
-                  {testimonials.map(item => (
-                    <CarouselItem key={item.name} className="md:basis-1/2">
-                      <Card className="h-full rounded-[1.6rem] border border-black/6 bg-[#FAFAFA] shadow-[0_24px_60px_rgba(17,17,17,0.06)] sm:rounded-[2rem]">
-                        <CardContent className="flex h-full flex-col p-6 sm:p-8">
-                          <div className="flex items-center gap-1 text-blue-600">
-                            {Array.from({ length: 5 }).map((_, index) => (
-                              <Star key={index} className="size-4 fill-current" />
-                            ))}
-                          </div>
-                          <p className="mt-5 text-base leading-7 text-slate-700 sm:mt-6 sm:text-lg sm:leading-8">“{item.quote}”</p>
-                          <div className="mt-auto pt-8">
-                            <div className="text-lg font-semibold tracking-[-0.04em] text-[#111111]">{item.name}</div>
-                            <div className="mt-1 text-[0.72rem] uppercase tracking-[0.14em] text-slate-400 sm:text-sm sm:tracking-[0.18em]">{item.company}</div>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselPrevious className="left-auto right-16 top-auto bottom-[-4.5rem] hidden rounded-full border-black/10 bg-white text-[#111111] md:inline-flex" />
-                <CarouselNext className="right-0 top-auto bottom-[-4.5rem] hidden rounded-full border-black/10 bg-white text-[#111111] md:inline-flex" />
-              </Carousel>
-            </div>
           </div>
         </section>
 
-        <section id="service-area" className="container py-20 sm:py-32">
-          <div className="max-w-3xl">
-            <SectionEyebrow>Service Area Positioning</SectionEyebrow>
-            <h2 className="text-[2.35rem] font-semibold leading-[1] tracking-[-0.06em] text-[#111111] sm:text-5xl">
-              Local enough to feel trusted, broad enough to grow past one county.
-            </h2>
-            <p className="mt-5 text-base leading-7 text-slate-600 sm:mt-6 sm:text-lg sm:leading-8">
-              The homepage should feel rooted in a real market, but it should not trap the brand inside one zip code. This structure gives you strong Southern California trust signals now while keeping the business usable for state-wide and national outreach.
-            </p>
-          </div>
-
-          <div className="mt-8 grid gap-3 sm:grid-cols-3 sm:gap-4">
-            <div className="rounded-[1.4rem] border border-black/6 bg-white px-5 py-5 shadow-[0_18px_45px_rgba(17,17,17,0.04)]">
-              <div className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-slate-400">Trust layer</div>
-              <p className="mt-2 text-sm leading-6 text-slate-600">Lead with Southern California language, proof, and service-business cues so the brand feels grounded and believable.</p>
+        <section id="service-area" className="container py-18 sm:py-28">
+          <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:gap-16">
+            <div>
+              <SectionEyebrow>Service Area Positioning</SectionEyebrow>
+              <h2 className="text-[2.2rem] font-semibold leading-[0.98] tracking-[-0.06em] text-[#111111] sm:text-[3.4rem]">
+                Local enough to feel trusted, broad enough to grow past one county.
+              </h2>
+              <p className="mt-6 text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
+                The homepage should feel rooted in a real market, but it should not trap the brand inside one zip code. This structure gives you strong Southern California trust signals now while keeping the business usable for statewide and national outreach.
+              </p>
             </div>
-            <div className="rounded-[1.4rem] border border-black/6 bg-white px-5 py-5 shadow-[0_18px_45px_rgba(17,17,17,0.04)]">
-              <div className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-slate-400">Reach layer</div>
-              <p className="mt-2 text-sm leading-6 text-slate-600">Keep the positioning broad enough that outreach into new cities or states does not feel disconnected from the homepage.</p>
-            </div>
-            <div className="rounded-[1.4rem] border border-black/6 bg-white px-5 py-5 shadow-[0_18px_45px_rgba(17,17,17,0.04)]">
-              <div className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-slate-400">Growth layer</div>
-              <p className="mt-2 text-sm leading-6 text-slate-600">When you pick priority markets, add unique city pages so search relevance grows market by market instead of forcing everything into one page.</p>
-            </div>
-          </div>
 
-          <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-
-            {serviceAreas.map(area => (
-              <Card key={area.title} className="rounded-[1.7rem] border border-black/6 bg-white shadow-[0_18px_50px_rgba(17,17,17,0.05)]">
-                <CardContent className="p-6">
-                  <div className="flex size-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-600">
-                    <MapPin className="size-5" />
+            <div className="grid gap-px border border-black/10 bg-black/10">
+              {serviceAreas.map(area => (
+                <div key={area.title} className="grid gap-4 bg-[#f7f5f1] p-5 sm:grid-cols-[14rem_1fr] sm:items-start sm:p-6">
+                  <div className="flex items-center gap-3 text-[#111111]">
+                    <MapPin className="size-4 text-blue-600" />
+                    <h3 className="text-[1.15rem] font-semibold tracking-[-0.04em]">{area.title}</h3>
                   </div>
-                  <h3 className="mt-5 text-2xl font-semibold tracking-[-0.04em] text-[#111111]">{area.title}</h3>
-                  <p className="mt-3 text-base leading-7 text-slate-600">{area.copy}</p>
-                </CardContent>
-              </Card>
-            ))}
+                  <p className="text-sm leading-7 text-slate-600 sm:text-[0.98rem]">{area.copy}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
-        <section id="pricing" className="relative overflow-hidden border-y border-[#E5E5E5] bg-white py-18 sm:py-32">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(0,102,255,0.08),transparent_28%)]" />
-          <div className="container relative">
+        <section id="pricing" className="border-y border-black/8 bg-white py-18 sm:py-28">
+          <div className="container">
             <div className="max-w-3xl">
               <SectionEyebrow>Pricing Packages</SectionEyebrow>
-              <h2 className="text-4xl font-semibold leading-tight tracking-[-0.06em] text-[#111111] sm:text-5xl">
+              <h2 className="text-[2.2rem] font-semibold leading-[0.98] tracking-[-0.06em] text-[#111111] sm:text-[3.4rem]">
                 Premium structure without the agency fog.
               </h2>
-              <p className="mt-5 text-base leading-7 text-slate-600 sm:mt-6 sm:text-lg sm:leading-8">
-                Choose a clean build, a focused redesign, or ongoing monthly refinement. Every package below keeps the CTA anchored at the same level so comparisons are easier to scan.
+              <p className="mt-6 text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
+                Choose a clean build, a focused redesign, or ongoing monthly refinement. The comparison is kept flat and readable so the decision feels clearer and less like a sales page performance.
               </p>
             </div>
 
@@ -698,14 +610,15 @@ export default function Home() {
               ))}
             </div>
 
-              <div className="mt-8 rounded-[1.8rem] border border-black/6 bg-[#FAFAFA] p-5 shadow-[0_24px_80px_rgba(17,17,17,0.06)] sm:rounded-[2rem] sm:p-8">
-
-              <div className="flex flex-col gap-4 border-b border-[#E5E5E5] pb-5 lg:flex-row lg:items-end lg:justify-between">
+            <div className="mt-8 border border-black/10 bg-[#f7f5f1] p-5 sm:p-7">
+              <div className="flex flex-col gap-4 border-b border-black/8 pb-5 lg:flex-row lg:items-end lg:justify-between">
                 <div>
-                  <p className="text-sm font-medium uppercase tracking-[0.24em] text-slate-400">Ongoing retainers</p>
-                  <h3 className="mt-2 text-2xl font-semibold tracking-[-0.04em] text-[#111111]">Keep the tape on after launch.</h3>
+                  <p className="text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-slate-400">Ongoing retainers</p>
+                  <h3 className="mt-2 text-[1.9rem] font-semibold tracking-[-0.05em] text-[#111111] sm:text-[2.1rem]">
+                    Keep the tape on after launch.
+                  </h3>
                 </div>
-                <p className="max-w-lg text-sm leading-7 text-slate-500">
+                <p className="max-w-lg text-sm leading-7 text-slate-600">
                   Monthly refinement for teams that want a website that keeps improving as offers, seasons, and service priorities change.
                 </p>
               </div>
@@ -719,163 +632,166 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="audit" className="container py-20 sm:py-32">
-          <div className="grid gap-8 lg:grid-cols-[0.88fr_1.12fr] lg:gap-16">
-            <div className="order-2 lg:order-1">
+        <section id="audit" className="container py-18 sm:py-28">
+          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+            <div>
               <SectionEyebrow>Free Blue Tape Audit</SectionEyebrow>
-              <h2 className="max-w-[12ch] text-[2.35rem] font-semibold leading-[1] tracking-[-0.06em] text-[#111111] sm:text-5xl lg:max-w-[10ch]">
+              <h2 className="max-w-[12ch] text-[2.2rem] font-semibold leading-[0.98] tracking-[-0.06em] text-[#111111] sm:text-[3.4rem] lg:max-w-[10ch]">
                 Let us mark up the misses before you spend more on traffic.
               </h2>
-              <p className="mt-6 max-w-xl text-lg leading-8 text-slate-600">
-                Send your current site, service area, and what feels off. The form below now submits properly and stores the lead,
-                so your request does not disappear into a dead-end mockup.
+              <p className="mt-6 max-w-xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
+                Send your current site, your service area, and what you are trying to improve. We will show you where the page loses trust, where the message gets muddy, and where the conversion path needs tightening.
               </p>
-              <div className="mt-10 overflow-hidden rounded-[2rem] border border-black/6 bg-white p-4 shadow-[0_30px_90px_rgba(17,17,17,0.08)] sm:p-5">
+
+              <div className="mt-8 border border-black/10 bg-white p-4 sm:p-5">
                 <img
                   src="https://d2xsxph8kpxj0f.cloudfront.net/310419663032234167/TpcXhRqminM236HC9RQjNi/blue-tape-audit-board-V6yoJbGViP874uyi6wKV9P.webp"
                   alt="Website audit board with blue tape callouts and markup notes"
-                  className="h-full w-full rounded-[1.5rem] object-cover"
+                  className="h-full w-full object-cover"
                 />
+              </div>
+
+              <div className="mt-5 border-l-2 border-blue-600 pl-4 text-sm leading-7 text-slate-600">
+                We review your site like a pre-paint walkthrough: what to keep, what to fix, and what is costing trust right now.
               </div>
             </div>
 
-            <Card className="order-1 rounded-[1.8rem] border border-black/6 bg-white shadow-[0_30px_90px_rgba(17,17,17,0.08)] sm:rounded-[2rem] lg:order-2">
-              <CardContent className="p-5 sm:p-8">
-                <div className="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.24em] text-slate-400">
-                  <Sparkles className="size-4 text-blue-600" />
-                  Audit request form
+            <div className="border border-black/10 bg-white p-6 sm:p-8">
+              <div className="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-slate-400">Audit request form</div>
+
+              <form className="mt-8 grid gap-5" onSubmit={handleSubmit}>
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <label className="grid gap-2 text-sm font-medium text-slate-700">
+                    Your name
+                    <input
+                      className="h-12 border border-black/10 bg-[#faf8f4] px-4 outline-none transition focus:border-blue-600"
+                      placeholder="Owner or project lead"
+                      value={formData.name}
+                      onChange={event => handleFieldChange("name", event.target.value)}
+                      required
+                    />
+                  </label>
+                  <label className="grid gap-2 text-sm font-medium text-slate-700">
+                    Company name
+                    <input
+                      className="h-12 border border-black/10 bg-[#faf8f4] px-4 outline-none transition focus:border-blue-600"
+                      placeholder="Blue Tape-worthy business"
+                      value={formData.companyName}
+                      onChange={event => handleFieldChange("companyName", event.target.value)}
+                      required
+                    />
+                  </label>
+                </div>
+
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <label className="grid gap-2 text-sm font-medium text-slate-700">
+                    Email address
+                    <input
+                      className="h-12 border border-black/10 bg-[#faf8f4] px-4 outline-none transition focus:border-blue-600"
+                      placeholder="you@company.com"
+                      type="email"
+                      value={formData.email}
+                      onChange={event => handleFieldChange("email", event.target.value)}
+                      required
+                    />
+                  </label>
+                  <label className="grid gap-2 text-sm font-medium text-slate-700">
+                    Phone number
+                    <input
+                      className="h-12 border border-black/10 bg-[#faf8f4] px-4 outline-none transition focus:border-blue-600"
+                      placeholder="(555) 000-0000"
+                      type="tel"
+                      value={formData.phone}
+                      onChange={event => handleFieldChange("phone", event.target.value)}
+                    />
+                  </label>
+                </div>
+
+                <label className="grid gap-2 text-sm font-medium text-slate-700">
+                  Website URL
+                  <input
+                    className="h-12 border border-black/10 bg-[#faf8f4] px-4 outline-none transition focus:border-blue-600"
+                    placeholder="https://yourwebsite.com"
+                    type="url"
+                    value={formData.websiteUrl}
+                    onChange={event => handleFieldChange("websiteUrl", event.target.value)}
+                    required
+                  />
+                </label>
+
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <label className="grid gap-2 text-sm font-medium text-slate-700">
+                    Primary trade
+                    <input
+                      className="h-12 border border-black/10 bg-[#faf8f4] px-4 outline-none transition focus:border-blue-600"
+                      placeholder="Plumbing, electrical, cleaning..."
+                      value={formData.primaryTrade}
+                      onChange={event => handleFieldChange("primaryTrade", event.target.value)}
+                      required
+                    />
+                  </label>
+                  <label className="grid gap-2 text-sm font-medium text-slate-700">
+                    Service area
+                    <input
+                      className="h-12 border border-black/10 bg-[#faf8f4] px-4 outline-none transition focus:border-blue-600"
+                      placeholder="Orange County, Inland Empire, SoCal..."
+                      value={formData.serviceArea}
+                      onChange={event => handleFieldChange("serviceArea", event.target.value)}
+                      required
+                    />
+                  </label>
+                </div>
+
+                <label className="grid gap-2 text-sm font-medium text-slate-700">
+                  What feels off right now?
+                  <textarea
+                    className="min-h-34 border border-black/10 bg-[#faf8f4] px-4 py-3 outline-none transition focus:border-blue-600"
+                    placeholder="Tell us where the site feels weak: trust, messaging, design, mobile flow, slow load, or something else."
+                    value={formData.projectDetails}
+                    onChange={event => handleFieldChange("projectDetails", event.target.value)}
+                    required
+                  />
+                </label>
+
+                <div className="border-l-2 border-blue-600 bg-[#faf8f4] px-4 py-4 text-sm leading-7 text-slate-600">
+                  We review your page the way a good operator reviews a job before signoff: what earns trust, what muddies the offer, and what should be fixed first.
                 </div>
 
                 {submissionMessage ? (
-                  <div className="mt-6 rounded-[1.25rem] border border-blue-100 bg-blue-50 px-4 py-4 text-sm leading-6 text-slate-700 sm:rounded-[1.4rem] sm:px-5 sm:leading-7">
+                  <div className="border border-black/10 bg-[#faf8f4] px-4 py-4 text-sm leading-7 text-slate-600">
                     {submissionMessage}
                   </div>
                 ) : null}
 
-                <form className="mt-8 grid gap-5" onSubmit={handleSubmit}>
-                  <div className="grid gap-5 sm:grid-cols-2">
-                    <label className="grid gap-2 text-sm font-medium text-slate-700">
-                      Your name
-                      <input
-                        required
-                        value={formData.name}
-                        onChange={event => handleFieldChange("name", event.target.value)}
-                        className="h-12 rounded-2xl border border-black/8 bg-[#FAFAFA] px-4 outline-none transition focus:border-blue-600"
-                        placeholder="Owner or project lead"
-                      />
-                    </label>
-                    <label className="grid gap-2 text-sm font-medium text-slate-700">
-                      Company name
-                      <input
-                        required
-                        value={formData.companyName}
-                        onChange={event => handleFieldChange("companyName", event.target.value)}
-                        className="h-12 rounded-2xl border border-black/8 bg-[#FAFAFA] px-4 outline-none transition focus:border-blue-600"
-                        placeholder="Blue Tape-worthy business"
-                      />
-                    </label>
-                  </div>
-                  <div className="grid gap-5 sm:grid-cols-2">
-                    <label className="grid gap-2 text-sm font-medium text-slate-700">
-                      Email address
-                      <input
-                        required
-                        value={formData.email}
-                        onChange={event => handleFieldChange("email", event.target.value)}
-                        className="h-12 rounded-2xl border border-black/8 bg-[#FAFAFA] px-4 outline-none transition focus:border-blue-600"
-                        placeholder="you@company.com"
-                        type="email"
-                      />
-                    </label>
-                    <label className="grid gap-2 text-sm font-medium text-slate-700">
-                      Phone number
-                      <input
-                        value={formData.phone}
-                        onChange={event => handleFieldChange("phone", event.target.value)}
-                        className="h-12 rounded-2xl border border-black/8 bg-[#FAFAFA] px-4 outline-none transition focus:border-blue-600"
-                        placeholder="(555) 000-0000"
-                        type="tel"
-                      />
-                    </label>
-                  </div>
-                  <label className="grid gap-2 text-sm font-medium text-slate-700">
-                    Website URL
-                    <input
-                      value={formData.websiteUrl}
-                      onChange={event => handleFieldChange("websiteUrl", event.target.value)}
-                      className="h-12 rounded-2xl border border-black/8 bg-[#FAFAFA] px-4 outline-none transition focus:border-blue-600"
-                      placeholder="https://yourwebsite.com"
-                      type="url"
-                    />
-                  </label>
-                  <div className="grid gap-5 sm:grid-cols-2">
-                    <label className="grid gap-2 text-sm font-medium text-slate-700">
-                      Primary trade
-                      <input
-                        required
-                        value={formData.primaryTrade}
-                        onChange={event => handleFieldChange("primaryTrade", event.target.value)}
-                        className="h-12 rounded-2xl border border-black/8 bg-[#FAFAFA] px-4 outline-none transition focus:border-blue-600"
-                        placeholder="Plumbing, electrical, cleaning..."
-                      />
-                    </label>
-                    <label className="grid gap-2 text-sm font-medium text-slate-700">
-                      Service area
-                      <input
-                        required
-                        value={formData.serviceArea}
-                        onChange={event => handleFieldChange("serviceArea", event.target.value)}
-                        className="h-12 rounded-2xl border border-black/8 bg-[#FAFAFA] px-4 outline-none transition focus:border-blue-600"
-                        placeholder="Orange County, Inland Empire, SoCal..."
-                      />
-                    </label>
-                  </div>
-                  <label className="grid gap-2 text-sm font-medium text-slate-700">
-                    What feels off right now?
-                    <textarea
-                      required
-                      minLength={20}
-                      value={formData.projectDetails}
-                      onChange={event => handleFieldChange("projectDetails", event.target.value)}
-                      className="min-h-34 rounded-[1.4rem] border border-black/8 bg-[#FAFAFA] px-4 py-3 outline-none transition focus:border-blue-600"
-                      placeholder="Tell us where the site feels weak: trust, messaging, design, mobile flow, slow load, or something else."
-                    />
-                  </label>
-                  <div className="rounded-[1.5rem] border border-blue-100 bg-blue-50 px-5 py-4 text-sm leading-7 text-slate-600">
-                    We review your site like a pre-paint walkthrough: what to keep, what to fix, and what is costing trust right now.
-                  </div>
-                  <Button disabled={auditMutation.isPending} className="h-auto min-h-13 rounded-full bg-blue-600 px-6 py-4 text-base whitespace-normal text-white hover:bg-blue-700 disabled:opacity-80 sm:h-13 sm:py-0">
-                    {auditMutation.isPending ? (
-                      <span className="inline-flex items-center gap-2">
-                        <Loader2 className="size-4 animate-spin" />
-                        Submitting audit request...
-                      </span>
-                    ) : (
-                      "Request Your Free Audit"
-                    )}
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
+                <Button
+                  type="submit"
+                  disabled={auditMutation.isPending}
+                  className="h-13 rounded-none border border-[#111111] bg-[#111111] text-sm font-semibold uppercase tracking-[0.08em] text-white hover:bg-slate-800"
+                >
+                  {auditMutation.isPending ? "Submitting..." : "Request Your Free Audit"}
+                </Button>
+              </form>
+            </div>
           </div>
         </section>
 
-        <section id="faq" className="border-t border-[#E5E5E5] bg-white py-20 sm:py-32">
-          <div className="container grid gap-14 lg:grid-cols-[0.7fr_1.3fr]">
+        <section id="faq" className="border-t border-black/8 bg-white py-18 sm:py-28">
+          <div className="container grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
             <div>
               <SectionEyebrow>Cut the Tape on Confusion</SectionEyebrow>
-              <h2 className="max-w-[12ch] text-[2.35rem] font-semibold leading-[1] tracking-[-0.06em] text-[#111111] sm:text-5xl lg:max-w-[10ch]">
+              <h2 className="max-w-[12ch] text-[2.2rem] font-semibold leading-[0.98] tracking-[-0.06em] text-[#111111] sm:text-[3.4rem] lg:max-w-[10ch]">
                 Straight answers for owners who value clarity.
               </h2>
-              <p className="mt-6 max-w-md text-lg leading-8 text-slate-600">
+              <p className="mt-6 max-w-md text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
                 We keep the process direct, the decisions visible, and the site focused on what actually helps you win better work.
               </p>
             </div>
-            <div className="rounded-[1.8rem] border border-black/6 bg-[#FAFAFA] p-5 shadow-[0_24px_80px_rgba(17,17,17,0.06)] sm:rounded-[2rem] sm:p-8">
+
+            <div className="border border-black/10 bg-[#f7f5f1] p-5 sm:p-7">
               <Accordion type="single" collapsible className="w-full">
                 {faqs.map((item, index) => (
-                  <AccordionItem key={item.question} value={`item-${index}`} className="border-[#E5E5E5]">
-                    <AccordionTrigger className="py-6 text-left text-lg font-semibold tracking-[-0.03em] text-[#111111] hover:no-underline">
+                  <AccordionItem key={item.question} value={`item-${index}`} className="border-black/10">
+                    <AccordionTrigger className="py-6 text-left text-[1.02rem] font-semibold tracking-[-0.03em] text-[#111111] hover:no-underline sm:text-lg">
                       {item.question}
                     </AccordionTrigger>
                     <AccordionContent className="text-base leading-8 text-slate-600">{item.answer}</AccordionContent>
@@ -887,27 +803,27 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="bg-[#111111] text-white">
-        <div className="container grid gap-10 py-12 lg:grid-cols-[1.1fr_0.9fr] lg:py-18">
+      <footer className="border-t border-black/8 bg-[#111111] text-white">
+        <div className="container grid gap-10 py-12 lg:grid-cols-[1fr_1fr] lg:gap-16 lg:py-16">
           <div>
-            <div className="inline-flex flex-wrap items-center gap-3">
-              <div className="relative size-11 overflow-hidden rounded-2xl bg-blue-600">
-                <span className="absolute left-1/2 top-1/2 h-3.5 w-7 -translate-x-1/2 -translate-y-1/2 rotate-[-28deg] rounded-full bg-white/95" />
-                <span className="absolute right-1.5 top-1.5 h-2.5 w-2.5 rounded-sm border border-white/80 bg-white/20" />
+            <div className="inline-flex items-center gap-3">
+              <div className="flex size-10 items-center justify-center border border-white/15 bg-white/6">
+                <span className="h-1.5 w-6 rotate-[-28deg] bg-blue-400" />
               </div>
               <div>
-                <div className="text-sm font-semibold uppercase tracking-[0.24em] text-white/45">Blue Tape Sites</div>
-                <div className="text-xl font-semibold tracking-[-0.05em]">Precision web design</div>
+                <div className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-white/45">Blue Tape Sites</div>
+                <div className="mt-1 text-lg font-semibold tracking-[-0.04em] text-white">Precision web design</div>
               </div>
             </div>
-            <p className="mt-5 max-w-xl text-base leading-7 text-white/72 sm:mt-6 sm:text-lg sm:leading-8">
-              Premium web design for Southern California plumbers, electricians, cleaners, and other home-service businesses that want every flaw found, every detail tightened, and every page ready to convert.
+
+            <p className="mt-6 max-w-xl text-base leading-8 text-white/72">
+              Premium web design for plumbers, electricians, cleaners, and other home-service businesses that want every flaw found, every detail tightened, and every page ready to convert.
             </p>
           </div>
 
           <div className="grid gap-8 sm:grid-cols-2">
             <div>
-              <div className="text-sm font-semibold uppercase tracking-[0.22em] text-white/40">Navigate</div>
+              <div className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-white/40">Navigate</div>
               <div className="mt-4 grid gap-3 text-white/72">
                 {navItems.map(item => (
                   <a key={item.href} href={item.href} className="transition-colors hover:text-white">
@@ -917,12 +833,12 @@ export default function Home() {
               </div>
             </div>
             <div>
-              <div className="text-sm font-semibold uppercase tracking-[0.22em] text-white/40">Next step</div>
+              <div className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-white/40">Next step</div>
               <a href="#audit" className="mt-4 inline-flex items-center gap-2 text-lg font-medium text-white transition-colors hover:text-blue-300">
                 Request Your Free Audit
                 <ArrowRight className="size-4" />
               </a>
-              <div className="mt-6 inline-flex max-w-full flex-wrap items-center gap-2 rounded-2xl border border-white/12 bg-white/6 px-4 py-3 text-sm leading-6 text-white/70 sm:rounded-full sm:py-2">
+              <div className="mt-6 inline-flex items-center gap-2 border border-white/12 px-4 py-3 text-sm text-white/70">
                 <CircleHelp className="size-4 text-blue-300" />
                 Built for detail-obsessed owners who want less confusion and more confidence.
               </div>
