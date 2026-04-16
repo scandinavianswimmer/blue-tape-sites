@@ -1,0 +1,4 @@
+- [ ] Generate hero and supporting visual assets aligned with the Swiss editorial minimalism direction.
+- [ ] Build the full single-page homepage with all requested sections and interactions.
+- [ ] Draft best-fit placeholder copy only where the attachment references exact text that was not actually provided.
+- [ ] Validate the preview experience, save the first delivery checkpoint, and return the live preview URL with implementation notes.
