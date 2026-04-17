@@ -261,19 +261,19 @@ const retainers = [
 const serviceAreas = [
   {
     title: "Southern California Core",
-    copy: "Show clear coverage across Orange County, Los Angeles, the Inland Empire, and San Diego so local prospects know they are in the right place.",
+    copy: "If your business works across Orange County, Los Angeles, the Inland Empire, or San Diego, the site should make that coverage obvious from the first visit.",
   },
   {
     title: "California Reach",
-    copy: "Speak to homeowners across California with location language that still feels specific, credible, and useful.",
+    copy: "If you serve clients across California, the message should still sound grounded, specific, and relevant to the places you actually work.",
   },
   {
     title: "Room to Grow",
-    copy: "Keep the brand polished enough to support expansion into new markets without losing the local trust that wins the first call.",
+    copy: "You should be able to expand into new markets without ending up with a website that feels vague, generic, or disconnected from your local reputation.",
   },
   {
     title: "Dedicated Local Pages",
-    copy: "Add stronger city-specific pages over time so each market gets clearer proof, tighter copy, and a better local experience.",
+    copy: "For priority cities, dedicated local pages give customers clearer service details, stronger local proof, and a better sense that you know their area.",
   },
 ];
 
@@ -710,12 +710,12 @@ export default function Home() {
         <section id="service-area" className="container py-18 sm:py-28">
           <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:gap-16">
             <div>
-              <SectionEyebrow>Service Area Positioning</SectionEyebrow>
+              <SectionEyebrow>Service Area Coverage</SectionEyebrow>
               <h2 className="text-[2.2rem] font-semibold leading-[0.98] tracking-[-0.06em] text-[#111111] sm:text-[3.4rem]">
-                Local enough to feel trusted, broad enough to grow past one county.
+                Make it easy for customers to see that you work where they live.
               </h2>
               <p className="mt-6 text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
-                The site should feel local enough to earn trust right away while still supporting broader growth as the business expands into additional cities and regions.
+                Whether someone is in Orange County, Los Angeles, the Inland Empire, San Diego, or another California market you serve, the message should help them recognize right away that they are in the right place.
               </p>
             </div>
 
@@ -741,7 +741,7 @@ export default function Home() {
                 Premium structure without the agency fog.
               </h2>
               <p className="mt-6 text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
-                Choose a clean build, a focused redesign, or ongoing monthly refinement. The comparison is kept flat and readable so the decision feels clearer and easier to make.
+                Whether you need a new site, a sharper redesign, or steady monthly support, these packages are built to help you choose the level of work that fits your business right now.
               </p>
             </div>
 

@@ -60,3 +60,6 @@
 - [x] Audit all visible routes and representative blog posts for internal-facing or fourth-wall-breaking language beyond the homepage.
 - [x] Rewrite remaining blog or page copy that reads like internal strategy commentary instead of audience-facing content.
 - [x] Validate the revised copy in the live preview across the homepage, blog index, and representative blog posts before the next checkpoint.
+- [x] Rewrite the homepage coverage section so it tells prospects clearly where Blue Tape Sites works and why that matters to them.
+- [x] Rewrite the pricing section support copy so it speaks to leads choosing the right engagement, not to the site owner about layout decisions.
+- [x] Validate the revised coverage and pricing copy in the live homepage before the next checkpoint.
