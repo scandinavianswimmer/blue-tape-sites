@@ -5,7 +5,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { blogPostMap, blogPosts } from "@/content/blogPosts";
 import { renderArticleMarkdown } from "@/lib/renderArticle";
-import { applyPageSeo } from "@/lib/seo";
+import { applyPageSeo, buildBlogPostSeo } from "@/lib/seo";
 import NotFound from "@/pages/NotFound";
 
 const formatDate = (date: string) =>
@@ -28,10 +28,7 @@ export default function BlogPost() {
       return;
     }
 
-    applyPageSeo({
-      title: `${post.title} | Blue Tape Sites`,
-      description: post.summary,
-    });
+    applyPageSeo(buildBlogPostSeo(post));
   }, [post]);
 
   if (!post) {

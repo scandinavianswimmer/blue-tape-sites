@@ -65,4 +65,8 @@
 - [x] Validate the revised coverage and pricing copy in the live homepage before the next checkpoint.
 - [x] Add the Bing site verification meta tag to the homepage head and keep it in place for ongoing verification.
 - [x] Verify that the Bing site verification meta tag is present on the current preview homepage.
-- [ ] Attempt the Bing submission flow and hand off any authenticated Bing Webmaster Tools step if required.
+- [x] Attempt the Bing submission flow and hand off any authenticated Bing Webmaster Tools step if required.
+- [ ] Confirm in Bing Webmaster Tools that https://bluetapesites.com/ shows a verified status after the meta-tag submission.
+- [ ] If Bing still does not recognize the meta tag, validate the live published homepage head again and retry the HTML meta-tag verification flow until the verified state is explicitly shown.
+- [x] Ensure each blog post page emits metadata dates that match the historical publication date represented by that post.
+- [x] Add regression coverage to keep blog post metadata dates aligned with each post's represented publication date.

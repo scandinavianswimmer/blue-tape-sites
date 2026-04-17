@@ -5,7 +5,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { blogPosts } from "@/content/blogPosts";
 import { readAndClearBlogArchiveScroll, saveBlogArchiveScroll } from "@/lib/blogScroll";
-import { applyPageSeo } from "@/lib/seo";
+import { applyPageSeo, SITE_URL } from "@/lib/seo";
 
 const BLOG_TITLE = "Blue Tape Sites Blog | Website Advice for Contractors";
 const BLOG_DESCRIPTION =
@@ -24,6 +24,7 @@ export default function Blog() {
     applyPageSeo({
       title: BLOG_TITLE,
       description: BLOG_DESCRIPTION,
+      canonicalUrl: `${SITE_URL}/blog`,
     });
 
     const savedScroll = readAndClearBlogArchiveScroll();
