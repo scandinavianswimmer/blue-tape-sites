@@ -83,7 +83,7 @@
 - [x] Evaluate whether showing public pricing on Blue Tape Sites helps qualification or suppresses higher-value leads.
 - [x] Review the homepage against ICP feedback and identify the highest-impact trust, ROI-proof, audit-preview, video, post-audit clarity, founder-trust, and retainer-detail improvements.
 - [x] Recommend the strongest pricing strategy for Blue Tape Sites based on the current positioning, ICP feedback, and common agency practice.
-- [ ] Reframe the messaging so Blue Tape Sites visibly emphasizes openness, direct communication, and a no-runaround buying experience.
+- [x] Reframe the messaging so Blue Tape Sites visibly emphasizes openness, direct communication, and a no-runaround buying experience.
 - [x] Tighten homepage sections that drift into internal or process-heavy language so they stay customer-facing and outcome-driven.
 - [x] Rewrite the "We Build With the Tape On" and related trust-label sections to focus on what contractors gain, lose, and decide faster.
 - [x] Rework weak pricing and audit phrasing so the copy speaks directly to calls, trust, clarity, and the exact next step.

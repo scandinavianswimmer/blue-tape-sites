@@ -301,7 +301,7 @@ const faqs = [
   {
     question: "What happens after I request the audit?",
     answer:
-      "Your request comes through as a real lead, we review the site for the biggest trust and clarity problems, and you get a direct recommendation on what should be fixed first.",
+      "Your request comes through as a real lead, we review the site for the biggest trust and clarity problems, and you get a direct recommendation on what should be fixed first without a bunch of agency fog.",
   },
 ];
 
@@ -547,10 +547,10 @@ export default function Home() {
                 See the tape. Fix the flaws. Launch with confidence.
               </h1>
               <p className="mt-6 max-w-[36rem] text-[1.02rem] leading-7 text-slate-600 sm:text-[1.15rem] sm:leading-8">
-                Blue Tape Sites builds premium websites for plumbers, electricians, cleaners, and home-service teams that want more trust, more qualified calls, and a site that stops making the business look smaller than it is.
+                Blue Tape Sites builds premium websites for plumbers, electricians, cleaners, and home-service teams that want more trust, more qualified calls, and a straight answer on what it will take to make the site pull its weight.
               </p>
               <p className="mt-4 max-w-[34rem] text-sm leading-7 text-slate-500 sm:text-[0.98rem]">
-                Rooted in Southern California, with messaging that stays clear as the business grows into new cities, service areas, and higher-value work.
+                Rooted in Southern California, with clear pricing, direct recommendations, and messaging that stays sharp as the business grows into new cities, service areas, and higher-value work.
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -567,10 +567,10 @@ export default function Home() {
               <div className="border border-black/10 bg-white p-5 sm:p-6">
                 <div className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-slate-500">Blue Tape standard</div>
                 <div className="mt-3 border-l-2 border-blue-600 pl-4 text-lg font-semibold tracking-[-0.04em] text-[#111111] sm:text-xl">
-                  Clear offer. Tighter proof. Better local trust.
+                  Clear offer. Clear pricing. No agency runaround.
                 </div>
                 <p className="mt-4 text-sm leading-7 text-slate-600">
-                  Clear offer, confident proof, and a presentation that feels established from the first screen.
+                  Clear offer, visible numbers, and a buying process that does not make you chase basic answers.
                 </p>
               </div>
 
@@ -736,7 +736,7 @@ export default function Home() {
                 Premium structure without the agency fog.
               </h2>
               <p className="mt-6 text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
-                Whether you need a new site, a sharper redesign, or steady monthly support, these packages show the level of work that fits your business right now without making you sit through vague agency talk just to understand the ballpark.
+                Whether you need a new site, a sharper redesign, or steady monthly support, these packages show the level of work that fits your business right now without making you book a call just to get a straight ballpark.
               </p>
             </div>
 
@@ -751,11 +751,11 @@ export default function Home() {
                 <div>
                   <p className="text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-slate-400">Ongoing retainers</p>
                   <h3 className="mt-2 text-[1.9rem] font-semibold tracking-[-0.05em] text-[#111111] sm:text-[2.1rem]">
-                    Keep the tape on after launch.
+                    Keep the tape on after launch, without the mystery bills.
                   </h3>
                 </div>
                 <p className="max-w-lg text-sm leading-7 text-slate-600">
-                  Monthly support for teams that want updates, seasonal swaps, speed and trust tune-ups, and a site that keeps up as the business changes.
+                  Monthly support for teams that want updates, seasonal swaps, speed and trust tune-ups, and a site that keeps up as the business changes without vague retainers or surprise extras.
                 </p>
               </div>
 
@@ -776,7 +776,7 @@ export default function Home() {
                 Let us mark up the misses before you spend more on traffic.
               </h2>
               <p className="mt-6 max-w-xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
-                Send your current site, your service area, and what you want to improve. We will show you exactly where the page is losing customers, what is making the business look weaker than it should, and what to fix first.
+                Send your current site, your service area, and what you want to improve. We will show you exactly where the page is losing customers, what is making the business look weaker than it should, and what to fix first, without talking in circles.
               </p>
 
               <div className="mt-8 border border-black/10 bg-white p-4 sm:p-5">
@@ -790,7 +790,7 @@ export default function Home() {
               </div>
 
               <div className="mt-5 border-l-2 border-blue-600 pl-4 text-sm leading-7 text-slate-600">
-                You get a marked-up review that shows what to keep, what to fix, and what is costing trust right now.
+                You get a marked-up review that shows what to keep, what to fix, and what is costing trust right now, so the next step feels obvious instead of vague.
               </div>
             </div>
 
@@ -930,7 +930,7 @@ export default function Home() {
                 Straight answers for owners who value clarity.
               </h2>
               <p className="mt-6 max-w-md text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
-                We keep the process direct, the decisions visible, and the site focused on what actually helps you win better work.
+                We keep the process direct, the decisions visible, and the buying experience free of the usual agency runaround.
               </p>
             </div>
 

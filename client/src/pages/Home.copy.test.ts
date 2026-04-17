@@ -16,4 +16,11 @@ describe("Home homepage copy alignment", () => {
     expect(homeSource).toContain("what is hurting trust");
     expect(homeSource).toContain("what should be fixed first");
   });
+
+  it("keeps the openness and no-runaround positioning visible", () => {
+    expect(homeSource).toContain("straight answer on what it will take");
+    expect(homeSource).toContain("Clear offer. Clear pricing. No agency runaround.");
+    expect(homeSource).toContain("without making you book a call just to get a straight ballpark");
+    expect(homeSource).toContain("free of the usual agency runaround");
+  });
 });
