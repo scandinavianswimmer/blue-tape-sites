@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { Link, useRoute } from "wouter";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { Streamdown } from "streamdown";
 
 import { Button } from "@/components/ui/button";
 import { blogPostMap, blogPosts } from "@/content/blogPosts";
+import { renderArticleMarkdown } from "@/lib/renderArticle";
 import { applyPageSeo } from "@/lib/seo";
 import NotFound from "@/pages/NotFound";
 
@@ -77,9 +77,12 @@ export default function BlogPost() {
           <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600">{post.summary}</p>
 
           <article className="mt-10 border border-black/10 bg-white p-6 shadow-[0_22px_70px_rgba(17,17,17,0.05)] sm:p-10">
-            <div className="prose prose-slate max-w-none prose-headings:tracking-[-0.04em] prose-headings:text-[#111111] prose-p:leading-8 prose-li:leading-8">
-              <Streamdown>{post.content || "This article is being prepared for publication."}</Streamdown>
-            </div>
+            <div
+              className="article-markdown max-w-none"
+              dangerouslySetInnerHTML={{
+                __html: renderArticleMarkdown(post.content || "This article is being prepared for publication."),
+              }}
+            />
           </article>
 
           <div className="mt-10 grid gap-4 md:grid-cols-2">

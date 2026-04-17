@@ -103,21 +103,45 @@ const exampleSites = [
   {
     name: "Harbor Plumbing Co.",
     niche: "Plumbing",
-    summary: "A premium plumbing homepage direction focused on emergency clarity, trust, and clean residential presentation.",
+    direction: "Emergency-first residential lead page",
+    summary: "Built like a high-trust plumbing brand: faster call decisions, strong neighborhood proof, and a cleaner service breakdown for urgent homeowners.",
+    proof: "After-hours phone CTA, financing note, and review-led trust bar.",
+    layout: "Strong left-to-right urgency layout with stacked service proof and a brighter call-first accent system.",
+    eyebrow: "Call-first direction",
+    cardClass: "bg-[#eef7ff]",
+    frameClass: "border-sky-200/80",
+    accentClass: "from-sky-600 via-cyan-500 to-cyan-300",
+    titleClass: "font-[\"Space_Grotesk\"]",
     image:
       "https://d2xsxph8kpxj0f.cloudfront.net/310419663032234167/TpcXhRqminM236HC9RQjNi/blue-tape-mockup-plumbing-kDb4zgAXztNV984DxggUhy.webp",
   },
   {
     name: "Northline Electric",
     niche: "Electrical",
-    summary: "An electrical contractor direction with sharper proof framing, cleaner hierarchy, and code-conscious credibility.",
+    direction: "Commercial-leaning contractor presence",
+    summary: "A firmer, more technical direction for an electrical contractor that needs sharper hierarchy, cleaner credential framing, and a more engineered tone.",
+    proof: "License framing, project-category tiles, and a denser spec-sheet style content rhythm.",
+    layout: "Structured grid with darker surfaces, stricter spacing, and stronger contrast for a more code-conscious feel.",
+    eyebrow: "Spec-driven direction",
+    cardClass: "bg-[#f3f2ef]",
+    frameClass: "border-slate-300/80",
+    accentClass: "from-slate-900 via-slate-700 to-amber-400",
+    titleClass: "font-sans uppercase tracking-[0.02em]",
     image:
       "https://d2xsxph8kpxj0f.cloudfront.net/310419663032234167/TpcXhRqminM236HC9RQjNi/blue-tape-mockup-electrical-6mTRizFnD8CQC45i4RhudC.webp",
   },
   {
     name: "Greyline Cleaning",
     niche: "Cleaning",
-    summary: "A cleaning-company direction that stays premium and businesslike instead of falling into generic soft-service design tropes.",
+    direction: "Hospitality-grade recurring-service pitch",
+    summary: "A cleaner, warmer direction that still feels premium: lighter touchpoints, recurring-service trust cues, and polished proof without soft generic tropes.",
+    proof: "Crew consistency message, recurring-plan framing, and polished before-and-after confidence cues.",
+    layout: "Airier editorial layout with softer neutrals, more breathing room, and a hospitality-style presentation system.",
+    eyebrow: "Recurring-service direction",
+    cardClass: "bg-[#f6f2ee]",
+    frameClass: "border-stone-200/80",
+    accentClass: "from-stone-700 via-zinc-500 to-emerald-300",
+    titleClass: "font-[\"Space_Grotesk\"] tracking-[-0.04em]",
     image:
       "https://d2xsxph8kpxj0f.cloudfront.net/310419663032234167/TpcXhRqminM236HC9RQjNi/blue-tape-mockup-cleaning-eCsrUsVc8wRXy8xwfTxK76.webp",
   },
@@ -639,12 +663,43 @@ export default function Home() {
 
             <div className="mt-10 grid gap-6 lg:grid-cols-3">
               {exampleSites.map(site => (
-                <article key={site.name} className="border border-black/10 bg-[#f7f5f1]">
-                  <img src={site.image} alt={`${site.name} sample homepage concept`} className="w-full border-b border-black/10 object-cover" />
-                  <div className="p-5 sm:p-6">
-                    <div className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-slate-400">{site.niche}</div>
-                    <h3 className="mt-2 text-[1.45rem] font-semibold tracking-[-0.05em] text-[#111111]">{site.name}</h3>
-                    <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-[0.98rem]">{site.summary}</p>
+                <article
+                  key={site.name}
+                  className={`group overflow-hidden border border-black/10 shadow-[0_18px_45px_rgba(15,23,42,0.06)] transition-transform duration-200 hover:-translate-y-1 ${site.cardClass}`}
+                >
+                  <div className={`h-1.5 w-full bg-gradient-to-r ${site.accentClass}`} />
+                  <div className="border-b border-black/8 px-5 py-4 sm:px-6">
+                    <div className="flex items-center justify-between gap-3">
+                      <div className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-slate-500">{site.niche}</div>
+                      <div className="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-slate-400">{site.eyebrow}</div>
+                    </div>
+                    <h3 className={`mt-3 text-[1.45rem] font-semibold text-[#111111] ${site.titleClass}`}>{site.name}</h3>
+                    <p className="mt-2 text-sm leading-6 text-slate-600">{site.direction}</p>
+                  </div>
+
+                  <div className="p-4 sm:p-5">
+                    <div className={`overflow-hidden border bg-white ${site.frameClass}`}>
+                      <img
+                        src={site.image}
+                        alt={`${site.name} sample homepage concept`}
+                        className="w-full object-cover transition-transform duration-300 group-hover:scale-[1.015]"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+
+                    <p className="mt-5 text-sm leading-7 text-slate-700 sm:text-[0.98rem]">{site.summary}</p>
+
+                    <div className="mt-5 grid gap-px border border-black/8 bg-black/8">
+                      <div className="bg-white px-4 py-3">
+                        <div className="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-slate-400">Proof move</div>
+                        <p className="mt-1 text-sm leading-6 text-slate-600">{site.proof}</p>
+                      </div>
+                      <div className="bg-white px-4 py-3">
+                        <div className="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-slate-400">Layout note</div>
+                        <p className="mt-1 text-sm leading-6 text-slate-600">{site.layout}</p>
+                      </div>
+                    </div>
                   </div>
                 </article>
               ))}
@@ -734,6 +789,8 @@ export default function Home() {
                   src="https://d2xsxph8kpxj0f.cloudfront.net/310419663032234167/TpcXhRqminM236HC9RQjNi/blue-tape-audit-board-V6yoJbGViP874uyi6wKV9P.webp"
                   alt="Website audit board with blue tape callouts and markup notes"
                   className="h-full w-full object-cover"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
 

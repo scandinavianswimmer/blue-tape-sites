@@ -36,19 +36,19 @@
 - [x] Build the blog post data structure, routes, and post template needed to publish the archive on-site.
 - [x] Write the full backdated article set in a natural, brand-consistent editorial voice with useful, human-centered advice.
 - [x] Review the blog writing for specificity, readability, and non-generic language without using deceptive detection-evasion tactics.
-- [ ] Validate the blog experience, run tests, save a checkpoint, and explain the publish step.
-- [ ] Review all 24 blog posts for Blue Tape Sites voice consistency, specificity, and repetitive generic phrasing.
-- [ ] Revise weaker blog articles so the archive sounds sharper, more specific, and more brand-consistent.
-- [ ] Validate the live blog index and representative blog post routes in preview after the content integration.
-- [ ] Redesign the three example client mockups so they feel like distinct real projects with different palettes, typography, and layout systems.
-- [ ] Improve perceived speed and actual responsiveness across the site while preserving polished motion and professional feel.
-- [ ] Audit the codebase and shipped assets for confirmed unused bloat, removing only what is clearly unnecessary and isolating anything uncertain.
-- [ ] Validate the updated mockups, performance improvements, and cleanup work before the next checkpoint.
-- [ ] Fix the homepage SEO title so it stays within the recommended 30 to 60 character range.
-- [ ] Shorten the homepage SEO description so it stays within the recommended 50 to 160 character range.
-- [ ] Repair sitemap.xml so it resolves publicly instead of returning 404.
-- [ ] Complete robots.txt with the requested crawler directives and valid sitemap reference.
-- [ ] Validate the updated SEO metadata, robots.txt, and sitemap.xml in the live site before checkpointing.
+- [x] Validate the blog experience, run tests, save a checkpoint, and explain the publish step.
+- [x] Review all 24 blog posts for Blue Tape Sites voice consistency, specificity, and repetitive generic phrasing.
+- [x] Revise weaker blog articles so the archive sounds sharper, more specific, and more brand-consistent.
+- [x] Validate the live blog index and representative blog post routes in preview after the content integration.
+- [x] Redesign the three example client mockups so they feel like distinct real projects with different palettes, typography, and layout systems.
+- [x] Improve perceived speed and actual responsiveness across the site while preserving polished motion and professional feel.
+- [x] Audit the codebase and shipped assets for confirmed unused bloat, removing only what is clearly unnecessary and isolating anything uncertain.
+- [x] Validate the updated mockups, cleanup work, and the remaining performance optimization pass before the next checkpoint.
+- [x] Fix the homepage SEO title so it stays within the recommended 30 to 60 character range.
+- [x] Shorten the homepage SEO description so it stays within the recommended 50 to 160 character range.
+- [x] Repair sitemap.xml so it resolves publicly instead of returning 404.
+- [x] Complete robots.txt with the requested crawler directives and valid sitemap reference.
+- [x] Validate the updated SEO metadata, robots.txt, and sitemap.xml in the live site before checkpointing.
 - [x] Make blog post pages open scrolled to the top.
 - [x] Preserve and restore the reader's previous archive scroll position when returning from a blog post to the blog listing.
 - [x] Set the site favicon using the Blue Tape Sites logo.

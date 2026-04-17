@@ -196,37 +196,6 @@ html {
     background: #0066ff;
   }
 
-  .before-after-slider::-webkit-slider-thumb {
-    appearance: none;
-    width: 1.35rem;
-    height: 1.35rem;
-    border-radius: 999px;
-    background: #0066ff;
-    border: 3px solid white;
-    box-shadow: 0 10px 25px rgba(0, 102, 255, 0.3);
-  }
-
-  .before-after-slider::-moz-range-thumb {
-    width: 1.35rem;
-    height: 1.35rem;
-    border-radius: 999px;
-    background: #0066ff;
-    border: 3px solid white;
-    box-shadow: 0 10px 25px rgba(0, 102, 255, 0.3);
-  }
-
-  .before-after-slider::-webkit-slider-runnable-track {
-    height: 0.55rem;
-    border-radius: 999px;
-    background: linear-gradient(90deg, rgba(0, 102, 255, 0.22), rgba(0, 102, 255, 0.74));
-  }
-
-  .before-after-slider::-moz-range-track {
-    height: 0.55rem;
-    border-radius: 999px;
-    background: linear-gradient(90deg, rgba(0, 102, 255, 0.22), rgba(0, 102, 255, 0.74));
-  }
-
   @media (min-width: 640px) {
     .container {
       padding-left: 1.5rem;
