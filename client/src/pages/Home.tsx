@@ -55,19 +55,19 @@ const buildCards = [
   {
     title: "Inspect first",
     description:
-      "We review your page the way a solid foreman walks a job before signoff: what looks weak, what reads soft, what slows the customer down, and what needs fixing before you send traffic to it.",
+      "We show you exactly what is making the page look weak, what is slowing customers down, and what should be fixed before you spend another dollar sending traffic to it.",
     icon: ScanSearch,
   },
   {
     title: "Write it straight",
     description:
-      "The copy is written to sound clear, capable, and local. No agency fluff, no padded language, and no vague promises that make the business feel less trustworthy.",
+      "Your offer gets easier to understand, the business sounds more established, and customers can trust what you do faster without sorting through agency fluff.",
     icon: ShieldCheck,
   },
   {
     title: "Launch without drift",
     description:
-      "Once the plan is clear, we move like a tight punch-list with clean approvals, focused revisions, and a launch path that respects how busy owner-operators actually are.",
+      "You get a tighter revision process, fewer delays, and a site that is ready to start pulling its weight sooner instead of dragging through endless back-and-forth.",
     icon: Clock3,
   },
 ];
@@ -155,10 +155,10 @@ const projectPackages: PricingPackage[] = [
     tag: "Starter clarity",
     popular: false,
     features: [
-      "Single high-conviction landing page",
-      "Message cleanup and trust-section rewrite",
-      "Mobile-first layout tuned for local service traffic",
-      "Fast launch for owner-operators who need a credible presence now",
+      "Single landing page built to make the business look credible fast",
+      "Fixes confusing messaging so customers trust the business sooner",
+      "Mobile-first layout that makes it easier for local visitors to call",
+      "Fast launch for owner-operators who need a stronger web presence now",
     ],
   },
   {
@@ -168,10 +168,10 @@ const projectPackages: PricingPackage[] = [
     tag: "Most Popular",
     popular: true,
     features: [
-      "Multi-section lead-generation homepage",
-      "Offer structure and content hierarchy overhaul",
-      "Testimonials, FAQ, and service proof built in",
-      "Designed to feel established without extra clutter",
+      "Multi-section homepage built to guide visitors toward the call or form",
+      "Restructures the offer so customers understand what you do faster",
+      "Adds the proof, FAQ, and service details that reduce hesitation",
+      "Makes the company feel established without piling on clutter",
     ],
   },
   {
@@ -181,10 +181,10 @@ const projectPackages: PricingPackage[] = [
     tag: "Highest touch",
     popular: false,
     features: [
-      "Full premium website system with multiple core pages",
-      "Service-specific messaging and stronger conversion flow",
-      "Premium proof placement and a stronger conversion flow",
-      "Built for companies ready to look as dialed-in as they operate",
+      "Full premium website system with the core pages needed to sell better",
+      "Service-specific messaging that helps each offer feel easier to trust",
+      "Proof placement and page flow designed to turn more visits into calls",
+      "Built for companies ready to look as dialed-in online as they are in the field",
     ],
   },
   {
@@ -194,10 +194,10 @@ const projectPackages: PricingPackage[] = [
     tag: "Quick repair",
     popular: false,
     features: [
-      "Refine the sections already closest to working",
-      "Tighten copy, hierarchy, and CTA placement",
-      "Best when the structure exists but the trust is thin",
-      "Good fit for small fixes before a bigger rebuild",
+      "Refines the parts of the site that are closest to pulling their weight",
+      "Tightens copy, hierarchy, and CTA placement so customers act faster",
+      "Best when the structure exists but the page still feels hard to trust",
+      "Good fit for cleaning up the biggest leaks before a larger rebuild",
     ],
   },
   {
@@ -207,10 +207,10 @@ const projectPackages: PricingPackage[] = [
     tag: "Most Popular",
     popular: true,
     features: [
-      "Strategic redesign of the core lead path",
-      "Improved storytelling, proof order, and mobile flow",
-      "Ideal when the business is strong but the website undersells it",
-      "Designed to get more value from the traffic you already have",
+      "Strategic redesign of the core lead path from first visit to inquiry",
+      "Improves proof order and mobile flow so visitors lose less confidence",
+      "Ideal when the business is strong but the website still undersells it",
+      "Designed to get more calls and more value from the traffic you already have",
     ],
   },
   {
@@ -220,10 +220,10 @@ const projectPackages: PricingPackage[] = [
     tag: "Comprehensive rebuild",
     popular: false,
     features: [
-      "Rebuilt visual system and messaging architecture",
-      "Premium presentation across homepage and supporting pages",
-      "Cleaner structure for offers, proof, and supporting service pages",
-      "For established companies replacing a dated web presence entirely",
+      "Rebuilds the visual system and messaging so the business feels stronger at first glance",
+      "Premium presentation across the homepage and the pages customers actually check",
+      "Cleaner structure for offers, proof, and service pages so decisions happen faster",
+      "For established companies replacing a dated site that is dragging down perception",
     ],
   },
 ];
@@ -233,27 +233,27 @@ const retainers = [
     name: "Blue Tape Retainer",
     price: "$295/mo",
     features: [
-      "Monthly site checkup and priority text edits",
-      "Seasonal offer swaps and homepage tune-ups",
-      "Best for small teams who want steady upkeep",
+      "Monthly site checkup, priority text edits, and light cleanup work",
+      "Seasonal offer swaps and homepage tune-ups without surprise add-on bills",
+      "Best for small teams that want the site kept sharp without chasing a developer",
     ],
   },
   {
     name: "Crew Lead Retainer",
     price: "$595/mo",
     features: [
-      "Conversion review, content refinements, and landing-page support",
-      "Ongoing testing recommendations and trust-proof improvements",
-      "Best for growing operators adding offers and service areas",
+      "Conversion review, content refinements, and support for new landing pages",
+      "Ongoing speed, trust, and proof improvements as offers and service areas expand",
+      "Best for growing operators who need the site to keep up with the business",
     ],
   },
   {
     name: "Jobsite Priority Retainer",
     price: "$995/mo",
     features: [
-      "Higher-touch monthly optimization across key pages",
-      "Campaign updates, design refinements, and offer iteration",
-      "Built for companies that want a responsive design partner on call",
+      "Higher-touch optimization across the pages that drive the most revenue",
+      "Campaign updates, design refinements, and offer changes handled quickly",
+      "Built for companies that want a responsive web partner without getting the runaround",
     ],
   },
 ];
@@ -301,7 +301,7 @@ const faqs = [
   {
     question: "What happens after I request the audit?",
     answer:
-      "Your request is submitted, stored, and sent through as a real lead. We review the page, note where trust or clarity is leaking, and follow up with a practical next-step recommendation.",
+      "Your request comes through as a real lead, we review the site for the biggest trust and clarity problems, and you get a direct recommendation on what should be fixed first.",
   },
 ];
 
@@ -388,9 +388,9 @@ export default function Home() {
 
   const heroStats = useMemo(
     () => [
-      { value: "Local", label: "Grounded in a real service market with language that feels familiar to local owners." },
-      { value: "Clear", label: "Written for owners who need the offer, proof, and next step to make sense fast." },
-      { value: "Built", label: "Set up to earn trust in Southern California first and still read well as the business grows into nearby markets." },
+      { value: "More trust", label: "Customers see a business that looks established, credible, and worth calling right away." },
+      { value: "Faster decisions", label: "The offer, proof, and next step make sense quickly so fewer visitors stall out or bounce." },
+      { value: "Room to grow", label: "The site can win trust in Southern California now and still stay clear as you expand into nearby markets." },
     ],
     []
   );
@@ -547,11 +547,10 @@ export default function Home() {
                 See the tape. Fix the flaws. Launch with confidence.
               </h1>
               <p className="mt-6 max-w-[36rem] text-[1.02rem] leading-7 text-slate-600 sm:text-[1.15rem] sm:leading-8">
-                Blue Tape Sites builds premium, detail-first websites for plumbers, electricians, cleaners,
-                and home-service teams that want every weak spot marked, resolved, and ready to sell.
+                Blue Tape Sites builds premium websites for plumbers, electricians, cleaners, and home-service teams that want more trust, more qualified calls, and a site that stops making the business look smaller than it is.
               </p>
               <p className="mt-4 max-w-[34rem] text-sm leading-7 text-slate-500 sm:text-[0.98rem]">
-                Rooted in Southern California, with messaging built to stay clear as the company grows into new cities and service areas.
+                Rooted in Southern California, with messaging that stays clear as the business grows into new cities, service areas, and higher-value work.
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -590,17 +589,15 @@ export default function Home() {
         <section className="container py-18 sm:py-28">
           <div className="grid gap-12 lg:grid-cols-[0.74fr_1.26fr] lg:gap-16">
             <div>
-              <SectionEyebrow>We Build With the Tape On</SectionEyebrow>
+              <SectionEyebrow>What Gets Better</SectionEyebrow>
               <h2 className="max-w-[12ch] text-[2.2rem] font-semibold leading-[0.98] tracking-[-0.06em] text-[#111111] sm:text-[3.4rem] lg:max-w-[10ch]">
-                The website process, inspected from the start.
+                Fix what is costing trust, confusion, and calls.
               </h2>
             </div>
 
             <div>
               <p className="max-w-3xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
-                Blue Tape Sites is built around the idea that strong websites rarely get better by adding more.
-                They get better when someone notices what is off, marks what matters, and resolves the details with care.
-                That is how we tighten the message, strengthen the presentation, and help the site earn trust faster.
+                Most contractor websites do not lose work because of one giant mistake. They lose it through smaller misses: weak headlines, thin proof, confusing offers, and a layout that makes people hesitate. We fix those misses so customers understand what you do faster, trust the business sooner, and feel more ready to call.
               </p>
 
               <div className="mt-10 grid gap-px border border-black/10 bg-black/10 md:grid-cols-3">
@@ -692,12 +689,10 @@ export default function Home() {
 
                     <div className="mt-5 grid gap-px border border-black/8 bg-black/8">
                       <div className="bg-white px-4 py-3">
-                        <div className="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-slate-400">Trust signal</div>
-                        <p className="mt-1 text-sm leading-6 text-slate-600">{site.proof}</p>
+                        <p className="text-sm leading-6 text-slate-600">{site.proof}</p>
                       </div>
                       <div className="bg-white px-4 py-3">
-                        <div className="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-slate-400">What the customer feels</div>
-                        <p className="mt-1 text-sm leading-6 text-slate-600">{site.layout}</p>
+                        <p className="text-sm leading-6 text-slate-600">{site.layout}</p>
                       </div>
                     </div>
                   </div>
@@ -741,7 +736,7 @@ export default function Home() {
                 Premium structure without the agency fog.
               </h2>
               <p className="mt-6 text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
-                Whether you need a new site, a sharper redesign, or steady monthly support, these packages are built to help you choose the level of work that fits your business right now.
+                Whether you need a new site, a sharper redesign, or steady monthly support, these packages show the level of work that fits your business right now without making you sit through vague agency talk just to understand the ballpark.
               </p>
             </div>
 
@@ -760,7 +755,7 @@ export default function Home() {
                   </h3>
                 </div>
                 <p className="max-w-lg text-sm leading-7 text-slate-600">
-                  Monthly refinement for teams that want a website that keeps improving as offers, seasons, and service priorities change.
+                  Monthly support for teams that want updates, seasonal swaps, speed and trust tune-ups, and a site that keeps up as the business changes.
                 </p>
               </div>
 
@@ -781,7 +776,7 @@ export default function Home() {
                 Let us mark up the misses before you spend more on traffic.
               </h2>
               <p className="mt-6 max-w-xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
-                Send your current site, your service area, and what you are trying to improve. We will show you where the page loses trust, where the message gets muddy, and where the conversion path needs tightening.
+                Send your current site, your service area, and what you want to improve. We will show you exactly where the page is losing customers, what is making the business look weaker than it should, and what to fix first.
               </p>
 
               <div className="mt-8 border border-black/10 bg-white p-4 sm:p-5">
@@ -795,7 +790,7 @@ export default function Home() {
               </div>
 
               <div className="mt-5 border-l-2 border-blue-600 pl-4 text-sm leading-7 text-slate-600">
-                We review your site like a pre-paint walkthrough: what to keep, what to fix, and what is costing trust right now.
+                You get a marked-up review that shows what to keep, what to fix, and what is costing trust right now.
               </div>
             </div>
 
@@ -897,7 +892,7 @@ export default function Home() {
                 </label>
 
                 <div className="border-l-2 border-blue-600 bg-[#faf8f4] px-4 py-4 text-sm leading-7 text-slate-600">
-                  We review your page the way a good operator reviews a job before signoff: what earns trust, what muddies the offer, and what should be fixed first.
+                  We show you exactly what is hurting trust, what is making the offer harder to understand, and what should be fixed first.
                 </div>
 
                 {submissionMessage ? (
