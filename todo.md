@@ -63,3 +63,6 @@
 - [x] Rewrite the homepage coverage section so it tells prospects clearly where Blue Tape Sites works and why that matters to them.
 - [x] Rewrite the pricing section support copy so it speaks to leads choosing the right engagement, not to the site owner about layout decisions.
 - [x] Validate the revised coverage and pricing copy in the live homepage before the next checkpoint.
+- [x] Add the Bing site verification meta tag to the homepage head and keep it in place for ongoing verification.
+- [x] Verify that the Bing site verification meta tag is present on the current preview homepage.
+- [ ] Attempt the Bing submission flow and hand off any authenticated Bing Webmaster Tools step if required.
