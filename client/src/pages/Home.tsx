@@ -47,6 +47,7 @@ const navItems = [
   { label: "Home", href: "#home" },
   { label: "Service Area", href: "#service-area" },
   { label: "Pricing", href: "#pricing" },
+  { label: "Blog", href: "/blog" },
   { label: "Audit", href: "#audit" },
 ];
 

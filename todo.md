@@ -30,3 +30,27 @@
 - [x] Fix the homepage title on / so it falls within the recommended SEO length range and is set client-side with document.title.
 - [x] Shorten the homepage meta description on / so it falls within the recommended SEO length range.
 - [x] Validate the updated homepage title and description in the running site.
+- [x] Create a blog index page and add homepage or navigation access to the blog.
+- [x] Define a dated blog archive starting in May 2025 with posts scheduled for the first and third Monday of each month.
+- [x] Research high-value search topics and questions relevant to home-service businesses seeking website design, SEO, and conversion help.
+- [x] Build the blog post data structure, routes, and post template needed to publish the archive on-site.
+- [x] Write the full backdated article set in a natural, brand-consistent editorial voice with useful, human-centered advice.
+- [x] Review the blog writing for specificity, readability, and non-generic language without using deceptive detection-evasion tactics.
+- [ ] Validate the blog experience, run tests, save a checkpoint, and explain the publish step.
+- [ ] Review all 24 blog posts for Blue Tape Sites voice consistency, specificity, and repetitive generic phrasing.
+- [ ] Revise weaker blog articles so the archive sounds sharper, more specific, and more brand-consistent.
+- [ ] Validate the live blog index and representative blog post routes in preview after the content integration.
+- [ ] Redesign the three example client mockups so they feel like distinct real projects with different palettes, typography, and layout systems.
+- [ ] Improve perceived speed and actual responsiveness across the site while preserving polished motion and professional feel.
+- [ ] Audit the codebase and shipped assets for confirmed unused bloat, removing only what is clearly unnecessary and isolating anything uncertain.
+- [ ] Validate the updated mockups, performance improvements, and cleanup work before the next checkpoint.
+- [ ] Fix the homepage SEO title so it stays within the recommended 30 to 60 character range.
+- [ ] Shorten the homepage SEO description so it stays within the recommended 50 to 160 character range.
+- [ ] Repair sitemap.xml so it resolves publicly instead of returning 404.
+- [ ] Complete robots.txt with the requested crawler directives and valid sitemap reference.
+- [ ] Validate the updated SEO metadata, robots.txt, and sitemap.xml in the live site before checkpointing.
+- [x] Make blog post pages open scrolled to the top.
+- [x] Preserve and restore the reader's previous archive scroll position when returning from a blog post to the blog listing.
+- [x] Set the site favicon using the Blue Tape Sites logo.
+- [x] Create and wire a polished social link preview image inspired by the hero section.
+- [x] Validate the updated blog UX, favicon, and link preview behavior before checkpointing.
