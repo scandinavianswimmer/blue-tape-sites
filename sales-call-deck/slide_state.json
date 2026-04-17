@@ -1,0 +1,156 @@
+{
+  "project_info": {
+    "title": "Blue Tape Sites",
+    "created": 1776405090.0082014,
+    "last_updated": 1776406384.7149594,
+    "total_slides": 12
+  },
+  "slides": [
+    {
+      "id": "cover",
+      "state": "edited",
+      "pageNum": 1
+    },
+    {
+      "id": "trust_problem",
+      "state": "edited",
+      "pageNum": 2
+    },
+    {
+      "id": "buyer_wants",
+      "state": "edited",
+      "pageNum": 3
+    },
+    {
+      "id": "why_blue_tape",
+      "state": "edited",
+      "pageNum": 4
+    },
+    {
+      "id": "method",
+      "state": "edited",
+      "pageNum": 5
+    },
+    {
+      "id": "audit",
+      "state": "edited",
+      "pageNum": 6
+    },
+    {
+      "id": "what_clients_buy",
+      "state": "edited",
+      "pageNum": 7
+    },
+    {
+      "id": "pricing",
+      "state": "edited",
+      "pageNum": 8
+    },
+    {
+      "id": "call_flow",
+      "state": "edited",
+      "pageNum": 9
+    },
+    {
+      "id": "objections",
+      "state": "edited",
+      "pageNum": 10
+    },
+    {
+      "id": "close",
+      "state": "edited",
+      "pageNum": 11
+    },
+    {
+      "id": "promise",
+      "state": "edited",
+      "pageNum": 12
+    }
+  ],
+  "outline": [
+    {
+      "id": "cover",
+      "title": "Blue Tape Sites",
+      "summary": "Cover slide introducing the sales-call deck for contractors who want more trust, more qualified calls, and no agency runaround.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "trust_problem",
+      "title": "Most contractor sites lose trust before the call",
+      "summary": "Frame the core sales problem: weak headlines, thin proof, confusing offers, and outdated layouts cost trust before prospects reach out.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "buyer_wants",
+      "title": "What owners actually want from the site",
+      "summary": "Clarify the contractor buyer goals: more qualified calls, faster clarity, and a stronger first impression.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "why_blue_tape",
+      "title": "Why Blue Tape Sites feels different",
+      "summary": "Position Blue Tape Sites as direct, transparent, contractor-focused, and free of agency fog.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "method",
+      "title": "The Blue Tape method",
+      "summary": "Show the three-step method: inspect first, write it straight, and launch without drift.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "audit",
+      "title": "The free audit removes the mystery",
+      "summary": "Explain the audit flow and how it turns vague website frustration into clear prioritized next steps.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "what_clients_buy",
+      "title": "What clients are really buying",
+      "summary": "Translate the service into buyer outcomes: credibility, clearer messaging, and a better path to action.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "pricing",
+      "title": "Transparent pricing is part of the pitch",
+      "summary": "Explain why visible pricing helps self-qualification and reinforces candor and buying clarity.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "call_flow",
+      "title": "How to talk through the offer on a call",
+      "summary": "Provide a practical sales-call structure: identify the cost of the current site, show what gets better, and match scope to business stage.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "objections",
+      "title": "Common objections, answered directly",
+      "summary": "Handle the main objections about rebuilding, visible pricing, and what happens after the audit.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "close",
+      "title": "What to close with",
+      "summary": "End with a simple close that re-states the business problem, next step, and buying clarity.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "promise",
+      "title": "The Blue Tape promise",
+      "summary": "Close on the brand promise: no vague proposals, no mystery pricing, and no agency runaround.",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    }
+  ]
+}

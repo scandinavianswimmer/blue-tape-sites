@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { margin: 0; background: #ddd; }
+    .slide-container {
+      width: 1280px;
+      min-height: 720px;
+      font-family: 'Space Grotesk', sans-serif;
+      background: #F4F0E8;
+      color: #111111;
+      display: flex;
+      flex-direction: row;
+    }
+    .left {
+      width: 830px;
+      min-height: 720px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 64px 0 56px 72px;
+      border-right: 1px solid rgba(17,17,17,0.1);
+    }
+    .eyebrow {
+      font-size: 14px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #3F4752;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 56px;
+      height: 2px;
+      background: #2D6CDF;
+      display: inline-block;
+    }
+    h1 {
+      font-size: 78px;
+      line-height: 0.94;
+      letter-spacing: -0.06em;
+      max-width: 680px;
+    }
+    .subtitle {
+      width: 640px;
+      font-size: 28px;
+      line-height: 1.35;
+      color: #3F4752;
+      margin-top: 26px;
+    }
+    .footer-note {
+      display: flex;
+      justify-content: space-between;
+      width: 680px;
+      font-size: 15px;
+      color: #3F4752;
+      padding-top: 22px;
+      border-top: 1px solid rgba(17,17,17,0.14);
+    }
+    .right {
+      width: 450px;
+      min-height: 720px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 64px 56px 56px 48px;
+      position: relative;
+    }
+    .tape-box {
+      border: 1px solid rgba(17,17,17,0.12);
+      background: rgba(255,255,255,0.55);
+      padding: 24px 26px 22px 26px;
+      margin-top: 120px;
+    }
+    .tape-label {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #3F4752;
+      margin-bottom: 16px;
+    }
+    .tape-copy {
+      font-size: 28px;
+      line-height: 1.22;
+      letter-spacing: -0.04em;
+    }
+    .micro {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #3F4752;
+      max-width: 310px;
+    }
+    .corner {
+      position: absolute;
+      right: 56px;
+      top: 64px;
+      width: 124px;
+      height: 124px;
+      border-top: 4px solid #2D6CDF;
+      border-right: 4px solid #2D6CDF;
+    }
+    .index {
+      font-size: 108px;
+      line-height: 0.9;
+      letter-spacing: -0.08em;
+      color: rgba(45,108,223,0.18);
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <section class="left">
+      <div>
+        <div class="eyebrow">Blue Tape Sites</div>
+        <div style="margin-top: 90px;">
+          <h1>Sales call deck for serious contractors.</h1>
+          <div class="subtitle">Premium web design for plumbers, electricians, cleaners, and home-service teams that want more trust, more qualified calls, and no agency runaround.</div>
+        </div>
+      </div>
+      <div class="footer-note">
+        <span>Sales conversation framework</span>
+        <span>Audit-led • Transparent • Contractor-focused</span>
+      </div>
+    </section>
+    <aside class="right">
+      <div class="corner"></div>
+      <div class="index">01</div>
+      <div class="tape-box">
+        <div class="tape-label">Positioning</div>
+        <div class="tape-copy">Clear offer. Clear pricing. Clear next step.</div>
+      </div>
+      <div class="micro">Use this deck to frame the problem, walk through the Blue Tape method, answer objections directly, and close with a confident next step.</div>
+    </aside>
+  </div>
+</body>
+</html>

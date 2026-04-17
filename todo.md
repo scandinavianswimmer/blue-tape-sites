@@ -87,3 +87,8 @@
 - [x] Tighten homepage sections that drift into internal or process-heavy language so they stay customer-facing and outcome-driven.
 - [x] Rewrite the "We Build With the Tape On" and related trust-label sections to focus on what contractors gain, lose, and decide faster.
 - [x] Rework weak pricing and audit phrasing so the copy speaks directly to calls, trust, clarity, and the exact next step.
+- [x] Fix the homepage hero headline so the letterforms in "See the tape. Fix the flaws. Launch with confidence." no longer collide awkwardly.
+- [x] Prepare a Blue Tape Sites sales-call slide deck using the project’s accumulated positioning, ICP feedback, pricing strategy, audit offer, and trust-building narrative.
+- [x] Validate the headline typography fix in preview and confirm the revised hero still feels premium.
+- [x] Generate and review a reusable sales presentation deck for live calls.
+- [x] Review both the website and sales deck copy for internal-facing phrasing and rewrite it so every line speaks directly to the prospect, their problems, and their next step.

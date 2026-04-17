@@ -543,14 +543,16 @@ export default function Home() {
               <div className="inline-flex border border-black/10 bg-white px-3 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-slate-600 sm:px-4">
                 Southern California web design for serious contractors
               </div>
-              <h1 className="mt-6 max-w-[10.3ch] text-[3rem] font-semibold leading-[0.9] tracking-[-0.08em] text-[#111111] sm:max-w-[11.5ch] sm:text-[4.6rem] lg:text-[5.35rem]">
-                See the tape. Fix the flaws. Launch with confidence.
+              <h1 className="mt-6 max-w-[10.8ch] text-[3rem] font-semibold leading-[0.92] tracking-[-0.07em] text-[#111111] sm:max-w-[11.8ch] sm:text-[4.6rem] lg:text-[5.35rem] lg:leading-[0.94] lg:tracking-[-0.065em]">
+                <span className="block">See the tape.</span>
+                <span className="block">Fix the flaws.</span>
+                <span className="block">Launch with confidence.</span>
               </h1>
               <p className="mt-6 max-w-[36rem] text-[1.02rem] leading-7 text-slate-600 sm:text-[1.15rem] sm:leading-8">
-                Blue Tape Sites builds premium websites for plumbers, electricians, cleaners, and home-service teams that want more trust, more qualified calls, and a straight answer on what it will take to make the site pull its weight.
+                You need a website that makes your business look as credible as the work you do. Blue Tape Sites helps plumbers, electricians, cleaners, and home-service teams earn more trust, more qualified calls, and a clearer sense of exactly what it will take to get the site pulling its weight.
               </p>
               <p className="mt-4 max-w-[34rem] text-sm leading-7 text-slate-500 sm:text-[0.98rem]">
-                Rooted in Southern California, with clear pricing, direct recommendations, and messaging that stays sharp as the business grows into new cities, service areas, and higher-value work.
+                If you are growing into new cities, adding service areas, or trying to win better jobs, you should not have to guess what the website costs, what needs fixing, or what happens next.
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -565,12 +567,12 @@ export default function Home() {
 
             <div className="grid gap-4 self-end">
               <div className="border border-black/10 bg-white p-5 sm:p-6">
-                <div className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-slate-500">Blue Tape standard</div>
+                <div className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-slate-500">What you get</div>
                 <div className="mt-3 border-l-2 border-blue-600 pl-4 text-lg font-semibold tracking-[-0.04em] text-[#111111] sm:text-xl">
                   Clear offer. Clear pricing. No agency runaround.
                 </div>
                 <p className="mt-4 text-sm leading-7 text-slate-600">
-                  Clear offer, visible numbers, and a buying process that does not make you chase basic answers.
+                  You get a straight answer on what it will take, what the pricing looks like, and what the next step is without chasing someone down for basic answers.
                 </p>
               </div>
 
@@ -597,7 +599,7 @@ export default function Home() {
 
             <div>
               <p className="max-w-3xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
-                Most contractor websites do not lose work because of one giant mistake. They lose it through smaller misses: weak headlines, thin proof, confusing offers, and a layout that makes people hesitate. We fix those misses so customers understand what you do faster, trust the business sooner, and feel more ready to call.
+                If your website is costing you trust, it is usually not because of one giant mistake. It is usually a handful of smaller misses: weak headlines, thin proof, confusing offers, and a layout that makes people hesitate. We fix those issues so people understand what you do faster, trust the business sooner, and feel more ready to call.
               </p>
 
               <div className="mt-10 grid gap-px border border-black/10 bg-black/10 md:grid-cols-3">
@@ -627,7 +629,7 @@ export default function Home() {
                 Trusted by people who work with their hands and notice the details.
               </h2>
               <p className="mt-6 max-w-md text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
-                Our best clients already run tight operations. They simply want a website that matches the standard they bring to estimates, callouts, walkthroughs, and final handoff.
+                You already know how to run the work well. What you need is a website that matches the standard you bring to estimates, callouts, walkthroughs, and final handoff.
               </p>
             </div>
 
@@ -654,7 +656,7 @@ export default function Home() {
                 Three website styles for three very different service brands.
               </h2>
               <p className="mt-6 text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
-                Different trades need different signals. A plumbing company, an electrical contractor, and a recurring cleaning brand should not all sound or look the same. These examples show how the right visual system, tone, and proof can match the business behind it.
+                Your business should not look like every other contractor site in the county. These examples show how the right visual system, tone, and proof can make your company feel more established, more specific, and easier to trust.
               </p>
             </div>
 
@@ -736,7 +738,7 @@ export default function Home() {
                 Premium structure without the agency fog.
               </h2>
               <p className="mt-6 text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
-                Whether you need a new site, a sharper redesign, or steady monthly support, these packages show the level of work that fits your business right now without making you book a call just to get a straight ballpark.
+                Whether you need a new site, a sharper redesign, or steady monthly support, you should be able to see the ballpark first and decide what fits your business without making you book a call just to get a straight ballpark.
               </p>
             </div>
 
@@ -755,7 +757,7 @@ export default function Home() {
                   </h3>
                 </div>
                 <p className="max-w-lg text-sm leading-7 text-slate-600">
-                  Monthly support for teams that want updates, seasonal swaps, speed and trust tune-ups, and a site that keeps up as the business changes without vague retainers or surprise extras.
+                  If you want help after launch, you should know exactly what monthly support covers: updates, seasonal swaps, speed tune-ups, trust improvements, and ongoing refinements without vague retainers or surprise extras.
                 </p>
               </div>
 

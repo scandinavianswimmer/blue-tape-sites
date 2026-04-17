@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { margin: 0; }
+    .slide-container { width: 1280px; min-height: 720px; background: #F4F0E8; color: #111111; font-family: 'Space Grotesk', sans-serif; display: flex; }
+    .left { width: 720px; min-height: 720px; padding: 56px 0 48px 72px; display: flex; flex-direction: column; justify-content: space-between; }
+    .right { width: 560px; min-height: 720px; padding: 64px 64px 48px 28px; display: flex; flex-direction: column; justify-content: center; gap: 18px; }
+    .kicker { font-size: 13px; text-transform: uppercase; letter-spacing: 0.2em; color: #3F4752; }
+    h1 { font-size: 54px; line-height: 0.95; letter-spacing: -0.06em; max-width: 620px; margin-top: 22px; }
+    .lead { font-size: 24px; line-height: 1.42; color: #3F4752; max-width: 590px; margin-top: 26px; }
+    .number { font-size: 140px; line-height: 0.85; color: rgba(45,108,223,0.14); font-weight: 700; }
+    .foot { width: 600px; font-size: 15px; line-height: 1.6; color: #3F4752; padding-top: 18px; border-top: 1px solid rgba(17,17,17,0.14); }
+    .issue { border-top: 1px solid rgba(17,17,17,0.12); padding-top: 18px; }
+    .issue-title { font-size: 25px; line-height: 1.08; letter-spacing: -0.04em; margin-bottom: 10px; }
+    .issue-copy { font-size: 16px; line-height: 1.58; color: #3F4752; }
+    .blue-rule { width: 96px; height: 4px; background: #2D6CDF; margin-bottom: 18px; }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <section class="left">
+      <div>
+        <div class="kicker">Problem framing</div>
+        <h1>Most contractor sites lose trust before the call.</h1>
+        <div class="lead">The business may be solid, but the website can still make it feel smaller, less established, or harder to trust than it really is.</div>
+      </div>
+      <div>
+        <div class="number">02</div>
+        <div class="foot">Traffic does not fix a weak first impression. If the page creates hesitation, even a strong service company will lose momentum before the visitor reaches out.</div>
+      </div>
+    </section>
+    <aside class="right">
+      <div class="blue-rule"></div>
+      <div class="issue">
+        <div class="issue-title">Weak headlines</div>
+        <div class="issue-copy">Visitors cannot tell quickly what the company does, where it works, or why it is the safer choice.</div>
+      </div>
+      <div class="issue">
+        <div class="issue-title">Thin proof</div>
+        <div class="issue-copy">The business may have real credibility, but the page does not show enough proof to justify the next click or call.</div>
+      </div>
+      <div class="issue">
+        <div class="issue-title">Confusing offers</div>
+        <div class="issue-copy">If people have to decode the service, pricing range, or next step, many of them leave before taking action.</div>
+      </div>
+    </aside>
+  </div>
+</body>
+</html>

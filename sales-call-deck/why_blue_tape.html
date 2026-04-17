@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    .slide-container { width: 1280px; min-height: 720px; background: #F4F0E8; color: #111111; font-family: 'Space Grotesk', sans-serif; }
+    .wrap { display: grid; grid-template-columns: 468px 1fr; min-height: 720px; }
+    .left { padding: 64px 0 0 72px; border-right: 1px solid rgba(17,17,17,0.12); }
+    .eyebrow { font-size: 13px; text-transform: uppercase; letter-spacing: 0.2em; color: #3F4752; }
+    h1 { font-size: 50px; line-height: 0.96; letter-spacing: -0.065em; width: 320px; margin-top: 24px; }
+    .lead { width: 300px; font-size: 21px; line-height: 1.45; color: #3F4752; margin-top: 28px; }
+    /* Reduced the large gap under the left column page number to bring overall height under 720px */
+    .page { margin-top: 56px; font-size: 18px; color: #3F4752; }
+    /* Right column: stop forcing equal-height rows and tighten vertical spacing */
+    .right { padding: 48px 72px 0 56px; display: grid; grid-auto-rows: auto; row-gap: 18px; }
+    .point { border-bottom: 1px solid rgba(17,17,17,0.12); padding-top: 12px; padding-bottom: 12px; }
+    .point:last-child { border-bottom: none; }
+    .rule { width: 86px; height: 4px; background: #2D6CDF; margin-bottom: 12px; }
+    .kicker { font-size: 13px; text-transform: uppercase; letter-spacing: 0.18em; color: #3F4752; margin-bottom: 10px; }
+    .title { font-size: 30px; line-height: 1.04; letter-spacing: -0.05em; width: 450px; }
+    .copy { font-size: 18px; line-height: 1.58; color: #3F4752; width: 610px; margin-top: 12px; }
+  </style>
+</head>
+<body>
+  <div class="slide-container">
+    <div class="wrap">
+      <section class="left">
+        <div class="eyebrow">Why Blue Tape</div>
+        <h1>You get fewer vague answers.</h1>
+        <div class="lead">This should feel like a straightforward buying conversation, not a foggy agency process.</div>
+        <div class="page">04</div>
+      </section>
+      <section class="right">
+        <div class="point">
+          <div class="rule"></div>
+          <div class="kicker">Difference 01</div>
+          <div class="title">You can see the ballpark before you commit time.</div>
+          <div class="copy">Pricing, next steps, and scope framing are visible sooner, so you are not forced into a call just to find out whether the project is even in range.</div>
+        </div>
+        <div class="point">
+          <div class="rule"></div>
+          <div class="kicker">Difference 02</div>
+          <div class="title">You get direct recommendations, not padded confusion.</div>
+          <div class="copy">The point is to show what is weakening the site, what matters first, and what can wait instead of burying everything under generic agency talk.</div>
+        </div>
+        <div class="point">
+          <div class="rule"></div>
+          <div class="kicker">Difference 03</div>
+          <div class="title">Everything is shaped for contractor buyers.</div>
+          <div class="copy">The messaging, proof, and sales flow are built around how homeowners and property managers decide, not around what an agency wants to say about itself.</div>
+        </div>
+      </section>
+    </div>
+  </div>
+</body>
+</html>
