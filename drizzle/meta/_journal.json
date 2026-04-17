@@ -15,6 +15,13 @@
       "when": 1776375894881,
       "tag": "0001_tearful_firedrake",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1776403084023,
+      "tag": "0002_round_wolf_cub",
+      "breakpoints": true
     }
   ]
 }

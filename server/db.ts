@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { auditLeads, InsertAuditLead, InsertUser, users } from "../drizzle/schema";
+import { auditLeads, blogCtaClicks, InsertAuditLead, InsertBlogCtaClick, InsertUser, users } from "../drizzle/schema";
 import { ENV } from "./_core/env";
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -96,4 +96,13 @@ export async function createAuditLead(lead: InsertAuditLead): Promise<void> {
   }
 
   await db.insert(auditLeads).values(lead);
+}
+
+export async function createBlogCtaClick(click: InsertBlogCtaClick): Promise<void> {
+  const db = await getDb();
+  if (!db) {
+    throw new Error("Database is not available for blog CTA click tracking.");
+  }
+
+  await db.insert(blogCtaClicks).values(click);
 }

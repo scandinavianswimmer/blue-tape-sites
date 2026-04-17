@@ -76,3 +76,7 @@
 - [x] Validate the new in-post service CTA experience in preview and preserve existing blog layout quality.
 - [x] Validate that each archived blog post category resolves to a dedicated in-post service CTA instead of falling back to generic copy.
 - [x] Perform stronger preview validation that the in-post CTA block preserves the surrounding blog layout and navigation flow.
+- [x] Implement CTA click tracking for blog post service CTA buttons so Blue Tape Sites can measure which topics drive conversion intent.
+- [x] Validate CTA click tracking in preview and confirm the tracked event captures the blog topic, CTA target, and article context.
+- [x] Validate blog CTA click tracking from the actual preview UI by triggering a representative in-post CTA and confirming the persisted event records the blog slug, category/topic, CTA label or target, and source path.
+- [x] Preserve evidence from the preview-triggered CTA tracking flow before final checkpointing this update.

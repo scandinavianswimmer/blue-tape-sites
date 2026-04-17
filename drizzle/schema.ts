@@ -37,7 +37,24 @@ export const auditLeads = mysqlTable("auditLeads", {
   createdAt: timestamp("createdAt").defaultNow().notNull(),
 });
 
+export const blogCtaClicks = mysqlTable("blogCtaClicks", {
+  id: int("id").autoincrement().primaryKey(),
+  postSlug: varchar("postSlug", { length: 255 }).notNull(),
+  postTitle: varchar("postTitle", { length: 255 }).notNull(),
+  postCategory: varchar("postCategory", { length: 120 }).notNull(),
+  postPublishDate: varchar("postPublishDate", { length: 10 }).notNull(),
+  postKeyword: varchar("postKeyword", { length: 255 }).notNull(),
+  ctaLabel: varchar("ctaLabel", { length: 160 }).notNull(),
+  ctaHref: varchar("ctaHref", { length: 512 }).notNull(),
+  ctaPlacement: mysqlEnum("ctaPlacement", ["primary", "secondary"]).notNull(),
+  sourcePath: varchar("sourcePath", { length: 512 }).notNull(),
+  destinationPath: varchar("destinationPath", { length: 512 }).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
 export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
 export type AuditLead = typeof auditLeads.$inferSelect;
 export type InsertAuditLead = typeof auditLeads.$inferInsert;
+export type BlogCtaClick = typeof blogCtaClicks.$inferSelect;
+export type InsertBlogCtaClick = typeof blogCtaClicks.$inferInsert;

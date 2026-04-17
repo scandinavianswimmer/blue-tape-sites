@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { blogPostMap, blogPosts, getBlogPostServiceCta } from "@/content/blogPosts";
+import { trackBlogCtaClick, buildBlogCtaClickPayload } from "@/lib/blogCtaTracking";
 import { renderArticleMarkdown } from "@/lib/renderArticle";
 import { applyPageSeo, buildBlogPostSeo } from "@/lib/seo";
 import NotFound from "@/pages/NotFound";
@@ -39,6 +40,8 @@ export default function BlogPost() {
   const newerPost = currentIndex > 0 ? blogPosts[currentIndex - 1] : null;
   const olderPost = currentIndex < blogPosts.length - 1 ? blogPosts[currentIndex + 1] : null;
   const serviceCta = getBlogPostServiceCta(post);
+  const primaryCtaPayload = buildBlogCtaClickPayload({ post, cta: serviceCta, placement: "primary" });
+  const secondaryCtaPayload = buildBlogCtaClickPayload({ post, cta: serviceCta, placement: "secondary" });
 
   return (
     <div className="min-h-screen bg-[#f7f5f1] text-[#111111]">
@@ -89,10 +92,14 @@ export default function BlogPost() {
             <p className="mt-4 max-w-2xl text-base leading-7 text-white/72 sm:text-lg sm:leading-8">{serviceCta.description}</p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Button asChild className="h-12 rounded-none border border-white bg-white px-6 text-sm font-semibold uppercase tracking-[0.08em] text-[#111111] hover:bg-white/90">
-                <a href={serviceCta.primaryHref}>{serviceCta.primaryLabel}</a>
+                <a href={serviceCta.primaryHref} onClick={() => void trackBlogCtaClick(primaryCtaPayload)}>
+                  {serviceCta.primaryLabel}
+                </a>
               </Button>
               <Button asChild variant="outline" className="h-12 rounded-none border-white/35 bg-transparent px-6 text-sm font-semibold uppercase tracking-[0.08em] text-white hover:bg-white/10 hover:text-white">
-                <a href={serviceCta.secondaryHref}>{serviceCta.secondaryLabel}</a>
+                <a href={serviceCta.secondaryHref} onClick={() => void trackBlogCtaClick(secondaryCtaPayload)}>
+                  {serviceCta.secondaryLabel}
+                </a>
               </Button>
             </div>
           </section>
