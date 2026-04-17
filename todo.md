@@ -72,3 +72,7 @@
 - [x] Add regression coverage to keep blog post metadata dates aligned with each post's represented publication date.
 - [x] Capture explicit Bing Webmaster Tools evidence that bluetapesites.com is marked verified, or document a platform limitation with the exact UI state preventing that confirmation.
 - [x] If Bing continues returning an unexpected error, preserve evidence of the live meta tag plus the Bing property dashboard state and reword the task to reflect confirmed active processing rather than explicit verified status.
+- [x] Integrate service-specific calls to action within each blog post so readers are guided toward the most relevant Blue Tape Sites service.
+- [x] Validate the new in-post service CTA experience in preview and preserve existing blog layout quality.
+- [x] Validate that each archived blog post category resolves to a dedicated in-post service CTA instead of falling back to generic copy.
+- [x] Perform stronger preview validation that the in-post CTA block preserves the surrounding blog layout and navigation flow.

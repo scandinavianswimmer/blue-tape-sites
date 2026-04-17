@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { blogPosts } from "./blogPosts";
+import { blogPosts, getBlogPostServiceCta, hasDedicatedBlogPostServiceCta } from "./blogPosts";
 
 const utcDate = (date: string) => new Date(`${date}T12:00:00Z`);
 
@@ -51,6 +51,21 @@ describe("blogPosts archive", () => {
       expect(post.content.length).toBeGreaterThan(2500);
       expect(post.summary.length).toBeGreaterThanOrEqual(50);
       expect(post.summary.length).toBeLessThanOrEqual(160);
+    }
+  });
+
+  it("assigns every post a service-specific CTA with homepage destinations", () => {
+    for (const post of blogPosts) {
+      const cta = getBlogPostServiceCta(post);
+
+      expect(hasDedicatedBlogPostServiceCta(post)).toBe(true);
+      expect(cta.eyebrow).toBeTruthy();
+      expect(cta.title.length).toBeGreaterThan(20);
+      expect(cta.description.length).toBeGreaterThan(40);
+      expect(cta.primaryLabel).toBeTruthy();
+      expect(cta.secondaryLabel).toBeTruthy();
+      expect(["/#audit", "/#pricing", "/#service-area"]).toContain(cta.primaryHref);
+      expect(["/#audit", "/#pricing", "/#service-area"]).toContain(cta.secondaryHref);
     }
   });
 });
