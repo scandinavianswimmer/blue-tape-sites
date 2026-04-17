@@ -52,9 +52,22 @@ export const blogCtaClicks = mysqlTable("blogCtaClicks", {
   createdAt: timestamp("createdAt").defaultNow().notNull(),
 });
 
+export const unsubscribeRequests = mysqlTable("unsubscribeRequests", {
+  id: int("id").autoincrement().primaryKey(),
+  email: varchar("email", { length: 320 }).notNull(),
+  senderEmail: varchar("senderEmail", { length: 320 }).notNull(),
+  reason: text("reason"),
+  sourcePath: varchar("sourcePath", { length: 512 }),
+  sourceOrigin: varchar("sourceOrigin", { length: 255 }),
+  status: mysqlEnum("status", ["pending", "processed"]).default("pending").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
 export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
 export type AuditLead = typeof auditLeads.$inferSelect;
 export type InsertAuditLead = typeof auditLeads.$inferInsert;
 export type BlogCtaClick = typeof blogCtaClicks.$inferSelect;
 export type InsertBlogCtaClick = typeof blogCtaClicks.$inferInsert;
+export type UnsubscribeRequest = typeof unsubscribeRequests.$inferSelect;
+export type InsertUnsubscribeRequest = typeof unsubscribeRequests.$inferInsert;

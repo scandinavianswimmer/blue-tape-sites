@@ -92,3 +92,9 @@
 - [x] Validate the headline typography fix in preview and confirm the revised hero still feels premium.
 - [x] Generate and review a reusable sales presentation deck for live calls.
 - [x] Review both the website and sales deck copy for internal-facing phrasing and rewrite it so every line speaks directly to the prospect, their problems, and their next step.
+- [x] Create a dedicated /unsubscribe page for outbound emails sent from hello@trybluetape.com.
+- [x] Decide and document the safest way to connect unsubscribe links for hello@trybluetape.com when the website currently runs on a different domain.
+- [x] Validate the unsubscribe page route and user experience in preview, then checkpoint the change.
+- [x] Create a reusable Blue Tape Sites design-system handoff document that explains the visual language, copy rules, layout patterns, and client-site build workflow.
+- [x] Create reusable code starter files for quickly building new client sites in the Blue Tape Sites style using client logos, copy, and images.
+- [ ] Validate the handoff package and save a checkpoint once the template files are ready.

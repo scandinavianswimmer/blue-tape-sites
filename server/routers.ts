@@ -4,7 +4,7 @@ import { getSessionCookieOptions } from "./_core/cookies";
 import { notifyOwner } from "./_core/notification";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
-import { createAuditLead } from "./db";
+import { createAuditLead, createUnsubscribeRequest } from "./db";
 
 const auditLeadSchema = z.object({
   name: z.string().trim().min(2).max(160),
@@ -24,6 +24,14 @@ const auditLeadSchema = z.object({
   serviceArea: z.string().trim().min(2).max(180),
   projectDetails: z.string().trim().min(20).max(5000),
   sourcePath: z.string().trim().max(512).optional().or(z.literal("")),
+});
+
+const unsubscribeRequestSchema = z.object({
+  email: z.string().trim().email().max(320),
+  senderEmail: z.string().trim().email().max(320),
+  reason: z.string().trim().max(2000).optional().or(z.literal("")),
+  sourcePath: z.string().trim().max(512).optional().or(z.literal("")),
+  sourceOrigin: z.string().trim().max(255).optional().or(z.literal("")),
 });
 
 export const appRouter = router({
@@ -65,6 +73,34 @@ export const appRouter = router({
           `Service area: ${input.serviceArea}`,
           `Source path: ${input.sourcePath || "/"}`,
           `Project details: ${input.projectDetails}`,
+        ].join("\n"),
+      });
+
+      return {
+        success: true,
+        notifiedOwner,
+      } as const;
+    }),
+    submitUnsubscribeRequest: publicProcedure.input(unsubscribeRequestSchema).mutation(async ({ input }) => {
+      const normalizedInput = {
+        email: input.email,
+        senderEmail: input.senderEmail,
+        reason: input.reason || null,
+        sourcePath: input.sourcePath || null,
+        sourceOrigin: input.sourceOrigin || null,
+        status: "pending" as const,
+      };
+
+      await createUnsubscribeRequest(normalizedInput);
+
+      const notifiedOwner = await notifyOwner({
+        title: `New unsubscribe request for ${input.email}`,
+        content: [
+          `Email: ${input.email}`,
+          `Sender address: ${input.senderEmail}`,
+          `Source origin: ${input.sourceOrigin || "Not provided"}`,
+          `Source path: ${input.sourcePath || "/unsubscribe"}`,
+          `Reason: ${input.reason || "Not provided"}`,
         ].join("\n"),
       });
 

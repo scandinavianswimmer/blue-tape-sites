@@ -1,6 +1,15 @@
 import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { auditLeads, blogCtaClicks, InsertAuditLead, InsertBlogCtaClick, InsertUser, users } from "../drizzle/schema";
+import {
+  auditLeads,
+  blogCtaClicks,
+  InsertAuditLead,
+  InsertBlogCtaClick,
+  InsertUnsubscribeRequest,
+  InsertUser,
+  unsubscribeRequests,
+  users,
+} from "../drizzle/schema";
 import { ENV } from "./_core/env";
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -105,4 +114,13 @@ export async function createBlogCtaClick(click: InsertBlogCtaClick): Promise<voi
   }
 
   await db.insert(blogCtaClicks).values(click);
+}
+
+export async function createUnsubscribeRequest(request: InsertUnsubscribeRequest): Promise<void> {
+  const db = await getDb();
+  if (!db) {
+    throw new Error("Database is not available for unsubscribe request capture.");
+  }
+
+  await db.insert(unsubscribeRequests).values(request);
 }

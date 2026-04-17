@@ -10,6 +10,7 @@ import Home from "./pages/Home";
 
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
+const Unsubscribe = lazy(() => import("./pages/Unsubscribe"));
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -27,6 +28,7 @@ function Router() {
         <Route path={"/"} component={Home} />
         <Route path={"/blog"} component={Blog} />
         <Route path={"/blog/:slug"} component={BlogPost} />
+        <Route path={"/unsubscribe"} component={Unsubscribe} />
         <Route path={"/404"} component={NotFound} />
         {/* Final fallback route */}
         <Route component={NotFound} />
