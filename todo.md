@@ -54,3 +54,9 @@
 - [x] Set the site favicon using the Blue Tape Sites logo.
 - [x] Create and wire a polished social link preview image inspired by the hero section.
 - [x] Validate the updated blog UX, favicon, and link preview behavior before checkpointing.
+- [x] Audit the entire live site for internal-facing, meta, or fourth-wall-breaking copy.
+- [x] Rewrite any implementation-note or strategy-language so every visible page reads as client-facing marketing copy.
+- [x] Validate the revised site copy in preview and save a checkpoint after the audit pass.
+- [x] Audit all visible routes and representative blog posts for internal-facing or fourth-wall-breaking language beyond the homepage.
+- [x] Rewrite remaining blog or page copy that reads like internal strategy commentary instead of audience-facing content.
+- [x] Validate the revised copy in the live preview across the homepage, blog index, and representative blog posts before the next checkpoint.

@@ -7,9 +7,9 @@ import { blogPosts } from "@/content/blogPosts";
 import { readAndClearBlogArchiveScroll, saveBlogArchiveScroll } from "@/lib/blogScroll";
 import { applyPageSeo } from "@/lib/seo";
 
-const BLOG_TITLE = "Blue Tape Sites Blog | SEO and Website Advice";
+const BLOG_TITLE = "Blue Tape Sites Blog | Website Advice for Contractors";
 const BLOG_DESCRIPTION =
-  "Practical SEO, website, and conversion advice for plumbers, electricians, cleaners, contractors, and home-service businesses.";
+  "Practical website and local search advice for plumbers, electricians, cleaners, contractors, and home-service businesses.";
 
 const formatDate = (date: string) =>
   new Date(`${date}T12:00:00Z`).toLocaleDateString("en-US", {
@@ -89,14 +89,14 @@ export default function Blog() {
           <div className="container grid gap-10 py-16 lg:grid-cols-[0.85fr_1.15fr] lg:items-end lg:py-20">
             <div className="max-w-xl">
               <div className="inline-flex border border-black/10 bg-white px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-slate-500">
-                SEO, websites, and lead flow for home-service businesses
+                Website advice for home-service businesses
               </div>
               <h1 className="mt-6 text-4xl font-semibold leading-[0.94] tracking-[-0.06em] text-[#111111] sm:text-5xl lg:text-[4.2rem]">
                 The Blue Tape Sites blog
               </h1>
               <p className="mt-6 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg">
                 Practical articles for plumbers, electricians, cleaners, contractors, and owner-operators who want clearer websites,
-                stronger local visibility, and fewer marketing decisions that feel like guesswork.
+                stronger local visibility, and a more confident online presence.
               </p>
             </div>
 
@@ -124,8 +124,8 @@ export default function Blog() {
             <aside className="h-fit border border-black/10 bg-white p-6">
               <h2 className="text-lg font-semibold tracking-[-0.03em] text-[#111111]">Archive at a glance</h2>
               <p className="mt-3 text-sm leading-7 text-slate-600">
-                This archive is organized around the recurring questions home-service companies ask when they want more visibility,
-                better trust, and cleaner lead flow.
+                This archive is organized around the questions home-service companies ask when they want a stronger website,
+                better trust, and more qualified calls.
               </p>
               <div className="mt-5 grid grid-cols-2 gap-3 text-sm text-slate-600">
                 <div className="border border-black/8 bg-[#f7f5f1] p-4">

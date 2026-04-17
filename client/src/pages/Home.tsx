@@ -67,7 +67,7 @@ const buildCards = [
   {
     title: "Launch without drift",
     description:
-      "Once the direction is set, we move like a tight punch-list. Clean approvals, focused revisions, and a launch path that respects how busy owner-operators actually work.",
+      "Once the plan is clear, we move like a tight punch-list with clean approvals, focused revisions, and a launch path that respects how busy owner-operators actually are.",
     icon: Clock3,
   },
 ];
@@ -95,7 +95,7 @@ const testimonials = [
     name: "Derek Holcomb",
     company: "Holcomb Garage Door Service",
     quote:
-      "I've dealt with marketing people before and half the time they're hard to pin down. This felt more like working through a real scope. They showed me what was off, tightened it up, and left me with a page that's a lot easier for customers to trust.",
+      "I've dealt with marketing people before and half the time they're hard to pin down. This felt straightforward. They showed me what was off, tightened it up, and left me with a page that's a lot easier for customers to trust.",
   },
 ];
 
@@ -103,8 +103,8 @@ const exampleSites = [
   {
     name: "Harbor Plumbing Co.",
     niche: "Plumbing",
-    direction: "Emergency-first residential lead page",
-    summary: "Built like a high-trust plumbing brand: faster call decisions, strong neighborhood proof, and a cleaner service breakdown for urgent homeowners.",
+    direction: "Emergency-first residential homepage",
+    summary: "A high-trust plumbing homepage with faster call decisions, strong neighborhood proof, and a cleaner service breakdown for urgent homeowners.",
     proof: "After-hours phone CTA, financing note, and review-led trust bar.",
     layout: "Strong left-to-right urgency layout with stacked service proof and a brighter call-first accent system.",
     eyebrow: "Call-first direction",
@@ -118,8 +118,8 @@ const exampleSites = [
   {
     name: "Northline Electric",
     niche: "Electrical",
-    direction: "Commercial-leaning contractor presence",
-    summary: "A firmer, more technical direction for an electrical contractor that needs sharper hierarchy, cleaner credential framing, and a more engineered tone.",
+    direction: "Commercial-leaning contractor homepage",
+    summary: "A firmer, more technical homepage for an electrical contractor that needs sharper hierarchy, cleaner credential framing, and a more engineered tone.",
     proof: "License framing, project-category tiles, and a denser spec-sheet style content rhythm.",
     layout: "Structured grid with darker surfaces, stricter spacing, and stronger contrast for a more code-conscious feel.",
     eyebrow: "Spec-driven direction",
@@ -133,8 +133,8 @@ const exampleSites = [
   {
     name: "Greyline Cleaning",
     niche: "Cleaning",
-    direction: "Hospitality-grade recurring-service pitch",
-    summary: "A cleaner, warmer direction that still feels premium: lighter touchpoints, recurring-service trust cues, and polished proof without soft generic tropes.",
+    direction: "Hospitality-grade recurring-service homepage",
+    summary: "A cleaner, warmer homepage that still feels premium, with lighter touchpoints, recurring-service trust cues, and polished proof.",
     proof: "Crew consistency message, recurring-plan framing, and polished before-and-after confidence cues.",
     layout: "Airier editorial layout with softer neutrals, more breathing room, and a hospitality-style presentation system.",
     eyebrow: "Recurring-service direction",
@@ -183,7 +183,7 @@ const projectPackages: PricingPackage[] = [
     features: [
       "Full premium website system with multiple core pages",
       "Service-specific messaging and stronger conversion flow",
-      "Premium proof layout and stronger sales architecture",
+      "Premium proof placement and a stronger conversion flow",
       "Built for companies ready to look as dialed-in as they operate",
     ],
   },
@@ -222,7 +222,7 @@ const projectPackages: PricingPackage[] = [
     features: [
       "Rebuilt visual system and messaging architecture",
       "Premium presentation across homepage and supporting pages",
-      "Cleaner structure for offers, proof, and future SEO pages",
+      "Cleaner structure for offers, proof, and supporting service pages",
       "For established companies replacing a dated web presence entirely",
     ],
   },
@@ -261,19 +261,19 @@ const retainers = [
 const serviceAreas = [
   {
     title: "Southern California Core",
-    copy: "Lead with local trust across Orange County, Los Angeles, Inland Empire, and San Diego while keeping the brand grounded in real service-business language.",
+    copy: "Show clear coverage across Orange County, Los Angeles, the Inland Empire, and San Diego so local prospects know they are in the right place.",
   },
   {
-    title: "California Expansion",
-    copy: "Support broader state-level outreach with stronger structure, cleaner proof, and location-aware messaging that does not feel fake or overstuffed.",
+    title: "California Reach",
+    copy: "Speak to homeowners across California with location language that still feels specific, credible, and useful.",
   },
   {
-    title: "Nationwide Outreach Ready",
-    copy: "Keep the brand usable for cold outreach outside your home region by positioning the company as premium, credible, and adaptable across multiple markets.",
+    title: "Room to Grow",
+    copy: "Keep the brand polished enough to support expansion into new markets without losing the local trust that wins the first call.",
   },
   {
-    title: "City-Page Growth Path",
-    copy: "Add unique service-area pages over time so local relevance gets stronger market by market instead of forcing one homepage to do every job at once.",
+    title: "Dedicated Local Pages",
+    copy: "Add stronger city-specific pages over time so each market gets clearer proof, tighter copy, and a better local experience.",
   },
 ];
 
@@ -388,9 +388,9 @@ export default function Home() {
 
   const heroStats = useMemo(
     () => [
-      { value: "Local", label: "Grounded in a real service market instead of reading like a generic agency website." },
+      { value: "Local", label: "Grounded in a real service market with language that feels familiar to local owners." },
       { value: "Clear", label: "Written for owners who need the offer, proof, and next step to make sense fast." },
-      { value: "Built", label: "Structured to support both Southern California trust and future market expansion." },
+      { value: "Built", label: "Set up to earn trust in Southern California first and still read well as the business grows into nearby markets." },
     ],
     []
   );
@@ -551,7 +551,7 @@ export default function Home() {
                 and home-service teams that want every weak spot marked, resolved, and ready to sell.
               </p>
               <p className="mt-4 max-w-[34rem] text-sm leading-7 text-slate-500 sm:text-[0.98rem]">
-                Built to feel local in Southern California while staying flexible enough for broader outreach and future market expansion.
+                Rooted in Southern California, with messaging built to stay clear as the company grows into new cities and service areas.
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -571,7 +571,7 @@ export default function Home() {
                   Clear offer. Tighter proof. Better local trust.
                 </div>
                 <p className="mt-4 text-sm leading-7 text-slate-600">
-                  The site now leads with message discipline, cleaner hierarchy, and more businesslike presentation instead of glossy mockup energy.
+                  Clear offer, confident proof, and a presentation that feels established from the first screen.
                 </p>
               </div>
 
@@ -600,7 +600,7 @@ export default function Home() {
               <p className="max-w-3xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
                 Blue Tape Sites is built around the idea that strong websites rarely get better by adding more.
                 They get better when someone notices what is off, marks what matters, and resolves the details with care.
-                That is how we approach strategy, copy, layout, and launch.
+                That is how we tighten the message, strengthen the presentation, and help the site earn trust faster.
               </p>
 
               <div className="mt-10 grid gap-px border border-black/10 bg-black/10 md:grid-cols-3">
@@ -654,10 +654,10 @@ export default function Home() {
             <div className="max-w-3xl">
               <SectionEyebrow>Example Website Directions</SectionEyebrow>
               <h2 className="text-[2.2rem] font-semibold leading-[0.98] tracking-[-0.06em] text-[#111111] sm:text-[3.4rem]">
-                Three sample hero directions in the same Blue Tape language.
+                Three website styles for three very different service brands.
               </h2>
               <p className="mt-6 text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
-                These are concept directions, not presented as live client case studies. They show how the same design discipline can translate across different trades while keeping the same level of clarity, restraint, and local-trust framing.
+                Different trades need different signals. A plumbing company, an electrical contractor, and a recurring cleaning brand should not all sound or look the same. These examples show how the right visual system, tone, and proof can match the business behind it.
               </p>
             </div>
 
@@ -692,11 +692,11 @@ export default function Home() {
 
                     <div className="mt-5 grid gap-px border border-black/8 bg-black/8">
                       <div className="bg-white px-4 py-3">
-                        <div className="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-slate-400">Proof move</div>
+                        <div className="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-slate-400">Trust signal</div>
                         <p className="mt-1 text-sm leading-6 text-slate-600">{site.proof}</p>
                       </div>
                       <div className="bg-white px-4 py-3">
-                        <div className="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-slate-400">Layout note</div>
+                        <div className="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-slate-400">What the customer feels</div>
                         <p className="mt-1 text-sm leading-6 text-slate-600">{site.layout}</p>
                       </div>
                     </div>
@@ -715,7 +715,7 @@ export default function Home() {
                 Local enough to feel trusted, broad enough to grow past one county.
               </h2>
               <p className="mt-6 text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
-                The homepage should feel rooted in a real market, but it should not trap the brand inside one zip code. This structure gives you strong Southern California trust signals now while keeping the business usable for statewide and national outreach.
+                The site should feel local enough to earn trust right away while still supporting broader growth as the business expands into additional cities and regions.
               </p>
             </div>
 
@@ -741,7 +741,7 @@ export default function Home() {
                 Premium structure without the agency fog.
               </h2>
               <p className="mt-6 text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
-                Choose a clean build, a focused redesign, or ongoing monthly refinement. The comparison is kept flat and readable so the decision feels clearer and less like a sales page performance.
+                Choose a clean build, a focused redesign, or ongoing monthly refinement. The comparison is kept flat and readable so the decision feels clearer and easier to make.
               </p>
             </div>
 
