@@ -97,4 +97,7 @@
 - [x] Validate the unsubscribe page route and user experience in preview, then checkpoint the change.
 - [x] Create a reusable Blue Tape Sites design-system handoff document that explains the visual language, copy rules, layout patterns, and client-site build workflow.
 - [x] Create reusable code starter files for quickly building new client sites in the Blue Tape Sites style using client logos, copy, and images.
-- [ ] Validate the handoff package and save a checkpoint once the template files are ready.
+- [x] Validate the handoff package and save a checkpoint once the template files are ready.
+- [x] Connect the homepage audit form submission flow to the existing Paperclip intake pipeline with the minimum required backend changes.
+- [x] Add or update the audit intake email formatting, validation, and downstream notification logic so it matches the Paperclip handoff requirements safely.
+- [x] Validate the new audit pipeline connection, required secrets, and regression coverage before checkpointing.

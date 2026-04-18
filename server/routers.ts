@@ -1,12 +1,14 @@
 import { z } from "zod";
+
 import { COOKIE_NAME } from "@shared/const";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { notifyOwner } from "./_core/notification";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
-import { createAuditLead, createUnsubscribeRequest } from "./db";
+import { submitAuditLead } from "./auditIntake";
+import { createUnsubscribeRequest } from "./db";
 
-const auditLeadSchema = z.object({
+const submitAuditLeadSchema = z.object({
   name: z.string().trim().min(2).max(160),
   companyName: z.string().trim().min(2).max(200),
   email: z.string().trim().email().max(320),
@@ -24,6 +26,7 @@ const auditLeadSchema = z.object({
   serviceArea: z.string().trim().min(2).max(180),
   projectDetails: z.string().trim().min(20).max(5000),
   sourcePath: z.string().trim().max(512).optional().or(z.literal("")),
+  honeypot: z.string().trim().max(200).optional().or(z.literal("")),
 });
 
 const unsubscribeRequestSchema = z.object({
@@ -48,38 +51,10 @@ export const appRouter = router({
     }),
   }),
   leads: router({
-    submitAudit: publicProcedure.input(auditLeadSchema).mutation(async ({ input }) => {
-      const normalizedInput = {
-        ...input,
-        phone: input.phone || null,
-        websiteUrl: input.websiteUrl || null,
-        sourcePath: input.sourcePath || null,
-      };
-
-      await createAuditLead({
-        ...normalizedInput,
-        notifiedOwner: 0,
+    submitAudit: publicProcedure.input(submitAuditLeadSchema).mutation(async ({ input, ctx }) => {
+      return submitAuditLead(input, {
+        ipAddress: ctx.req.ip ?? null,
       });
-
-      const notifiedOwner = await notifyOwner({
-        title: `New Blue Tape audit request from ${input.companyName}`,
-        content: [
-          `Name: ${input.name}`,
-          `Company: ${input.companyName}`,
-          `Email: ${input.email}`,
-          `Phone: ${input.phone || "Not provided"}`,
-          `Website: ${input.websiteUrl || "Not provided"}`,
-          `Primary trade: ${input.primaryTrade}`,
-          `Service area: ${input.serviceArea}`,
-          `Source path: ${input.sourcePath || "/"}`,
-          `Project details: ${input.projectDetails}`,
-        ].join("\n"),
-      });
-
-      return {
-        success: true,
-        notifiedOwner,
-      } as const;
     }),
     submitUnsubscribeRequest: publicProcedure.input(unsubscribeRequestSchema).mutation(async ({ input }) => {
       const normalizedInput = {

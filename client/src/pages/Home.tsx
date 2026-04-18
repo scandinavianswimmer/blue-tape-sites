@@ -402,8 +402,8 @@ export default function Home() {
   const auditMutation = trpc.leads.submitAudit.useMutation({
     onSuccess: result => {
       const message = result.notifiedOwner
-        ? "Audit request received. Your details landed correctly and a notification has already been sent through."
-        : "Audit request received. Your details landed correctly and are stored for follow-up.";
+        ? "Audit request received. Your details landed correctly and are already moving into review."
+        : "Audit request received. Your details landed correctly and are queued for follow-up.";
 
       setSubmissionTone("success");
       setSubmissionMessage(message);
@@ -451,6 +451,9 @@ export default function Home() {
     setSubmissionMessage(null);
     setSubmissionTone(null);
 
+    const formPayload = new FormData(event.currentTarget);
+    const honeypot = formPayload.get("company_website")?.toString() || "";
+
     if (formData.projectDetails.trim().length < 20) {
       const message = "Add a little more detail so the audit has enough context to be useful.";
       setSubmissionTone("error");
@@ -469,6 +472,7 @@ export default function Home() {
 
     auditMutation.mutate({
       ...formData,
+      honeypot,
       sourcePath: typeof window !== "undefined" ? window.location.pathname : "/",
     });
   };
@@ -806,6 +810,7 @@ export default function Home() {
                     <input
                       className="h-12 border border-black/10 bg-[#faf8f4] px-4 outline-none transition focus:border-blue-600"
                       placeholder="Owner or project lead"
+                      name="name"
                       value={formData.name}
                       onChange={event => handleFieldChange("name", event.target.value)}
                       required
@@ -816,6 +821,7 @@ export default function Home() {
                     <input
                       className="h-12 border border-black/10 bg-[#faf8f4] px-4 outline-none transition focus:border-blue-600"
                       placeholder="Blue Tape-worthy business"
+                      name="company"
                       value={formData.companyName}
                       onChange={event => handleFieldChange("companyName", event.target.value)}
                       required
@@ -830,6 +836,7 @@ export default function Home() {
                       className="h-12 border border-black/10 bg-[#faf8f4] px-4 outline-none transition focus:border-blue-600"
                       placeholder="you@company.com"
                       type="email"
+                      name="email"
                       value={formData.email}
                       onChange={event => handleFieldChange("email", event.target.value)}
                       required
@@ -841,6 +848,7 @@ export default function Home() {
                       className="h-12 border border-black/10 bg-[#faf8f4] px-4 outline-none transition focus:border-blue-600"
                       placeholder="(555) 000-0000"
                       type="tel"
+                      name="phone"
                       value={formData.phone}
                       onChange={event => handleFieldChange("phone", event.target.value)}
                     />
@@ -852,8 +860,10 @@ export default function Home() {
                   <input
                     className="h-12 border border-black/10 bg-[#faf8f4] px-4 outline-none transition focus:border-blue-600"
                     placeholder="https://yourwebsite.com"
-                    type="url"
-                    value={formData.websiteUrl}
+                      type="url"
+                      name="website"
+                      value={formData.websiteUrl}
+
                     onChange={event => handleFieldChange("websiteUrl", event.target.value)}
                     required
                   />
@@ -865,6 +875,7 @@ export default function Home() {
                     <input
                       className="h-12 border border-black/10 bg-[#faf8f4] px-4 outline-none transition focus:border-blue-600"
                       placeholder="Plumbing, electrical, cleaning..."
+                      name="trade"
                       value={formData.primaryTrade}
                       onChange={event => handleFieldChange("primaryTrade", event.target.value)}
                       required
@@ -875,6 +886,7 @@ export default function Home() {
                     <input
                       className="h-12 border border-black/10 bg-[#faf8f4] px-4 outline-none transition focus:border-blue-600"
                       placeholder="Orange County, Inland Empire, SoCal..."
+                      name="service_area"
                       value={formData.serviceArea}
                       onChange={event => handleFieldChange("serviceArea", event.target.value)}
                       required
@@ -887,11 +899,25 @@ export default function Home() {
                   <textarea
                     className="min-h-34 border border-black/10 bg-[#faf8f4] px-4 py-3 outline-none transition focus:border-blue-600"
                     placeholder="Tell us where the site feels weak: trust, messaging, design, mobile flow, slow load, or something else."
+                    name="frustration"
                     value={formData.projectDetails}
                     onChange={event => handleFieldChange("projectDetails", event.target.value)}
                     required
                   />
                 </label>
+
+                <div className="hidden" aria-hidden="true">
+                  <label className="grid gap-2 text-sm font-medium text-slate-700">
+                    Company website helper
+                    <input
+                      className="h-12 border border-black/10 bg-[#faf8f4] px-4 outline-none"
+                      type="text"
+                      name="company_website"
+                      tabIndex={-1}
+                      autoComplete="off"
+                    />
+                  </label>
+                </div>
 
                 <div className="border-l-2 border-blue-600 bg-[#faf8f4] px-4 py-4 text-sm leading-7 text-slate-600">
                   We show you exactly what is hurting trust, what is making the offer harder to understand, and what should be fixed first.
