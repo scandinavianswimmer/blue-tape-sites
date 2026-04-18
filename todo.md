@@ -101,3 +101,6 @@
 - [x] Connect the homepage audit form submission flow to the existing Paperclip intake pipeline with the minimum required backend changes.
 - [x] Add or update the audit intake email formatting, validation, and downstream notification logic so it matches the Paperclip handoff requirements safely.
 - [x] Validate the new audit pipeline connection, required secrets, and regression coverage before checkpointing.
+- [x] Add persistent structured logging for every audit submission, including timestamp, contact fields, success status, and Resend message ID.
+- [x] Add the X-Bluetape-Source header to outgoing audit emails while preserving the existing X-Bluetape-Sig header and current payload format.
+- [x] Validate that audit logging, headers, and the existing `{ ok: true, pipelineForwarded: true }` response continue working without changing validation behavior.

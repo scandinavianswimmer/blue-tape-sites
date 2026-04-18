@@ -2,7 +2,7 @@ import type { Request, Response } from "express";
 import { z } from "zod";
 
 import { notifyOwner } from "./_core/notification";
-import { createAuditLead } from "./db";
+import { createAuditLead, createAuditSubmissionLog } from "./db";
 
 const blockedEmailTlds = [".ru", ".cn", ".top"] as const;
 const auditRateLimitWindowMs = 60 * 60 * 1000;
@@ -121,6 +121,23 @@ function formatAuditPipelineBody(input: AuditLeadInput, submittedAt: string) {
   ].join("\n");
 }
 
+async function logAuditSubmission(args: {
+  timestamp: string;
+  input: AuditLeadInput;
+  status: "success" | "failure";
+  resendMessageId: string | null;
+}) {
+  await createAuditSubmissionLog({
+    timestamp: new Date(args.timestamp),
+    name: args.input.name,
+    company: args.input.companyName,
+    email: args.input.email,
+    serviceArea: args.input.serviceArea,
+    status: args.status,
+    resendMessageId: args.resendMessageId,
+  });
+}
+
 async function sendAuditPipelineEmail(input: AuditLeadInput, submittedAt: string) {
   const { resendApiKey, auditInbox, auditFromAddress, auditSharedSecret } = getAuditPipelineConfig();
 
@@ -140,15 +157,26 @@ async function sendAuditPipelineEmail(input: AuditLeadInput, submittedAt: string
       subject: `[AUDIT REQUEST] ${input.companyName} — ${input.serviceArea}`,
       text: formatAuditPipelineBody(input, submittedAt),
       headers: {
+        "X-Bluetape-Source": "audit-form",
         "X-Bluetape-Sig": auditSharedSecret,
       },
     }),
   });
 
+  const responseText = await response.text();
+
   if (!response.ok) {
-    const responseText = await response.text();
     throw new Error(`Audit pipeline email failed: ${response.status} ${responseText}`);
   }
+
+  let resendMessageId: string | null = null;
+
+  if (responseText) {
+    const parsed = JSON.parse(responseText) as { id?: string };
+    resendMessageId = typeof parsed.id === "string" ? parsed.id : null;
+  }
+
+  return { resendMessageId };
 }
 
 export async function submitAuditLead(
@@ -182,7 +210,27 @@ export async function submitAuditLead(
     notifiedOwner: 0,
   });
 
-  await sendAuditPipelineEmail(input, submittedAt);
+  let resendMessageId: string | null = null;
+
+  try {
+    const pipelineResult = await sendAuditPipelineEmail(input, submittedAt);
+    resendMessageId = pipelineResult.resendMessageId;
+
+    await logAuditSubmission({
+      timestamp: submittedAt,
+      input,
+      status: "success",
+      resendMessageId,
+    });
+  } catch (error) {
+    await logAuditSubmission({
+      timestamp: submittedAt,
+      input,
+      status: "failure",
+      resendMessageId: null,
+    });
+    throw error;
+  }
 
   const notifiedOwner = await notifyOwner({
     title: `New Blue Tape audit request from ${input.companyName}`,

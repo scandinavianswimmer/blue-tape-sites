@@ -2,8 +2,10 @@ import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import {
   auditLeads,
+  auditSubmissionLogs,
   blogCtaClicks,
   InsertAuditLead,
+  InsertAuditSubmissionLog,
   InsertBlogCtaClick,
   InsertUnsubscribeRequest,
   InsertUser,
@@ -105,6 +107,15 @@ export async function createAuditLead(lead: InsertAuditLead): Promise<void> {
   }
 
   await db.insert(auditLeads).values(lead);
+}
+
+export async function createAuditSubmissionLog(log: InsertAuditSubmissionLog): Promise<void> {
+  const db = await getDb();
+  if (!db) {
+    throw new Error("Database is not available for audit submission logging.");
+  }
+
+  await db.insert(auditSubmissionLogs).values(log);
 }
 
 export async function createBlogCtaClick(click: InsertBlogCtaClick): Promise<void> {

@@ -4,12 +4,14 @@ import type { TrpcContext } from "./_core/context";
 
 const mocks = vi.hoisted(() => ({
   createAuditLead: vi.fn(),
+  createAuditSubmissionLog: vi.fn(),
   notifyOwner: vi.fn(),
   fetch: vi.fn(),
 }));
 
 vi.mock("./db", () => ({
   createAuditLead: mocks.createAuditLead,
+  createAuditSubmissionLog: mocks.createAuditSubmissionLog,
 }));
 
 vi.mock("./_core/notification", () => ({
@@ -35,6 +37,7 @@ function createPublicContext(): TrpcContext {
 describe("leads.submitAudit", () => {
   beforeEach(() => {
     mocks.createAuditLead.mockReset();
+    mocks.createAuditSubmissionLog.mockReset();
     mocks.notifyOwner.mockReset();
     mocks.fetch.mockReset();
     vi.stubGlobal("fetch", mocks.fetch);
@@ -45,12 +48,13 @@ describe("leads.submitAudit", () => {
     process.env.AUDIT_SHARED_SECRET = "bt_audit_test_secret";
   });
 
-  it("stores the audit lead, forwards it to the Paperclip email intake, and notifies the owner", async () => {
+  it("stores the audit lead, forwards it to the Paperclip email intake, persists a structured success log, and notifies the owner", async () => {
     mocks.createAuditLead.mockResolvedValue(undefined);
+    mocks.createAuditSubmissionLog.mockResolvedValue(undefined);
     mocks.notifyOwner.mockResolvedValue(true);
     mocks.fetch.mockResolvedValue({
       ok: true,
-      text: vi.fn().mockResolvedValue("ok"),
+      text: vi.fn().mockResolvedValue('{"id":"re_msg_123"}'),
     });
 
     const caller = appRouter.createCaller(createPublicContext());
@@ -92,9 +96,31 @@ describe("leads.submitAudit", () => {
       Authorization: "Bearer re_test_key",
       "Content-Type": "application/json",
     });
-    expect(mocks.fetch.mock.calls[0]?.[1]?.body).toContain("[AUDIT REQUEST] Mendez Plumbing & Rooter — Southern California");
-    expect(mocks.fetch.mock.calls[0]?.[1]?.body).toContain("---BLUETAPE-AUDIT-v1---");
-    expect(mocks.fetch.mock.calls[0]?.[1]?.body).toContain("FRUSTRATION");
+
+    const resendPayload = JSON.parse(String(mocks.fetch.mock.calls[0]?.[1]?.body)) as {
+      subject: string;
+      text: string;
+      headers: Record<string, string>;
+    };
+
+    expect(resendPayload.subject).toBe("[AUDIT REQUEST] Mendez Plumbing & Rooter — Southern California");
+    expect(resendPayload.text).toContain("---BLUETAPE-AUDIT-v1---");
+    expect(resendPayload.text).toContain("FRUSTRATION:");
+    expect(resendPayload.headers).toEqual({
+      "X-Bluetape-Source": "audit-form",
+      "X-Bluetape-Sig": "bt_audit_test_secret",
+    });
+
+    expect(mocks.createAuditSubmissionLog).toHaveBeenCalledWith(
+      expect.objectContaining({
+        name: "Rick Mendez",
+        company: "Mendez Plumbing & Rooter",
+        email: "rick@example.com",
+        serviceArea: "Southern California",
+        status: "success",
+        resendMessageId: "re_msg_123",
+      })
+    );
 
     expect(mocks.notifyOwner).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -103,6 +129,45 @@ describe("leads.submitAudit", () => {
     );
     expect(mocks.notifyOwner.mock.calls[0]?.[0]?.content).toContain("Pipeline forwarded: yes");
     expect(result).toEqual({ success: true, notifiedOwner: true, pipelineForwarded: true });
+  });
+
+  it("persists a structured failure log when the Resend forward fails", async () => {
+    mocks.createAuditLead.mockResolvedValue(undefined);
+    mocks.createAuditSubmissionLog.mockResolvedValue(undefined);
+    mocks.fetch.mockResolvedValue({
+      ok: false,
+      status: 500,
+      text: vi.fn().mockResolvedValue("resend outage"),
+    });
+
+    const caller = appRouter.createCaller(createPublicContext());
+
+    await expect(
+      caller.leads.submitAudit({
+        name: "Rick Mendez",
+        companyName: "Mendez Plumbing & Rooter",
+        email: "rick@example.com",
+        phone: "",
+        websiteUrl: "https://mendezplumbing.example.com",
+        primaryTrade: "Plumbing",
+        serviceArea: "Southern California",
+        projectDetails: "Need help tightening our homepage and making the mobile CTA path clearer.",
+        sourcePath: "/",
+        honeypot: "",
+      })
+    ).rejects.toThrow("Audit pipeline email failed: 500 resend outage");
+
+    expect(mocks.createAuditSubmissionLog).toHaveBeenCalledWith(
+      expect.objectContaining({
+        name: "Rick Mendez",
+        company: "Mendez Plumbing & Rooter",
+        email: "rick@example.com",
+        serviceArea: "Southern California",
+        status: "failure",
+        resendMessageId: null,
+      })
+    );
+    expect(mocks.notifyOwner).not.toHaveBeenCalled();
   });
 
   it("rejects website URLs without a protocol", async () => {
@@ -124,6 +189,7 @@ describe("leads.submitAudit", () => {
     ).rejects.toThrow("Website URL must begin with http:// or https://");
 
     expect(mocks.createAuditLead).not.toHaveBeenCalled();
+    expect(mocks.createAuditSubmissionLog).not.toHaveBeenCalled();
     expect(mocks.notifyOwner).not.toHaveBeenCalled();
     expect(mocks.fetch).not.toHaveBeenCalled();
   });
@@ -147,6 +213,7 @@ describe("leads.submitAudit", () => {
     ).rejects.toThrow("Please use a valid business email address.");
 
     expect(mocks.createAuditLead).not.toHaveBeenCalled();
+    expect(mocks.createAuditSubmissionLog).not.toHaveBeenCalled();
     expect(mocks.fetch).not.toHaveBeenCalled();
   });
 });

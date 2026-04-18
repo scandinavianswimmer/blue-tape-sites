@@ -37,6 +37,17 @@ export const auditLeads = mysqlTable("auditLeads", {
   createdAt: timestamp("createdAt").defaultNow().notNull(),
 });
 
+export const auditSubmissionLogs = mysqlTable("auditSubmissionLogs", {
+  id: int("id").autoincrement().primaryKey(),
+  timestamp: timestamp("timestamp").defaultNow().notNull(),
+  name: varchar("name", { length: 160 }).notNull(),
+  company: varchar("company", { length: 200 }).notNull(),
+  email: varchar("email", { length: 320 }).notNull(),
+  serviceArea: varchar("serviceArea", { length: 180 }).notNull(),
+  status: mysqlEnum("status", ["success", "failure"]).notNull(),
+  resendMessageId: varchar("resendMessageId", { length: 255 }),
+});
+
 export const blogCtaClicks = mysqlTable("blogCtaClicks", {
   id: int("id").autoincrement().primaryKey(),
   postSlug: varchar("postSlug", { length: 255 }).notNull(),
@@ -67,6 +78,8 @@ export type User = typeof users.$inferSelect;
 export type InsertUser = typeof users.$inferInsert;
 export type AuditLead = typeof auditLeads.$inferSelect;
 export type InsertAuditLead = typeof auditLeads.$inferInsert;
+export type AuditSubmissionLog = typeof auditSubmissionLogs.$inferSelect;
+export type InsertAuditSubmissionLog = typeof auditSubmissionLogs.$inferInsert;
 export type BlogCtaClick = typeof blogCtaClicks.$inferSelect;
 export type InsertBlogCtaClick = typeof blogCtaClicks.$inferInsert;
 export type UnsubscribeRequest = typeof unsubscribeRequests.$inferSelect;
