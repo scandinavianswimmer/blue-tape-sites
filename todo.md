@@ -104,3 +104,6 @@
 - [x] Add persistent structured logging for every audit submission, including timestamp, contact fields, success status, and Resend message ID.
 - [x] Add the X-Bluetape-Source header to outgoing audit emails while preserving the existing X-Bluetape-Sig header and current payload format.
 - [x] Validate that audit logging, headers, and the existing `{ ok: true, pipelineForwarded: true }` response continue working without changing validation behavior.
+- [x] Review Google’s SEO Starter Guide and map the highest-impact recommendations to Blue Tape Sites.
+- [x] Implement the highest-value on-site SEO improvements that can improve qualified inbound lead generation without diluting the current brand voice.
+- [x] Validate the updated SEO setup and checkpoint the work with a clear ranking-improvement summary.

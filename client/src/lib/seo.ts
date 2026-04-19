@@ -4,9 +4,9 @@ export const SITE_URL = "https://bluetapesites.com";
 export const SOCIAL_IMAGE_URL =
   "https://d2xsxph8kpxj0f.cloudfront.net/310419663032234167/TpcXhRqminM236HC9RQjNi/blue-tape-sites-social-preview_50192a08.png";
 
-export const HOME_SEO_TITLE = "Blue Tape Sites | Websites for Service Businesses";
+export const HOME_SEO_TITLE = "Web Design for Service Businesses | Blue Tape Sites";
 export const HOME_SEO_DESCRIPTION =
-  "Premium websites for plumbers, electricians, cleaners, and contractors that need stronger trust and more leads.";
+  "Blue Tape Sites builds lead-focused websites for plumbers, electricians, cleaners, and contractors that need more trust, better local visibility and more leads.";
 
 const BLOG_POST_SCHEMA_ID = "blue-tape-sites-blog-post-schema";
 
@@ -114,6 +114,7 @@ export const buildBlogPostSeo = (post: BlogPostSeoInput): PageSeo => {
       publisher: {
         "@type": "Organization",
         name: "Blue Tape Sites",
+        url: SITE_URL,
       },
     },
   };

@@ -7,9 +7,9 @@ import { blogPosts } from "@/content/blogPosts";
 import { readAndClearBlogArchiveScroll, saveBlogArchiveScroll } from "@/lib/blogScroll";
 import { applyPageSeo, SITE_URL } from "@/lib/seo";
 
-const BLOG_TITLE = "Blue Tape Sites Blog | Website Advice for Contractors";
+const BLOG_TITLE = "Contractor Website & Local SEO Advice | Blue Tape Sites";
 const BLOG_DESCRIPTION =
-  "Practical website and local search advice for plumbers, electricians, cleaners, contractors, and home-service businesses.";
+  "Practical website, local SEO, and conversion advice for plumbers, electricians, cleaners, contractors, and home-service businesses.";
 
 const formatDate = (date: string) =>
   new Date(`${date}T12:00:00Z`).toLocaleDateString("en-US", {
@@ -45,6 +45,44 @@ export default function Blog() {
   );
 
   const featuredPost = posts[0];
+  const archiveSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": `${SITE_URL}/blog#collection`,
+    name: BLOG_TITLE,
+    url: `${SITE_URL}/blog`,
+    description: BLOG_DESCRIPTION,
+    isPartOf: {
+      "@id": `${SITE_URL}/#website`,
+    },
+    about: {
+      "@id": `${SITE_URL}/#professional-service`,
+    },
+    hasPart: posts.slice(0, 12).map(post => ({
+      "@type": "BlogPosting",
+      headline: post.title,
+      url: `${SITE_URL}/blog/${post.slug}`,
+      datePublished: `${post.publishDate}T12:00:00Z`,
+    })),
+  };
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Blog",
+        item: `${SITE_URL}/blog`,
+      },
+    ],
+  };
   const groupedPosts = posts.reduce<Record<string, typeof posts>>((groups, post) => {
     const monthLabel = new Date(`${post.publishDate}T12:00:00Z`).toLocaleDateString("en-US", {
       year: "numeric",
@@ -62,6 +100,8 @@ export default function Blog() {
 
   return (
     <div className="min-h-screen bg-[#f7f5f1] text-[#111111]">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(archiveSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <header className="border-b border-black/8 bg-[rgba(247,245,241,0.94)] backdrop-blur-lg">
         <div className="container flex min-h-18 items-center justify-between gap-4 py-4">
           <Link href="/" className="flex min-w-0 items-center gap-3">

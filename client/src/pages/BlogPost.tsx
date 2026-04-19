@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { blogPostMap, blogPosts, getBlogPostServiceCta } from "@/content/blogPosts";
 import { trackBlogCtaClick, buildBlogCtaClickPayload } from "@/lib/blogCtaTracking";
 import { renderArticleMarkdown } from "@/lib/renderArticle";
-import { applyPageSeo, buildBlogPostSeo } from "@/lib/seo";
+import { applyPageSeo, buildBlogPostSeo, SITE_URL } from "@/lib/seo";
 import NotFound from "@/pages/NotFound";
 
 const formatDate = (date: string) =>
@@ -42,9 +42,34 @@ export default function BlogPost() {
   const serviceCta = getBlogPostServiceCta(post);
   const primaryCtaPayload = buildBlogCtaClickPayload({ post, cta: serviceCta, placement: "primary" });
   const secondaryCtaPayload = buildBlogCtaClickPayload({ post, cta: serviceCta, placement: "secondary" });
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: SITE_URL,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Blog",
+        item: `${SITE_URL}/blog`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: post.title,
+        item: `${SITE_URL}/blog/${post.slug}`,
+      },
+    ],
+  };
 
   return (
     <div className="min-h-screen bg-[#f7f5f1] text-[#111111]">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <header className="border-b border-black/8 bg-[rgba(247,245,241,0.94)] backdrop-blur-lg">
         <div className="container flex min-h-18 items-center justify-between gap-4 py-4">
           <Link href="/blog" className="flex min-w-0 items-center gap-3">

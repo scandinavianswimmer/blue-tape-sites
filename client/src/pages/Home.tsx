@@ -5,6 +5,7 @@ credible, and businesslike. Keep the blue tape motif precise and sparing.
 */
 
 import { useEffect, useMemo, useState } from "react";
+import { Link } from "wouter";
 import {
   ArrowRight,
   BadgeCheck,
@@ -20,7 +21,7 @@ import { toast } from "sonner";
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import { applyHomeSeo } from "@/lib/seo";
+import { applyHomeSeo, SITE_URL } from "@/lib/seo";
 import { trpc } from "@/lib/trpc";
 
 type AuditFormState = {
@@ -380,6 +381,24 @@ function PackageCard({
   );
 }
 
+const featuredSearchGuides = [
+  {
+    href: "/blog/local-seo-for-contractors-what-actually-brings-calls",
+    title: "Local SEO for contractors: what actually brings calls",
+    description: "Use this if you want the clearest explanation of what helps a service business rank locally and what just adds noise.",
+  },
+  {
+    href: "/blog/the-service-page-formula-for-home-service-businesses",
+    title: "The service page formula for home-service businesses",
+    description: "Use this when a visitor lands on the wrong page, gets confused, or cannot tell what you actually offer fast enough.",
+  },
+  {
+    href: "/blog/how-to-write-a-homepage-for-a-plumbing-company",
+    title: "How to write a homepage for a plumbing company",
+    description: "Use this when you need sharper homepage messaging, better trust framing, and a clearer reason to call.",
+  },
+];
+
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [formData, setFormData] = useState<AuditFormState>(initialFormState);
@@ -429,17 +448,48 @@ export default function Home() {
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
+    "@id": `${SITE_URL}/#professional-service`,
     name: "Blue Tape Sites",
     description:
-      "Blue Tape Sites builds premium websites for plumbers, electricians, cleaners, and home-service businesses across Southern California.",
+      "Blue Tape Sites builds premium, lead-focused websites for plumbers, electricians, cleaners, and home-service businesses that need more trust and more qualified calls.",
     areaServed: serviceAreas.map(area => ({ "@type": "AdministrativeArea", name: area.title })),
     serviceType: [
       "Web design for plumbers",
       "Web design for electricians",
       "Web design for cleaning companies",
+      "Contractor website redesign",
       "Local SEO-friendly service business websites",
     ],
-    url: typeof window !== "undefined" ? window.location.origin : "https://www.bluetapesites.com",
+    url: SITE_URL,
+  };
+
+  const homePageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${SITE_URL}/#webpage`,
+    name: "Blue Tape Sites | Web Design for Service Businesses",
+    url: SITE_URL,
+    description:
+      "Blue Tape Sites helps plumbers, electricians, cleaners, and contractors build more trust, stronger local visibility, and more qualified calls.",
+    isPartOf: {
+      "@id": `${SITE_URL}/#website`,
+    },
+    about: {
+      "@id": `${SITE_URL}/#professional-service`,
+    },
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map(item => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
   };
 
   const handleFieldChange = (field: keyof AuditFormState, value: string) => {
@@ -480,6 +530,8 @@ export default function Home() {
   return (
     <div className="min-h-screen overflow-x-clip bg-[#f7f5f1] text-[#111111] selection:bg-blue-600 selection:text-white">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(homePageSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
       <header className="sticky top-0 z-50 border-b border-black/8 bg-[rgba(247,245,241,0.92)] backdrop-blur-lg">
         <div className="container flex h-18 items-center justify-between gap-4">
@@ -946,6 +998,40 @@ export default function Home() {
                   {auditMutation.isPending ? "Sending Audit Request..." : "Request Your Free Audit"}
                 </Button>
               </form>
+            </div>
+          </div>
+        </section>
+
+        <section className="border-t border-black/8 bg-[#f3f0ea] py-18 sm:py-24">
+          <div className="container grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
+            <div>
+              <SectionEyebrow>Helpful Reading</SectionEyebrow>
+              <h2 className="max-w-[12ch] text-[2.2rem] font-semibold leading-[0.98] tracking-[-0.06em] text-[#111111] sm:text-[3.25rem]">
+                Start with the question your prospects are already searching.
+              </h2>
+              <p className="mt-5 max-w-xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
+                Google says links help users and search engines understand what a page is about. These are the three articles to start with if you want more local visibility, better service pages, and a homepage that earns the call.
+              </p>
+            </div>
+
+            <div className="grid gap-4">
+              {featuredSearchGuides.map(guide => (
+                <Link
+                  key={guide.href}
+                  href={guide.href}
+                  className="group border border-black/10 bg-white p-6 transition-colors hover:bg-[#f7f5f1]"
+                >
+                  <div className="text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-slate-500">Read next</div>
+                  <h3 className="mt-3 text-2xl font-semibold leading-tight tracking-[-0.04em] text-[#111111]">
+                    {guide.title}
+                  </h3>
+                  <p className="mt-3 max-w-2xl text-base leading-7 text-slate-600">{guide.description}</p>
+                  <div className="mt-5 inline-flex items-center text-sm font-semibold uppercase tracking-[0.08em] text-[#111111]">
+                    Open article
+                    <ArrowRight className="ml-2 size-4 transition-transform group-hover:translate-x-1" />
+                  </div>
+                </Link>
+              ))}
             </div>
           </div>
         </section>
