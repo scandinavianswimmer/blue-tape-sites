@@ -1,0 +1,57 @@
+# IndexNow quick implementation example
+
+## 1) Generate a key
+Use a unique key such as:
+
+```txt
+3f84e9b0c4a64d8e9c2f13a7b1d2048a
+```
+
+## 2) Host the key file at the site root
+Create a file at:
+
+```txt
+https://bluetapesites.com/3f84e9b0c4a64d8e9c2f13a7b1d2048a.txt
+```
+
+The file contents should be exactly:
+
+```txt
+3f84e9b0c4a64d8e9c2f13a7b1d2048a
+```
+
+## 3) Submit a single updated URL
+
+```bash
+curl "https://api.indexnow.org/indexnow?url=https://bluetapesites.com/web-design-for-plumbers&key=3f84e9b0c4a64d8e9c2f13a7b1d2048a"
+```
+
+## 4) Submit multiple URLs
+
+```json
+{
+  "host": "bluetapesites.com",
+  "key": "3f84e9b0c4a64d8e9c2f13a7b1d2048a",
+  "keyLocation": "https://bluetapesites.com/3f84e9b0c4a64d8e9c2f13a7b1d2048a.txt",
+  "urlList": [
+    "https://bluetapesites.com/web-design-for-plumbers",
+    "https://bluetapesites.com/web-design-for-electricians",
+    "https://bluetapesites.com/orange-county-contractor-web-design"
+  ]
+}
+```
+
+```bash
+curl -X POST "https://api.indexnow.org/indexnow" \
+  -H "Content-Type: application/json; charset=utf-8" \
+  -d '{
+    "host": "bluetapesites.com",
+    "key": "3f84e9b0c4a64d8e9c2f13a7b1d2048a",
+    "keyLocation": "https://bluetapesites.com/3f84e9b0c4a64d8e9c2f13a7b1d2048a.txt",
+    "urlList": [
+      "https://bluetapesites.com/web-design-for-plumbers",
+      "https://bluetapesites.com/web-design-for-electricians",
+      "https://bluetapesites.com/orange-county-contractor-web-design"
+    ]
+  }'
+```

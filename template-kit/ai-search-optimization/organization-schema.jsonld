@@ -1,0 +1,78 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["Organization", "ProfessionalService"],
+      "@id": "https://bluetapesites.com/#organization",
+      "name": "Blue Tape Sites",
+      "url": "https://bluetapesites.com/",
+      "logo": "https://bluetapesites.com/logo.png",
+      "image": "https://bluetapesites.com/og-image.png",
+      "description": "Blue Tape Sites designs lead-focused websites for home-service businesses such as plumbers, electricians, cleaners, and contractors.",
+      "email": "hello@trybluetape.com",
+      "areaServed": [
+        {
+          "@type": "AdministrativeArea",
+          "name": "Southern California"
+        },
+        {
+          "@type": "Country",
+          "name": "United States"
+        }
+      ],
+      "serviceType": [
+        "Web design for service businesses",
+        "Contractor website design",
+        "Plumber website design",
+        "Electrician website design",
+        "Cleaner website design",
+        "Website conversion optimization"
+      ],
+      "sameAs": [
+        "https://www.linkedin.com/company/blue-tape-sites"
+      ],
+      "knowsAbout": [
+        "home-service business marketing",
+        "lead generation websites",
+        "local service business web design",
+        "conversion-focused website strategy"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://bluetapesites.com/#website",
+      "url": "https://bluetapesites.com/",
+      "name": "Blue Tape Sites",
+      "publisher": {
+        "@id": "https://bluetapesites.com/#organization"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://bluetapesites.com/blog?query={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://bluetapesites.com/#service",
+      "name": "Lead-focused website design for home-service businesses",
+      "provider": {
+        "@id": "https://bluetapesites.com/#organization"
+      },
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "Home-service business owners"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "United States"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": "https://bluetapesites.com/#audit",
+        "availability": "https://schema.org/InStock",
+        "description": "Free website audit for service businesses"
+      }
+    }
+  ]
+}

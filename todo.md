@@ -107,3 +107,9 @@
 - [x] Review Google’s SEO Starter Guide and map the highest-impact recommendations to Blue Tape Sites.
 - [x] Implement the highest-value on-site SEO improvements that can improve qualified inbound lead generation without diluting the current brand voice.
 - [x] Validate the updated SEO setup and checkpoint the work with a clear ranking-improvement summary.
+- [ ] Create a lightweight vanilla JavaScript visitor-tracking client that silently posts visit data on page load.
+- [ ] Create a simple Node.js/Express visitor-tracking receiver that logs incoming visits persistently for later database integration.
+- [ ] Write integration instructions with the required HTML snippet and delivery-ready handoff files for the tracking package.
+- [x] Research current 2026 best practices for AI search optimization, entity SEO, crawler access, and LLM-oriented discoverability.
+- [x] Create a technical implementation package with updated robots.txt guidance, llms.txt, JSON-LD schema, and recommended page structures.
+- [x] Produce a practical content, authority, lead-conversion, tracking, and 30/60/90-day execution plan for high-volume qualified inbound leads.
