@@ -73,7 +73,7 @@ User-agent: AhrefsBot
 Disallow: /
 
 User-agent: SemrushBot
-Disallow: /
+Allow: /
 
 User-agent: MJ12bot
 Disallow: /

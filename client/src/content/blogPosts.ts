@@ -321,10 +321,10 @@ Ultimately, city pages are a powerful tool, but they're not a magic wand. For el
     publishDate: `2025-07-21`,
     category: `Website Strategy`,
     targetKeyword: `service page design for contractors`,
-    summary: `"""# The Service Page Formula for Home-Service Businesses Every plumber, electrician, cleaner, or contractor knows the drill: you need a website, and that we`,
-    excerpt: `"""# The Service Page Formula for Home-Service Businesses Every plumber, electrician, cleaner, or contractor knows the drill: you need a website, and that we`,
+    summary: `Most home-service service pages list an offer but do not build enough trust, clarity, or local relevance to turn visits into real calls.`,
+    excerpt: `Most home-service service pages list an offer but do not build enough trust, clarity, or local relevance to turn visits into real calls.`,
     readingTime: `7 min read`,
-    content: `"""# The Service Page Formula for Home-Service Businesses
+    content: `# The Service Page Formula for Home-Service Businesses
 
 Every plumber, electrician, cleaner, or contractor knows the drill: you need a website, and that website needs service pages. You list out your offerings—drain cleaning, electrical panel upgrades, deep carpet cleaning, roof repair—and you create a page for each. Seems straightforward, right? You might even sprinkle in a few keywords, slap on a stock photo, and consider it done. But if those pages aren't ringing your phone or bringing in qualified leads, you're not alone. The blunt truth is, most service pages for home-service businesses are glorified digital brochures, and they're leaving serious money on the table.
 
@@ -774,9 +774,9 @@ Buying leads can feel like a tempting shortcut, but it's like pouring water into
     summary: `Your contact page isn't just a way to be found; it's a way to be chosen.`,
     excerpt: `Your contact page isn't just a way to be found; it's a way to be chosen.`,
     readingTime: `6 min read`,
-    content: `Your contact page isn't just a way to be found; it's a way to be chosen.
+    content: `# How to Make a Contact Page That Actually Gets Used
 
-# How to Make a Contact Page That Actually Gets Used
+Your contact page isn't just a way to be found; it's a way to be chosen.
 
 Every home-service business owner knows the drill: you’ve got a website, it looks decent, and somewhere on it, there’s a “Contact Us” page. But if that page isn’t pulling its weight—if it’s just a digital dead end—then it’s time for a serious overhaul. A contact page isn’t just a formality; it’s a critical conversion point, the digital equivalent of a well-placed sign on your service van that actually gets people to call. For plumbers, electricians, roofers, or HVAC pros, a contact page needs to be more than just a form and an email address; it needs to be a clear, confident invitation to solve a problem.
 
@@ -1573,7 +1573,7 @@ Ultimately, your FAQ section is more than just a list of questions and answers. 
     summary: `Your website isn't just an online brochure; it's often the first handshake a potential client gets with your business.`,
     excerpt: `Your website isn't just an online brochure; it's often the first handshake a potential client gets with your business.`,
     readingTime: `8 min read`,
-    content: `## How to Tell If Your Contractor Website Feels Cheap, Generic, or Outdated
+    content: `# How to Tell If Your Contractor Website Feels Cheap, Generic, or Outdated
 
 Your website isn't just an online brochure; it's often the first handshake a potential client gets with your business. In the home service world – plumbing, electrical, HVAC, remodeling – trust is currency. A website that screams "cheap," "generic," or "outdated" isn't just a minor flaw; it's a lead-killing liability. It silently broadcasts a message about your reliability, your attention to detail, and ultimately, the quality of your work. If your digital storefront looks like it was built during the Bush administration and hasn't seen an update since, what does that say about the quality of your plumbing, electrical, or remodeling work *today*?
 

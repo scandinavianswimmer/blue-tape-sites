@@ -113,3 +113,7 @@
 - [x] Research current 2026 best practices for AI search optimization, entity SEO, crawler access, and LLM-oriented discoverability.
 - [x] Create a technical implementation package with updated robots.txt guidance, llms.txt, JSON-LD schema, and recommended page structures.
 - [x] Produce a practical content, authority, lead-conversion, tracking, and 30/60/90-day execution plan for high-volume qualified inbound leads.
+- [x] Identify which page is triggering the current SEMrush alerts for invalid structured data, missing h1, low word count, low text-to-HTML ratio, and blocked external resources.
+- [x] Fix the reported SEMrush SEO issues by correcting structured data, ensuring every affected page has a valid h1, and improving thin-content pages without weakening conversions.
+- [x] Update crawl-related settings such as robots directives or blocked resources so external assets needed for rendering are accessible to crawlers.
+- [x] Validate the repaired SEO pages in runtime and save a checkpoint once the SEMrush issues are resolved.

@@ -21,7 +21,7 @@ import { toast } from "sonner";
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import { applyHomeSeo, SITE_URL } from "@/lib/seo";
+import { applyHomeSeo, SITE_URL, SOCIAL_IMAGE_URL } from "@/lib/seo";
 import { trpc } from "@/lib/trpc";
 
 type AuditFormState = {
@@ -447,11 +447,20 @@ export default function Home() {
 
   const localBusinessSchema = {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
+    "@type": ["ProfessionalService", "Organization"],
     "@id": `${SITE_URL}/#professional-service`,
     name: "Blue Tape Sites",
+    url: SITE_URL,
+    logo: `${SITE_URL}/favicon.svg`,
+    image: SOCIAL_IMAGE_URL,
     description:
       "Blue Tape Sites builds premium, lead-focused websites for plumbers, electricians, cleaners, and home-service businesses that need more trust and more qualified calls.",
+    knowsAbout: [
+      "home-service web design",
+      "contractor web design",
+      "local SEO for service businesses",
+      "website conversion improvement",
+    ],
     areaServed: serviceAreas.map(area => ({ "@type": "AdministrativeArea", name: area.title })),
     serviceType: [
       "Web design for plumbers",
@@ -460,7 +469,6 @@ export default function Home() {
       "Contractor website redesign",
       "Local SEO-friendly service business websites",
     ],
-    url: SITE_URL,
   };
 
   const homePageSchema = {
@@ -476,6 +484,10 @@ export default function Home() {
     },
     about: {
       "@id": `${SITE_URL}/#professional-service`,
+    },
+    primaryImageOfPage: {
+      "@type": "ImageObject",
+      url: SOCIAL_IMAGE_URL,
     },
   };
 

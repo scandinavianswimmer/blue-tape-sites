@@ -45,21 +45,29 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "ProfessionalService",
+        "@type": ["ProfessionalService", "Organization"],
         "@id": "https://bluetapesites.com/#professional-service",
         "name": "Blue Tape Sites",
+        "url": "https://bluetapesites.com/",
+        "logo": "https://bluetapesites.com/favicon.svg",
+        "image": "https://d2xsxph8kpxj0f.cloudfront.net/310419663032234167/TpcXhRqminM236HC9RQjNi/blue-tape-sites-social-preview_50192a08.png",
         "description": "Blue Tape Sites builds lead-focused websites for plumbers, electricians, cleaners, contractors, and other service businesses that need stronger trust and more qualified calls.",
         "areaServed": [
           { "@type": "AdministrativeArea", "name": "Southern California" },
           { "@type": "Country", "name": "United States" }
+        ],
+        "knowsAbout": [
+          "home-service web design",
+          "contractor web design",
+          "local SEO for service businesses",
+          "website conversion improvement"
         ],
         "serviceType": [
           "Home-service website design",
           "Contractor website design",
           "Local service business web design",
           "Conversion-focused website redesign"
-        ],
-        "url": "https://bluetapesites.com/"
+        ]
       }
     </script>
     <script type="application/ld+json">
@@ -69,7 +77,10 @@
         "@id": "https://bluetapesites.com/#website",
         "name": "Blue Tape Sites",
         "url": "https://bluetapesites.com/",
-        "description": "Blue Tape Sites builds lead-focused websites for plumbers, electricians, cleaners, and contractors that need more trust, stronger local visibility, and more calls."
+        "description": "Blue Tape Sites builds lead-focused websites for plumbers, electricians, cleaners, and contractors that need more trust, stronger local visibility, and more calls.",
+        "publisher": {
+          "@id": "https://bluetapesites.com/#professional-service"
+        }
       }
     </script>
     <script type="module" src="/src/main.tsx"></script>
