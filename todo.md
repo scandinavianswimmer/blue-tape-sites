@@ -120,3 +120,7 @@
 - [x] Research how similar home-service web design competitors acquire clients and identify the repeatable success principles behind their growth.
 - [x] Evaluate inbound traffic against outbound, partnerships, marketplaces, and referral loops for Blue Tape Sites and identify the highest-leverage acquisition mix.
 - [x] Produce a practical customer-acquisition strategy discussion document with recommended channels, offers, tests, and next steps.
+- [x] Build the first Blue Tape Sites acquisition execution package around partnerships, precision outbound micro-audits, and supporting inbound assets.
+- [x] Create a partner and referral playbook with target partner types, offer structure, outreach templates, and handoff process.
+- [x] Create a precision outbound playbook with ICP filters, website-teardown rubric, outreach scripts, follow-up sequence, and first-sprint targets.
+- [x] Define the first 30-day acquisition sprint, including the first niches, message angles, and supporting inbound asset roadmap.
