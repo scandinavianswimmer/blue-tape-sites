@@ -124,3 +124,8 @@
 - [x] Create a partner and referral playbook with target partner types, offer structure, outreach templates, and handoff process.
 - [x] Create a precision outbound playbook with ICP filters, website-teardown rubric, outreach scripts, follow-up sequence, and first-sprint targets.
 - [x] Define the first 30-day acquisition sprint, including the first niches, message angles, and supporting inbound asset roadmap.
+- [x] Create an agent-ready acquisition handoff package for the next Blue Tape Sites sprint.
+- [x] Write landing-page execution briefs for the first plumber and remodeler niche pages.
+- [x] Create a prospecting pack with a first-50 template, qualification fields, and teardown workflow.
+- [x] Create partner outreach handoff files, including a referral one-pager and ready-to-send intro templates.
+- [x] Create an agent execution README that tells the next Manus run exactly how to execute the sprint in order.
