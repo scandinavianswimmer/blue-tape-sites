@@ -117,3 +117,6 @@
 - [x] Fix the reported SEMrush SEO issues by correcting structured data, ensuring every affected page has a valid h1, and improving thin-content pages without weakening conversions.
 - [x] Update crawl-related settings such as robots directives or blocked resources so external assets needed for rendering are accessible to crawlers.
 - [x] Validate the repaired SEO pages in runtime and save a checkpoint once the SEMrush issues are resolved.
+- [x] Research how similar home-service web design competitors acquire clients and identify the repeatable success principles behind their growth.
+- [x] Evaluate inbound traffic against outbound, partnerships, marketplaces, and referral loops for Blue Tape Sites and identify the highest-leverage acquisition mix.
+- [x] Produce a practical customer-acquisition strategy discussion document with recommended channels, offers, tests, and next steps.
