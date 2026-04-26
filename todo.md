@@ -129,3 +129,6 @@
 - [x] Create a prospecting pack with a first-50 template, qualification fields, and teardown workflow.
 - [x] Create partner outreach handoff files, including a referral one-pager and ready-to-send intro templates.
 - [x] Create an agent execution README that tells the next Manus run exactly how to execute the sprint in order.
+- [x] Diagnose why Blue Tape Sites is getting essentially no views despite being public and having baseline SEO in place.
+- [x] Determine whether the zero-traffic problem is caused primarily by indexing, lack of search demand, weak rankings, or broken analytics.
+- [x] Inspect the live site and search/discoverability signals, then document the highest-leverage fixes for getting initial traffic.
