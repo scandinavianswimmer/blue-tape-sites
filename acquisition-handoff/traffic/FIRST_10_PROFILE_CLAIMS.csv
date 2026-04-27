@@ -1,0 +1,11 @@
+Priority,Platform,URL,Action,Required business details,Status,Owner,Notes
+1,Google Business Profile,https://www.google.com/business/,Create or claim profile,"Business name, service area, phone, website, category, hours, description, logo",Ready for setup,,Use exact NAP and point to bluetapesites.com
+2,Apple Business Connect,https://businessconnect.apple.com/,Create or claim profile,"Business name, phone, website, business category, hours, logo",Ready for setup,,Mirror the same core details used in Google
+3,Bing Places,https://www.bingplaces.com/,Create or import listing,"Business name, phone, website, category, hours, description",Ready for setup,,Importing from Google can save time
+4,LinkedIn Company Page,https://www.linkedin.com/company/setup/new/,Create company page,"Business description, website, logo, banner, founder role, specialties",Ready for setup,,Use contractor-focused positioning and publish short insights weekly
+5,Founder LinkedIn Profile,https://www.linkedin.com/,Optimize founder profile,"Founder headline, about section, website, service positioning, featured links",Ready for setup,,Profile should clearly explain who Blue Tape Sites helps
+6,Yelp,https://biz.yelp.com/,Claim or create listing,"Business name, service area, phone, website, category, hours, photos",Ready for setup,,Keep description plain and accurate
+7,BBB,https://www.bbb.org/,Create or claim listing,"Business details, contact info, website, operating region, service description",Ready for setup,,Use if information can be represented accurately and consistently
+8,Foursquare,https://business.foursquare.com/,Claim listing,"Business name, website, phone, category, location or service area",Ready for setup,,Useful for citation consistency
+9,OpenStreetMap,https://www.openstreetmap.org/,Add or improve entity,"Business name, website, category, verified location or service area",Ready for setup,,Only submit verifiable details
+10,Manta,https://www.manta.com/,Create listing,"Business name, website, phone, description, category",Ready for setup,,Keep copy concise and aligned with homepage messaging

@@ -10,6 +10,8 @@ import Home from "./pages/Home";
 
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
+const PlumberLanding = lazy(() => import("./pages/PlumberLanding"));
+const RemodelerLanding = lazy(() => import("./pages/RemodelerLanding"));
 const Unsubscribe = lazy(() => import("./pages/Unsubscribe"));
 
 function Router() {
@@ -28,6 +30,8 @@ function Router() {
         <Route path={"/"} component={Home} />
         <Route path={"/blog"} component={Blog} />
         <Route path={"/blog/:slug"} component={BlogPost} />
+        <Route path={"/web-design-for-plumbers"} component={PlumberLanding} />
+        <Route path={"/web-design-for-remodelers"} component={RemodelerLanding} />
         <Route path={"/unsubscribe"} component={Unsubscribe} />
         <Route path={"/404"} component={NotFound} />
         {/* Final fallback route */}

@@ -726,6 +726,14 @@ export default function Home() {
               <p className="mt-6 text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
                 Your business should not look like every other contractor site in the county. These examples show how the right visual system, tone, and proof can make your company feel more established, more specific, and easier to trust.
               </p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <Button asChild className="h-12 rounded-none border border-[#111111] bg-[#111111] px-5 text-sm font-semibold uppercase tracking-[0.08em] text-white hover:bg-slate-800">
+                  <Link href="/web-design-for-plumbers">See the plumber page</Link>
+                </Button>
+                <Button asChild variant="outline" className="h-12 rounded-none border-[#111111] bg-transparent px-5 text-sm font-semibold uppercase tracking-[0.08em] text-[#111111] hover:bg-white">
+                  <Link href="/web-design-for-remodelers">See the remodeler page</Link>
+                </Button>
+              </div>
             </div>
 
             <div className="mt-10 grid gap-6 lg:grid-cols-3">
