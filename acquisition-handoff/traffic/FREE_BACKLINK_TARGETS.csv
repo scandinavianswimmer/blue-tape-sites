@@ -1,0 +1,24 @@
+priority,source_name,source_type,url,setup_type,why_it_matters,owner_action_needed,notes
+High,Google Business Profile,Business profile,https://www.google.com/business/,Claim profile,Major discovery and entity-trust source,Yes,Complete profile fully and keep business details consistent
+High,Apple Business Connect,Business profile,https://businessconnect.apple.com/,Claim profile,Improves Apple Maps and brand entity presence,Yes,Use consistent business details and site URL
+High,Bing Places,Business profile,https://www.bingplaces.com/,Claim profile,Supports Bing discovery and local entity signals,Yes,Import from Google if possible to save time
+High,LinkedIn Company Page,Social/company profile,https://www.linkedin.com/company/setup/new/,Create page,High-authority profile plus distribution channel,Yes,Link site and post weekly teardown insights
+High,Founder LinkedIn Profile,Personal authority profile,https://www.linkedin.com/,Optimize profile,Improves trust and drives direct referral traffic,Yes,Add site link and contractor-focused positioning
+High,Yelp,Business directory,https://biz.yelp.com/,Claim listing,Strong directory trust and possible referral clicks,Yes,Use accurate category and description
+High,BBB,Business directory,https://www.bbb.org/,Create or claim listing,Trust signal for business buyers,Yes,Use exact business details and clear service description
+High,Foursquare,Business directory,https://business.foursquare.com/,Claim listing,Supports citation consistency across data ecosystem,Yes,Keep address and site URL consistent
+High,OpenStreetMap,Map listing,https://www.openstreetmap.org/,Add or improve entity,Feeds location and map data downstream,Yes,Only add accurate verifiable data
+High,Manta,Business directory,https://www.manta.com/,Create listing,Easy citation and business discovery source,Yes,Keep messaging simple and accurate
+High,MerchantCircle,Business directory,https://www.merchantcircle.com/,Create listing,Free citation plus local business discovery surface,Yes,Avoid over-optimized anchor text
+Medium,Houzz,Industry platform,https://www.houzz.com/professionals,Create profile,Relevant to contractors and home-service adjacent buyers,Yes,Best if portfolio visuals are available
+Medium,Porch,Home-service platform,https://porch.com/,Create profile or partner presence,Trade-adjacent discovery source,Yes,Check category fit before submitting
+Medium,Angi,Home-service platform,https://www.angi.com/,Create profile,Relevant home-service ecosystem visibility,Yes,Proceed only if profile can be represented accurately
+Medium,Nextdoor,Business profile,https://business.nextdoor.com/en-us,Create profile,Neighborhood discovery and local proof,Yes,Useful for local regional brand visibility
+Medium,Facebook Business Page,Social profile,https://www.facebook.com/pages/create/,Create page,Searchable profile plus distribution channel,Yes,Can syndicate short posts and audit offers
+Medium,Patch,Local publication/community,https://patch.com/,Contribution or mention,Potential local article mention and referral traffic,Yes,Pitch useful local-business advice instead of direct promotion
+Medium,Partner resource pages,Referral partner,https://example.com,Outreach,Highest-quality free links if partners already trust you,Yes,Ask for referral-page or trusted-vendors mention
+Medium,Unlinked brand mentions,Earned link,https://www.google.com/search?q=%22Blue+Tape+Sites%22,Outreach,Converts existing mentions into easy wins,Yes,Request polite link addition where brand is already mentioned
+Medium,Guest expert quotes,Earned link,https://www.google.com/search?q=contractor+marketing+write+for+us,Outreach,Creates topical authority and referral traffic,Yes,Offer narrow practical insights not generic guest posts
+Medium,Podcast and interview mentions,Earned link,https://www.google.com/search?q=contractor+podcast+guest,Outreach,Builds brand demand plus backlinks from show notes,Yes,Pitch sharp topics like website trust mistakes or audit lessons
+Low,Reddit and niche forums,Community distribution,https://www.reddit.com/,Manual participation,Can drive early referral visits if genuinely useful,Yes,Never spam links; answer with real insights first
+Low,Local chamber or business associations,Community directory,https://www.google.com/search?q=local+chamber+of+commerce+directory,Claim or apply,Can produce relevant local trust links,Yes,Good fit if Blue Tape Sites emphasizes SoCal business focus
