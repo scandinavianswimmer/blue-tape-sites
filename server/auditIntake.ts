@@ -14,33 +14,60 @@ function isBlockedEmailDomain(email: string) {
   return blockedEmailTlds.some(tld => domain.endsWith(tld));
 }
 
-export const auditLeadInputSchema = z.object({
-  name: z.string().trim().min(2).max(160),
-  companyName: z.string().trim().min(2).max(200),
-  email: z
-    .string()
-    .trim()
-    .email()
-    .max(320)
-    .refine(value => !isBlockedEmailDomain(value), {
-      message: "Please use a valid business email address.",
-    }),
-  phone: z.string().trim().max(40).optional().or(z.literal("")),
-  websiteUrl: z
-    .string()
-    .trim()
-    .max(2048)
-    .optional()
-    .or(z.literal(""))
-    .refine(value => !value || /^https?:\/\//.test(value), {
-      message: "Website URL must begin with http:// or https://",
-    }),
-  primaryTrade: z.string().trim().min(2).max(120),
-  serviceArea: z.string().trim().min(2).max(180),
-  projectDetails: z.string().trim().min(4).max(5000),
-  sourcePath: z.string().trim().max(512).optional().or(z.literal("")),
-  honeypot: z.string().trim().max(200).optional().or(z.literal("")),
-});
+export const auditLeadInputSchema = z
+  .object({
+    name: z.string().trim().min(2).max(160),
+    companyName: z.string().trim().min(2).max(200),
+    email: z.string().trim().max(320).optional().or(z.literal("")),
+    phone: z.string().trim().max(40).optional().or(z.literal("")),
+    websiteUrl: z
+      .string()
+      .trim()
+      .max(2048)
+      .optional()
+      .or(z.literal(""))
+      .refine(value => !value || /^https?:\/\//.test(value), {
+        message: "Website URL must begin with http:// or https://",
+      }),
+    primaryTrade: z.string().trim().min(2).max(120),
+    serviceArea: z.string().trim().min(2).max(180),
+    projectDetails: z.string().trim().min(4).max(5000),
+    sourcePath: z.string().trim().max(512).optional().or(z.literal("")),
+    honeypot: z.string().trim().max(200).optional().or(z.literal("")),
+  })
+  .superRefine((value, ctx) => {
+    const normalizedEmail = value.email?.trim() || "";
+    const normalizedPhone = value.phone?.trim() || "";
+
+    if (!normalizedEmail && !normalizedPhone) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "Please provide a valid email address or phone number.",
+        path: ["email"],
+      });
+      return;
+    }
+
+    if (normalizedEmail) {
+      const emailCheck = z.string().email().safeParse(normalizedEmail);
+
+      if (!emailCheck.success || isBlockedEmailDomain(normalizedEmail)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: "Please use a valid business email address.",
+          path: ["email"],
+        });
+      }
+    }
+
+    if (normalizedPhone && normalizedPhone.replace(/\D/g, "").length < 7) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "Please provide a valid phone number.",
+        path: ["phone"],
+      });
+    }
+  });
 
 export const auditApiPayloadSchema = z.object({
   name: z.string().trim().min(2).max(160),
@@ -110,7 +137,9 @@ function formatAuditPipelineBody(input: AuditLeadInput, submittedAt: string) {
     "---BLUETAPE-AUDIT-v1---",
     `name: ${input.name}`,
     `company: ${input.companyName}`,
-    `email: ${input.email}`,
+    `contact: ${input.email || input.phone || "Not provided"}`,
+    `email: ${input.email || "Not provided"}`,
+    `phone: ${input.phone || "Not provided"}`,
     `website: ${input.websiteUrl || "Not provided"}`,
     `trade: ${input.primaryTrade}`,
     `service_area: ${input.serviceArea}`,
@@ -131,7 +160,7 @@ async function logAuditSubmission(args: {
     timestamp: new Date(args.timestamp),
     name: args.input.name,
     company: args.input.companyName,
-    email: args.input.email,
+    email: args.input.email || args.input.phone || "Not provided",
     serviceArea: args.input.serviceArea,
     status: args.status,
     resendMessageId: args.resendMessageId,
@@ -195,11 +224,16 @@ export async function submitAuditLead(
     throw new Error("Too many audit requests from this connection. Please wait and try again.");
   }
 
-  const { honeypot: _honeypot, ...persistableInput } = input;
+  const { honeypot: _honeypot } = input;
   const normalizedInput = {
-    ...persistableInput,
+    name: input.name,
+    companyName: input.companyName,
+    email: input.email || input.phone || "Not provided",
     phone: input.phone || null,
     websiteUrl: input.websiteUrl || null,
+    primaryTrade: input.primaryTrade,
+    serviceArea: input.serviceArea,
+    projectDetails: input.projectDetails,
     sourcePath: input.sourcePath || null,
   };
 
@@ -237,7 +271,8 @@ export async function submitAuditLead(
     content: [
       `Name: ${input.name}`,
       `Company: ${input.companyName}`,
-      `Email: ${input.email}`,
+      `Primary contact: ${input.email || input.phone || "Not provided"}`,
+      `Email: ${input.email || "Not provided"}`,
       `Phone: ${input.phone || "Not provided"}`,
       `Website: ${input.websiteUrl || "Not provided"}`,
       `Primary trade: ${input.primaryTrade}`,

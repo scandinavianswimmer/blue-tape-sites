@@ -170,6 +170,45 @@ describe("leads.submitAudit", () => {
     expect(mocks.notifyOwner).not.toHaveBeenCalled();
   });
 
+  it("accepts a phone-only audit request when no email is provided", async () => {
+    mocks.createAuditLead.mockResolvedValue(undefined);
+    mocks.createAuditSubmissionLog.mockResolvedValue(undefined);
+    mocks.notifyOwner.mockResolvedValue(true);
+    mocks.fetch.mockResolvedValue({
+      ok: true,
+      text: vi.fn().mockResolvedValue('{"id":"re_msg_456"}'),
+    });
+
+    const caller = appRouter.createCaller(createPublicContext());
+
+    const result = await caller.leads.submitAudit({
+      name: "Rick Mendez",
+      companyName: "Mendez Plumbing & Rooter",
+      email: "",
+      phone: "(555) 777-0202",
+      websiteUrl: "https://mendezplumbing.example.com",
+      primaryTrade: "Plumbing",
+      serviceArea: "Southern California",
+      projectDetails: "Need help tightening our homepage and making the mobile CTA path clearer.",
+      sourcePath: "/",
+      honeypot: "",
+    });
+
+    expect(mocks.createAuditLead).toHaveBeenCalledWith(
+      expect.objectContaining({
+        email: "(555) 777-0202",
+        phone: "(555) 777-0202",
+      })
+    );
+    expect(mocks.createAuditSubmissionLog).toHaveBeenCalledWith(
+      expect.objectContaining({
+        email: "(555) 777-0202",
+        status: "success",
+      })
+    );
+    expect(result).toEqual({ success: true, notifiedOwner: true, pipelineForwarded: true });
+  });
+
   it("rejects website URLs without a protocol", async () => {
     const caller = appRouter.createCaller(createPublicContext());
 

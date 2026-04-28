@@ -140,3 +140,13 @@
 - [x] Create a profile-claiming packet for the first 8-10 high-priority citation and business-profile targets.
 - [x] Build the first batch of 15 partner/resource-page outreach targets with contact and message fields.
 - [x] Prepare any required user handoff steps for external profile claims or outreach sending that need login, verification, or personal business details.
+- [x] Rewrite the homepage hero headline and subhead to focus on contractor call generation and reduce complexity.
+- [x] Add primary and secondary hero CTAs linking to the audit and examples sections.
+- [x] Replace the current abstract benefit cards with concrete conversion-focused benefit copy.
+- [x] Rename the examples section and example cards by trade, adding a clear result line to each card.
+- [x] Insert a three-step timeline section explaining the Blue Tape Sites process.
+- [x] Add audience-fit context lines under each pricing tier.
+- [x] Move the free audit section directly below the hero and simplify the form to the requested three fields and reassurance copy.
+- [x] Replace the service-area labels with specific city lists and add the 2026 expansion note.
+- [x] Add a "Who This Is Not For" filter section above the footer.
+- [x] Audit and fix the homepage mobile experience for tap targets, horizontal scroll, form usability, pricing layout, asset weight, and CTA height.

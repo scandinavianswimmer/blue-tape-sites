@@ -5,29 +5,8 @@ import { getSessionCookieOptions } from "./_core/cookies";
 import { notifyOwner } from "./_core/notification";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
-import { submitAuditLead } from "./auditIntake";
+import { auditLeadInputSchema, submitAuditLead } from "./auditIntake";
 import { createUnsubscribeRequest } from "./db";
-
-const submitAuditLeadSchema = z.object({
-  name: z.string().trim().min(2).max(160),
-  companyName: z.string().trim().min(2).max(200),
-  email: z.string().trim().email().max(320),
-  phone: z.string().trim().max(40).optional().or(z.literal("")),
-  websiteUrl: z
-    .string()
-    .trim()
-    .max(2048)
-    .optional()
-    .or(z.literal(""))
-    .refine(value => !value || /^https?:\/\//.test(value), {
-      message: "Website URL must begin with http:// or https://",
-    }),
-  primaryTrade: z.string().trim().min(2).max(120),
-  serviceArea: z.string().trim().min(2).max(180),
-  projectDetails: z.string().trim().min(20).max(5000),
-  sourcePath: z.string().trim().max(512).optional().or(z.literal("")),
-  honeypot: z.string().trim().max(200).optional().or(z.literal("")),
-});
 
 const unsubscribeRequestSchema = z.object({
   email: z.string().trim().email().max(320),
@@ -51,7 +30,7 @@ export const appRouter = router({
     }),
   }),
   leads: router({
-    submitAudit: publicProcedure.input(submitAuditLeadSchema).mutation(async ({ input, ctx }) => {
+    submitAudit: publicProcedure.input(auditLeadInputSchema).mutation(async ({ input, ctx }) => {
       return submitAuditLead(input, {
         ipAddress: ctx.req.ip ?? null,
       });

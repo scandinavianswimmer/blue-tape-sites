@@ -11,9 +11,9 @@ describe("Home homepage copy alignment", () => {
   });
 
   it("keeps the key outcome-driven replacements in the homepage copy", () => {
+    expect(homeSource).toContain("Web Design for Contractors Who Need More Calls, Not More Complexity");
     expect(homeSource).toContain("what is making the page look weak");
-    expect(homeSource).toContain("more trust, more qualified calls");
-    expect(homeSource).toContain("what is hurting trust");
+    expect(homeSource).toContain("We send a 5-minute video audit within 48 hours. No call required unless you want one.");
     expect(homeSource).toContain("what should be fixed first");
   });
 

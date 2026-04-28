@@ -11,11 +11,14 @@ import {
   BadgeCheck,
   Check,
   CircleHelp,
+  ClipboardList,
   Clock3,
   MapPin,
   Menu,
+  PhoneCall,
   ScanSearch,
   ShieldCheck,
+  Wrench,
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -25,14 +28,9 @@ import { applyHomeSeo, SITE_URL, SOCIAL_IMAGE_URL } from "@/lib/seo";
 import { trpc } from "@/lib/trpc";
 
 type AuditFormState = {
-  name: string;
-  companyName: string;
-  email: string;
-  phone: string;
   websiteUrl: string;
   primaryTrade: string;
-  serviceArea: string;
-  projectDetails: string;
+  contactInfo: string;
 };
 
 type PricingPackage = {
@@ -41,6 +39,7 @@ type PricingPackage = {
   price: string;
   tag: string;
   popular: boolean;
+  audienceFit?: string;
   features: string[];
 };
 
@@ -102,9 +101,10 @@ const testimonials = [
 
 const exampleSites = [
   {
-    name: "Harbor Plumbing Co.",
+    name: "Emergency Plumber: Harbor Plumbing Co.",
     niche: "Plumbing",
     direction: "Emergency-first residential homepage",
+    result: "Designed to prioritize calls and local trust.",
     summary: "A high-trust plumbing homepage with faster call decisions, strong neighborhood proof, and a cleaner service breakdown for urgent homeowners.",
     proof: "After-hours phone CTA, financing note, and review-led trust bar.",
     layout: "Strong left-to-right urgency layout with stacked service proof and a brighter call-first accent system.",
@@ -117,9 +117,10 @@ const exampleSites = [
       "https://d2xsxph8kpxj0f.cloudfront.net/310419663032234167/TpcXhRqminM236HC9RQjNi/blue-tape-mockup-plumbing-kDb4zgAXztNV984DxggUhy.webp",
   },
   {
-    name: "Northline Electric",
+    name: "Commercial Electrician: Northline Electric",
     niche: "Electrical",
     direction: "Commercial-leaning contractor homepage",
+    result: "Designed to prioritize calls and local trust.",
     summary: "A firmer, more technical homepage for an electrical contractor that needs sharper hierarchy, cleaner credential framing, and a more engineered tone.",
     proof: "License framing, project-category tiles, and a denser spec-sheet style content rhythm.",
     layout: "Structured grid with darker surfaces, stricter spacing, and stronger contrast for a more code-conscious feel.",
@@ -132,9 +133,10 @@ const exampleSites = [
       "https://d2xsxph8kpxj0f.cloudfront.net/310419663032234167/TpcXhRqminM236HC9RQjNi/blue-tape-mockup-electrical-6mTRizFnD8CQC45i4RhudC.webp",
   },
   {
-    name: "Greyline Cleaning",
+    name: "Recurring Cleaning Service: Greyline Cleaning",
     niche: "Cleaning",
     direction: "Hospitality-grade recurring-service homepage",
+    result: "Designed to prioritize calls and local trust.",
     summary: "A cleaner, warmer homepage that still feels premium, with lighter touchpoints, recurring-service trust cues, and polished proof.",
     proof: "Crew consistency message, recurring-plan framing, and polished before-and-after confidence cues.",
     layout: "Airier editorial layout with softer neutrals, more breathing room, and a hospitality-style presentation system.",
@@ -155,6 +157,7 @@ const projectPackages: PricingPackage[] = [
     price: "$995",
     tag: "Starter clarity",
     popular: false,
+    audienceFit: "Best for owner-operators who need a credible presence fast.",
     features: [
       "Single landing page built to make the business look credible fast",
       "Fixes confusing messaging so customers trust the business sooner",
@@ -168,6 +171,7 @@ const projectPackages: PricingPackage[] = [
     price: "$2,495",
     tag: "Most Popular",
     popular: true,
+    audienceFit: "Most popular. For growing teams ready to convert more visitors into calls.",
     features: [
       "Multi-section homepage built to guide visitors toward the call or form",
       "Restructures the offer so customers understand what you do faster",
@@ -181,6 +185,7 @@ const projectPackages: PricingPackage[] = [
     price: "$4,995",
     tag: "Highest touch",
     popular: false,
+    audienceFit: "For established companies replacing a site that undersells them.",
     features: [
       "Full premium website system with the core pages needed to sell better",
       "Service-specific messaging that helps each offer feel easier to trust",
@@ -194,6 +199,7 @@ const projectPackages: PricingPackage[] = [
     price: "$795",
     tag: "Quick repair",
     popular: false,
+    audienceFit: "Best when the structure exists but the page still feels hard to trust.",
     features: [
       "Refines the parts of the site that are closest to pulling their weight",
       "Tightens copy, hierarchy, and CTA placement so customers act faster",
@@ -207,6 +213,7 @@ const projectPackages: PricingPackage[] = [
     price: "$2,195",
     tag: "Most Popular",
     popular: true,
+    audienceFit: "For strong businesses with websites that do not match their reputation.",
     features: [
       "Strategic redesign of the core lead path from first visit to inquiry",
       "Improves proof order and mobile flow so visitors lose less confidence",
@@ -220,6 +227,7 @@ const projectPackages: PricingPackage[] = [
     price: "$4,495",
     tag: "Comprehensive rebuild",
     popular: false,
+    audienceFit: "For replacing a dated site that is dragging down perception.",
     features: [
       "Rebuilds the visual system and messaging so the business feels stronger at first glance",
       "Premium presentation across the homepage and the pages customers actually check",
@@ -261,20 +269,20 @@ const retainers = [
 
 const serviceAreas = [
   {
-    title: "Southern California Core",
-    copy: "If your business works across Orange County, Los Angeles, the Inland Empire, or San Diego, the site should make that coverage obvious from the first visit.",
+    title: "Orange County",
+    copy: "Anaheim, Irvine, Huntington Beach, Santa Ana",
   },
   {
-    title: "California Reach",
-    copy: "If you serve clients across California, the message should still sound grounded, specific, and relevant to the places you actually work.",
+    title: "Los Angeles County",
+    copy: "Long Beach, Torrance, Santa Monica, Pasadena",
   },
   {
-    title: "Room to Grow",
-    copy: "You should be able to expand into new markets without ending up with a website that feels vague, generic, or disconnected from your local reputation.",
+    title: "Inland Empire",
+    copy: "Riverside, Ontario, Rancho Cucamonga",
   },
   {
-    title: "Dedicated Local Pages",
-    copy: "For priority cities, dedicated local pages give customers clearer service details, stronger local proof, and a better sense that you know their area.",
+    title: "San Diego County",
+    copy: "Oceanside, Escondido, Chula Vista",
   },
 ];
 
@@ -307,15 +315,57 @@ const faqs = [
 ];
 
 const initialFormState: AuditFormState = {
-  name: "",
-  companyName: "",
-  email: "",
-  phone: "",
   websiteUrl: "",
   primaryTrade: "",
-  serviceArea: "Southern California",
-  projectDetails: "",
+  contactInfo: "",
 };
+
+const howItWorksSteps = [
+  {
+    title: "Send Your Site",
+    timing: "Day 1",
+    copy: "We review your current site and mark what is broken.",
+    icon: ClipboardList,
+  },
+  {
+    title: "We Rebuild the Core Pages",
+    timing: "Days 3-7",
+    copy: "You review. We revise. No endless back-and-forth.",
+    icon: Wrench,
+  },
+  {
+    title: "Launch and Start Getting Calls",
+    timing: "Day 8-10",
+    copy: "Your site goes live. You stop losing customers to confusion.",
+    icon: PhoneCall,
+  },
+];
+
+function normalizeWebsiteUrl(value: string) {
+  const trimmed = value.trim();
+
+  if (!trimmed) {
+    return "";
+  }
+
+  return /^https?:\/\//i.test(trimmed) ? trimmed : `https://${trimmed}`;
+}
+
+function deriveCompanyNameFromWebsite(value: string) {
+  try {
+    const hostname = new URL(value).hostname.replace(/^www\./i, "");
+    const primaryLabel = hostname.split(".")[0] || hostname;
+    const cleaned = primaryLabel.replace(/[-_]+/g, " ").trim();
+
+    if (!cleaned) {
+      return "Blue Tape Sites audit lead";
+    }
+
+    return cleaned.replace(/\b\w/g, character => character.toUpperCase());
+  } catch {
+    return "Blue Tape Sites audit lead";
+  }
+}
 
 function SectionEyebrow({ children }: { children: string }) {
   return (
@@ -334,12 +384,13 @@ function PackageCard({
   item,
   darkButton = false,
 }: {
-  item: PricingPackage | ((typeof retainers)[number] & { category?: string; tag?: string; popular?: boolean });
+  item: PricingPackage | ((typeof retainers)[number] & { category?: string; tag?: string; popular?: boolean; audienceFit?: string });
   darkButton?: boolean;
 }) {
   const isPopular = "popular" in item && Boolean(item.popular);
   const tag = "tag" in item ? item.tag : undefined;
   const category = "category" in item ? item.category : undefined;
+  const audienceFit = "audienceFit" in item ? item.audienceFit : undefined;
 
   return (
     <div
@@ -357,6 +408,7 @@ function PackageCard({
       </div>
 
       <div className="mt-5 text-[2.35rem] font-semibold tracking-[-0.06em] text-[#111111]">{item.price}</div>
+      {audienceFit ? <p className="mt-3 text-sm leading-6 text-slate-500">{audienceFit}</p> : null}
       <div className="mt-5 flex-1 space-y-3">
         {item.features.map(feature => (
           <div key={feature} className="flex items-start gap-3 text-sm leading-6 text-slate-600">
@@ -407,9 +459,21 @@ export default function Home() {
 
   const heroStats = useMemo(
     () => [
-      { value: "More trust", label: "Customers see a business that looks established, credible, and worth calling right away." },
-      { value: "Faster decisions", label: "The offer, proof, and next step make sense quickly so fewer visitors stall out or bounce." },
-      { value: "Room to grow", label: "The site can win trust in Southern California now and still stay clear as you expand into nearby markets." },
+      {
+        value: "Stop Losing Customers to Bad First Impressions",
+        label:
+          "Your site loads fast, looks credible on mobile, and makes your business look as established as the work you do.",
+      },
+      {
+        value: "Turn Visitors Into Callers",
+        label:
+          "Phone number, form, and scheduling CTA placed where customers actually look. No hunting. No confusion.",
+      },
+      {
+        value: "Grow Into New Cities Without Rebuilding",
+        label:
+          "Expand service areas, add pages, and update offers without starting from scratch every time.",
+      },
     ],
     []
   );
@@ -515,17 +579,70 @@ export default function Home() {
 
     const formPayload = new FormData(event.currentTarget);
     const honeypot = formPayload.get("company_website")?.toString() || "";
+    const normalizedWebsite = normalizeWebsiteUrl(formData.websiteUrl);
+    const contactValue = formData.contactInfo.trim();
+    const looksLikeEmail = contactValue.includes("@");
+    const validEmailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneDigitCount = contactValue.replace(/\D/g, "").length;
 
-    if (formData.projectDetails.trim().length < 20) {
-      const message = "Add a little more detail so the audit has enough context to be useful.";
+    if (!normalizedWebsite) {
+      const message = "Add your website URL so we know what to review.";
       setSubmissionTone("error");
       setSubmissionMessage(message);
-      toast.warning("More detail helps the audit", {
+      toast.warning("Website URL needed", {
         id: "audit-submit",
         description: message,
       });
       return;
     }
+
+    try {
+      new URL(normalizedWebsite);
+    } catch {
+      const message = "Use a valid website URL so the audit points to the right page.";
+      setSubmissionTone("error");
+      setSubmissionMessage(message);
+      toast.warning("Valid website URL needed", {
+        id: "audit-submit",
+        description: message,
+      });
+      return;
+    }
+
+    if (!contactValue) {
+      const message = "Add an email address or phone number so we know where to send the audit.";
+      setSubmissionTone("error");
+      setSubmissionMessage(message);
+      toast.warning("Contact info needed", {
+        id: "audit-submit",
+        description: message,
+      });
+      return;
+    }
+
+    if (looksLikeEmail && !validEmailPattern.test(contactValue)) {
+      const message = "Use a valid email address or enter a phone number instead.";
+      setSubmissionTone("error");
+      setSubmissionMessage(message);
+      toast.warning("Valid contact needed", {
+        id: "audit-submit",
+        description: message,
+      });
+      return;
+    }
+
+    if (!looksLikeEmail && phoneDigitCount < 7) {
+      const message = "Use a full phone number so we can send or follow up on the audit correctly.";
+      setSubmissionTone("error");
+      setSubmissionMessage(message);
+      toast.warning("Valid contact needed", {
+        id: "audit-submit",
+        description: message,
+      });
+      return;
+    }
+
+    const tradeLabel = formData.primaryTrade || "Other";
 
     toast.loading("Sending audit request", {
       id: "audit-submit",
@@ -533,7 +650,14 @@ export default function Home() {
     });
 
     auditMutation.mutate({
-      ...formData,
+      name: "Blue Tape audit request",
+      companyName: deriveCompanyNameFromWebsite(normalizedWebsite),
+      email: looksLikeEmail ? contactValue : "",
+      phone: looksLikeEmail ? "" : contactValue,
+      websiteUrl: normalizedWebsite,
+      primaryTrade: tradeLabel,
+      serviceArea: "Southern California",
+      projectDetails: `Simplified homepage audit request for a ${tradeLabel} business submitted through the homepage form.`,
       honeypot,
       sourcePath: typeof window !== "undefined" ? window.location.pathname : "/",
     });
@@ -611,13 +735,11 @@ export default function Home() {
               <div className="inline-flex border border-black/10 bg-white px-3 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-slate-600 sm:px-4">
                 Southern California web design for serious contractors
               </div>
-              <h1 className="mt-6 max-w-[10.8ch] text-[3rem] font-semibold leading-[0.92] tracking-[-0.07em] text-[#111111] sm:max-w-[11.8ch] sm:text-[4.6rem] lg:text-[5.35rem] lg:leading-[0.94] lg:tracking-[-0.065em]">
-                <span className="block">See the tape.</span>
-                <span className="block">Fix the flaws.</span>
-                <span className="block">Launch with confidence.</span>
+              <h1 className="mt-6 max-w-[12ch] text-[3rem] font-semibold leading-[0.92] tracking-[-0.07em] text-[#111111] sm:max-w-[12ch] sm:text-[4.6rem] lg:text-[5.15rem] lg:leading-[0.94] lg:tracking-[-0.065em]">
+                Web Design for Contractors Who Need More Calls, Not More Complexity
               </h1>
-              <p className="mt-6 max-w-[36rem] text-[1.02rem] leading-7 text-slate-600 sm:text-[1.15rem] sm:leading-8">
-                You need a website that makes your business look as credible as the work you do. Blue Tape Sites helps plumbers, electricians, cleaners, and home-service teams earn more trust, more qualified calls, and a clearer sense of exactly what it will take to get the site pulling its weight.
+              <p className="mt-6 max-w-[42rem] text-[1.02rem] leading-7 text-slate-600 sm:text-[1.15rem] sm:leading-8">
+                You do the work. We make sure your website sells it. Clear pricing, fast turnaround, no agency runaround. Built for plumbers, electricians, cleaners, and home-service teams in Southern California.
               </p>
               <p className="mt-4 max-w-[34rem] text-sm leading-7 text-slate-500 sm:text-[0.98rem]">
                 If you are growing into new cities, adding service areas, or trying to win better jobs, you should not have to guess what the website costs, what needs fixing, or what happens next.
@@ -625,10 +747,10 @@ export default function Home() {
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Button asChild className="h-13 rounded-none border border-[#111111] bg-[#111111] px-6 text-sm font-semibold uppercase tracking-[0.08em] text-white hover:bg-slate-800 sm:w-auto">
-                  <a href="#audit">Request Your Free Audit</a>
+                  <a href="#audit">Get Your Free Site Audit</a>
                 </Button>
                 <Button asChild variant="outline" className="h-13 rounded-none border-[#111111] bg-transparent px-6 text-sm font-semibold uppercase tracking-[0.08em] text-[#111111] hover:bg-white sm:w-auto">
-                  <a href="#pricing">See Pricing Packages</a>
+                  <a href="#examples">See Example Sites</a>
                 </Button>
               </div>
             </div>
@@ -647,11 +769,128 @@ export default function Home() {
               <div className="grid gap-px border border-black/10 bg-black/10 sm:grid-cols-3">
                 {heroStats.map(stat => (
                   <div key={stat.value} className="bg-[#f7f5f1] p-5">
-                    <div className="text-[1.45rem] font-semibold tracking-[-0.06em] text-[#111111]">{stat.value}</div>
-                    <p className="mt-2 text-sm leading-6 text-slate-600">{stat.label}</p>
+                    <div className="text-lg font-semibold leading-tight tracking-[-0.04em] text-[#111111]">{stat.value}</div>
+                    <p className="mt-3 text-sm leading-6 text-slate-600">{stat.label}</p>
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="audit" className="container py-18 sm:py-24">
+          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+            <div>
+              <SectionEyebrow>Free Blue Tape Audit</SectionEyebrow>
+              <h2 className="max-w-[12ch] text-[2.2rem] font-semibold leading-[0.98] tracking-[-0.06em] text-[#111111] sm:text-[3.4rem] lg:max-w-[10ch]">
+                Let us mark up the misses before you spend more on traffic.
+              </h2>
+              <p className="mt-6 max-w-xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
+                Send the site, tell us the trade, and give us one place to send the review. We will show you what is making the page look weak, what is hurting trust, and what should be fixed first.
+              </p>
+
+              <div className="mt-8 border border-black/10 bg-white p-4 sm:p-5">
+                <img
+                  src="https://d2xsxph8kpxj0f.cloudfront.net/310419663032234167/TpcXhRqminM236HC9RQjNi/blue-tape-audit-board-V6yoJbGViP874uyi6wKV9P.webp"
+                  alt="Website audit board with blue tape callouts and markup notes"
+                  className="h-full w-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </div>
+
+            <div className="border border-black/10 bg-white p-6 sm:p-8">
+              <div className="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-slate-400">Audit request form</div>
+
+              <form className="mt-8 grid gap-5" onSubmit={handleSubmit}>
+                <label className="grid gap-2 text-sm font-medium text-slate-700">
+                  Your website URL
+                  <input
+                    className="h-12 border border-black/10 bg-[#faf8f4] px-4 text-base outline-none transition focus:border-blue-600"
+                    placeholder="yourwebsite.com"
+                    type="text"
+                    name="website"
+                    value={formData.websiteUrl}
+                    onChange={event => handleFieldChange("websiteUrl", event.target.value)}
+                    required
+                  />
+                </label>
+
+                <label className="grid gap-2 text-sm font-medium text-slate-700">
+                  What do you do?
+                  <select
+                    className="h-12 border border-black/10 bg-[#faf8f4] px-4 text-base outline-none transition focus:border-blue-600"
+                    name="trade"
+                    value={formData.primaryTrade}
+                    onChange={event => handleFieldChange("primaryTrade", event.target.value)}
+                    required
+                  >
+                    <option value="" disabled>
+                      Select your trade
+                    </option>
+                    <option value="Plumbing">Plumbing</option>
+                    <option value="Electrical">Electrical</option>
+                    <option value="Cleaning">Cleaning</option>
+                    <option value="HVAC">HVAC</option>
+                    <option value="Garage Doors">Garage Doors</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </label>
+
+                <label className="grid gap-2 text-sm font-medium text-slate-700">
+                  Email or phone
+                  <input
+                    className="h-12 border border-black/10 bg-[#faf8f4] px-4 text-base outline-none transition focus:border-blue-600"
+                    placeholder="you@company.com or (555) 000-0000"
+                    type="text"
+                    name="contact"
+                    value={formData.contactInfo}
+                    onChange={event => handleFieldChange("contactInfo", event.target.value)}
+                    required
+                  />
+                </label>
+
+                <div className="hidden" aria-hidden="true">
+                  <label className="grid gap-2 text-sm font-medium text-slate-700">
+                    Company website helper
+                    <input
+                      className="h-12 border border-black/10 bg-[#faf8f4] px-4 outline-none"
+                      type="text"
+                      name="company_website"
+                      tabIndex={-1}
+                      autoComplete="off"
+                    />
+                  </label>
+                </div>
+
+                <div className="border-l-2 border-blue-600 bg-[#faf8f4] px-4 py-4 text-sm leading-7 text-slate-600">
+                  We send a 5-minute video audit within 48 hours. No call required unless you want one.
+                </div>
+
+                {submissionMessage ? (
+                  <div
+                    className={`px-4 py-4 text-sm leading-7 ${
+                      submissionTone === "success"
+                        ? "border-l-2 border-blue-600 bg-[#f3f6ff] text-slate-700"
+                        : "border-l-2 border-red-600 bg-[#fff6f6] text-slate-700"
+                    }`}
+                  >
+                    <div className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-slate-500">
+                      {submissionTone === "success" ? "Submission status" : "Needs attention"}
+                    </div>
+                    <div className="mt-2">{submissionMessage}</div>
+                  </div>
+                ) : null}
+
+                <Button
+                  type="submit"
+                  disabled={auditMutation.isPending}
+                  className="h-13 rounded-none border border-[#111111] bg-[#111111] text-sm font-semibold uppercase tracking-[0.08em] text-white hover:bg-slate-800"
+                >
+                  {auditMutation.isPending ? "Sending Audit Request..." : "Get Your Free Site Audit"}
+                </Button>
+              </form>
             </div>
           </div>
         </section>
@@ -689,6 +928,34 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="border-t border-black/8 bg-white py-18 sm:py-24">
+          <div className="container">
+            <div className="max-w-3xl">
+              <SectionEyebrow>How It Works</SectionEyebrow>
+              <h2 className="text-[2.2rem] font-semibold leading-[0.98] tracking-[-0.06em] text-[#111111] sm:text-[3.4rem]">
+                A clear timeline from first review to launch.
+              </h2>
+            </div>
+
+            <div className="mt-10 grid gap-px border border-black/10 bg-black/10 md:grid-cols-3">
+              {howItWorksSteps.map(step => {
+                const Icon = step.icon;
+                return (
+                  <div key={step.title} className="bg-[#f7f5f1] p-6 sm:p-7">
+                    <div className="flex items-center gap-3 text-blue-600">
+                      <Icon className="size-5" />
+                      <div className="h-px flex-1 bg-black/8" />
+                    </div>
+                    <div className="mt-5 text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-slate-400">{step.timing}</div>
+                    <h3 className="mt-2 text-[1.55rem] font-semibold tracking-[-0.05em] text-[#111111]">{step.title}</h3>
+                    <p className="mt-4 text-[0.98rem] leading-7 text-slate-600">{step.copy}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
         <section className="border-y border-black/8 bg-white py-18 sm:py-28">
           <div className="container grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
             <div>
@@ -716,12 +983,12 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="border-y border-black/8 bg-white py-18 sm:py-28">
+        <section id="examples" className="border-y border-black/8 bg-white py-18 sm:py-28">
           <div className="container">
             <div className="max-w-3xl">
-              <SectionEyebrow>Example Website Directions</SectionEyebrow>
+              <SectionEyebrow>Built for Your Trade</SectionEyebrow>
               <h2 className="text-[2.2rem] font-semibold leading-[0.98] tracking-[-0.06em] text-[#111111] sm:text-[3.4rem]">
-                Three website styles for three very different service brands.
+                Example directions for the kinds of contractor sites that need to ring the phone.
               </h2>
               <p className="mt-6 text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
                 Your business should not look like every other contractor site in the county. These examples show how the right visual system, tone, and proof can make your company feel more established, more specific, and easier to trust.
@@ -750,6 +1017,7 @@ export default function Home() {
                     </div>
                     <h3 className={`mt-3 text-[1.45rem] font-semibold text-[#111111] ${site.titleClass}`}>{site.name}</h3>
                     <p className="mt-2 text-sm leading-6 text-slate-600">{site.direction}</p>
+                    <p className="mt-2 text-sm font-medium leading-6 text-slate-700">Result: {site.result}</p>
                   </div>
 
                   <div className="p-4 sm:p-5">
@@ -788,20 +1056,23 @@ export default function Home() {
                 Make it easy for customers to see that you work where they live.
               </h2>
               <p className="mt-6 text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
-                Whether someone is in Orange County, Los Angeles, the Inland Empire, San Diego, or another California market you serve, the message should help them recognize right away that they are in the right place.
+                The first job is making it obvious where you work today. The second job is showing where the business is going next.
               </p>
             </div>
 
-            <div className="grid gap-px border border-black/10 bg-black/10">
-              {serviceAreas.map(area => (
-                <div key={area.title} className="grid gap-4 bg-[#f7f5f1] p-5 sm:grid-cols-[14rem_1fr] sm:items-start sm:p-6">
-                  <div className="flex items-center gap-3 text-[#111111]">
-                    <MapPin className="size-4 text-blue-600" />
-                    <h3 className="text-[1.15rem] font-semibold tracking-[-0.04em]">{area.title}</h3>
+            <div>
+              <div className="grid gap-px border border-black/10 bg-black/10">
+                {serviceAreas.map(area => (
+                  <div key={area.title} className="grid gap-4 bg-[#f7f5f1] p-5 sm:grid-cols-[14rem_1fr] sm:items-start sm:p-6">
+                    <div className="flex items-center gap-3 text-[#111111]">
+                      <MapPin className="size-4 text-blue-600" />
+                      <h3 className="text-[1.15rem] font-semibold tracking-[-0.04em]">{area.title}</h3>
+                    </div>
+                    <p className="text-sm leading-7 text-slate-600 sm:text-[0.98rem]">{area.copy}</p>
                   </div>
-                  <p className="text-sm leading-7 text-slate-600 sm:text-[0.98rem]">{area.copy}</p>
-                </div>
-              ))}
+                ))}
+              </div>
+              <p className="mt-5 text-sm leading-7 text-slate-500">Expanding into Ventura and Bakersfield in 2026.</p>
             </div>
           </div>
         </section>
@@ -846,178 +1117,19 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="audit" className="container py-18 sm:py-28">
-          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+        <section className="border-t border-black/8 bg-[#f3f0ea] py-18 sm:py-24">
+          <div className="container grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
             <div>
-              <SectionEyebrow>Free Blue Tape Audit</SectionEyebrow>
-              <h2 className="max-w-[12ch] text-[2.2rem] font-semibold leading-[0.98] tracking-[-0.06em] text-[#111111] sm:text-[3.4rem] lg:max-w-[10ch]">
-                Let us mark up the misses before you spend more on traffic.
+              <SectionEyebrow>Who This Is Not For</SectionEyebrow>
+              <h2 className="max-w-[12ch] text-[2.2rem] font-semibold leading-[0.98] tracking-[-0.06em] text-[#111111] sm:text-[3.25rem]">
+                We are not chasing design awards. We are building contractor sites that make the phone ring.
               </h2>
-              <p className="mt-6 max-w-xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
-                Send your current site, your service area, and what you want to improve. We will show you exactly where the page is losing customers, what is making the business look weaker than it should, and what to fix first, without talking in circles.
-              </p>
-
-              <div className="mt-8 border border-black/10 bg-white p-4 sm:p-5">
-                <img
-                  src="https://d2xsxph8kpxj0f.cloudfront.net/310419663032234167/TpcXhRqminM236HC9RQjNi/blue-tape-audit-board-V6yoJbGViP874uyi6wKV9P.webp"
-                  alt="Website audit board with blue tape callouts and markup notes"
-                  className="h-full w-full object-cover"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-
-              <div className="mt-5 border-l-2 border-blue-600 pl-4 text-sm leading-7 text-slate-600">
-                You get a marked-up review that shows what to keep, what to fix, and what is costing trust right now, so the next step feels obvious instead of vague.
-              </div>
             </div>
 
             <div className="border border-black/10 bg-white p-6 sm:p-8">
-              <div className="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-slate-400">Audit request form</div>
-
-              <form className="mt-8 grid gap-5" onSubmit={handleSubmit}>
-                <div className="grid gap-5 sm:grid-cols-2">
-                  <label className="grid gap-2 text-sm font-medium text-slate-700">
-                    Your name
-                    <input
-                      className="h-12 border border-black/10 bg-[#faf8f4] px-4 outline-none transition focus:border-blue-600"
-                      placeholder="Owner or project lead"
-                      name="name"
-                      value={formData.name}
-                      onChange={event => handleFieldChange("name", event.target.value)}
-                      required
-                    />
-                  </label>
-                  <label className="grid gap-2 text-sm font-medium text-slate-700">
-                    Company name
-                    <input
-                      className="h-12 border border-black/10 bg-[#faf8f4] px-4 outline-none transition focus:border-blue-600"
-                      placeholder="Blue Tape-worthy business"
-                      name="company"
-                      value={formData.companyName}
-                      onChange={event => handleFieldChange("companyName", event.target.value)}
-                      required
-                    />
-                  </label>
-                </div>
-
-                <div className="grid gap-5 sm:grid-cols-2">
-                  <label className="grid gap-2 text-sm font-medium text-slate-700">
-                    Email address
-                    <input
-                      className="h-12 border border-black/10 bg-[#faf8f4] px-4 outline-none transition focus:border-blue-600"
-                      placeholder="you@company.com"
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={event => handleFieldChange("email", event.target.value)}
-                      required
-                    />
-                  </label>
-                  <label className="grid gap-2 text-sm font-medium text-slate-700">
-                    Phone number
-                    <input
-                      className="h-12 border border-black/10 bg-[#faf8f4] px-4 outline-none transition focus:border-blue-600"
-                      placeholder="(555) 000-0000"
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={event => handleFieldChange("phone", event.target.value)}
-                    />
-                  </label>
-                </div>
-
-                <label className="grid gap-2 text-sm font-medium text-slate-700">
-                  Website URL
-                  <input
-                    className="h-12 border border-black/10 bg-[#faf8f4] px-4 outline-none transition focus:border-blue-600"
-                    placeholder="https://yourwebsite.com"
-                      type="url"
-                      name="website"
-                      value={formData.websiteUrl}
-
-                    onChange={event => handleFieldChange("websiteUrl", event.target.value)}
-                    required
-                  />
-                </label>
-
-                <div className="grid gap-5 sm:grid-cols-2">
-                  <label className="grid gap-2 text-sm font-medium text-slate-700">
-                    Primary trade
-                    <input
-                      className="h-12 border border-black/10 bg-[#faf8f4] px-4 outline-none transition focus:border-blue-600"
-                      placeholder="Plumbing, electrical, cleaning..."
-                      name="trade"
-                      value={formData.primaryTrade}
-                      onChange={event => handleFieldChange("primaryTrade", event.target.value)}
-                      required
-                    />
-                  </label>
-                  <label className="grid gap-2 text-sm font-medium text-slate-700">
-                    Service area
-                    <input
-                      className="h-12 border border-black/10 bg-[#faf8f4] px-4 outline-none transition focus:border-blue-600"
-                      placeholder="Orange County, Inland Empire, SoCal..."
-                      name="service_area"
-                      value={formData.serviceArea}
-                      onChange={event => handleFieldChange("serviceArea", event.target.value)}
-                      required
-                    />
-                  </label>
-                </div>
-
-                <label className="grid gap-2 text-sm font-medium text-slate-700">
-                  What feels off right now?
-                  <textarea
-                    className="min-h-34 border border-black/10 bg-[#faf8f4] px-4 py-3 outline-none transition focus:border-blue-600"
-                    placeholder="Tell us where the site feels weak: trust, messaging, design, mobile flow, slow load, or something else."
-                    name="frustration"
-                    value={formData.projectDetails}
-                    onChange={event => handleFieldChange("projectDetails", event.target.value)}
-                    required
-                  />
-                </label>
-
-                <div className="hidden" aria-hidden="true">
-                  <label className="grid gap-2 text-sm font-medium text-slate-700">
-                    Company website helper
-                    <input
-                      className="h-12 border border-black/10 bg-[#faf8f4] px-4 outline-none"
-                      type="text"
-                      name="company_website"
-                      tabIndex={-1}
-                      autoComplete="off"
-                    />
-                  </label>
-                </div>
-
-                <div className="border-l-2 border-blue-600 bg-[#faf8f4] px-4 py-4 text-sm leading-7 text-slate-600">
-                  We show you exactly what is hurting trust, what is making the offer harder to understand, and what should be fixed first.
-                </div>
-
-                {submissionMessage ? (
-                  <div
-                    className={`px-4 py-4 text-sm leading-7 ${
-                      submissionTone === "success"
-                        ? "border-l-2 border-blue-600 bg-[#f3f6ff] text-slate-700"
-                        : "border-l-2 border-red-600 bg-[#fff6f6] text-slate-700"
-                    }`}
-                  >
-                    <div className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-slate-500">
-                      {submissionTone === "success" ? "Submission status" : "Needs attention"}
-                    </div>
-                    <div className="mt-2">{submissionMessage}</div>
-                  </div>
-                ) : null}
-
-                <Button
-                  type="submit"
-                  disabled={auditMutation.isPending}
-                  className="h-13 rounded-none border border-[#111111] bg-[#111111] text-sm font-semibold uppercase tracking-[0.08em] text-white hover:bg-slate-800"
-                >
-                  {auditMutation.isPending ? "Sending Audit Request..." : "Request Your Free Audit"}
-                </Button>
-              </form>
+              <p className="text-base leading-8 text-slate-700 sm:text-lg">
+                We do not build sites for e-commerce stores, restaurants, law firms, or anyone chasing design awards. We build for contractors who want the phone to ring. If that is not you, we are not your team.
+              </p>
             </div>
           </div>
         </section>
