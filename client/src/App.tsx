@@ -1,12 +1,13 @@
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect, useRef } from "react";
 
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
-import { Route, Switch } from "wouter";
+import { Route, Switch, useLocation } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
+import { buildPageViewPayload, trackPageView } from "./lib/pageviewTracking";
 
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
@@ -14,10 +15,31 @@ const PlumberLanding = lazy(() => import("./pages/PlumberLanding"));
 const RemodelerLanding = lazy(() => import("./pages/RemodelerLanding"));
 const Unsubscribe = lazy(() => import("./pages/Unsubscribe"));
 
+function PageViewTracker() {
+  const [location] = useLocation();
+  const lastTrackedPath = useRef<string | null>(null);
+
+  useEffect(() => {
+    const path = `${window.location.pathname}${window.location.search}`;
+
+    if (lastTrackedPath.current === path) {
+      return;
+    }
+
+    lastTrackedPath.current = path;
+    void trackPageView(buildPageViewPayload(path));
+  }, [location]);
+
+  return null;
+}
+
 function Router() {
+
   // make sure to consider if you need authentication for certain routes
   return (
-    <Suspense
+    <>
+      <PageViewTracker />
+      <Suspense
       fallback={
         <div className="min-h-screen bg-[#faf8f4] text-[#111111]">
           <div className="container flex min-h-screen items-center justify-center">
@@ -37,7 +59,8 @@ function Router() {
         {/* Final fallback route */}
         <Route component={NotFound} />
       </Switch>
-    </Suspense>
+      </Suspense>
+    </>
   );
 }
 

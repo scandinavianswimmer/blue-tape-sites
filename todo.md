@@ -150,3 +150,16 @@
 - [x] Replace the service-area labels with specific city lists and add the 2026 expansion note.
 - [x] Add a "Who This Is Not For" filter section above the footer.
 - [x] Audit and fix the homepage mobile experience for tap targets, horizontal scroll, form usability, pricing layout, asset weight, and CTA height.
+- [x] Re-state the zero-traffic diagnosis clearly and identify the single biggest reasons Blue Tape Sites still has no visitors after the recent updates.
+- [ ] Produce a ranked traffic-recovery action list from highest to lowest expected impact for Blue Tape Sites.
+- [ ] Audit and fix analytics attribution so pageviews for bluetapesites.com are measured under the correct domain.
+- [ ] Audit and strengthen search-readable metadata and first-response HTML for the highest-priority commercial pages.
+- [ ] Prepare the next owner-required traffic steps, including search-console setup, listing claims, and outreach sending, in execution order.
+- [ ] Re-rank Blue Tape Sites traffic actions so off-site distribution and authority-building are prioritized over low-leverage site polish.
+- [ ] Audit the current measurement setup and identify the fastest trustworthy baseline for real pageviews and lead-source attribution.
+- [ ] Review the existing listing-claim, outreach, and partner assets to identify which traffic tasks can be executed immediately without more site work.
+- [ ] Execute the next highest-leverage non-site traffic actions and document any remaining login- or verification-dependent steps for the user.
+- [x] Implement first-party pageview tracking with database persistence, route-change wiring, migration, and regression validation.
+- [ ] Research real named Southern California partner contacts for the first 15 outreach targets and upgrade the handoff file with live organizations, URLs, and contact pages.
+- [ ] Prepare submission-ready profile claim copy for the first 10 listings with consistent NAP, descriptions, and category choices.
+- [ ] Create an LLM visibility file that clearly explains Blue Tape Sites, its offer, proof, and ideal-fit guidance for AI retrieval and recommendation systems.

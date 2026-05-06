@@ -7,6 +7,7 @@ import { registerOAuthRoutes } from "./oauth";
 import { appRouter } from "../routers";
 import { handleAuditRequest, handleAuditSecretCheck } from "../auditIntake";
 import { handleBlogCtaClick } from "../blogCtaTracking";
+import { handlePageView } from "../pageviewTracking";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
 
@@ -48,6 +49,7 @@ async function startServer() {
   app.post("/api/audit", handleAuditRequest);
   app.post("/api/audit/verify-secret", handleAuditSecretCheck);
   app.post("/api/blog-cta-click", handleBlogCtaClick);
+  app.post("/api/pageview", handlePageView);
   // development mode uses Vite, production mode uses static files
   if (process.env.NODE_ENV === "development") {
     await setupVite(app, server);

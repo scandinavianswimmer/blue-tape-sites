@@ -7,8 +7,10 @@ import {
   InsertAuditLead,
   InsertAuditSubmissionLog,
   InsertBlogCtaClick,
+  InsertPageView,
   InsertUnsubscribeRequest,
   InsertUser,
+  pageViews,
   unsubscribeRequests,
   users,
 } from "../drizzle/schema";
@@ -125,6 +127,15 @@ export async function createBlogCtaClick(click: InsertBlogCtaClick): Promise<voi
   }
 
   await db.insert(blogCtaClicks).values(click);
+}
+
+export async function createPageView(view: InsertPageView): Promise<void> {
+  const db = await getDb();
+  if (!db) {
+    throw new Error("Database is not available for pageview tracking.");
+  }
+
+  await db.insert(pageViews).values(view);
 }
 
 export async function createUnsubscribeRequest(request: InsertUnsubscribeRequest): Promise<void> {

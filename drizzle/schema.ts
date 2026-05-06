@@ -63,6 +63,15 @@ export const blogCtaClicks = mysqlTable("blogCtaClicks", {
   createdAt: timestamp("createdAt").defaultNow().notNull(),
 });
 
+export const pageViews = mysqlTable("pageViews", {
+  id: int("id").autoincrement().primaryKey(),
+  path: varchar("path", { length: 512 }).notNull(),
+  referrer: varchar("referrer", { length: 2048 }),
+  userAgent: varchar("userAgent", { length: 512 }),
+  sessionId: varchar("sessionId", { length: 128 }).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
 export const unsubscribeRequests = mysqlTable("unsubscribeRequests", {
   id: int("id").autoincrement().primaryKey(),
   email: varchar("email", { length: 320 }).notNull(),
@@ -82,5 +91,7 @@ export type AuditSubmissionLog = typeof auditSubmissionLogs.$inferSelect;
 export type InsertAuditSubmissionLog = typeof auditSubmissionLogs.$inferInsert;
 export type BlogCtaClick = typeof blogCtaClicks.$inferSelect;
 export type InsertBlogCtaClick = typeof blogCtaClicks.$inferInsert;
+export type PageView = typeof pageViews.$inferSelect;
+export type InsertPageView = typeof pageViews.$inferInsert;
 export type UnsubscribeRequest = typeof unsubscribeRequests.$inferSelect;
 export type InsertUnsubscribeRequest = typeof unsubscribeRequests.$inferInsert;

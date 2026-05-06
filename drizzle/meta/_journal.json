@@ -36,6 +36,13 @@
       "when": 1776544269854,
       "tag": "0004_green_mandroid",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1778096573473,
+      "tag": "0005_colossal_shinobi_shaw",
+      "breakpoints": true
     }
   ]
 }
