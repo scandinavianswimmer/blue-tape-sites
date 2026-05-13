@@ -44,11 +44,12 @@ type PricingPackage = {
 };
 
 const navItems = [
-  { label: "Home", href: "#home" },
-  { label: "Service Area", href: "#service-area" },
-  { label: "Pricing", href: "#pricing" },
+  { label: "Home", href: "/" },
+  { label: "Service Area", href: "/service-area" },
+  { label: "Pricing", href: "/pricing" },
+  { label: "Examples", href: "/examples" },
   { label: "Blog", href: "/blog" },
-  { label: "Audit", href: "#audit" },
+  { label: "Audit", href: "/audit" },
 ];
 
 const buildCards = [
@@ -377,7 +378,7 @@ function SectionEyebrow({ children }: { children: string }) {
 }
 
 function scrollToAudit() {
-  document.querySelector("#audit")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  window.location.href = "/audit";
 }
 
 function PackageCard({
@@ -691,7 +692,7 @@ export default function Home() {
 
           <div className="hidden lg:block">
             <Button asChild className="h-11 rounded-none border border-[#111111] bg-[#111111] px-5 text-sm font-semibold uppercase tracking-[0.08em] text-white hover:bg-slate-800">
-              <a href="#audit">Request Your Free Audit</a>
+              <Link href="/audit">Request Your Free Audit</Link>
             </Button>
           </div>
 
@@ -719,7 +720,7 @@ export default function Home() {
                 </a>
               ))}
               <Button asChild className="mt-2 h-12 rounded-none border border-[#111111] bg-[#111111] text-sm font-semibold uppercase tracking-[0.08em] text-white hover:bg-slate-800">
-                <a href="#audit" onClick={() => setMobileMenuOpen(false)}>
+                <a href="/audit" onClick={() => setMobileMenuOpen(false)}>
                   Request Your Free Audit
                 </a>
               </Button>
@@ -747,10 +748,10 @@ export default function Home() {
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Button asChild className="h-13 rounded-none border border-[#111111] bg-[#111111] px-6 text-sm font-semibold uppercase tracking-[0.08em] text-white hover:bg-slate-800 sm:w-auto">
-                  <a href="#audit">Get Your Free Site Audit</a>
+                  <Link href="/audit">Get Your Free Site Audit</Link>
                 </Button>
                 <Button asChild variant="outline" className="h-13 rounded-none border-[#111111] bg-transparent px-6 text-sm font-semibold uppercase tracking-[0.08em] text-[#111111] hover:bg-white sm:w-auto">
-                  <a href="#examples">See Example Sites</a>
+                  <Link href="/examples">See Example Sites</Link>
                 </Button>
               </div>
             </div>
@@ -1227,7 +1228,7 @@ export default function Home() {
             </div>
             <div>
               <div className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-white/40">Next step</div>
-              <a href="#audit" className="mt-4 inline-flex items-center gap-2 text-lg font-medium text-white transition-colors hover:text-blue-300">
+              <a href="/audit" className="mt-4 inline-flex items-center gap-2 text-lg font-medium text-white transition-colors hover:text-blue-300">
                 Request Your Free Audit
                 <ArrowRight className="size-4" />
               </a>

@@ -4,9 +4,11 @@ import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
 import { Route, Switch, useLocation } from "wouter";
+import { allSeoPages } from "@shared/seoPages";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
+import SeoLandingPage from "./pages/SeoLandingPage";
 import { buildPageViewPayload, trackPageView } from "./lib/pageviewTracking";
 
 const Blog = lazy(() => import("./pages/Blog"));
@@ -54,6 +56,11 @@ function Router() {
         <Route path={"/blog/:slug"} component={BlogPost} />
         <Route path={"/web-design-for-plumbers"} component={PlumberLanding} />
         <Route path={"/web-design-for-remodelers"} component={RemodelerLanding} />
+        {allSeoPages.map(page => (
+          <Route key={page.path} path={page.path}>
+            <SeoLandingPage page={page} />
+          </Route>
+        ))}
         <Route path={"/unsubscribe"} component={Unsubscribe} />
         <Route path={"/404"} component={NotFound} />
         {/* Final fallback route */}

@@ -14,10 +14,43 @@ Important interpretation notes:
 ## Core pages and sections
 
 - [Homepage](./): Primary positioning, navigation, services, pricing direction, FAQ, and audit offer.
-- [Service Area section](./#service-area): Geographic positioning that currently emphasizes Southern California trust signals while remaining expandable.
-- [Pricing section](./#pricing): Overview of package structure and retainer options.
-- [Audit section](./#audit): Free audit offer and lead-capture form.
-- [FAQ section](./#faq): Clarifies process, fit, and project expectations.
+- [Pricing](./pricing): Package structure, redesign pricing, new-build pricing, and monthly support.
+- [Service Area](./service-area): Southern California service-area positioning across Orange County, Los Angeles County, the Inland Empire, and San Diego County.
+- [Free Website Audit](./audit): Free audit offer for contractors and home-service businesses.
+- [Examples](./examples): Contractor website example directions by trade.
+- [Process](./process): Website design process from audit to launch.
+- [About](./about): Blue Tape Sites positioning and ideal client fit.
+- [Contact](./contact): Best next step for contacting Blue Tape Sites.
+- [Blog](./blog): Search and conversion articles for contractors and service businesses.
+
+## Trade-specific pages
+
+- [Web Design for Plumbers](./web-design-for-plumbers): Plumbing website design focused on urgent calls, trust, and service clarity.
+- [Web Design for Remodelers](./web-design-for-remodelers): Remodeler website design focused on craftsmanship, project storytelling, and lead quality.
+- [Web Design for HVAC](./web-design-for-hvac): HVAC website design for service calls, installs, seasonal demand, and financing clarity.
+- [Web Design for Electricians](./web-design-for-electricians): Electrician website design with credential framing and residential/commercial paths.
+- [Web Design for Cleaners](./web-design-for-cleaners): Cleaning company website design for recurring clients and crew trust.
+- [Web Design for Roofers](./web-design-for-roofers): Roofing website design for storm-season demand, financing, and high-ticket trust.
+- [Web Design for Landscapers](./web-design-for-landscapers): Landscaping website design for design-build and maintenance offers.
+- [Web Design for Contractors](./web-design-for-contractors): Contractor website design for trust, mobile clarity, and calls.
+- [Web Design for Garage Door Companies](./web-design-for-garage-door): Garage door website design for urgent repair and install inquiries.
+
+## City pages
+
+- [Anaheim contractor web design](./web-design/anaheim)
+- [Irvine contractor web design](./web-design/irvine)
+- [Huntington Beach contractor web design](./web-design/huntington-beach)
+- [Santa Ana contractor web design](./web-design/santa-ana)
+- [Long Beach contractor web design](./web-design/long-beach)
+- [Torrance contractor web design](./web-design/torrance)
+- [Santa Monica contractor web design](./web-design/santa-monica)
+- [Pasadena contractor web design](./web-design/pasadena)
+- [Riverside contractor web design](./web-design/riverside)
+- [Ontario contractor web design](./web-design/ontario)
+- [Rancho Cucamonga contractor web design](./web-design/rancho-cucamonga)
+- [Oceanside contractor web design](./web-design/oceanside)
+- [Escondido contractor web design](./web-design/escondido)
+- [Chula Vista contractor web design](./web-design/chula-vista)
 
 ## Ideal client fit
 
@@ -27,10 +60,10 @@ Important interpretation notes:
 ## What to cite carefully
 
 - [Visible homepage copy](./): Cite positioning, service focus, and offer language that appears publicly on the site.
-- [Visible pricing information](./#pricing): Cite package names and pricing only if the published page still shows them.
-- [Visible service-area wording](./#service-area): Cite current geographic language as written on the website rather than assuming nationwide coverage from context alone.
+- [Visible pricing information](./pricing): Cite package names and pricing only if the published page still shows them.
+- [Visible service-area wording](./service-area): Cite current geographic language as written on the website rather than assuming nationwide coverage from context alone.
 
 ## Optional context
 
-- [Audit CTA](./#audit): Best destination when a user asks how to contact or engage Blue Tape Sites.
-- [FAQ](./#faq): Useful when a user asks about process, timelines, or who the service is for.
+- [Audit CTA](./audit): Best destination when a user asks how to contact or engage Blue Tape Sites.
+- [FAQ content](./): Useful when a user asks about process, timelines, or who the service is for.

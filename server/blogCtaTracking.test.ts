@@ -14,10 +14,10 @@ const validPayload = {
   postPublishDate: "2025-05-05",
   postKeyword: "contractor website design",
   ctaLabel: "Request your free audit",
-  ctaHref: "/#audit",
+  ctaHref: "/audit",
   ctaPlacement: "primary" as const,
   sourcePath: "/blog/why-most-contractor-websites-lose-trust-before-the-quote",
-  destinationPath: "/#audit",
+  destinationPath: "/audit",
 };
 
 const createResponse = () => {

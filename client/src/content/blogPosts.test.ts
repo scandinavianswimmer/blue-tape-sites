@@ -64,8 +64,8 @@ describe("blogPosts archive", () => {
       expect(cta.description.length).toBeGreaterThan(40);
       expect(cta.primaryLabel).toBeTruthy();
       expect(cta.secondaryLabel).toBeTruthy();
-      expect(["/#audit", "/#pricing", "/#service-area"]).toContain(cta.primaryHref);
-      expect(["/#audit", "/#pricing", "/#service-area"]).toContain(cta.secondaryHref);
+      expect(["/audit", "/pricing", "/service-area"]).toContain(cta.primaryHref);
+      expect(["/audit", "/pricing", "/service-area"]).toContain(cta.secondaryHref);
     }
   });
 });

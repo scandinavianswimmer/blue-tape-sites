@@ -95,16 +95,16 @@ export default function TradeLandingPage({ page }: { page: TradeLandingPageData 
             <Link href="/blog" className="text-sm font-medium text-slate-600 transition-colors hover:text-[#111111]">
               Blog
             </Link>
-            <a href="/#pricing" className="text-sm font-medium text-slate-600 transition-colors hover:text-[#111111]">
+            <a href="/pricing" className="text-sm font-medium text-slate-600 transition-colors hover:text-[#111111]">
               Pricing
             </a>
-            <a href="/#audit" className="text-sm font-medium text-slate-600 transition-colors hover:text-[#111111]">
+            <a href="/audit" className="text-sm font-medium text-slate-600 transition-colors hover:text-[#111111]">
               Audit
             </a>
           </nav>
 
           <Button asChild className="h-11 rounded-none border border-[#111111] bg-[#111111] px-5 text-sm font-semibold uppercase tracking-[0.08em] text-white hover:bg-slate-800">
-            <a href="/#audit">Request audit</a>
+            <a href="/audit">Request audit</a>
           </Button>
         </div>
       </header>
@@ -121,10 +121,10 @@ export default function TradeLandingPage({ page }: { page: TradeLandingPageData 
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button asChild className="h-13 rounded-none border border-[#111111] bg-[#111111] px-6 text-sm font-semibold uppercase tracking-[0.08em] text-white hover:bg-slate-800 sm:w-auto">
-                <a href="/#audit">{page.primaryCtaLabel}</a>
+                <a href="/audit">{page.primaryCtaLabel}</a>
               </Button>
               <Button asChild variant="outline" className="h-13 rounded-none border-[#111111] bg-transparent px-6 text-sm font-semibold uppercase tracking-[0.08em] text-[#111111] hover:bg-white sm:w-auto">
-                <a href="/#pricing">{page.secondaryCtaLabel}</a>
+                <a href="/pricing">{page.secondaryCtaLabel}</a>
               </Button>
             </div>
 
@@ -293,7 +293,7 @@ export default function TradeLandingPage({ page }: { page: TradeLandingPageData 
           </div>
           <div className="flex flex-col gap-3 sm:flex-row lg:flex-col lg:items-stretch">
             <Button asChild className="h-13 rounded-none border border-white bg-white px-6 text-sm font-semibold uppercase tracking-[0.08em] text-[#111111] hover:bg-slate-200">
-              <a href="/#audit">{page.primaryCtaLabel}</a>
+              <a href="/audit">{page.primaryCtaLabel}</a>
             </Button>
             <Button asChild variant="outline" className="h-13 rounded-none border-white/35 bg-transparent px-6 text-sm font-semibold uppercase tracking-[0.08em] text-white hover:bg-white/10">
               <Link href={page.relatedArticleHref}>

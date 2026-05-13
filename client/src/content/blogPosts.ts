@@ -1626,9 +1626,9 @@ export const serviceCtasByCategory: Record<string, BlogPostServiceCta> = {
     description:
       "If this article sounds familiar, Blue Tape Sites can audit the weak spots, tighten the offer, and rebuild the page structure so better leads feel confident faster.",
     primaryLabel: "Request your free audit",
-    primaryHref: "/#audit",
+    primaryHref: "/audit",
     secondaryLabel: "See pricing packages",
-    secondaryHref: "/#pricing",
+    secondaryHref: "/pricing",
   },
   "Website Critique": {
     eyebrow: "Relevant service",
@@ -1636,9 +1636,9 @@ export const serviceCtasByCategory: Record<string, BlogPostServiceCta> = {
     description:
       "We review homepage hierarchy, trust signals, mobile clarity, and calls to action so you can see exactly where the site is helping or hurting conversion.",
     primaryLabel: "Request your free audit",
-    primaryHref: "/#audit",
+    primaryHref: "/audit",
     secondaryLabel: "See pricing packages",
-    secondaryHref: "/#pricing",
+    secondaryHref: "/pricing",
   },
   "Local SEO": {
     eyebrow: "Relevant service",
@@ -1646,9 +1646,9 @@ export const serviceCtasByCategory: Record<string, BlogPostServiceCta> = {
     description:
       "Blue Tape Sites helps home-service companies tighten service-area messaging, city-page strategy, and local trust signals so the website earns more qualified regional traffic.",
     primaryLabel: "Review service-area strategy",
-    primaryHref: "/#service-area",
+    primaryHref: "/service-area",
     secondaryLabel: "Request your free audit",
-    secondaryHref: "/#audit",
+    secondaryHref: "/audit",
   },
   "Technical SEO": {
     eyebrow: "Relevant service",
@@ -1656,9 +1656,9 @@ export const serviceCtasByCategory: Record<string, BlogPostServiceCta> = {
     description:
       "From metadata and crawl signals to site structure and load behavior, we help contractor websites clean up the technical issues that undermine discoverability.",
     primaryLabel: "Request your free audit",
-    primaryHref: "/#audit",
+    primaryHref: "/audit",
     secondaryLabel: "See pricing packages",
-    secondaryHref: "/#pricing",
+    secondaryHref: "/pricing",
   },
   Conversion: {
     eyebrow: "Relevant service",
@@ -1666,9 +1666,9 @@ export const serviceCtasByCategory: Record<string, BlogPostServiceCta> = {
     description:
       "If your site gets attention but not enough calls, we can sharpen the CTA hierarchy, trust sequence, and contact flow so more readers turn into serious inquiries.",
     primaryLabel: "Request your free audit",
-    primaryHref: "/#audit",
+    primaryHref: "/audit",
     secondaryLabel: "See pricing packages",
-    secondaryHref: "/#pricing",
+    secondaryHref: "/pricing",
   },
   "Lead Generation": {
     eyebrow: "Relevant service",
@@ -1676,9 +1676,9 @@ export const serviceCtasByCategory: Record<string, BlogPostServiceCta> = {
     description:
       "We build contractor sites around clearer lead paths, stronger service framing, and forms that help the right prospects take the next step.",
     primaryLabel: "Request your free audit",
-    primaryHref: "/#audit",
+    primaryHref: "/audit",
     secondaryLabel: "See pricing packages",
-    secondaryHref: "/#pricing",
+    secondaryHref: "/pricing",
   },
   "Pricing Strategy": {
     eyebrow: "Relevant service",
@@ -1686,9 +1686,9 @@ export const serviceCtasByCategory: Record<string, BlogPostServiceCta> = {
     description:
       "Blue Tape Sites helps service businesses structure pricing, package framing, and estimate language so buyers understand the next step sooner.",
     primaryLabel: "See pricing packages",
-    primaryHref: "/#pricing",
+    primaryHref: "/pricing",
     secondaryLabel: "Request your free audit",
-    secondaryHref: "/#audit",
+    secondaryHref: "/audit",
   },
   "Service Pages": {
     eyebrow: "Relevant service",
@@ -1696,9 +1696,9 @@ export const serviceCtasByCategory: Record<string, BlogPostServiceCta> = {
     description:
       "We can tighten the layout, trust proof, and service-page hierarchy so each page does a better job of selling the work you actually want.",
     primaryLabel: "Request your free audit",
-    primaryHref: "/#audit",
+    primaryHref: "/audit",
     secondaryLabel: "Review service-area strategy",
-    secondaryHref: "/#service-area",
+    secondaryHref: "/service-area",
   },
   "Service Area SEO": {
     eyebrow: "Relevant service",
@@ -1706,9 +1706,9 @@ export const serviceCtasByCategory: Record<string, BlogPostServiceCta> = {
     description:
       "If your city pages or service-area coverage feel thin, Blue Tape Sites can help restructure the message so search engines and homeowners both understand your footprint.",
     primaryLabel: "Review service-area strategy",
-    primaryHref: "/#service-area",
+    primaryHref: "/service-area",
     secondaryLabel: "Request your free audit",
-    secondaryHref: "/#audit",
+    secondaryHref: "/audit",
   },
   Copywriting: {
     eyebrow: "Relevant service",
@@ -1716,9 +1716,9 @@ export const serviceCtasByCategory: Record<string, BlogPostServiceCta> = {
     description:
       "We rewrite contractor sites so the offer is clearer, the proof lands faster, and the copy sounds like a real operator instead of template filler.",
     primaryLabel: "Request your free audit",
-    primaryHref: "/#audit",
+    primaryHref: "/audit",
     secondaryLabel: "See pricing packages",
-    secondaryHref: "/#pricing",
+    secondaryHref: "/pricing",
   },
   Reputation: {
     eyebrow: "Relevant service",
@@ -1726,9 +1726,9 @@ export const serviceCtasByCategory: Record<string, BlogPostServiceCta> = {
     description:
       "We help organize reviews, trust signals, and proof sections so your site supports the reputation you have already earned offline.",
     primaryLabel: "Request your free audit",
-    primaryHref: "/#audit",
+    primaryHref: "/audit",
     secondaryLabel: "See pricing packages",
-    secondaryHref: "/#pricing",
+    secondaryHref: "/pricing",
   },
   "Content Marketing": {
     eyebrow: "Relevant service",
@@ -1736,9 +1736,9 @@ export const serviceCtasByCategory: Record<string, BlogPostServiceCta> = {
     description:
       "If you want your blog and service pages to support real lead generation, we can shape the structure, internal flow, and offers around the jobs you want more of.",
     primaryLabel: "Request your free audit",
-    primaryHref: "/#audit",
+    primaryHref: "/audit",
     secondaryLabel: "See pricing packages",
-    secondaryHref: "/#pricing",
+    secondaryHref: "/pricing",
   },
   "Content Strategy": {
     eyebrow: "Relevant service",
@@ -1746,9 +1746,9 @@ export const serviceCtasByCategory: Record<string, BlogPostServiceCta> = {
     description:
       "Blue Tape Sites can help align your blog, service pages, and local SEO structure so every article supports a stronger conversion path.",
     primaryLabel: "Request your free audit",
-    primaryHref: "/#audit",
+    primaryHref: "/audit",
     secondaryLabel: "Review service-area strategy",
-    secondaryHref: "/#service-area",
+    secondaryHref: "/service-area",
   },
   "Seasonal Marketing": {
     eyebrow: "Relevant service",
@@ -1756,9 +1756,9 @@ export const serviceCtasByCategory: Record<string, BlogPostServiceCta> = {
     description:
       "We can help frame seasonal offers, emergency-service messaging, and campaign pages so homeowners know exactly when and why to call.",
     primaryLabel: "Request your free audit",
-    primaryHref: "/#audit",
+    primaryHref: "/audit",
     secondaryLabel: "See pricing packages",
-    secondaryHref: "/#pricing",
+    secondaryHref: "/pricing",
   },
   Strategy: {
     eyebrow: "Relevant service",
@@ -1766,9 +1766,9 @@ export const serviceCtasByCategory: Record<string, BlogPostServiceCta> = {
     description:
       "If the site feels busy but underpowered, we can help simplify the offer, the structure, and the next-step logic around your real sales process.",
     primaryLabel: "Request your free audit",
-    primaryHref: "/#audit",
+    primaryHref: "/audit",
     secondaryLabel: "See pricing packages",
-    secondaryHref: "/#pricing",
+    secondaryHref: "/pricing",
   },
   "Brand Presentation": {
     eyebrow: "Relevant service",
@@ -1776,9 +1776,9 @@ export const serviceCtasByCategory: Record<string, BlogPostServiceCta> = {
     description:
       "Blue Tape Sites helps service companies present stronger proof, sharper hierarchy, and a more credible visual system from the first screen onward.",
     primaryLabel: "Request your free audit",
-    primaryHref: "/#audit",
+    primaryHref: "/audit",
     secondaryLabel: "See pricing packages",
-    secondaryHref: "/#pricing",
+    secondaryHref: "/pricing",
   },
   "AI Visibility": {
     eyebrow: "Relevant service",
@@ -1786,9 +1786,9 @@ export const serviceCtasByCategory: Record<string, BlogPostServiceCta> = {
     description:
       "We can tighten machine-readable signals, structured content, and service positioning so your site is easier to interpret across modern discovery channels.",
     primaryLabel: "Request your free audit",
-    primaryHref: "/#audit",
+    primaryHref: "/audit",
     secondaryLabel: "Review service-area strategy",
-    secondaryHref: "/#service-area",
+    secondaryHref: "/service-area",
   },
   "Site Architecture": {
     eyebrow: "Relevant service",
@@ -1796,9 +1796,9 @@ export const serviceCtasByCategory: Record<string, BlogPostServiceCta> = {
     description:
       "We help contractor websites simplify navigation, clarify page relationships, and connect blog content to stronger service and conversion paths.",
     primaryLabel: "Request your free audit",
-    primaryHref: "/#audit",
+    primaryHref: "/audit",
     secondaryLabel: "Review service-area strategy",
-    secondaryHref: "/#service-area",
+    secondaryHref: "/service-area",
   },
 };
 
@@ -1808,9 +1808,9 @@ const defaultServiceCta: BlogPostServiceCta = {
   description:
     "Blue Tape Sites builds sharper contractor websites with clearer offers, stronger proof, and conversion paths that help the right prospects contact you sooner.",
   primaryLabel: "Request your free audit",
-  primaryHref: "/#audit",
+  primaryHref: "/audit",
   secondaryLabel: "See pricing packages",
-  secondaryHref: "/#pricing",
+  secondaryHref: "/pricing",
 };
 
 export const hasDedicatedBlogPostServiceCta = (post: BlogPost): boolean =>

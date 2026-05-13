@@ -1,12 +1,11 @@
 import type { BlogPost } from "@/content/blogPosts";
+import { SITE_URL, SOCIAL_IMAGE_URL } from "@shared/seoPages";
 
-export const SITE_URL = "https://bluetapesites.com";
-export const SOCIAL_IMAGE_URL =
-  "https://d2xsxph8kpxj0f.cloudfront.net/310419663032234167/TpcXhRqminM236HC9RQjNi/blue-tape-sites-social-preview_50192a08.png";
+export { SITE_URL, SOCIAL_IMAGE_URL };
 
-export const HOME_SEO_TITLE = "Web Design for Service Businesses | Blue Tape Sites";
+export const HOME_SEO_TITLE = "SoCal Web Design for Service Businesses | Blue Tape Sites";
 export const HOME_SEO_DESCRIPTION =
-  "Blue Tape Sites builds lead-focused websites for plumbers, electricians, cleaners, and contractors that need more trust, better local visibility and more leads.";
+  "Lead-focused websites for plumbers, electricians, cleaners, and contractors that need local visibility, trust, and more leads.";
 
 const BLOG_POST_SCHEMA_ID = "blue-tape-sites-blog-post-schema";
 
