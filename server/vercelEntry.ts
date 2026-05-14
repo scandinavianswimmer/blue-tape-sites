@@ -9,7 +9,7 @@ import { createContext } from "./_core/context";
 import { registerOAuthRoutes } from "./_core/oauth";
 import { handlePageView } from "./pageviewTracking";
 import { appRouter } from "./routers";
-import { buildRobotsTxt, buildSitemapXml, renderSeoHtml } from "./seoHtml";
+import { buildLlmsTxt, buildRobotsTxt, buildSitemapXml, renderSeoHtml } from "./seoHtml";
 
 const app = express();
 
@@ -37,6 +37,10 @@ app.get("/robots.txt", (_req, res) => {
 
 app.get("/sitemap.xml", (_req, res) => {
   res.type("application/xml").send(buildSitemapXml());
+});
+
+app.get("/llms.txt", (_req, res) => {
+  res.type("text/plain").send(buildLlmsTxt());
 });
 
 app.use("*", async (req, res, next) => {

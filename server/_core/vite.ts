@@ -5,7 +5,7 @@ import { nanoid } from "nanoid";
 import path from "path";
 import { createServer as createViteServer } from "vite";
 import viteConfig from "../../vite.config";
-import { buildRobotsTxt, buildSitemapXml, renderSeoHtml } from "../seoHtml";
+import { buildLlmsTxt, buildRobotsTxt, buildSitemapXml, renderSeoHtml } from "../seoHtml";
 
 async function sendSeoIndex(res: express.Response, next: express.NextFunction, indexPath: string, url: string) {
   try {
@@ -36,6 +36,10 @@ export async function setupVite(app: Express, server: Server) {
 
   app.get("/sitemap.xml", (_req, res) => {
     res.type("application/xml").send(buildSitemapXml());
+  });
+
+  app.get("/llms.txt", (_req, res) => {
+    res.type("text/plain").send(buildLlmsTxt());
   });
 
   app.use(vite.middlewares);
@@ -83,6 +87,10 @@ export function serveStatic(app: Express) {
 
   app.get("/sitemap.xml", (_req, res) => {
     res.type("application/xml").send(buildSitemapXml());
+  });
+
+  app.get("/llms.txt", (_req, res) => {
+    res.type("text/plain").send(buildLlmsTxt());
   });
 
   app.get("/", (req, res, next) => {

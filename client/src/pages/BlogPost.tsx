@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Link, useRoute } from "wouter";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, PhoneCall } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { blogPostMap, blogPosts, getBlogPostServiceCta } from "@/content/blogPosts";
@@ -8,6 +8,7 @@ import { trackBlogCtaClick, buildBlogCtaClickPayload } from "@/lib/blogCtaTracki
 import { renderArticleMarkdown } from "@/lib/renderArticle";
 import { applyPageSeo, buildBlogPostSeo, SITE_URL } from "@/lib/seo";
 import NotFound from "@/pages/NotFound";
+import { BUSINESS } from "@shared/business";
 
 const formatDate = (date: string) =>
   new Date(`${date}T12:00:00Z`).toLocaleDateString("en-US", {
@@ -82,12 +83,18 @@ export default function BlogPost() {
             </div>
           </Link>
 
-          <Button asChild variant="outline" className="rounded-full border-black/10 bg-white px-5 text-[#111111] hover:bg-white/90">
-            <Link href="/blog">
-              <ArrowLeft className="mr-2 size-4" />
-              All posts
-            </Link>
-          </Button>
+          <div className="flex items-center gap-3">
+            <a href={BUSINESS.phoneHref} className="hidden items-center gap-2 rounded-full border border-black/10 bg-white px-5 py-2 text-sm font-semibold text-[#111111] hover:bg-white/90 sm:inline-flex">
+              <PhoneCall className="size-4 text-blue-700" />
+              Call {BUSINESS.phoneDisplay}
+            </a>
+            <Button asChild variant="outline" className="rounded-full border-black/10 bg-white px-5 text-[#111111] hover:bg-white/90">
+              <Link href="/blog">
+                <ArrowLeft className="mr-2 size-4" />
+                All posts
+              </Link>
+            </Button>
+          </div>
         </div>
       </header>
 
@@ -100,7 +107,9 @@ export default function BlogPost() {
           <h1 className="mt-4 text-4xl font-semibold leading-[0.95] tracking-[-0.06em] text-[#111111] sm:text-5xl">
             {post.title}
           </h1>
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600">{post.summary}</p>
+          <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600">
+            {post.summary} For Southern California contractors, the practical next step is to make the page answer the buyer's question fast, show proof, and keep {BUSINESS.phoneDisplay} easy to call.
+          </p>
 
           <article className="mt-10 border border-black/10 bg-white p-6 shadow-[0_22px_70px_rgba(17,17,17,0.05)] sm:p-10">
             <div
@@ -127,6 +136,9 @@ export default function BlogPost() {
                 </a>
               </Button>
             </div>
+            <p className="mt-3 text-sm text-white/65">
+              Or call <a href={BUSINESS.phoneHref} className="font-semibold text-white underline decoration-blue-300/60 underline-offset-4">{BUSINESS.phoneDisplay}</a> - same-day reply.
+            </p>
           </section>
 
           <div className="mt-10 grid gap-4 md:grid-cols-2">
@@ -166,6 +178,18 @@ export default function BlogPost() {
           </div>
         </div>
       </main>
+      <footer className="border-t border-black/8 bg-[#111111] text-white">
+        <div className="container flex flex-col gap-4 py-8 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <div className="text-sm font-semibold uppercase tracking-[0.18em]">{BUSINESS.brand}</div>
+            <p className="mt-2 text-sm text-white/60">{BUSINESS.hoursDisplay}</p>
+          </div>
+          <a href={BUSINESS.phoneHref} className="inline-flex h-11 items-center justify-center gap-2 border border-white/20 px-4 text-sm font-semibold uppercase tracking-[0.08em] text-white hover:border-white/50">
+            <PhoneCall className="size-4" />
+            Call {BUSINESS.phoneDisplay}
+          </a>
+        </div>
+      </footer>
     </div>
   );
 }

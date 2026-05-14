@@ -13,8 +13,6 @@ import { buildPageViewPayload, trackPageView } from "./lib/pageviewTracking";
 
 const Blog = lazy(() => import("./pages/Blog"));
 const BlogPost = lazy(() => import("./pages/BlogPost"));
-const PlumberLanding = lazy(() => import("./pages/PlumberLanding"));
-const RemodelerLanding = lazy(() => import("./pages/RemodelerLanding"));
 const Unsubscribe = lazy(() => import("./pages/Unsubscribe"));
 
 function PageViewTracker() {
@@ -54,8 +52,6 @@ function Router() {
         <Route path={"/"} component={Home} />
         <Route path={"/blog"} component={Blog} />
         <Route path={"/blog/:slug"} component={BlogPost} />
-        <Route path={"/web-design-for-plumbers"} component={PlumberLanding} />
-        <Route path={"/web-design-for-remodelers"} component={RemodelerLanding} />
         {allSeoPages.map(page => (
           <Route key={page.path} path={page.path}>
             <SeoLandingPage page={page} />

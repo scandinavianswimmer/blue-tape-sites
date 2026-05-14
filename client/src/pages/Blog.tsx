@@ -1,11 +1,12 @@
 import { useEffect, useMemo } from "react";
 import { Link } from "wouter";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, PhoneCall } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { blogPosts } from "@/content/blogPosts";
 import { readAndClearBlogArchiveScroll, saveBlogArchiveScroll } from "@/lib/blogScroll";
 import { applyPageSeo, SITE_URL } from "@/lib/seo";
+import { BUSINESS } from "@shared/business";
 
 const BLOG_TITLE = "Contractor Website & Local SEO Advice | Blue Tape Sites";
 const BLOG_DESCRIPTION =
@@ -115,6 +116,10 @@ export default function Blog() {
           </Link>
 
           <div className="flex items-center gap-3">
+            <a href={BUSINESS.phoneHref} className="hidden items-center gap-2 rounded-full border border-black/10 bg-white px-5 py-2 text-sm font-semibold text-[#111111] hover:bg-white/90 sm:inline-flex">
+              <PhoneCall className="size-4 text-blue-700" />
+              Call {BUSINESS.phoneDisplay}
+            </a>
             <Button asChild variant="outline" className="rounded-full border-black/10 bg-white px-5 text-[#111111] hover:bg-white/90">
               <Link href="/">
                 <ArrowLeft className="mr-2 size-4" />
@@ -136,8 +141,7 @@ export default function Blog() {
                 The Blue Tape Sites blog
               </h1>
               <p className="mt-6 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg">
-                Practical articles for plumbers, electricians, cleaners, contractors, and owner-operators who want clearer websites,
-                stronger local visibility, and a more confident online presence.
+                The Blue Tape Sites blog answers contractor website, local SEO, and AI-search questions for Southern California service businesses. Start here if you need clearer pages, stronger trust, better local visibility, and a website that makes the phone number easy to find.
               </p>
             </div>
 
@@ -215,6 +219,18 @@ export default function Blog() {
           </div>
         </section>
       </main>
+      <footer className="border-t border-black/8 bg-[#111111] text-white">
+        <div className="container flex flex-col gap-4 py-8 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <div className="text-sm font-semibold uppercase tracking-[0.18em]">{BUSINESS.brand}</div>
+            <p className="mt-2 text-sm text-white/60">{BUSINESS.hoursDisplay}</p>
+          </div>
+          <a href={BUSINESS.phoneHref} className="inline-flex h-11 items-center justify-center gap-2 border border-white/20 px-4 text-sm font-semibold uppercase tracking-[0.08em] text-white hover:border-white/50">
+            <PhoneCall className="size-4" />
+            Call {BUSINESS.phoneDisplay}
+          </a>
+        </div>
+      </footer>
     </div>
   );
 }

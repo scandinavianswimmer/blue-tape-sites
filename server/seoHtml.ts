@@ -1,4 +1,5 @@
 import { allSeoPages, getSeoPageByPath, SITE_URL, SOCIAL_IMAGE_URL, type SeoPage } from "@shared/seoPages";
+import { BUSINESS, trustStripItems } from "@shared/business";
 import { blogPosts } from "../client/src/content/blogPosts";
 
 const homePage: SeoPage = {
@@ -10,6 +11,8 @@ const homePage: SeoPage = {
   eyebrow: "Southern California web design for serious contractors",
   summary:
     "Blue Tape Sites builds lead-focused websites for plumbers, electricians, cleaners, and home-service teams that need stronger trust, better local visibility, and more qualified calls.",
+  answer:
+    `Blue Tape Sites is a Southern California contractor web design studio that builds phone-first websites for plumbers, electricians, cleaners, and home-service teams. Business owners can request a free 5-minute video audit with a 48-hour turnaround or call ${BUSINESS.phoneDisplay} for same-day reply.`,
   sections: [
     {
       title: "Free Blue Tape Audit",
@@ -22,6 +25,33 @@ const homePage: SeoPage = {
   ],
   type: "core",
 };
+
+const testimonialReviews = [
+  {
+    name: "Rick Mendez",
+    company: "Mendez Plumbing & Rooter",
+    quote:
+      "I get most of my work from people needing help right now, so the site has to make sense in a hurry. They cleaned up the offer, made the phone CTA obvious, and the whole thing finally feels like it belongs to a real plumbing outfit instead of some cookie-cutter template.",
+  },
+  {
+    name: "Shawn Keller",
+    company: "Keller Electric Co.",
+    quote:
+      "What I liked was they didn't try to sell me on fancy nonsense. They looked at the page, pointed out where trust was leaking, and fixed the order of things. Better headline, better proof, better mobile layout. Straightforward and worth doing.",
+  },
+  {
+    name: "Tina Alvarez",
+    company: "Alvarez Cleaning Crew",
+    quote:
+      "Most people in my business just need a site that looks clean, answers fast, and doesn't make the company look small-time. That's what this did. It reads better, books better, and I don't feel weird sending customers to it anymore.",
+  },
+  {
+    name: "Derek Holcomb",
+    company: "Holcomb Garage Door Service",
+    quote:
+      "I've dealt with marketing people before and half the time they're hard to pin down. This felt straightforward. They showed me what was off, tightened it up, and left me with a page that's a lot easier for customers to trust.",
+  },
+];
 
 const escapeHtml = (value: string) =>
   value
@@ -49,6 +79,8 @@ const blogSeoPages: SeoPage[] = [
     h1: "Contractor website articles for better trust, local visibility, and calls.",
     eyebrow: "Blog",
     summary: "Blue Tape Sites publishes practical articles for contractors and service businesses that want better websites and stronger local search visibility.",
+    answer:
+      `The Blue Tape Sites blog answers contractor website, local SEO, and AI-search questions for Southern California service businesses that need more calls. Start with a free 5-minute audit or call ${BUSINESS.phoneDisplay}.`,
     sections: [],
     type: "core",
   },
@@ -59,6 +91,7 @@ const blogSeoPages: SeoPage[] = [
     h1: post.title,
     eyebrow: "Blog article",
     summary: post.summary,
+    answer: `${post.title} answers a practical website or local SEO question for contractors who need more trust, more calls, and clearer online proof. Blue Tape Sites serves Southern California contractors and can be reached at ${BUSINESS.phoneDisplay}.`,
     sections: [],
     type: "core" as const,
   })),
@@ -134,13 +167,21 @@ function buildJsonLd(page: SeoPage) {
   const canonicalUrl = `${SITE_URL}${page.path === "/" ? "/" : page.path}`;
   const graph: Record<string, unknown>[] = [
     {
-      "@type": "Organization",
+      "@type": ["Organization", "LocalBusiness", "ProfessionalService"],
       "@id": `${SITE_URL}/#professional-service`,
       name: "Blue Tape Sites",
       url: SITE_URL,
       logo: `${SITE_URL}/favicon.svg`,
       image: SOCIAL_IMAGE_URL,
       description: homePage.summary,
+      telephone: BUSINESS.telephone,
+      contactPoint: {
+        "@type": "ContactPoint",
+        telephone: BUSINESS.telephone,
+        contactType: "customer service",
+        areaServed: "US-CA",
+        availableLanguage: ["English"],
+      },
       areaServed: [
         { "@type": "AdministrativeArea", name: "Southern California" },
         { "@type": "Country", name: "United States" },
@@ -151,6 +192,18 @@ function buildJsonLd(page: SeoPage) {
         "local SEO for service businesses",
         "website conversion improvement",
       ],
+      review: page.path === "/" ? testimonialReviews.map(item => ({
+        "@type": "Review",
+        author: {
+          "@type": "Person",
+          name: item.name,
+        },
+        itemReviewed: {
+          "@id": `${SITE_URL}/#professional-service`,
+        },
+        reviewBody: item.quote,
+        name: item.company,
+      })) : undefined,
     },
     {
       "@type": "WebSite",
@@ -178,7 +231,7 @@ function buildJsonLd(page: SeoPage) {
       "@type": "Service",
       "@id": `${canonicalUrl}#service`,
       name: page.h1,
-      serviceType: page.eyebrow,
+      serviceType: page.serviceType ?? page.eyebrow,
       provider: {
         "@id": `${SITE_URL}/#professional-service`,
       },
@@ -187,20 +240,58 @@ function buildJsonLd(page: SeoPage) {
         name: "Southern California",
       },
     });
-  }
-
-  if (page.type === "city") {
     graph.push({
       "@type": "LocalBusiness",
       "@id": `${canonicalUrl}#local-business`,
       name: "Blue Tape Sites",
       url: canonicalUrl,
+      telephone: BUSINESS.telephone,
+      areaServed: [
+        "Anaheim",
+        "Irvine",
+        "Huntington Beach",
+        "Santa Ana",
+        "Long Beach",
+        "Torrance",
+        "Santa Monica",
+        "Pasadena",
+        "Riverside",
+        "Ontario",
+        "Rancho Cucamonga",
+        "Oceanside",
+        "Escondido",
+        "Chula Vista",
+      ],
+    });
+  }
+
+  if (page.type === "city" || page.path === "/service-area" || page.path === "/") {
+    graph.push({
+      "@type": "LocalBusiness",
+      "@id": `${canonicalUrl}#local-business`,
+      name: "Blue Tape Sites",
+      url: canonicalUrl,
+      telephone: BUSINESS.telephone,
       areaServed: {
-        "@type": "City",
-        name: page.h1.split(" contractor web design")[0],
+        "@type": page.cityName ? "City" : "AdministrativeArea",
+        name: page.cityName ?? "Southern California",
       },
     });
   }
+
+  const breadcrumbItems = page.type === "industry"
+    ? ["Home", "Services", page.breadcrumbLabel ?? page.h1]
+    : ["Home", page.type === "city" ? "Cities" : page.breadcrumbLabel ?? page.h1];
+
+  graph.push({
+    "@type": "BreadcrumbList",
+    itemListElement: breadcrumbItems.map((name, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name,
+      item: index === 0 ? SITE_URL : index === breadcrumbItems.length - 1 ? canonicalUrl : `${SITE_URL}${page.type === "city" ? "/service-area" : "/services"}`,
+    })),
+  });
 
   if (page.faq?.length) {
     graph.push({
@@ -220,17 +311,25 @@ function buildJsonLd(page: SeoPage) {
 }
 
 function buildBodySnapshot(page: SeoPage) {
+  const renderSection = (section: SeoPage["sections"][number]) => `<section>
+    <h2>${escapeHtml(section.title)}</h2>
+    ${section.body ? `<p>${escapeHtml(section.body)}</p>` : ""}
+    ${section.paragraphs?.map(paragraph => `<p>${escapeHtml(paragraph)}</p>`).join("\n") ?? ""}
+    ${section.bullets?.length ? `<ul>${section.bullets.map(bullet => `<li>${escapeHtml(bullet)}</li>`).join("")}</ul>` : ""}
+    ${section.links?.length ? `<ul>${section.links.map(link => `<li><a href="${escapeHtml(link.href)}">${escapeHtml(link.label)}</a>${link.description ? ` - ${escapeHtml(link.description)}` : ""}</li>`).join("")}</ul>` : ""}
+  </section>`;
+
   return `<main id="seo-snapshot" data-seo-snapshot="true">
   <p>${escapeHtml(page.eyebrow)}</p>
   <h1>${escapeHtml(page.h1)}</h1>
+  <p>${escapeHtml(page.answer)}</p>
   <p>${escapeHtml(page.summary)}</p>
+  <section>
+    <h2>Fast contact and trust details</h2>
+    <ul>${trustStripItems.map(item => `<li>${item.href ? `<a href="${item.href}">${escapeHtml(item.value)}</a>` : escapeHtml(item.value)}</li>`).join("")}</ul>
+  </section>
   ${page.sections
-    .map(
-      section => `<section>
-    <h2>${escapeHtml(section.title)}</h2>
-    <p>${escapeHtml(section.body)}</p>
-  </section>`
-    )
+    .map(renderSection)
     .join("\n")}
   ${
     page.faq?.length
@@ -240,12 +339,36 @@ function buildBodySnapshot(page: SeoPage) {
   </section>`
       : ""
   }
+  <section>
+    <h2>Request a free audit</h2>
+    <p>${escapeHtml(BUSINESS.sameDayReply)} <a href="${BUSINESS.phoneHref}">${escapeHtml(BUSINESS.phoneDisplay)}</a></p>
+  </section>
 </main>`;
+}
+
+export function buildLlmsTxt() {
+  const groups = [
+    ["Services", seoPagesForSitemap.filter(page => page.type === "core" && page.path !== "/" && !page.path.startsWith("/blog"))],
+    ["Industries", seoPagesForSitemap.filter(page => page.type === "industry")],
+    ["Cities", seoPagesForSitemap.filter(page => page.type === "city")],
+    ["Blog", seoPagesForSitemap.filter(page => page.path.startsWith("/blog"))],
+  ] as const;
+
+  return [
+    "# Blue Tape Sites",
+    `> ${BUSINESS.tagline} for contractors and home-service businesses across ${BUSINESS.serviceAreaDetail}. Call ${BUSINESS.phoneDisplay}.`,
+    "",
+    ...groups.flatMap(([group, pages]) => [
+      `## ${group}`,
+      ...pages.map(page => `${SITE_URL}${page.path === "/" ? "/" : page.path} — ${page.description}`),
+      "",
+    ]),
+  ].join("\n");
 }
 
 export function renderSeoHtml(template: string, requestUrl: string) {
   const path = normalizePath(requestUrl);
-  const page = path === "/" ? homePage : getSeoPageByPath(path);
+  const page = path === "/" ? homePage : getSeoPageByPath(path) ?? blogSeoPages.find(item => item.path === path);
 
   if (!page) {
     return template;

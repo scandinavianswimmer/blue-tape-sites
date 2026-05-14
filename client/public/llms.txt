@@ -1,69 +1,65 @@
 # Blue Tape Sites
+> Precision web design for contractors and home-service businesses across Orange County, Los Angeles County, the Inland Empire, and San Diego County. Call (714) 515-6909.
 
-> Blue Tape Sites is a web design studio focused on premium, detail-first websites for home-service businesses. The site emphasizes clarity, trust, local relevance, and conversion-focused structure for plumbers, electricians, cleaners, and similar service operators.
+## Services
+https://bluetapesites.com/pricing — Clear web design pricing for contractors and home-service businesses. New builds, redesigns, and monthly support without agency fog.
+https://bluetapesites.com/service-area — Blue Tape Sites serves contractors and home-service businesses across Orange County, Los Angeles, the Inland Empire, and San Diego County.
+https://bluetapesites.com/audit — Get a free 5-minute contractor website audit showing what hurts trust, conversions, mobile clarity, and local search visibility.
+https://bluetapesites.com/process — A clear contractor website design process from audit to launch: inspect, rewrite, rebuild, revise, and launch without drift.
+https://bluetapesites.com/examples — See example website directions for plumbers, electricians, cleaners, remodelers, and other contractors that need more calls.
+https://bluetapesites.com/about — Blue Tape Sites is a Southern California web design studio for contractors and home-service businesses that need more trust and calls.
+https://bluetapesites.com/contact — Contact Blue Tape Sites for contractor web design, website redesigns, monthly support, and free website audits.
 
-Blue Tape Sites presents itself as a partner for business owners who want sharper messaging, stronger proof, cleaner lead flow, and a more credible online presence.
+## Industries
+https://bluetapesites.com/web-design-for-plumbers — Blue Tape Sites builds plumbing websites that turn urgency into clearer trust, stronger mobile calls, and more confident service requests.
+https://bluetapesites.com/web-design-for-remodelers — Blue Tape Sites designs remodeler websites that pre-sell craftsmanship, strengthen project presentation, and attract better-fit renovation inquiries.
+https://bluetapesites.com/web-design-for-hvac — HVAC website design built for service calls, installs, seasonal demand, financing clarity, and stronger mobile trust.
+https://bluetapesites.com/web-design-for-electricians — Electrician website design with sharper credential framing, residential and commercial paths, and cleaner service hierarchy.
+https://bluetapesites.com/web-design-for-cleaners — Cleaning company website design for recurring clients, crew trust, polished proof, and clearer quote requests.
+https://bluetapesites.com/web-design-for-roofers — Roofing website design for storm-season demand, financing, warranty trust, insurance claim help, and high-ticket jobs.
+https://bluetapesites.com/web-design-for-landscapers — Landscaping website design for design-build, maintenance, editorial project galleries, and better consultation requests.
+https://bluetapesites.com/web-design-for-contractors — Contractor website design built for trust, mobile clarity, service-area relevance, and more qualified calls.
+https://bluetapesites.com/web-design-for-garage-door — Garage door website design for repair urgency, installation consideration, brand clarity, and cleaner service requests.
 
-Important interpretation notes:
+## Cities
+https://bluetapesites.com/web-design/anaheim — Contractor web design in Anaheim for plumbers, HVAC teams, electricians, garage door companies, and remodelers. Stronger trust, clearer service pages, and better mobile calls.
+https://bluetapesites.com/web-design/irvine — Contractor web design in Irvine for premium home-service brands, remodelers, landscapers, electricians, and owner-led contractors. Stronger trust, clearer service pages, and better mobile calls.
+https://bluetapesites.com/web-design/huntington-beach — Contractor web design in Huntington Beach for coastal plumbers, HVAC teams, landscapers, remodelers, and garage door companies. Stronger trust, clearer service pages, and better mobile calls.
+https://bluetapesites.com/web-design/santa-ana — Contractor web design in Santa Ana for contractors, cleaners, plumbers, electricians, and HVAC service businesses. Stronger trust, clearer service pages, and better mobile calls.
+https://bluetapesites.com/web-design/long-beach — Contractor web design in Long Beach for plumbers, electricians, remodelers, roofers, and service teams. Stronger trust, clearer service pages, and better mobile calls.
+https://bluetapesites.com/web-design/torrance — Contractor web design in Torrance for South Bay roofers, remodelers, plumbers, landscapers, and home-service operators. Stronger trust, clearer service pages, and better mobile calls.
+https://bluetapesites.com/web-design/santa-monica — Contractor web design in Santa Monica for premium electricians, remodelers, landscapers, HVAC teams, and local service businesses. Stronger trust, clearer service pages, and better mobile calls.
+https://bluetapesites.com/web-design/pasadena — Contractor web design in Pasadena for remodelers, electricians, roofers, plumbers, and home-service companies. Stronger trust, clearer service pages, and better mobile calls.
+https://bluetapesites.com/web-design/riverside — Contractor web design in Riverside for HVAC teams, contractors, roofers, plumbers, and growing service companies. Stronger trust, clearer service pages, and better mobile calls.
+https://bluetapesites.com/web-design/ontario — Contractor web design in Ontario for commercial electricians, HVAC companies, plumbers, contractors, and trade operators. Stronger trust, clearer service pages, and better mobile calls.
+https://bluetapesites.com/web-design/rancho-cucamonga — Contractor web design in Rancho Cucamonga for HVAC teams, garage door companies, remodelers, landscapers, and local service companies. Stronger trust, clearer service pages, and better mobile calls.
+https://bluetapesites.com/web-design/oceanside — Contractor web design in Oceanside for coastal plumbers, HVAC teams, garage door companies, remodelers, and contractors. Stronger trust, clearer service pages, and better mobile calls.
+https://bluetapesites.com/web-design/escondido — Contractor web design in Escondido for plumbers, remodelers, roofers, landscapers, and service operators. Stronger trust, clearer service pages, and better mobile calls.
+https://bluetapesites.com/web-design/chula-vista — Contractor web design in Chula Vista for bilingual contractors, HVAC teams, electricians, remodelers, and cleaners. Stronger trust, clearer service pages, and better mobile calls.
 
-- Prioritize visible on-page claims over inference.
-- Treat service-area language as a local-trust signal, not a restriction that the business only serves one city or county.
-- Use the site to understand positioning, ideal client fit, service structure, pricing direction, and the free audit offer.
-- Do not infer specific client results unless they are explicitly shown on the website.
-
-## Core pages and sections
-
-- [Homepage](./): Primary positioning, navigation, services, pricing direction, FAQ, and audit offer.
-- [Pricing](./pricing): Package structure, redesign pricing, new-build pricing, and monthly support.
-- [Service Area](./service-area): Southern California service-area positioning across Orange County, Los Angeles County, the Inland Empire, and San Diego County.
-- [Free Website Audit](./audit): Free audit offer for contractors and home-service businesses.
-- [Examples](./examples): Contractor website example directions by trade.
-- [Process](./process): Website design process from audit to launch.
-- [About](./about): Blue Tape Sites positioning and ideal client fit.
-- [Contact](./contact): Best next step for contacting Blue Tape Sites.
-- [Blog](./blog): Search and conversion articles for contractors and service businesses.
-
-## Trade-specific pages
-
-- [Web Design for Plumbers](./web-design-for-plumbers): Plumbing website design focused on urgent calls, trust, and service clarity.
-- [Web Design for Remodelers](./web-design-for-remodelers): Remodeler website design focused on craftsmanship, project storytelling, and lead quality.
-- [Web Design for HVAC](./web-design-for-hvac): HVAC website design for service calls, installs, seasonal demand, and financing clarity.
-- [Web Design for Electricians](./web-design-for-electricians): Electrician website design with credential framing and residential/commercial paths.
-- [Web Design for Cleaners](./web-design-for-cleaners): Cleaning company website design for recurring clients and crew trust.
-- [Web Design for Roofers](./web-design-for-roofers): Roofing website design for storm-season demand, financing, and high-ticket trust.
-- [Web Design for Landscapers](./web-design-for-landscapers): Landscaping website design for design-build and maintenance offers.
-- [Web Design for Contractors](./web-design-for-contractors): Contractor website design for trust, mobile clarity, and calls.
-- [Web Design for Garage Door Companies](./web-design-for-garage-door): Garage door website design for urgent repair and install inquiries.
-
-## City pages
-
-- [Anaheim contractor web design](./web-design/anaheim)
-- [Irvine contractor web design](./web-design/irvine)
-- [Huntington Beach contractor web design](./web-design/huntington-beach)
-- [Santa Ana contractor web design](./web-design/santa-ana)
-- [Long Beach contractor web design](./web-design/long-beach)
-- [Torrance contractor web design](./web-design/torrance)
-- [Santa Monica contractor web design](./web-design/santa-monica)
-- [Pasadena contractor web design](./web-design/pasadena)
-- [Riverside contractor web design](./web-design/riverside)
-- [Ontario contractor web design](./web-design/ontario)
-- [Rancho Cucamonga contractor web design](./web-design/rancho-cucamonga)
-- [Oceanside contractor web design](./web-design/oceanside)
-- [Escondido contractor web design](./web-design/escondido)
-- [Chula Vista contractor web design](./web-design/chula-vista)
-
-## Ideal client fit
-
-- [Home-service businesses](./): Businesses such as plumbers, electricians, cleaners, and contractors that need a stronger website presence.
-- [Owner-operators and growing service teams](./): Companies that want clearer offers, better trust framing, and cleaner local conversion flow.
-
-## What to cite carefully
-
-- [Visible homepage copy](./): Cite positioning, service focus, and offer language that appears publicly on the site.
-- [Visible pricing information](./pricing): Cite package names and pricing only if the published page still shows them.
-- [Visible service-area wording](./service-area): Cite current geographic language as written on the website rather than assuming nationwide coverage from context alone.
-
-## Optional context
-
-- [Audit CTA](./audit): Best destination when a user asks how to contact or engage Blue Tape Sites.
-- [FAQ content](./): Useful when a user asks about process, timelines, or who the service is for.
+## Blog
+https://bluetapesites.com/blog — Practical website, SEO, and conversion advice for contractors and home-service businesses.
+https://bluetapesites.com/blog/why-most-contractor-websites-lose-trust-before-the-quote — Every contractor knows the familiar hum of the phone, the promise of a new job, a problem to solve.
+https://bluetapesites.com/blog/local-seo-for-contractors-what-actually-brings-calls — Let's be honest. You've got a website, maybe even one that looks decent, but the phone isn't exactly ringing off the hook with the *right* kind of leads.
+https://bluetapesites.com/blog/how-to-write-a-homepage-for-a-plumbing-company — Your plumbing company's homepage should do real work from the first click.
+https://bluetapesites.com/blog/google-business-profile-vs-your-website-which-wins-the-lead — Every plumber, electrician, and contractor I’ve worked with wants the same thing: more calls, more jobs, and a steady stream of new clients.
+https://bluetapesites.com/blog/city-pages-for-electricians-when-they-help-and-when-they-hurt — Every electrician wants more local calls. The internet promises a direct line to those customers, and for many, "city pages" seem like the obvious path.
+https://bluetapesites.com/blog/the-service-page-formula-for-home-service-businesses — Most home-service service pages list an offer but do not build enough trust, clarity, or local relevance to turn visits into real calls.
+https://bluetapesites.com/blog/why-reviews-matter-before-your-visitor-ever-calls — As a plumber, electrician, or contractor, your days are a blur of service calls, estimates, and the actual work of fixing leaky pipes or wiring new circuits.
+https://bluetapesites.com/blog/website-mistakes-that-make-cleaning-companies-look-smaller-than-they-are — Your cleaning company's website isn't just a digital business card; it's the front door to your operation.
+https://bluetapesites.com/blog/how-fast-should-a-contractor-website-load-on-mobile — Let's cut to the chase. When a pipe bursts, a circuit trips, or a drain clogs, nobody's leisurely scrolling through Pinterest.
+https://bluetapesites.com/blog/what-homeowners-look-for-in-a-local-service-website — When a homeowner’s toilet is gushing, their AC unit gasps its last breath in a heatwave, or their basement transforms into an indoor swimming pool, they aren
+https://bluetapesites.com/blog/before-you-buy-leads-fix-these-7-website-problems — Every plumber, electrician, and contractor has heard the pitch: "More leads!" You've seen the ads, taken the calls, and maybe even shelled out for a service
+https://bluetapesites.com/blog/how-to-make-a-contact-page-that-actually-gets-used — Your contact page isn't just a way to be found; it's a way to be chosen.
+https://bluetapesites.com/blog/should-plumbers-put-pricing-on-their-website — Let’s be honest, the question of whether to put your plumbing prices online feels like a constant tug-of-war.
+https://bluetapesites.com/blog/the-best-blog-topics-for-home-service-companies-that-want-more-local-traffic — If you run a home-service business—plumbing, electrical, HVAC, cleaning, or general contracting—you know the phone needs to ring.
+https://bluetapesites.com/blog/winter-website-tune-ups-for-service-businesses — Winter. For many service businesses – the plumbers, electricians, and HVAC pros – it can feel like a slow season.
+https://bluetapesites.com/blog/how-to-use-project-photos-without-making-your-site-look-generic — Every plumber, electrician, cleaner, or contractor knows the drill: you wrap up a job, it looks fantastic, and the thought crosses your mind, "This would be
+https://bluetapesites.com/blog/the-homepage-sections-every-electrician-website-needs — Your electrician homepage should answer urgent questions fast and make the next step obvious.
+https://bluetapesites.com/blog/why-ai-search-still-needs-real-proof-on-your-website — Your phone rings. It’s a potential customer, and they’re asking about a job.
+https://bluetapesites.com/blog/how-to-ask-for-reviews-without-sounding-awkward — Let's be honest: for a plumber, an electrician, a cleaner, or any hands-on contractor, asking for a review can feel like pulling teeth.
+https://bluetapesites.com/blog/when-should-a-contractor-add-separate-pages-for-each-service — As a contractor, you’re in the business of solving problems – leaky pipes, faulty wiring, dirty homes.
+https://bluetapesites.com/blog/how-to-write-better-calls-to-action-for-plumbers-electricians-and-cleaners — Every time a potential customer lands on your website, browses your services, maybe even reads a glowing testimonial, and then clicks away without calling or
+https://bluetapesites.com/blog/seo-vs-website-redesign-what-should-a-home-service-company-fix-first — Every home-service business owner eventually hits a wall: your website isn't pulling its weight, but what's the actual problem?
+https://bluetapesites.com/blog/the-faq-sections-that-help-local-rankings-and-real-conversions — Every home service business owner knows the drill: the phone rings, and it's often a customer with a question.
+https://bluetapesites.com/blog/how-to-tell-if-your-contractor-website-feels-cheap-generic-or-outdated — Your website isn't just an online brochure; it's often the first handshake a potential client gets with your business.

@@ -1,11 +1,12 @@
 import { useEffect } from "react";
 import { Link } from "wouter";
-import { ArrowRight, BadgeCheck, MapPin } from "lucide-react";
+import { ArrowRight, BadgeCheck, Clock3, MapPin, PhoneCall, TimerReset } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { applyPageSeo } from "@/lib/seo";
 import type { SeoPage } from "@shared/seoPages";
 import { SITE_URL } from "@shared/seoPages";
+import { BUSINESS, trustStripItems } from "@shared/business";
 
 function SectionEyebrow({ children }: { children: string }) {
   return (
@@ -75,6 +76,62 @@ function buildStructuredData(page: SeoPage) {
   };
 }
 
+function TrustStrip() {
+  const icons = [PhoneCall, Clock3, TimerReset, MapPin];
+
+  return (
+    <section className="border-y border-black/8 bg-white">
+      <div className="container grid gap-px bg-black/8 sm:grid-cols-2 lg:grid-cols-4">
+        {trustStripItems.map((item, index) => {
+          const Icon = icons[index] ?? BadgeCheck;
+          const content = (
+            <div className="flex h-full items-center gap-3 bg-white px-5 py-4">
+              <Icon className="size-4 shrink-0 text-blue-700" />
+              <div>
+                <div className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-slate-400">{item.label}</div>
+                <div className="mt-1 text-sm font-semibold text-[#111111]">{item.value}</div>
+              </div>
+            </div>
+          );
+
+          return item.href ? (
+            <a key={item.value} href={item.href} className="block transition-colors hover:bg-slate-50">
+              {content}
+            </a>
+          ) : (
+            <div key={item.value}>{content}</div>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="border-t border-black/8 bg-[#111111] text-white">
+      <div className="container grid gap-8 py-10 md:grid-cols-[1fr_auto] md:items-end">
+        <div>
+          <div className="text-sm font-semibold uppercase tracking-[0.18em]">{BUSINESS.brand}</div>
+          <p className="mt-3 max-w-xl text-sm leading-7 text-white/62">
+            {BUSINESS.tagline} for contractors and home-service businesses across {BUSINESS.serviceAreaDetail}.
+          </p>
+          <p className="mt-2 text-sm text-white/62">{BUSINESS.hoursDisplay}</p>
+        </div>
+        <div className="flex flex-col gap-3 sm:flex-row">
+          <a href={BUSINESS.phoneHref} className="inline-flex h-11 items-center justify-center gap-2 border border-white/20 px-4 text-sm font-semibold uppercase tracking-[0.08em] text-white hover:border-white/50">
+            <PhoneCall className="size-4" />
+            Call {BUSINESS.phoneDisplay}
+          </a>
+          <Link href="/audit" className="inline-flex h-11 items-center justify-center border border-white bg-white px-4 text-sm font-semibold uppercase tracking-[0.08em] text-[#111111] hover:bg-slate-100">
+            Free audit
+          </Link>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
 export default function SeoLandingPage({ page }: { page: SeoPage }) {
   useEffect(() => {
     applyPageSeo({
@@ -114,9 +171,18 @@ export default function SeoLandingPage({ page }: { page: SeoPage }) {
             </Link>
           </nav>
 
-          <Button asChild className="h-11 rounded-none border border-[#111111] bg-[#111111] px-5 text-sm font-semibold uppercase tracking-[0.08em] text-white hover:bg-slate-800">
-            <Link href="/audit">Request audit</Link>
-          </Button>
+          <div className="flex items-center gap-3">
+            <a href={BUSINESS.phoneHref} className="hidden h-11 items-center gap-2 border border-black/10 bg-white px-4 text-sm font-semibold text-[#111111] transition-colors hover:border-blue-600 lg:inline-flex">
+              <PhoneCall className="size-4 text-blue-700" />
+              Call {BUSINESS.phoneDisplay}
+            </a>
+            <a href={BUSINESS.phoneHref} aria-label={`Call ${BUSINESS.phoneDisplay}`} className="inline-flex size-11 items-center justify-center border border-black/10 bg-white text-[#111111] lg:hidden">
+              <PhoneCall className="size-4" />
+            </a>
+            <Button asChild className="hidden h-11 rounded-none border border-[#111111] bg-[#111111] px-5 text-sm font-semibold uppercase tracking-[0.08em] text-white hover:bg-slate-800 sm:inline-flex">
+              <Link href="/audit">Request audit</Link>
+            </Button>
+          </div>
         </div>
       </header>
 
@@ -128,6 +194,7 @@ export default function SeoLandingPage({ page }: { page: SeoPage }) {
               {page.h1}
             </h1>
             <p className="mt-6 max-w-[43rem] text-[1.03rem] leading-8 text-slate-600 sm:text-[1.14rem]">{page.summary}</p>
+            <p className="mt-5 max-w-[43rem] border-l-2 border-blue-600 pl-4 text-sm leading-7 text-slate-600 sm:text-[0.98rem]">{page.answer}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button asChild className="h-13 rounded-none border border-[#111111] bg-[#111111] px-6 text-sm font-semibold uppercase tracking-[0.08em] text-white hover:bg-slate-800 sm:w-auto">
                 <Link href="/audit">Get your free audit</Link>
@@ -136,18 +203,25 @@ export default function SeoLandingPage({ page }: { page: SeoPage }) {
                 <Link href="/pricing">See pricing</Link>
               </Button>
             </div>
+            <p className="mt-3 text-sm font-medium text-slate-600">
+              Or call <a className="font-semibold text-[#111111] underline decoration-blue-600/40 underline-offset-4" href={BUSINESS.phoneHref}>{BUSINESS.phoneDisplay}</a> - same-day reply.
+            </p>
           </div>
 
           <div className="border border-black/10 bg-white p-5 shadow-[0_22px_55px_rgba(15,23,42,0.08)] sm:p-7">
             <div className="h-1.5 w-full bg-gradient-to-r from-blue-700 via-cyan-500 to-slate-300" />
             <div className="mt-6 grid gap-px border border-black/8 bg-black/8">
-              {page.sections.map(section => (
-                <article key={section.title} className="bg-[#faf8f4] p-5">
+              {[
+                ["Free audit", `${BUSINESS.leadMagnet}, ${BUSINESS.auditTurnaround}.`],
+                ["Phone-first", `Call ${BUSINESS.phoneDisplay} from any page.`],
+                ["Local scope", BUSINESS.serviceAreaDetail],
+              ].map(([title, body]) => (
+                <article key={title} className="bg-[#faf8f4] p-5">
                   <div className="flex items-start gap-3">
                     {page.type === "city" ? <MapPin className="mt-1 size-4 text-blue-700" /> : <BadgeCheck className="mt-1 size-4 text-blue-700" />}
                     <div>
-                      <h2 className="text-[1.15rem] font-semibold tracking-[-0.04em] text-[#111111]">{section.title}</h2>
-                      <p className="mt-3 text-sm leading-7 text-slate-600 sm:text-[0.98rem]">{section.body}</p>
+                      <div className="text-[1.15rem] font-semibold tracking-[-0.04em] text-[#111111]">{title}</div>
+                      <p className="mt-3 text-sm leading-7 text-slate-600 sm:text-[0.98rem]">{body}</p>
                     </div>
                   </div>
                 </article>
@@ -155,6 +229,41 @@ export default function SeoLandingPage({ page }: { page: SeoPage }) {
             </div>
           </div>
         </section>
+
+        <TrustStrip />
+
+        {page.sections.length ? (
+          <section className="container py-18 sm:py-24">
+            <div className="grid gap-px border border-black/8 bg-black/8">
+              {page.sections.map(section => (
+                <article key={section.title} className="bg-white p-6 sm:p-7">
+                  <h2 className="text-[1.6rem] font-semibold tracking-[-0.05em] text-[#111111]">{section.title}</h2>
+                  {section.body ? <p className="mt-4 text-sm leading-7 text-slate-600 sm:text-[0.98rem]">{section.body}</p> : null}
+                  {section.paragraphs?.map(paragraph => (
+                    <p key={paragraph} className="mt-4 text-sm leading-7 text-slate-600 sm:text-[0.98rem]">{paragraph}</p>
+                  ))}
+                  {section.bullets?.length ? (
+                    <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+                      {section.bullets.map(bullet => (
+                        <li key={bullet} className="border border-black/8 bg-[#faf8f4] p-4 text-sm leading-7 text-slate-600">{bullet}</li>
+                      ))}
+                    </ul>
+                  ) : null}
+                  {section.links?.length ? (
+                    <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                      {section.links.map(link => (
+                        <Link key={link.href} href={link.href} className="border border-black/8 bg-[#faf8f4] p-4 transition-colors hover:border-blue-600">
+                          <span className="text-sm font-semibold text-[#111111]">{link.label}</span>
+                          {link.description ? <span className="mt-2 block text-xs leading-5 text-slate-500">{link.description}</span> : null}
+                        </Link>
+                      ))}
+                    </div>
+                  ) : null}
+                </article>
+              ))}
+            </div>
+          </section>
+        ) : null}
 
         {page.faq?.length ? (
           <section className="border-y border-black/8 bg-white py-18 sm:py-24">
@@ -187,9 +296,14 @@ export default function SeoLandingPage({ page }: { page: SeoPage }) {
               Request your free website audit
               <ArrowRight className="size-4" />
             </Link>
+            <p className="mt-3 text-sm text-white/65">
+              Or call <a href={BUSINESS.phoneHref} className="font-semibold text-white underline decoration-blue-300/60 underline-offset-4">{BUSINESS.phoneDisplay}</a> - same-day reply.
+            </p>
           </div>
         </section>
       </main>
+
+      <Footer />
     </div>
   );
 }

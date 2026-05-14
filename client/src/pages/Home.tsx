@@ -26,6 +26,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Button } from "@/components/ui/button";
 import { applyHomeSeo, SITE_URL, SOCIAL_IMAGE_URL } from "@/lib/seo";
 import { trpc } from "@/lib/trpc";
+import { BUSINESS, trustStripItems } from "@shared/business";
 
 type AuditFormState = {
   websiteUrl: string;
@@ -512,7 +513,7 @@ export default function Home() {
 
   const localBusinessSchema = {
     "@context": "https://schema.org",
-    "@type": ["ProfessionalService", "Organization"],
+    "@type": ["ProfessionalService", "LocalBusiness", "Organization"],
     "@id": `${SITE_URL}/#professional-service`,
     name: "Blue Tape Sites",
     url: SITE_URL,
@@ -520,6 +521,14 @@ export default function Home() {
     image: SOCIAL_IMAGE_URL,
     description:
       "Blue Tape Sites builds premium, lead-focused websites for plumbers, electricians, cleaners, and home-service businesses that need more trust and more qualified calls.",
+    telephone: BUSINESS.telephone,
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: BUSINESS.telephone,
+      contactType: "customer service",
+      areaServed: "US-CA",
+      availableLanguage: ["English"],
+    },
     knowsAbout: [
       "home-service web design",
       "contractor web design",
@@ -534,6 +543,18 @@ export default function Home() {
       "Contractor website redesign",
       "Local SEO-friendly service business websites",
     ],
+    review: testimonials.map(item => ({
+      "@type": "Review",
+      author: {
+        "@type": "Person",
+        name: item.name,
+      },
+      itemReviewed: {
+        "@id": `${SITE_URL}/#professional-service`,
+      },
+      reviewBody: item.quote,
+      name: item.company,
+    })),
   };
 
   const homePageSchema = {
@@ -690,20 +711,29 @@ export default function Home() {
             ))}
           </nav>
 
-          <div className="hidden lg:block">
+          <div className="hidden items-center gap-3 lg:flex">
+            <a href={BUSINESS.phoneHref} className="inline-flex h-11 items-center gap-2 border border-black/10 bg-white px-4 text-sm font-semibold text-[#111111] transition-colors hover:border-blue-600">
+              <PhoneCall className="size-4 text-blue-700" />
+              Call {BUSINESS.phoneDisplay}
+            </a>
             <Button asChild className="h-11 rounded-none border border-[#111111] bg-[#111111] px-5 text-sm font-semibold uppercase tracking-[0.08em] text-white hover:bg-slate-800">
               <Link href="/audit">Request Your Free Audit</Link>
             </Button>
           </div>
 
-          <button
-            type="button"
-            aria-label="Toggle navigation"
-            className="inline-flex size-11 items-center justify-center border border-black/10 bg-white lg:hidden"
-            onClick={() => setMobileMenuOpen(open => !open)}
-          >
-            <Menu className="size-5" />
-          </button>
+          <div className="flex items-center gap-2 lg:hidden">
+            <a href={BUSINESS.phoneHref} aria-label={`Call ${BUSINESS.phoneDisplay}`} className="inline-flex size-11 items-center justify-center border border-black/10 bg-white">
+              <PhoneCall className="size-5" />
+            </a>
+            <button
+              type="button"
+              aria-label="Toggle navigation"
+              className="inline-flex size-11 items-center justify-center border border-black/10 bg-white"
+              onClick={() => setMobileMenuOpen(open => !open)}
+            >
+              <Menu className="size-5" />
+            </button>
+          </div>
         </div>
 
         {mobileMenuOpen ? (
@@ -724,6 +754,10 @@ export default function Home() {
                   Request Your Free Audit
                 </a>
               </Button>
+              <a href={BUSINESS.phoneHref} className="inline-flex h-12 items-center justify-center gap-2 border border-black/10 bg-white text-sm font-semibold uppercase tracking-[0.08em] text-[#111111]" onClick={() => setMobileMenuOpen(false)}>
+                <PhoneCall className="size-4" />
+                Call {BUSINESS.phoneDisplay}
+              </a>
             </div>
           </div>
         ) : null}
@@ -740,7 +774,7 @@ export default function Home() {
                 Web Design for Contractors Who Need More Calls, Not More Complexity
               </h1>
               <p className="mt-6 max-w-[42rem] text-[1.02rem] leading-7 text-slate-600 sm:text-[1.15rem] sm:leading-8">
-                You do the work. We make sure your website sells it. Clear pricing, fast turnaround, no agency runaround. Built for plumbers, electricians, cleaners, and home-service teams in Southern California.
+                Blue Tape Sites builds phone-first contractor websites for Southern California service businesses so buyers can understand what you do, see proof, and call without hunting. Get a free 5-minute video audit with a 48-hour turnaround, or call {BUSINESS.phoneDisplay}.
               </p>
               <p className="mt-4 max-w-[34rem] text-sm leading-7 text-slate-500 sm:text-[0.98rem]">
                 If you are growing into new cities, adding service areas, or trying to win better jobs, you should not have to guess what the website costs, what needs fixing, or what happens next.
@@ -754,6 +788,9 @@ export default function Home() {
                   <Link href="/examples">See Example Sites</Link>
                 </Button>
               </div>
+              <p className="mt-3 text-sm font-medium text-slate-600">
+                Or call <a href={BUSINESS.phoneHref} className="font-semibold text-[#111111] underline decoration-blue-600/40 underline-offset-4">{BUSINESS.phoneDisplay}</a> - same-day reply.
+              </p>
             </div>
 
             <div className="grid gap-4 self-end">
@@ -776,6 +813,30 @@ export default function Home() {
                 ))}
               </div>
             </div>
+          </div>
+        </section>
+
+        <section className="border-b border-black/8 bg-white">
+          <div className="container grid gap-px bg-black/8 sm:grid-cols-2 lg:grid-cols-4">
+            {trustStripItems.map(item => (
+              item.href ? (
+                <a key={item.value} href={item.href} className="flex items-center gap-3 bg-white px-5 py-4 transition-colors hover:bg-slate-50">
+                  <PhoneCall className="size-4 shrink-0 text-blue-700" />
+                  <span>
+                    <span className="block text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-slate-400">{item.label}</span>
+                    <span className="mt-1 block text-sm font-semibold text-[#111111]">{item.value}</span>
+                  </span>
+                </a>
+              ) : (
+                <div key={item.value} className="flex items-center gap-3 bg-white px-5 py-4">
+                  <BadgeCheck className="size-4 shrink-0 text-blue-700" />
+                  <span>
+                    <span className="block text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-slate-400">{item.label}</span>
+                    <span className="mt-1 block text-sm font-semibold text-[#111111]">{item.value}</span>
+                  </span>
+                </div>
+              )
+            ))}
           </div>
         </section>
 
@@ -1213,6 +1274,7 @@ export default function Home() {
             <p className="mt-6 max-w-xl text-base leading-8 text-white/72">
               Premium web design for plumbers, electricians, cleaners, and other home-service businesses that want every flaw found, every detail tightened, and every page ready to convert.
             </p>
+            <p className="mt-3 text-sm text-white/55">{BUSINESS.hoursDisplay}</p>
           </div>
 
           <div className="grid gap-8 sm:grid-cols-2">
@@ -1232,6 +1294,11 @@ export default function Home() {
                 Request Your Free Audit
                 <ArrowRight className="size-4" />
               </a>
+              <a href={BUSINESS.phoneHref} className="mt-4 flex items-center gap-2 text-base font-semibold text-white transition-colors hover:text-blue-300">
+                <PhoneCall className="size-4" />
+                Call {BUSINESS.phoneDisplay}
+              </a>
+              <p className="mt-2 text-sm text-white/55">{BUSINESS.sameDayReply}</p>
               <div className="mt-6 inline-flex items-center gap-2 border border-white/12 px-4 py-3 text-sm text-white/70">
                 <CircleHelp className="size-4 text-blue-300" />
                 Built for detail-obsessed owners who want less confusion and more confidence.
