@@ -121,8 +121,12 @@ function PhoneFrame({
   className?: string;
 }) {
   return (
-    <div className={`overflow-hidden rounded-[1.65rem] border-[8px] border-[#111111] bg-[#111111] shadow-[0_22px_70px_rgba(17,17,17,0.16)] ${className ?? ""}`}>
-      <div className="h-full w-full overflow-hidden rounded-[1.05rem] bg-white">
+    <div className={`relative rounded-[2rem] bg-[#101010] p-[7px] shadow-[0_26px_70px_rgba(17,17,17,0.22),inset_0_0_0_1px_rgba(255,255,255,0.08)] ${className ?? ""}`}>
+      <span className="absolute -left-[3px] top-[21%] h-10 w-[3px] rounded-l bg-[#1b1b1b]" aria-hidden="true" />
+      <span className="absolute -left-[3px] top-[33%] h-14 w-[3px] rounded-l bg-[#1b1b1b]" aria-hidden="true" />
+      <span className="absolute -right-[3px] top-[28%] h-16 w-[3px] rounded-r bg-[#1b1b1b]" aria-hidden="true" />
+      <div className="absolute left-1/2 top-[13px] z-10 h-[0.54rem] w-[32%] -translate-x-1/2 rounded-full bg-[#101010] shadow-[0_0_0_1px_rgba(255,255,255,0.04)]" aria-hidden="true" />
+      <div className="h-full w-full overflow-hidden rounded-[1.42rem] bg-white ring-1 ring-white/10">
         <img src={src} alt={alt} className="h-full w-full object-cover object-top" loading="lazy" decoding="async" />
       </div>
     </div>
