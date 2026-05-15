@@ -210,8 +210,110 @@ const citySeeds: CitySeed[] = [
   { slug: "chula-vista", city: "Chula Vista", region: "San Diego County", audience: "bilingual contractors, HVAC teams, electricians, remodelers, and cleaners", neighborhoods: ["Eastlake", "Otay Ranch", "Rolling Hills Ranch", "Bayfront", "Castle Park"], nuance: "Chula Vista includes some of San Diego County's newest master-planned tract housing in Otay Ranch, a bilingual market, and warranty-period work on newer homes. Contractor websites need to feel polished enough for newer communities and clear enough for fast service calls.", trades: ["hvac", "electricians", "remodelers", "cleaners", "contractors"], strongestTrade: "hvac", seasonal: "newer-home warranty-period work and bilingual service demand" },
 ];
 
-const neighborhoodSentence = (city: CitySeed, neighborhood: string) =>
-  `${neighborhood}: contractors here need pages that connect ${city.nuance.toLowerCase().split(".")[0]} to a fast call path, proof, and service-area clarity.`;
+const neighborhoodNotes: Record<string, string[]> = {
+  anaheim: [
+    "Anaheim Hills buyers tend to compare premium-looking service companies, so HVAC, garage door, and remodeler pages need visible proof and fast phone access.",
+    "West Anaheim has plenty of older tract housing, which makes repipe, electrical update, HVAC retrofit, and repair-service clarity especially important.",
+    "Downtown Anaheim contractors need pages that speak to older homes, mixed-use blocks, and customers who want local credibility before calling.",
+    "Platinum Triangle work benefits from a more organized presentation because newer mixed-use properties and busy owners expect fast, polished intake.",
+    "The Colony Historic District rewards contractors who can explain older-home care, repipe work, retrofits, and careful restoration without sounding generic.",
+    "Anaheim Resort District service buyers need clear response expectations, commercial-friendly proof, and phone-first CTAs for time-sensitive work.",
+  ],
+  irvine: [
+    "Woodbridge homeowners expect polished presentation and HOA-aware remodel, landscape, and electrical language before they request a consultation.",
+    "Northwood pages should feel organized and premium because buyers often compare several well-presented contractors before calling.",
+    "Turtle Rock contractors need project proof, process clarity, and higher-end positioning for remodel, landscape, and smart-home work.",
+    "Quail Hill pages should speak to planned upgrades, design-build decisions, and careful presentation for HOA-heavy neighborhoods.",
+    "University Park buyers need practical proof and clear scheduling for service work, repairs, and smaller upgrades.",
+    "Westpark pages should make warranty, communication, and premium service cues easy to see before the form.",
+    "Great Park Neighborhoods contractors should separate newer-home warranty work from bigger upgrade projects so buyers self-select correctly.",
+  ],
+  "huntington-beach": [
+    "Downtown HB pages should connect coastal wear, curb appeal, and fast service response for homeowners close to the beach.",
+    "Huntington Harbour contractors need premium proof for waterfront homes where corrosion, HVAC replacement, and exterior presentation matter.",
+    "Bolsa Chica buyers need clear coastal-corrosion language, especially for plumbing, HVAC, garage doors, and exterior upgrades.",
+    "Sea Cliff pages should look polished enough for premium remodel, landscape, and replacement projects while keeping phone CTAs obvious.",
+    "Edinger Corridor service pages should stay direct and mobile-first for homeowners comparing repair options quickly.",
+  ],
+  "santa-ana": [
+    "Downtown Santa Ana contractors need pages that support property managers, rental turnover repairs, and bilingual buyer overlap.",
+    "Floral Park pages should handle historic-home trust carefully, with proof for plumbing, electrical, and HVAC work near the CTA.",
+    "French Park contractors benefit from copy that explains older-home service without making the visitor hunt for the phone number.",
+    "South Coast Metro pages should speak to both residential and commercial-style service demand with clear response expectations.",
+  ],
+  "long-beach": [
+    "Belmont Shore pages should address older homes, coastal expectations, and homeowners who compare proof before booking.",
+    "Bixby Knolls contractors need old-home electrical, plumbing, roofing, and remodel proof presented in a calm, credible way.",
+    "Naples pages should feel premium and specific, especially for remodelers, roofers, plumbers, and electricians working on higher-consideration homes.",
+    "Downtown Long Beach service pages should be fast to scan for dense urban buyers, landlords, and property managers.",
+    "Cambodia Town contractors benefit from clear service-area language and practical repair paths for older housing stock.",
+  ],
+  torrance: [
+    "Old Torrance pages should connect older homes, close referral patterns, and repair trust without overdoing the sales language.",
+    "South Torrance contractors need restrained, credible proof for roofing, drainage, remodel, and service work.",
+    "Hollywood Riviera pages should address hillside drainage, roof leak concerns, and premium-home expectations.",
+    "Walteria service pages should make local familiarity and response time easy to verify before the visitor calls.",
+  ],
+  "santa-monica": [
+    "Ocean Park pages should connect coastal homes, premium pricing, and sustainability-minded upgrades with a clean proof path.",
+    "Mid-City Santa Monica contractors need landlord-side repair language and homeowner upgrade proof on the same page without blending them together.",
+    "Pico pages should keep service calls practical while still supporting electrification, EV, HVAC, and remodel demand.",
+    "Sunset Park homeowners expect credible presentation for remodel, electrical, landscape, and HVAC work before they call.",
+    "Wilshire-Montana pages should feel premium, specific, and proof-heavy for high-consideration home-service decisions.",
+  ],
+  pasadena: [
+    "Old Pasadena contractors need pages that respect historic context while making plumbing, electrical, roof, and remodel calls easy.",
+    "Bungalow Heaven pages should show preservation sensitivity, Craftsman-home experience, and careful process language.",
+    "South Lake service pages should support busy homeowners and property owners with clear proof, response time, and trade fit.",
+    "Hastings Ranch pages can lean into planned upgrades, roofing, electrical, and remodel work for established homes.",
+    "Madison Heights contractors need credibility-first copy for specialized old-home work and higher-expectation buyers.",
+  ],
+  riverside: [
+    "Wood Streets pages should speak to older-home character while making HVAC, plumbing, roofing, and electrical proof easy to find.",
+    "Canyon Crest contractors need value-forward, credible pages for HVAC, roofing, remodel, and service work.",
+    "Arlington pages should keep pricing sensitivity, response time, and proof close together so visitors do not bounce.",
+    "Downtown Riverside pages should support older properties, commercial edges, and fast mobile calls.",
+    "La Sierra contractors benefit from clear service-area coverage and practical HVAC, plumbing, and roofing paths.",
+  ],
+  ontario: [
+    "Downtown Ontario pages should separate older-area service work from commercial and warehouse-adjacent calls.",
+    "Ontario Ranch contractors need polished pages for newer master-planned homes, warranty-period work, and planned upgrades.",
+    "Park Lane pages should keep residential service offers direct while still showing proof for larger projects.",
+    "College Heights buyers need local credibility, response clarity, and trade-specific proof before calling.",
+  ],
+  "rancho-cucamonga": [
+    "Alta Loma pages should speak to family-suburban buyers, hot-weather HVAC demand, wind exposure, and garage door wear.",
+    "Etiwanda contractors need HOA-aware presentation and clear proof for HVAC, garage door, remodel, and landscape work.",
+    "Terra Vista pages should feel polished and easy to scan for homeowners comparing service companies quickly.",
+    "Victoria pages should connect master-planned expectations with practical repair, replacement, and upgrade paths.",
+  ],
+  oceanside: [
+    "South Oceanside pages should address coastal corrosion, older cottages, and fast plumbing or HVAC service calls.",
+    "Fire Mountain contractors need proof for higher-consideration repairs and upgrades while keeping phone CTAs prominent.",
+    "Loma Alta pages should support older-home service, coastal wear, and practical repair decisions.",
+    "San Luis Rey pages should account for turnover, service speed, and homeowners comparing local contractors fast.",
+    "Rancho Del Oro contractors need clearer paths for newer tract homes, warranty-period work, and planned upgrades.",
+  ],
+  escondido: [
+    "Old Escondido pages should speak to older Spanish revival housing stock and careful plumbing, roof, and remodel work.",
+    "Felicita contractors need rural-edge credibility for well water, septic, landscape, and older-home service questions.",
+    "Country Club pages should support higher-consideration repair and remodel decisions with proof near every CTA.",
+    "North Broadway pages need practical service language for older homes, suburban repairs, and fast quote paths.",
+  ],
+  "chula-vista": [
+    "Eastlake pages should feel polished for newer planned communities while keeping HVAC, electrical, remodel, and cleaning CTAs direct.",
+    "Otay Ranch contractors need warranty-period language, new-tract familiarity, and clear paths for upgrades.",
+    "Rolling Hills Ranch pages should combine premium presentation with practical proof for newer-home service and remodel work.",
+    "Bayfront service pages should support bilingual market overlap, fast calls, and commercial-adjacent service clarity.",
+    "Castle Park pages should keep repair, cleaning, HVAC, and electrical offers simple, direct, and mobile-first.",
+  ],
+};
+
+const neighborhoodSentence = (city: CitySeed, neighborhood: string, index: number) =>
+  `${neighborhood}: ${
+    neighborhoodNotes[city.slug]?.[index] ??
+    `contractors here need pages that connect ${city.nuance.toLowerCase().split(".")[0]} to a fast call path, proof, and service-area clarity.`
+  }`;
 
 const cityPage = (seed: CitySeed): SeoPage => {
   const trade = industryLinks[seed.strongestTrade];
@@ -236,7 +338,7 @@ const cityPage = (seed: CitySeed): SeoPage => {
       },
       {
         title: `Neighborhoods we serve in ${seed.city}`,
-        bullets: seed.neighborhoods.map(neighborhood => neighborhoodSentence(seed, neighborhood)),
+        bullets: seed.neighborhoods.map((neighborhood, index) => neighborhoodSentence(seed, neighborhood, index)),
       },
       {
         title: `Trades we work with in ${seed.city}`,
