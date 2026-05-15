@@ -222,9 +222,9 @@ export default function MariasFamilyCleaningCaseStudy() {
               className="h-[18rem] w-full rounded-sm sm:h-[24rem] lg:absolute lg:left-0 lg:top-4 lg:h-[25rem] lg:w-[88%]"
             />
             <PhoneFrame
-              src={`${ASSET_BASE}/mobile-home.webp`}
+              src={`${ASSET_BASE}/mobile-home-clean.webp`}
               alt="Mobile screenshot of Maria's Family Cleaning homepage"
-              className="mx-auto aspect-[1170/1992] w-[52%] min-w-[12rem] max-w-[16rem] sm:w-[34%] lg:absolute lg:bottom-0 lg:right-0 lg:mx-0 lg:w-[15.5rem] lg:max-w-none"
+              className="mx-auto aspect-[390/844] w-[46%] min-w-[10.5rem] max-w-[13.5rem] sm:w-[30%] lg:absolute lg:bottom-0 lg:right-2 lg:mx-0 lg:w-[13.25rem] lg:max-w-none"
             />
           </div>
         </section>
