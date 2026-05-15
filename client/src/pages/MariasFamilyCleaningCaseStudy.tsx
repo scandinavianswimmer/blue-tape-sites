@@ -111,6 +111,24 @@ function VisualFrame({
   );
 }
 
+function PhoneFrame({
+  src,
+  alt,
+  className,
+}: {
+  src: string;
+  alt: string;
+  className?: string;
+}) {
+  return (
+    <div className={`overflow-hidden rounded-[1.65rem] border-[8px] border-[#111111] bg-[#111111] shadow-[0_22px_70px_rgba(17,17,17,0.16)] ${className ?? ""}`}>
+      <div className="h-full w-full overflow-hidden rounded-[1.05rem] bg-white">
+        <img src={src} alt={alt} className="h-full w-full object-cover object-top" loading="lazy" decoding="async" />
+      </div>
+    </div>
+  );
+}
+
 export default function MariasFamilyCleaningCaseStudy() {
   const articleSchema = {
     "@context": "https://schema.org",
@@ -188,10 +206,11 @@ export default function MariasFamilyCleaningCaseStudy() {
                 </div>
               ))}
             </div>
-            <Button asChild className="mt-8 h-13 rounded-none border border-[#111111] bg-[#111111] px-6 text-sm font-semibold uppercase tracking-[0.08em] text-white hover:bg-slate-800">
+            <Button asChild className="mt-8 h-auto min-h-13 w-full justify-between rounded-none border border-[#111111] bg-[#111111] px-4 py-4 text-left text-sm font-semibold uppercase leading-5 tracking-[0.08em] text-white hover:bg-slate-800 sm:w-auto sm:px-6 sm:whitespace-nowrap">
               <Link href="/audit">
-                Get the same treatment - Request your free audit
-                <ArrowRight className="ml-2 size-4" />
+                <span className="sm:hidden">Request your free audit</span>
+                <span className="hidden sm:inline">Get the same treatment - Request your free audit</span>
+                <ArrowRight className="ml-3 size-4 shrink-0" />
               </Link>
             </Button>
           </div>
@@ -202,10 +221,10 @@ export default function MariasFamilyCleaningCaseStudy() {
               alt="Desktop screenshot of Maria's Family Cleaning homepage"
               className="h-[18rem] w-full rounded-sm sm:h-[24rem] lg:absolute lg:left-0 lg:top-4 lg:h-[25rem] lg:w-[88%]"
             />
-            <VisualFrame
+            <PhoneFrame
               src={`${ASSET_BASE}/mobile-home.webp`}
               alt="Mobile screenshot of Maria's Family Cleaning homepage"
-              className="mx-auto h-[24rem] w-[56%] min-w-[12rem] rounded-[1.4rem] border-[8px] border-[#111111] sm:h-[28rem] sm:w-[40%] lg:absolute lg:bottom-0 lg:right-0 lg:mx-0 lg:h-[26rem] lg:w-[34%] lg:min-w-[10rem]"
+              className="mx-auto aspect-[1170/1992] w-[52%] min-w-[12rem] max-w-[16rem] sm:w-[34%] lg:absolute lg:bottom-0 lg:right-0 lg:mx-0 lg:w-[15.5rem] lg:max-w-none"
             />
           </div>
         </section>
