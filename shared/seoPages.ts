@@ -363,7 +363,7 @@ const industryPage = (seed: IndustrySeed): SeoPage => ({
   serviceType: seed.serviceType,
   breadcrumbLabel: seed.label.replace(/^\w/, char => char.toUpperCase()),
   sections: [
-    { title: `The 4 reasons ${seed.plural} websites lose calls`, bullets: seed.loseCalls },
+    { title: `The 4 reasons ${seed.label} websites lose calls`, bullets: seed.loseCalls },
     { title: "What we change", bullets: seed.changes },
     { title: "How it works", bullets: ["Day 1: send the site and get the highest-priority trust, mobile, and local search issues identified.", "Days 3-7: rebuild the core page flow, rewrite the offer, place proof, and tighten phone and form CTAs.", "Day 8-10: revise, launch, submit the sitemap, and make sure crawlable HTML contains the H1, FAQ, schema, and phone number."] },
     { title: `Trust signals on ${seed.label} sites`, bullets: seed.trust },
