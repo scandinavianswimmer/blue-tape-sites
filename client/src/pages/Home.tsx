@@ -51,7 +51,6 @@ const navItems = [
   { label: "Examples", href: "/examples" },
   { label: "Case Studies", href: "/case-studies/marias-family-cleaning" },
   { label: "Blog", href: "/blog" },
-  { label: "Audit", href: "/audit" },
 ];
 
 const buildCards = [
@@ -716,20 +715,20 @@ export default function Home() {
             </div>
             <div className="min-w-0 leading-none">
               <div className="truncate text-[0.62rem] font-semibold uppercase tracking-[0.24em] text-slate-500">Blue Tape Sites</div>
-              <div className="mt-1 text-sm font-semibold tracking-[-0.03em] text-[#111111] sm:text-base">Precision web design</div>
+              <div className="mt-1 whitespace-nowrap text-sm font-semibold tracking-[-0.03em] text-[#111111] sm:text-base">Precision web design</div>
             </div>
           </a>
 
-          <nav className="hidden items-center gap-8 lg:flex">
+          <nav className="hidden items-center gap-6 lg:flex">
             {navItems.map(item => (
-              <a key={item.href} href={item.href} className="text-sm font-medium text-slate-600 transition-colors hover:text-[#111111]">
+              <a key={item.href} href={item.href} className="whitespace-nowrap text-sm font-medium text-slate-600 transition-colors hover:text-[#111111]">
                 {item.label}
               </a>
             ))}
           </nav>
 
           <div className="hidden items-center gap-3 lg:flex">
-            <a href={BUSINESS.phoneHref} className="inline-flex h-11 items-center gap-2 border border-black/10 bg-white px-4 text-sm font-semibold text-[#111111] transition-colors hover:border-blue-600">
+            <a href={BUSINESS.phoneHref} className="inline-flex h-11 items-center gap-2 whitespace-nowrap border border-black/10 bg-white px-4 text-sm font-semibold text-[#111111] transition-colors hover:border-blue-600">
               <PhoneCall className="size-4 text-blue-700" />
               Call {BUSINESS.phoneDisplay}
             </a>

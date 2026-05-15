@@ -1,12 +1,12 @@
 import { useEffect, useMemo } from "react";
 import { Link } from "wouter";
-import { ArrowLeft, ArrowRight, PhoneCall } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { blogPosts } from "@/content/blogPosts";
 import { readAndClearBlogArchiveScroll, saveBlogArchiveScroll } from "@/lib/blogScroll";
 import { applyPageSeo, SITE_URL } from "@/lib/seo";
-import { BUSINESS } from "@shared/business";
 
 const BLOG_TITLE = "Contractor Website & Local SEO Advice | Blue Tape Sites";
 const BLOG_DESCRIPTION =
@@ -100,35 +100,10 @@ export default function Blog() {
   }, {});
 
   return (
-    <div className="min-h-screen bg-[#f7f5f1] text-[#111111]">
+    <div className="min-h-screen overflow-x-clip bg-[#f7f5f1] text-[#111111] selection:bg-blue-600 selection:text-white">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(archiveSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <header className="border-b border-black/8 bg-[rgba(247,245,241,0.94)] backdrop-blur-lg">
-        <div className="container flex min-h-18 items-center justify-between gap-4 py-4">
-          <Link href="/" className="flex min-w-0 items-center gap-3">
-            <div className="relative flex size-10 items-center justify-center border border-black/10 bg-white">
-              <span className="h-1.5 w-6 rotate-[-28deg] bg-blue-600" />
-            </div>
-            <div className="min-w-0 leading-none">
-              <div className="truncate text-[0.62rem] font-semibold uppercase tracking-[0.24em] text-slate-500">Blue Tape Sites</div>
-              <div className="mt-1 text-sm font-semibold tracking-[-0.03em] text-[#111111] sm:text-base">Blog</div>
-            </div>
-          </Link>
-
-          <div className="flex items-center gap-3">
-            <a href={BUSINESS.phoneHref} className="hidden items-center gap-2 rounded-full border border-black/10 bg-white px-5 py-2 text-sm font-semibold text-[#111111] hover:bg-white/90 sm:inline-flex">
-              <PhoneCall className="size-4 text-blue-700" />
-              Call {BUSINESS.phoneDisplay}
-            </a>
-            <Button asChild variant="outline" className="rounded-full border-black/10 bg-white px-5 text-[#111111] hover:bg-white/90">
-              <Link href="/">
-                <ArrowLeft className="mr-2 size-4" />
-                Back to site
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </header>
+      <SiteHeader />
 
       <main>
         <section className="border-b border-black/8">
@@ -153,7 +128,7 @@ export default function Blog() {
                   {featuredPost.title}
                 </h2>
                 <p className="mt-4 text-base leading-8 text-slate-600">{featuredPost.summary}</p>
-                <Button asChild className="mt-6 rounded-full bg-[#111111] px-6 text-white hover:bg-slate-800">
+                <Button asChild className="mt-6 h-12 rounded-none border border-[#111111] bg-[#111111] px-6 text-sm font-semibold uppercase tracking-[0.08em] text-white hover:bg-slate-800">
                   <Link href={`/blog/${featuredPost.slug}`} onClick={() => saveBlogArchiveScroll()}>
                     Read article
                     <ArrowRight className="ml-2 size-4" />
@@ -204,7 +179,7 @@ export default function Blog() {
                           {post.title}
                         </h3>
                         <p className="mt-3 text-base leading-8 text-slate-600">{post.excerpt}</p>
-                        <Button asChild variant="outline" className="mt-5 rounded-full border-black/10 bg-white px-5 text-[#111111] hover:bg-[#f7f5f1]">
+                        <Button asChild variant="outline" className="mt-5 h-11 rounded-none border-[#111111] bg-white px-5 text-sm font-semibold uppercase tracking-[0.08em] text-[#111111] hover:bg-[#f7f5f1]">
                           <Link href={`/blog/${post.slug}`} onClick={() => saveBlogArchiveScroll()}>
                             Read more
                             <ArrowRight className="ml-2 size-4" />
@@ -219,18 +194,7 @@ export default function Blog() {
           </div>
         </section>
       </main>
-      <footer className="border-t border-black/8 bg-[#111111] text-white">
-        <div className="container flex flex-col gap-4 py-8 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <div className="text-sm font-semibold uppercase tracking-[0.18em]">{BUSINESS.brand}</div>
-            <p className="mt-2 text-sm text-white/60">{BUSINESS.hoursDisplay}</p>
-          </div>
-          <a href={BUSINESS.phoneHref} className="inline-flex h-11 items-center justify-center gap-2 border border-white/20 px-4 text-sm font-semibold uppercase tracking-[0.08em] text-white hover:border-white/50">
-            <PhoneCall className="size-4" />
-            Call {BUSINESS.phoneDisplay}
-          </a>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

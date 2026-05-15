@@ -1,8 +1,9 @@
 import { type FormEvent, useEffect, useMemo, useState } from "react";
-import { ArrowLeft, Mail, ShieldCheck } from "lucide-react";
+import { Mail, ShieldCheck } from "lucide-react";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
+import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { applyPageSeo, SITE_URL } from "@/lib/seo";
 import { trpc } from "@/lib/trpc";
 
@@ -111,17 +112,10 @@ export default function Unsubscribe() {
   };
 
   return (
-    <div className="min-h-screen bg-[#faf8f4] text-[#111111]">
+    <div className="min-h-screen overflow-x-clip bg-[#f7f5f1] text-[#111111] selection:bg-blue-600 selection:text-white">
+      <SiteHeader />
       <main className="container py-10 sm:py-16">
-        <a
-          href="/"
-          className="inline-flex items-center gap-2 text-[0.74rem] font-semibold uppercase tracking-[0.18em] text-slate-500 transition-colors hover:text-[#111111]"
-        >
-          <ArrowLeft className="size-4" />
-          Back to Blue Tape Sites
-        </a>
-
-        <div className="mt-10 grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+        <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
           <section>
             <div className="text-[0.7rem] font-semibold uppercase tracking-[0.24em] text-slate-500">
               Email preferences
@@ -220,6 +214,7 @@ export default function Unsubscribe() {
           </section>
         </div>
       </main>
+      <SiteFooter />
     </div>
   );
 }

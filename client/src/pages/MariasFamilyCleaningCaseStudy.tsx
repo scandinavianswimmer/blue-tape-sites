@@ -2,18 +2,15 @@ import { useEffect } from "react";
 import { Link } from "wouter";
 import {
   ArrowRight,
-  BadgeCheck,
   CalendarClock,
-  CheckCircle2,
-  Home,
   MapPin,
-  PhoneCall,
   Sparkles,
   Star,
   Users,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { applyPageSeo, SITE_URL } from "@/lib/seo";
 import { BUSINESS } from "@shared/business";
 
@@ -79,42 +76,6 @@ const relatedLinks = [
   { href: "/examples", label: "Examples" },
   { href: "/blog/the-service-page-formula-for-home-service-businesses", label: "The service page formula" },
 ];
-
-function CaseStudyHeader() {
-  return (
-    <header className="border-b border-black/8 bg-[#f7f5f1]/95 backdrop-blur">
-      <div className="container flex min-h-[5rem] items-center justify-between gap-4">
-        <Link href="/" className="flex items-center gap-3 text-[#111111]">
-          <span className="inline-flex size-10 items-center justify-center border border-blue-600 bg-blue-600/10 text-[0.62rem] font-semibold uppercase tracking-[0.2em] text-blue-700">
-            BTS
-          </span>
-          <div>
-            <div className="text-sm font-semibold uppercase tracking-[0.18em]">Blue Tape Sites</div>
-            <div className="text-[0.72rem] uppercase tracking-[0.18em] text-slate-500">Case studies</div>
-          </div>
-        </Link>
-
-        <nav className="hidden items-center gap-7 lg:flex">
-          <Link href="/pricing" className="text-sm font-medium text-slate-600 transition-colors hover:text-[#111111]">Pricing</Link>
-          <Link href="/service-area" className="text-sm font-medium text-slate-600 transition-colors hover:text-[#111111]">Service Area</Link>
-          <Link href="/examples" className="text-sm font-medium text-slate-600 transition-colors hover:text-[#111111]">Examples</Link>
-          <Link href={CASE_PATH} className="text-sm font-semibold text-[#111111]">Case Studies</Link>
-          <Link href="/blog" className="text-sm font-medium text-slate-600 transition-colors hover:text-[#111111]">Blog</Link>
-        </nav>
-
-        <div className="flex items-center gap-3">
-          <a href={BUSINESS.phoneHref} className="hidden h-11 items-center gap-2 border border-black/10 bg-white px-4 text-sm font-semibold text-[#111111] hover:border-blue-600 sm:inline-flex">
-            <PhoneCall className="size-4 text-blue-700" />
-            Call {BUSINESS.phoneDisplay}
-          </a>
-          <Button asChild className="hidden h-11 rounded-none border border-[#111111] bg-[#111111] px-5 text-sm font-semibold uppercase tracking-[0.08em] text-white hover:bg-slate-800 md:inline-flex">
-            <Link href="/audit">Request audit</Link>
-          </Button>
-        </div>
-      </div>
-    </header>
-  );
-}
 
 function Breadcrumbs() {
   return (
@@ -199,10 +160,10 @@ export default function MariasFamilyCleaningCaseStudy() {
   }, []);
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[#f7f5f1] text-[#111111]">
+    <div className="min-h-screen overflow-x-clip bg-[#f7f5f1] text-[#111111] selection:bg-blue-600 selection:text-white">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <CaseStudyHeader />
+      <SiteHeader />
       <Breadcrumbs />
 
       <main>
@@ -391,27 +352,7 @@ export default function MariasFamilyCleaningCaseStudy() {
         </section>
       </main>
 
-      <footer className="border-t border-black/8 bg-[#111111] text-white">
-        <div className="container grid gap-8 py-10 md:grid-cols-[1fr_auto] md:items-end">
-          <div>
-            <div className="text-sm font-semibold uppercase tracking-[0.18em]">{BUSINESS.brand}</div>
-            <p className="mt-3 max-w-xl text-sm leading-7 text-white/62">
-              {BUSINESS.tagline} for contractors and home-service businesses across {BUSINESS.serviceAreaDetail}.
-            </p>
-            <p className="mt-2 text-sm text-white/62">{BUSINESS.hoursDisplay}</p>
-          </div>
-          <div className="flex flex-col gap-3 sm:flex-row">
-            <Link href="/web-design-for-cleaners" className="inline-flex h-11 items-center justify-center gap-2 border border-white/20 px-4 text-sm font-semibold uppercase tracking-[0.08em] text-white hover:border-white/50">
-              <CheckCircle2 className="size-4" />
-              Cleaner pages
-            </Link>
-            <a href={BUSINESS.phoneHref} className="inline-flex h-11 items-center justify-center gap-2 border border-white bg-white px-4 text-sm font-semibold uppercase tracking-[0.08em] text-[#111111] hover:bg-slate-100">
-              <PhoneCall className="size-4" />
-              Call {BUSINESS.phoneDisplay}
-            </a>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

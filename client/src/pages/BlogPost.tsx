@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import { Link, useRoute } from "wouter";
-import { ArrowLeft, ArrowRight, PhoneCall } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { SiteFooter, SiteHeader } from "@/components/SiteChrome";
 import { blogPostMap, blogPosts, getBlogPostServiceCta } from "@/content/blogPosts";
 import { trackBlogCtaClick, buildBlogCtaClickPayload } from "@/lib/blogCtaTracking";
 import { renderArticleMarkdown } from "@/lib/renderArticle";
@@ -69,34 +70,9 @@ export default function BlogPost() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f7f5f1] text-[#111111]">
+    <div className="min-h-screen overflow-x-clip bg-[#f7f5f1] text-[#111111] selection:bg-blue-600 selection:text-white">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <header className="border-b border-black/8 bg-[rgba(247,245,241,0.94)] backdrop-blur-lg">
-        <div className="container flex min-h-18 items-center justify-between gap-4 py-4">
-          <Link href="/blog" className="flex min-w-0 items-center gap-3">
-            <div className="relative flex size-10 items-center justify-center border border-black/10 bg-white">
-              <span className="h-1.5 w-6 rotate-[-28deg] bg-blue-600" />
-            </div>
-            <div className="min-w-0 leading-none">
-              <div className="truncate text-[0.62rem] font-semibold uppercase tracking-[0.24em] text-slate-500">Blue Tape Sites</div>
-              <div className="mt-1 text-sm font-semibold tracking-[-0.03em] text-[#111111] sm:text-base">Blog archive</div>
-            </div>
-          </Link>
-
-          <div className="flex items-center gap-3">
-            <a href={BUSINESS.phoneHref} className="hidden items-center gap-2 rounded-full border border-black/10 bg-white px-5 py-2 text-sm font-semibold text-[#111111] hover:bg-white/90 sm:inline-flex">
-              <PhoneCall className="size-4 text-blue-700" />
-              Call {BUSINESS.phoneDisplay}
-            </a>
-            <Button asChild variant="outline" className="rounded-full border-black/10 bg-white px-5 text-[#111111] hover:bg-white/90">
-              <Link href="/blog">
-                <ArrowLeft className="mr-2 size-4" />
-                All posts
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </header>
+      <SiteHeader />
 
       <main className="container py-14 sm:py-18">
         <div className="mx-auto max-w-4xl">
@@ -147,7 +123,7 @@ export default function BlogPost() {
               {newerPost ? (
                 <>
                   <div className="mt-3 text-xl font-semibold tracking-[-0.04em] text-[#111111]">{newerPost.title}</div>
-                  <Button asChild variant="outline" className="mt-5 rounded-full border-black/10 bg-white px-5 text-[#111111] hover:bg-[#f7f5f1]">
+                  <Button asChild variant="outline" className="mt-5 h-11 rounded-none border-[#111111] bg-white px-5 text-sm font-semibold uppercase tracking-[0.08em] text-[#111111] hover:bg-[#f7f5f1]">
                     <Link href={`/blog/${newerPost.slug}`}>
                       <ArrowLeft className="mr-2 size-4" />
                       Read newer post
@@ -164,7 +140,7 @@ export default function BlogPost() {
               {olderPost ? (
                 <>
                   <div className="mt-3 text-xl font-semibold tracking-[-0.04em] text-[#111111]">{olderPost.title}</div>
-                  <Button asChild variant="outline" className="mt-5 rounded-full border-black/10 bg-white px-5 text-[#111111] hover:bg-[#f7f5f1]">
+                  <Button asChild variant="outline" className="mt-5 h-11 rounded-none border-[#111111] bg-white px-5 text-sm font-semibold uppercase tracking-[0.08em] text-[#111111] hover:bg-[#f7f5f1]">
                     <Link href={`/blog/${olderPost.slug}`}>
                       Read older post
                       <ArrowRight className="ml-2 size-4" />
@@ -178,18 +154,7 @@ export default function BlogPost() {
           </div>
         </div>
       </main>
-      <footer className="border-t border-black/8 bg-[#111111] text-white">
-        <div className="container flex flex-col gap-4 py-8 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <div className="text-sm font-semibold uppercase tracking-[0.18em]">{BUSINESS.brand}</div>
-            <p className="mt-2 text-sm text-white/60">{BUSINESS.hoursDisplay}</p>
-          </div>
-          <a href={BUSINESS.phoneHref} className="inline-flex h-11 items-center justify-center gap-2 border border-white/20 px-4 text-sm font-semibold uppercase tracking-[0.08em] text-white hover:border-white/50">
-            <PhoneCall className="size-4" />
-            Call {BUSINESS.phoneDisplay}
-          </a>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }
