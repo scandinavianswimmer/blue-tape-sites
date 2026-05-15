@@ -49,6 +49,7 @@ const navItems = [
   { label: "Service Area", href: "/service-area" },
   { label: "Pricing", href: "/pricing" },
   { label: "Examples", href: "/examples" },
+  { label: "Case Studies", href: "/case-studies/marias-family-cleaning" },
   { label: "Blog", href: "/blog" },
   { label: "Audit", href: "/audit" },
 ];
@@ -102,6 +103,22 @@ const testimonials = [
 ];
 
 const exampleSites = [
+  {
+    name: "Real client: Maria's Family Cleaning ->",
+    niche: "Case Study",
+    direction: "Bilingual residential cleaning site",
+    result: "Built to turn trust into quote requests.",
+    summary: "A live Orange County cleaning company site with bilingual identity, visible reviews, transparent pricing, and a quote flow built for busy homeowners.",
+    proof: "247+ OC families served, 5.0 rating, 127+ reviews, bonded and insured, and same-day availability above the fold.",
+    layout: "Warm family-run positioning paired with a conversion-focused booking path and city-level service-area proof.",
+    eyebrow: "Live client",
+    cardClass: "bg-[#eefaf4]",
+    frameClass: "border-emerald-200/80",
+    accentClass: "from-emerald-700 via-teal-500 to-sky-300",
+    titleClass: "font-[\"Space_Grotesk\"] tracking-[-0.04em]",
+    href: "/case-studies/marias-family-cleaning",
+    image: "/case-studies/marias-family-cleaning/desktop-home.webp",
+  },
   {
     name: "Emergency Plumber: Harbor Plumbing Co.",
     niche: "Plumbing",
@@ -1077,7 +1094,13 @@ export default function Home() {
                       <div className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-slate-500">{site.niche}</div>
                       <div className="text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-slate-400">{site.eyebrow}</div>
                     </div>
-                    <h3 className={`mt-3 text-[1.45rem] font-semibold text-[#111111] ${site.titleClass}`}>{site.name}</h3>
+                    <h3 className={`mt-3 text-[1.45rem] font-semibold text-[#111111] ${site.titleClass}`}>
+                      {"href" in site && site.href ? (
+                        <Link href={site.href} className="transition-colors hover:text-blue-700">{site.name}</Link>
+                      ) : (
+                        site.name
+                      )}
+                    </h3>
                     <p className="mt-2 text-sm leading-6 text-slate-600">{site.direction}</p>
                     <p className="mt-2 text-sm font-medium leading-6 text-slate-700">Result: {site.result}</p>
                   </div>
@@ -1086,7 +1109,7 @@ export default function Home() {
                     <div className={`overflow-hidden border bg-white ${site.frameClass}`}>
                       <img
                         src={site.image}
-                        alt={`${site.name} sample homepage concept`}
+                        alt={`${site.name} homepage visual`}
                         className="w-full object-cover transition-transform duration-300 group-hover:scale-[1.015]"
                         loading="lazy"
                         decoding="async"
@@ -1103,6 +1126,12 @@ export default function Home() {
                         <p className="text-sm leading-6 text-slate-600">{site.layout}</p>
                       </div>
                     </div>
+                    {"href" in site && site.href ? (
+                      <Link href={site.href} className="mt-5 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.08em] text-blue-700">
+                        Read case study
+                        <ArrowRight className="size-4" />
+                      </Link>
+                    ) : null}
                   </div>
                 </article>
               ))}

@@ -23,6 +23,7 @@ export type SeoPage = {
   path: string;
   title: string;
   description: string;
+  image?: string;
   h1: string;
   eyebrow: string;
   summary: string;
@@ -470,6 +471,7 @@ const industryPage = (seed: IndustrySeed): SeoPage => ({
     { title: "How it works", bullets: ["Day 1: send the site and get the highest-priority trust, mobile, and local search issues identified.", "Days 3-7: rebuild the core page flow, rewrite the offer, place proof, and tighten phone and form CTAs.", "Day 8-10: revise, launch, submit the sitemap, and make sure crawlable HTML contains the H1, FAQ, schema, and phone number."] },
     { title: `Trust signals on ${seed.label} sites`, bullets: seed.trust },
     { title: "Where we work", links: seed.cities.map(city => ({ label: city, href: cityHref(city), description: `Local contractor web design page for ${city}.` })) },
+    ...(seed.slug === "cleaners" ? [{ title: "Real cleaning company case study", links: [{ label: "Maria's Family Cleaning case study", href: "/case-studies/marias-family-cleaning", description: "A live bilingual Orange County cleaning website built around trust, transparent pricing, and quote requests." }] }] : []),
     { title: "Request a trade-specific audit", body: `${BUSINESS.brand} will review your ${seed.label} website for call clarity, local relevance, proof order, schema, and whether the first 100 words answer the buyer's question. ${phoneLine}` },
   ],
   faq: seed.faqs,

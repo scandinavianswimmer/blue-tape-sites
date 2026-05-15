@@ -119,6 +119,9 @@ function Footer() {
           <p className="mt-2 text-sm text-white/62">{BUSINESS.hoursDisplay}</p>
         </div>
         <div className="flex flex-col gap-3 sm:flex-row">
+          <Link href="/case-studies/marias-family-cleaning" className="inline-flex h-11 items-center justify-center border border-white/20 px-4 text-sm font-semibold uppercase tracking-[0.08em] text-white hover:border-white/50">
+            Case study
+          </Link>
           <a href={BUSINESS.phoneHref} className="inline-flex h-11 items-center justify-center gap-2 border border-white/20 px-4 text-sm font-semibold uppercase tracking-[0.08em] text-white hover:border-white/50">
             <PhoneCall className="size-4" />
             Call {BUSINESS.phoneDisplay}
@@ -166,6 +169,9 @@ export default function SeoLandingPage({ page }: { page: SeoPage }) {
             <Link href="/examples" className="text-sm font-medium text-slate-600 transition-colors hover:text-[#111111]">
               Examples
             </Link>
+            <Link href="/case-studies/marias-family-cleaning" className="text-sm font-medium text-slate-600 transition-colors hover:text-[#111111]">
+              Case Studies
+            </Link>
             <Link href="/blog" className="text-sm font-medium text-slate-600 transition-colors hover:text-[#111111]">
               Blog
             </Link>
@@ -199,6 +205,11 @@ export default function SeoLandingPage({ page }: { page: SeoPage }) {
               <Button asChild className="h-13 rounded-none border border-[#111111] bg-[#111111] px-6 text-sm font-semibold uppercase tracking-[0.08em] text-white hover:bg-slate-800 sm:w-auto">
                 <Link href="/audit">Get your free audit</Link>
               </Button>
+              {page.path === "/web-design-for-cleaners" ? (
+                <Button asChild variant="outline" className="h-13 rounded-none border-[#111111] bg-transparent px-6 text-sm font-semibold uppercase tracking-[0.08em] text-[#111111] hover:bg-white sm:w-auto">
+                  <Link href="/case-studies/marias-family-cleaning">See cleaning case study</Link>
+                </Button>
+              ) : null}
               <Button asChild variant="outline" className="h-13 rounded-none border-[#111111] bg-transparent px-6 text-sm font-semibold uppercase tracking-[0.08em] text-[#111111] hover:bg-white sm:w-auto">
                 <Link href="/pricing">See pricing</Link>
               </Button>

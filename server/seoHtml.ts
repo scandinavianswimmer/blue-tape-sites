@@ -97,7 +97,54 @@ const blogSeoPages: SeoPage[] = [
   })),
 ];
 
-export const seoPagesForSitemap = [homePage, ...allSeoPages, ...blogSeoPages];
+const caseStudySeoPages: SeoPage[] = [
+  {
+    path: "/case-studies/marias-family-cleaning",
+    title: "How Maria's Family Cleaning Books 200+ OC Homes Monthly | Blue Tape Sites Case Study",
+    description:
+      "How we rebuilt Maria's Family Cleaning into a bilingual, trust-first house cleaning site that books 247+ OC families and earned a 5.0 rating across 127+ reviews.",
+    image: `${SITE_URL}/case-studies/marias-family-cleaning/desktop-home.webp`,
+    h1: "How Maria's Family Cleaning books 200+ OC homes monthly",
+    eyebrow: "Case study",
+    summary:
+      "A bilingual cleaning company in Orange County needed a website that felt as warm as a referral from your neighbor and as serious as a $150 deep clean.",
+    answer:
+      "Maria's Family Cleaning is a Blue Tape Sites case study showing how a bilingual, trust-first cleaning website can turn reviews, pricing, service area, and quote flow into a stronger booking engine for Orange County homeowners.",
+    sections: [
+      {
+        title: "The cleaning industry sells on trust, not features",
+        paragraphs: [
+          "Most cleaning company websites read like a list of services and a phone number. In 2026, a homeowner deciding who's getting access to their house wants to see a real team, real reviews, real pricing, and a real way to book without picking up the phone.",
+          "Maria's brand was strong across Irvine, Costa Mesa, Newport Beach, and beyond. The rebuild surfaced trust above the fold, made pricing transparent, exposed the service area, captured quotes without friction, and let the cultural identity show through.",
+        ],
+      },
+      {
+        title: "Five decisions that turned the site into a booking engine",
+        bullets: [
+          "Bilingual identity that treats Spanish as a first-class brand language.",
+          "Trust signals stacked above the fold: 247+ families served, 5.0 rating, 127+ reviews, bonded and insured, and same-day availability.",
+          "A 60-second quote calculator that gives buyers pricing before a call.",
+          "Public pricing for standard cleaning, deep cleaning, move-out cleaning, and add-ons.",
+          "Service-area copy for 12 Orange County cities that works as proof, not just SEO.",
+        ],
+      },
+      {
+        title: "What the rebuild moved",
+        body:
+          "247+ families served. 127+ five-star reviews. 12 cities covered. The numbers Maria publishes speak for themselves, and they are the numbers the site was built to make possible.",
+      },
+      {
+        title: "Want the same treatment for your trade?",
+        body:
+          "Blue Tape Sites builds trust-first websites for cleaners, plumbers, electricians, HVAC, remodelers, and other Southern California service businesses. Request a free audit or call for same-day reply.",
+      },
+    ],
+    type: "core",
+    breadcrumbLabel: "Maria's Family Cleaning",
+  },
+];
+
+export const seoPagesForSitemap = [homePage, ...allSeoPages, ...caseStudySeoPages, ...blogSeoPages];
 
 export function buildSitemapXml() {
   const today = new Date().toISOString().slice(0, 10);
@@ -165,6 +212,7 @@ Sitemap: ${SITE_URL}/sitemap.xml
 
 function buildJsonLd(page: SeoPage) {
   const canonicalUrl = `${SITE_URL}${page.path === "/" ? "/" : page.path}`;
+  const isCaseStudy = page.path.startsWith("/case-studies/");
   const graph: Record<string, unknown>[] = [
     {
       "@type": ["Organization", "LocalBusiness", "ProfessionalService"],
@@ -281,7 +329,9 @@ function buildJsonLd(page: SeoPage) {
 
   const breadcrumbItems = page.type === "industry"
     ? ["Home", "Services", page.breadcrumbLabel ?? page.h1]
-    : ["Home", page.type === "city" ? "Cities" : page.breadcrumbLabel ?? page.h1];
+    : isCaseStudy
+      ? ["Home", "Examples", "Case Studies", page.breadcrumbLabel ?? page.h1]
+      : ["Home", page.type === "city" ? "Cities" : page.breadcrumbLabel ?? page.h1];
 
   graph.push({
     "@type": "BreadcrumbList",
@@ -289,9 +339,39 @@ function buildJsonLd(page: SeoPage) {
       "@type": "ListItem",
       position: index + 1,
       name,
-      item: index === 0 ? SITE_URL : index === breadcrumbItems.length - 1 ? canonicalUrl : `${SITE_URL}${page.type === "city" ? "/service-area" : "/services"}`,
+      item: index === 0
+        ? SITE_URL
+        : index === breadcrumbItems.length - 1
+          ? canonicalUrl
+          : isCaseStudy && name === "Examples"
+            ? `${SITE_URL}/examples`
+            : isCaseStudy && name === "Case Studies"
+              ? `${SITE_URL}/case-studies`
+              : `${SITE_URL}${page.type === "city" ? "/service-area" : "/services"}`,
     })),
   });
+
+  if (isCaseStudy) {
+    graph.push({
+      "@type": "Article",
+      headline: page.h1,
+      description: page.description,
+      image: page.image ?? SOCIAL_IMAGE_URL,
+      datePublished: "2026-05-15T12:00:00Z",
+      dateModified: "2026-05-15T12:00:00Z",
+      mainEntityOfPage: canonicalUrl,
+      author: {
+        "@type": "Organization",
+        name: "Blue Tape Sites",
+        url: SITE_URL,
+      },
+      publisher: {
+        "@type": "Organization",
+        name: "Blue Tape Sites",
+        url: SITE_URL,
+      },
+    });
+  }
 
   if (page.faq?.length) {
     graph.push({
@@ -348,9 +428,10 @@ function buildBodySnapshot(page: SeoPage) {
 
 export function buildLlmsTxt() {
   const groups = [
-    ["Services", seoPagesForSitemap.filter(page => page.type === "core" && page.path !== "/" && !page.path.startsWith("/blog"))],
+    ["Services", seoPagesForSitemap.filter(page => page.type === "core" && page.path !== "/" && !page.path.startsWith("/blog") && !page.path.startsWith("/case-studies"))],
     ["Industries", seoPagesForSitemap.filter(page => page.type === "industry")],
     ["Cities", seoPagesForSitemap.filter(page => page.type === "city")],
+    ["Case Studies", seoPagesForSitemap.filter(page => page.path.startsWith("/case-studies"))],
     ["Blog", seoPagesForSitemap.filter(page => page.path.startsWith("/blog"))],
   ] as const;
 
@@ -368,13 +449,15 @@ export function buildLlmsTxt() {
 
 export function renderSeoHtml(template: string, requestUrl: string) {
   const path = normalizePath(requestUrl);
-  const page = path === "/" ? homePage : getSeoPageByPath(path) ?? blogSeoPages.find(item => item.path === path);
+  const page = path === "/" ? homePage : getSeoPageByPath(path) ?? caseStudySeoPages.find(item => item.path === path) ?? blogSeoPages.find(item => item.path === path);
 
   if (!page) {
     return template;
   }
 
   const canonicalUrl = `${SITE_URL}${page.path === "/" ? "/" : page.path}`;
+  const image = page.image ?? SOCIAL_IMAGE_URL;
+  const ogType = page.path.startsWith("/case-studies/") ? "article" : "website";
   const head = `
     <title>${escapeHtml(page.title)}</title>
     <meta name="description" content="${escapeHtml(page.description)}" />
@@ -382,12 +465,12 @@ export function renderSeoHtml(template: string, requestUrl: string) {
     <meta property="og:title" content="${escapeHtml(page.title)}" />
     <meta property="og:description" content="${escapeHtml(page.description)}" />
     <meta property="og:url" content="${canonicalUrl}" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="${SOCIAL_IMAGE_URL}" />
+    <meta property="og:type" content="${ogType}" />
+    <meta property="og:image" content="${image}" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${escapeHtml(page.title)}" />
     <meta name="twitter:description" content="${escapeHtml(page.description)}" />
-    <meta name="twitter:image" content="${SOCIAL_IMAGE_URL}" />
+    <meta name="twitter:image" content="${image}" />
     <script type="application/ld+json">${buildJsonLd(page)}</script>`;
 
   return template
